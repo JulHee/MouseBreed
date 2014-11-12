@@ -1,0 +1,36 @@
+Patterns
+Public
+
+    function Constructor(...) {
+
+        this.membername = value;
+
+    }
+    Constructor.prototype.membername = value;
+
+Private
+
+    function Constructor(...) {
+
+        var that = this;
+        var membername = value;
+
+        function membername(...) {...}
+
+    }
+
+    Note: The function statement
+
+        function membername(...) {...}
+
+    is shorthand for
+
+        var membername = function membername(...) {...};
+
+Privileged
+
+    function Constructor(...) {
+
+        this.membername = function (...) {...};
+
+    }
