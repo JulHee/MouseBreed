@@ -1,0 +1,205 @@
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.smaller {
+    font-size: smaller;
+}
+
+.lager {
+    font-size: larger;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.button {
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color: #28801c;
+    color: white !important;
+}
+
+.button:hover {
+    background-color: #278F1C;
+    cursor: pointer;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* ==========================================================================
+   Head classes
+   ========================================================================== */
+
+
+.head {
+    width: 100%;
+    min-width: 1024px;
+    height: 50px;
+    background-color: #096100;
+    overflow: hidden;
+}
+
+.head_container {
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+.head_item {
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 50px;
+    color: white;
+}
+
+.head_logo {
+    margin-top: 5px;
+    margin-right: 10px
+}
+
+.head_hover:hover {
+    background-color: #278F1C;
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   Content classes
+   ========================================================================== */
+
+.content {
+    overflow: hidden;
+}
+
+.content_container {
+    width: 100%;
+    min-height: 500px;
+    background: #f8f8f8;
+    overflow: hidden;
+}
+
+/* =============== Login =============== */
+
+.login_container {
+    background: #fefefe;
+    width: 400px;
+    margin: 20px auto 0 auto;
+    padding: 15px;
+    border: 1px solid #626262;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.login_container table {
+    margin-bottom: 15px;
+}
+
+.login_container td {
+    text-align: right;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.login_input {
+    width: 200px;
+}
+
+.login_error_msg {
+    margin: 10px 0 10px 0;
+    color: red;
+    font-size: smaller;
+    text-align: center;
+    display: none;
+}
+
+/* =============== Left list =============== */
+
+.left_list_container {
+    background: #f2f2f2;
+    width: 200px;
+    border-right: 2px solid #626262;
+}
+
+.left_list_head {
+    margin: 15px 0 5px 15px;
+}
+
+.list_item {
+    padding: 5px 10px 5px 10px;
+    box-sizing:border-box;
+    font-size: small;
+    display: block;
+    color: #000000;
+}
+
+.selected {
+    background-color: #dadada;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    width: 212px;
+}
+
+.list_item:hover {
+    cursor: pointer;
+    background-color: #dadada;
+}
+
+
+.selected_breed_container {
+    margin: 20px 0 0 25px;
+}
+
+/* ==========================================================================
+   Foot classes
+   ========================================================================== */
+
+.foot {
+    width: 100%;
+    border-top: 1px solid #626262;
+}
+
+.foot_container {
+    margin: 10px 20px;
+    font-size: smaller;
+}
+

@@ -1,7 +1,19 @@
 <?php
 session_start();
 
-$page = (isset($_GET['page']) && file_exists('content/'.$_GET['page'].'.php')) ? $_GET['page'] : 'home';
+//TODO-Christoph: kommentieren
+if (!isset($_GET['page'])) {
+    $page = "home";
+} elseif ($_GET['page'] == "home") {
+    $page = 'home_logged_' . (isset($_SESSION['login']) ? 'in' : 'out');
+} elseif (!file_exists('content/'.$_GET['page'].'.php')) {
+    $page = "404";
+} elseif (preg_match("#(profile)(?:/(.*))?#", $_GET['page'], $matches)) {
+    $page = $matches[1];
+    $subpage = isset($matches[2]) ? $matches[2] : "general";
+} else {
+    $page = $_GET['page'];
+}
 
 include_once('content/frame.php');
 ?>

@@ -1,65 +1,83 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-    <title>Mouse Breed</title>
+        <title>Mäusezucht</title>
 
-    <meta name="title" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+        <meta name="title" content=""/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
 
-    <link rel="shortcut icon" href="" />
+        <link rel="shortcut icon" href=""/>
 
-    <link rel="stylesheet" href="/style/normalize.css" />
-    <link rel="stylesheet" href="/style/styles.css" />
-</head>
-<body>
-<div class="head">
-    <div class="head_content">
-        <a class="head_item left" href="/home">
-            <img style="margin-top: 5px; margin-right: 10px" class="left" src="/data/img/mouse.png">
-            <span style="font-size: larger; font-weight: bold;">Mouse Breed</span>
-        </a>
-        <a class="head_item left">
-            <span style="font-weight: bold;">Item 1</span>
-        </a>
-        <a class="head_item left">
-            <span style="font-weight: bold;">Item 2</span>
-        </a>
-        <a class="head_item left">
-            <span style="font-weight: bold;">Item 2</span>
-        </a>
-        <a class="head_item left">
-            <span style="font-weight: bold;">Item 2</span>
-        </a>
-        <a class="head_item left">
-            <span style="font-weight: bold;">Item 2</span>
-        </a>
+        <link rel="stylesheet" href="/style/normalize.css"/>
+        <link rel="stylesheet" href="/style/main.css"/>
+    </head>
+    <body>
+        <div class="head">
+            <div class="head_container noselect">
+                <a class="head_item head_hover left" href="/home">
+                    <img class="head_logo left" src="/data/img/mouse.png">
+                    <span class="lager bold">Mäusezucht</span>
+                </a>
+                <a class="head_item head_hover left">
+                    <span>Item 1</span>
+                </a>
+                <a class="head_item head_hover left">
+                    <span>Item 2</span>
+                </a>
+                <a class="head_item head_hover left">
+                    <span>Item 2</span>
+                </a>
+                <a class="head_item head_hover left">
+                    <span>Item 2</span>
+                </a>
+                <a class="head_item head_hover left">
+                    <span>Item 2</span>
+                </a>
 
-        <div style="line-height: 50px;" class="right">
-            <table>
-                <tr>
-                    <td style="color: white">User:</td>
-                    <td class="login_space_row"><input type="text" style="width: 150px;"></td>
-                    <td class="login_space_row"  style="color: white">Password:</td>
-                    <td class="login_space_row"><input type="password" style="width: 150px;"></td>
-                    <td class="login_space_row"><input type="button" value="Login"></td>
-                </tr>
-            </table>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
+
+                <div class="head_item right">
+                    <a id="logout_button" class="head_login button">
+                        <span>Abmelden</span>
+                    </a>
+                </div>
+                <a class="head_item head_hover right" href="/profile/general">
+                    <span><?php echo $_SESSION['username']; ?></span>
+                </a>
+
+                <?php } else { ?>
+
+                <div class="head_item right">
+                    <a class="head_login button" href="/login">
+                        <span>Anmelden</span>
+                    </a>
+                </div>
+
+                <?php } ?>
+
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="content">
-    <div class="content_wrapper">
-        <?php include_once $page.'.php' ?>
-    </div>
-</div>
+        <div class="content">
+            <div class="content_container">
+                <?php include_once "$page.php"; ?>
+            </div>
+        </div>
 
-<div class="foot">
-    FOOT
-</div>
+        <div class="foot">
+            <div class="foot_container right" >
+                <a style="white-space: nowrap">Kontakt</a>
+                <span>-</span>
+                <a style="white-space: nowrap">Impressum</a>
+            </div>
+        </div>
 
-</body>
+        <script src="/script/js/ext/jquery-2.1.1.min.js"></script>
+        <script src="/script/js/main.js"></script>
+        <?php if (file_exists('script/js/content/'.$page.'.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
+
+    </body>
 </html>
