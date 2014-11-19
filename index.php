@@ -2,9 +2,7 @@
 session_start();
 
 //TODO-Christoph: kommentieren
-if (!isset($_GET['page'])) {
-    $page = "home";
-} elseif ($_GET['page'] == "home") {
+if (!isset($_GET['page']) || $_GET['page'] == "home") {
     $page = 'home_logged_' . (isset($_SESSION['login']) ? 'in' : 'out');
 } elseif (!file_exists('content/'.$_GET['page'].'.php')) {
     $page = "404";
