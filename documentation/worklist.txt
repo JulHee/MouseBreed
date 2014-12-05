@@ -1,0 +1,16 @@
+
+--------------- To-do ---------------
+
+Datenbank
+
+- Tabellennamen ändern ?
+    - mousebreed_XXX --> XXX
+    - User --> user
+    - Ziel --> aspiration
+
+
+
+
+--------------- Christoph ---------------
+
+- Registrierung
