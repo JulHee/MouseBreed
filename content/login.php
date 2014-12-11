@@ -2,7 +2,7 @@
     <span class="lager">Login</span>
     <hr>
     <p class="login_error_msg"></p>
-    <form id="login_form" action="http://mousebreed/home" method="post">
+    <form id="login_form" action="http://local.mousebreed/home" method="post">
         <table>
             <tr>
                 <td>Benutzername:</td>
