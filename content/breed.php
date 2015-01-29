@@ -9,6 +9,7 @@
 <script type="text/javascript" src="../script/js/content/breed.js"></script>
 <title>Zucht</title>
 </head>
+<body>
 <div class="container">
     <div id="sidebar">
         <ul>
@@ -19,12 +20,13 @@
         </ul>
     </div>
     <div class="main-content">
-    		<div class="swipe-area"></div>
+    		<div class="swipe-area">
     	    <a href="#" data-toggle=".container" id="sidebar-toggle">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
        		</a>
+			</div>
             <div id="realcontent">
                     <div id="Mausung" class="tile">Mausung
                         </div>
@@ -55,6 +57,5 @@
         </ul>
 	</div> 
 </div>
-<body>
 </body>
 </html>
