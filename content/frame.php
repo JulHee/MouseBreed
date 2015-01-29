@@ -47,6 +47,12 @@
                 <a class="head_item head_hover right" href="/profile/general">
                     <span><?php echo $_SESSION['username']; ?></span>
                 </a>
+                
+               <div class="head_item head_hover right Breed">
+                	<a id="breed" class"head_item head_hover left" href="/breed">
+                    	<span>Zucht</span>
+                    </a>
+                </div>
 
                 <?php } else { ?>
 
