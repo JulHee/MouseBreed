@@ -13,6 +13,7 @@
 
         <link rel="stylesheet" href="/style/normalize.css"/>
         <link rel="stylesheet" href="/style/main.css"/>
+        <link rel="stylesheet" href="/style/breed.css"/">
     </head>
     <body>
         <div class="head">
@@ -82,6 +83,8 @@
         </div>
 
         <script src="/script/js/ext/jquery-2.1.1.min.js"></script>
+        <script src="/script/js/ext/jquery.touchSwipe.min.js"></script>
+        <script src="/script/js/ext/notify.min.js"></script>
         <script src="/script/js/main.js"></script>
         <?php if (file_exists('script/js/content/'.$page.'.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
 

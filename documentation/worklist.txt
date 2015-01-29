@@ -8,9 +8,15 @@ Datenbank
     - User --> user
     - Ziel --> aspiration
 
+- Login/Logut
+    - Registrierung
+    - bei Logout auf Startseite
+
 
 
 
 --------------- Christoph ---------------
 
 - Registrierung
+- bei Logout auf Startseite
+- local.mousebreed

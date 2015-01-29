@@ -13,7 +13,7 @@ var login = {
             data: { password: $("#password").val(), username: $("#username").val() },
             dataType: "json"
         }).done(function(response) {
-            if(response.successful == true) {
+            if(response.success == true) {
                 $("#login_form").submit();
             } else {
                 var error_msg = $(".login_error_msg");

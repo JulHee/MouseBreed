@@ -7,7 +7,7 @@ $( document ).ready(function() {
 
     $( "#logout_button" ).click(function() {
         $.ajax({
-            url: URL_ROOT+"/script/php/ajax/logout.php"
+            url: URL_ROOT + "/script/php/ajax/logout.php"
         }).done(function() {
             location.reload();
         });
