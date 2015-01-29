@@ -20,13 +20,12 @@
         </ul>
     </div>
     <div class="main-content">
-    		<div class="swipe-area">
+    		<div class="swipe-area"></div>
     	    <a href="#" data-toggle=".container" id="sidebar-toggle">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
        		</a>
-			</div>
             <div id="realcontent">
                     <div id="Mausung" class="tile">Mausung
                         </div>
