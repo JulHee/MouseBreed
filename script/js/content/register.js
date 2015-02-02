@@ -9,7 +9,7 @@ var Register = {
     newUser:  function() {
         $.ajax({
             type: "POST",
-            url: URL_ROOT + "/script/php/ajax/register.php",
+            url: "/script/php/ajax/register.php",
             data: { username: $("#username").val(), password: $("#password").val(),
                     password2: $("#password2").val(),  lastname: $("#lastname").val(),
                     firstname: $("#firstname").val(), email: $("#email").val() },
