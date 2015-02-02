@@ -1,92 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 
-        <title>Mäusezucht</title>
+    <title>Mäusezucht</title>
 
-        <meta name="title" content=""/>
-        <meta name="description" content=""/>
-        <meta name="author" content=""/>
+    <meta name="title" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
-        <link rel="shortcut icon" href=""/>
+    <link rel="shortcut icon" href=""/>
 
-        <link rel="stylesheet" href="/style/normalize.css"/>
-        <link rel="stylesheet" href="/style/main.css"/>
-        <link rel="stylesheet" href="/style/breed.css"/">
-    </head>
-    <body>
-        <div class="head">
-            <div class="head_container noselect">
-                <a class="head_item head_hover left" href="/home">
-                    <img class="head_logo left" src="/data/img/mouse.png">
-                    <span class="lager bold">Mäusezucht</span>
-                </a>
-                <a class="head_item head_hover left">
-                    <span>Item 1</span>
-                </a>
-                <a class="head_item head_hover left">
-                    <span>Item 2</span>
-                </a>
-                <a class="head_item head_hover left">
-                    <span>Item 2</span>
-                </a>
-                <a class="head_item head_hover left">
-                    <span>Item 2</span>
-                </a>
-                <a class="head_item head_hover left">
-                    <span>Item 2</span>
-                </a>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style/normalize.css"/>
+    <link rel="stylesheet" href="/style/main.css"/>
+    <?php if (file_exists('style/content/'.$page.'.css')) echo "<link rel=\"stylesheet\" href=\"/style/content/$page.css\"/>\n"; ?>
+</head>
+<body>
 
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
+<div class="wrapper">
+    <div class="menu_container" <?php if(isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") echo "style=\"margin-left: -250px;\""; ?>>
+        <div class="menu_item_container">
+            <div class="logo"></div>
 
-                <div class="head_item right">
-                    <a id="logout_button" class="head_login button">
-                        <span>Abmelden</span>
-                    </a>
-                </div>
-                <a class="head_item head_hover right" href="/profile/general">
-                    <span><?php echo $_SESSION['username']; ?></span>
-                </a>
-                
-               <div class="head_item head_hover right Breed">
-                	<a id="breed" class"head_item head_hover left" href="/breed">
-                    	<span>Zucht</span>
-                    </a>
-                </div>
+            <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
 
-                <?php } else { ?>
+                <span><?php echo $_SESSION['userdata']['username']; ?><hr></span>
+                <a href="/breed">Meine Zuchten</a>
+                <a href="/newbreed">Neue Zucht</a>
+                <a href="/settings">Einstellungen</a>
+                <a id="logout">Logout</a>
 
-                <div class="head_item right">
-                    <a class="head_login button" href="/login">
-                        <span>Anmelden</span>
-                    </a>
-                </div>
+            <?php } else { ?>
 
-                <?php } ?>
+                <a href="/home">Übersicht</a>
+                <a href="/login">Login</a>
 
-            </div>
+            <?php } ?>
+
         </div>
-
-        <div class="content">
-            <div class="content_container">
-                <?php include_once "$page.php"; ?>
-            </div>
+        <div class="arrow <?php echo (isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") ? "arrow_out" : "arrow_in"; ?>">
         </div>
+    </div>
 
-        <div class="foot">
-            <div class="foot_container right" >
-                <a style="white-space: nowrap">Kontakt</a>
-                <span>-</span>
-                <a style="white-space: nowrap">Impressum</a>
-            </div>
-        </div>
+    <div class="content_container">
+        <?php include_once "$page.php"; ?>
+    </div>
 
-        <script src="/script/js/ext/jquery-2.1.1.min.js"></script>
-        <script src="/script/js/ext/jquery.touchSwipe.min.js"></script>
-        <script src="/script/js/ext/notify.min.js"></script>
-        <script src="/script/js/main.js"></script>
-        <?php if (file_exists('script/js/content/'.$page.'.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
+    <div class="clear"></div>
+    <div class="push"></div>
+</div>
 
-    </body>
+<div class="foot">
+    <div class="foot_container" >
+        <a style="white-space: nowrap">Kontakt</a>
+        <span>-</span>
+        <a style="white-space: nowrap">Impressum</a>
+    </div>
+</div>
+
+<script src="/script/js/ext/jquery-2.1.1.min.js"></script>
+<script src="/script/js/ext/jquery.cookie.js"></script>
+<script src="/script/js/main.js"></script>
+<?php if (file_exists('script/js/content/'.$page.'.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
+
+</body>
 </html>

@@ -1,19 +1,16 @@
 <?php
 session_start();
-/*
-require "../other/dbConnection.php";
-require "../model/userModel.php";
+require_once "../other/dbConnection.php";
+require_once "../model/userModel.php";
 
 $userData = new \model\userModel($db);
 
-if($userData->checkLogin($_POST['user'], $_POST['password'] || true) ) {
-    $user = $userData->getUserData($_POST['user']);
-    $_SESSION['user_id'] = $user[0];
+if($userData->checkLogin($_POST['username'], $_POST['password'])) {
+    $user = $userData->getData($_POST['username']);
+    $_SESSION['login'] = true;
+    $_SESSION['userdata'] = $user;
     echo json_encode(array('success' => true));
 } else {
     echo json_encode(array('success' => false));
 }
-*/
-$_SESSION['username'] = "Test";
-$_SESSION['login'] = true;
-echo json_encode(array('success' => true));
+?>

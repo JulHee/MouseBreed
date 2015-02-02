@@ -1,5 +1,5 @@
 <div class="left_list_container left noselect">
-    <div class="left_list_head lager bold">
+    <div class="left_list_head larger bold">
         Meine Zuchten
     </div>
     <div class="left_list">
@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="selected_breed_container left">
-    <span class="selected_breed_head lager"></span>
+    <span class="selected_breed_head larger"></span>
 </div>
 
 

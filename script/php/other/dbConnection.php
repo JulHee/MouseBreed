@@ -1,8 +1,5 @@
 <?php
 
-$db = new mysqli("localhost", "Mouse", "MouseBreed", "breed");
-$stmt = "SET NAMES 'utf8'";
-$stmt = $db->prepare($stmt);
-$stmt->execute();
+$db = new PDO('mysql:host=localhost;dbname=mousebreed;charset=UTF8', 'mousebreed', 'genotyp');
 
 ?>

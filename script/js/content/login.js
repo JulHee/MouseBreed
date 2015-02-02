@@ -16,7 +16,7 @@ var login = {
             if(response.success == true) {
                 $("#login_form").submit();
             } else {
-                var error_msg = $(".login_error_msg");
+                var error_msg = $(".error_msg");
                 error_msg.html("Fehlermeldung");
                 error_msg.show();
             }

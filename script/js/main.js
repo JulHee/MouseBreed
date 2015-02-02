@@ -1,24 +1,59 @@
 
 var URL_ROOT = "http://local.mousebreed";
 
-$( document ).ready(function() {
+var Navi = {
 
-    $( ".left_list" ).css('height', ($( ".content_container" ).height() - $( ".left_list_head" ).height() - 20) + 'px');
+    onReady: function() {
+        // check is naviHidden cookie is set, default value is false
+        if(!($.cookie('naviHidden') == "true" || $.cookie('naviHidden') == "false")) {
+            $.cookie('naviHidden', 'false');
+        }
+        var naviAnchor = $( ".menu_container" );
+        naviAnchor.on('click', '.arrow_in', Navi.toogleOut);
+        naviAnchor.on('click', '.arrow_out', Navi.toogleIn);
+    },
 
-    $( "#logout_button" ).click(function() {
+    toogleOut: function() {
+        $( ".menu_container").animate({ "margin-left": "-250px" }, "slow" );
+        $( ".arrow").removeClass("arrow_in").addClass("arrow_out");
+        $.cookie('naviHidden', 'true');
+    },
+
+    toogleIn: function() {
+        $( ".menu_container").animate({ "margin-left": "0" }, "slow" );
+        $( ".arrow").removeClass("arrow_out").addClass("arrow_in");
+        $.cookie('naviHidden', 'false');
+    }
+};
+
+var Logout = {
+
+    onReady: function() {
+        $( "#logout" ).click(Logout.run);
+    },
+
+    run: function() {
         $.ajax({
             url: URL_ROOT + "/script/php/ajax/logout.php"
         }).done(function() {
-            location.reload();
+            location.replace(URL_ROOT);
         });
-    });
+    }
+};
 
+$( document ).ready(function() {
+
+    Navi.onReady();
+    Logout.onReady();
+
+    /*
     // testen des LocalStorage
     var m = new Mouse("m","ACAD",10,500);
     var k = new Mouse("m","ACAD",5,100);
     var arr = new Array(m,k);
 
     saveGameState(arr);
+    */
 });
 
 // Datenstruktur zum speichern der Elemente aus mouse.js
