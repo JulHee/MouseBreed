@@ -34,7 +34,7 @@ var Logout = {
 
     run: function() {
         $.ajax({
-            url: URL_ROOT + "/script/php/ajax/logout.php"
+            url: "/script/php/ajax/logout.php"
         }).done(function() {
             location.replace(URL_ROOT);
         });
