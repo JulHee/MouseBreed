@@ -14,12 +14,12 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/style/normalize.css"/>
     <link rel="stylesheet" href="/style/main.css"/>
-    <?php if (file_exists('style/content/'.$page.'.css')) echo "<link rel=\"stylesheet\" href=\"/style/content/$page.css\"/>\n"; ?>
+    <?php if (file_exists('style/'.$page.'.css')) echo "<link rel=\"stylesheet\" href=\"/style/$page.css\"/>\n"; ?>
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="menu_container" <?php if(isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") echo "style=\"margin-left: -250px;\""; ?>>
+    <div class="menu_container" <?php if(isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") echo      	"style=\"margin-left: -250px;\""; ?>>
         <div class="menu_item_container">
             <div class="logo"></div>
 
@@ -39,7 +39,7 @@
             <?php } ?>
 
         </div>
-        <div class="arrow <?php echo (isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") ? "arrow_out" : "arrow_in"; ?>">
+        <div class="arrow <?php echo (isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") ? 						 			"arrow_out" : "arrow_in"; ?>">
         </div>
     </div>
 
@@ -61,6 +61,7 @@
 
 <script src="/script/js/ext/jquery-2.1.1.min.js"></script>
 <script src="/script/js/ext/jquery.cookie.js"></script>
+<script src="/script/js/ext/notify.min.js"></script>
 <script src="/script/js/main.js"></script>
 <?php if (file_exists('script/js/content/'.$page.'.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
 
