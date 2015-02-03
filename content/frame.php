@@ -19,7 +19,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="menu_container" <?php if(isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") echo      	"style=\"margin-left: -250px;\""; ?>>
+    <div class="menu_container" <?php if(isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") echo "style=\"margin-left: -250px;\""; ?>>
         <div class="menu_item_container">
             <div class="logo"></div>
 
@@ -39,7 +39,7 @@
             <?php } ?>
 
         </div>
-        <div class="arrow <?php echo (isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") ? 						 			"arrow_out" : "arrow_in"; ?>">
+        <div class="arrow <?php echo (isset($_COOKIE['naviHidden']) && $_COOKIE['naviHidden'] == "true") ? "arrow_out" : "arrow_in"; ?>">
         </div>
     </div>
 

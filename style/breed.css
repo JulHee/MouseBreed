@@ -3,12 +3,14 @@
 	background-color: #2a2a2a;
 	marging-left:4%;
 	marging-right:4%;
+	overflow: auto;
 }
 .cont{
 	margin:8px;
 }
 
 .tile_top{
+	margin-top: 20px;
 	float:left;
 	background-color:#C63;
 	height:200px;
@@ -113,22 +115,30 @@
 	left:3px;
 	}
 	
-/* Test für untere Navigationsbar */
+#MenuContainer{
+	position: fixed;
+	/* Firefox */
+	width: -moz-calc(100% - 54px);
+	/* WebKit */
+	width: -webkit-calc(100% - 54px);
+	/* Opera */
+	width: -o-calc(100% - 54px);
+	/* Standard */
+	width: calc(100% - 54px);
+	height: 30px;
+	top:0;
+}
 	
 ul#navigation {
-	background: #606060;
-    height: 30px;
+	background: #f8f8f8;
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid #86e973;
-    border-width: 1px 0;    
     text-align: right;
     font-size: 22px;
-    font-family: 'Cham-WebFont', Arial, sans-serif;
-    position: fixed;   /* new */
-    bottom: 0;  /* new */
-    width: 100%;  /* new */
+	border-bottom: 1px solid #ADADAD;
+
+	font-family: 'Cham-WebFont', Arial, sans-serif;
 	-webkit-transition:  background 0.3s ease-in-out;
     -moz-transition:  background 0.3s ease-in-out;
     -ms-transition:  background 0.3s ease-in-out;
@@ -136,21 +146,18 @@ ul#navigation {
     transition:  background 0.3s ease-in-out;
 } 
 ul#navigation li img{
+	margin: auto;
 	text-decoration:none;
 	color:#FFF;
-	padding-left:10px;
-	margin-left:10px;
 }
 ul#navigation li {
     display: inline;
-    margin-right: .75em;
     list-style: none;
-    margin: 0;
+    margin: auto;
     padding: 0;
+	margin-right: 15px;
 }
-ul#navigation li.last {
-    margin-right: 0;
-}
+
 ul#navigation li:hover img {
     background: #4ddf31;
 }

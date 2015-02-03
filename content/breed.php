@@ -20,11 +20,11 @@
     </div>-->
 <div id="MenuContainer">
     <ul id="navigation">
-        <li class="x">     	
-            <img src="/data/img/mail.png" width="30" height="30" href="#"/>
+        <li class="ben">
+            <img src="/data/img/mail.png" width="30" height="30"/>
         </li>
-        <li class="contact" class="last">
-            <img src="/data/img/target.png" width="30" height="30" href="#" />
+        <li class="contact">
+            <img src="/data/img/target.png" width="30" height="30"/>
         </li>
     </ul>
 </div>

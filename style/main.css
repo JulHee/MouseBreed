@@ -174,8 +174,18 @@ p {
    ========================================================================== */
 
 .content_container {
-	overflow: scroll;
+	overflow: auto;
 	padding: 30px 20px 10px 20px;
+    /* Firefox */
+    width: -moz-calc(100% - 95px);
+    /* WebKit */
+    width: -webkit-calc(100% - 95px);
+    /* Opera */
+    width: -o-calc(100% - 95px);
+    /* Standard */
+    width: calc(100% - 95px);
+
+    height: 100%;
 }
 
 
