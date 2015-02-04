@@ -4,6 +4,7 @@
 	marging-left:4%;
 	marging-right:4%;
 	overflow: auto;
+	color:#00F;
 }
 .cont{
 	margin:8px;
@@ -21,6 +22,41 @@
 	background-color:#F99;
 	height:400px;
 	width:100%;
+}
+
+.benbox{
+	position:fixed;
+	margin-top:37px;
+	top:0;
+	width:200px;
+	height:300px;
+	overflow:hidden;
+	/* Firefox */
+	left: -moz-calc(100% - 77px);
+	/* WebKit */
+	left: -webkit-calc(100% - 77px);
+	/* Opera */
+	left: -o-calc(100% - 77px);
+	/* Standard */
+	left: calc(100% - 77px);
+	margin-left: -180px;
+	background-color:#0F3;	
+	opacity:1;
+}
+
+#benliste_top{
+	overflow:auto;	
+	height:270px;
+	text-align:center;
+}
+
+#benliste_bot{
+	border-top: 1px solid #000;
+	height:30px;	
+	text-align:center;	
+}
+#deleteall{
+	margin-top:2px;
 }
 
 #Mausung{
@@ -43,12 +79,6 @@
 	left: 760px;
 	width: 200px;
 	height: 100px;
-}
-#benachrichtigungen{
-	top: 400px;
-	left: 760px;
-	width: 220px;
-	height:480px;
 }
 #bottom{
 	top: 840px;
