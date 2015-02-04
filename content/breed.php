@@ -21,7 +21,6 @@
 <div id="benachrichtigungen" class="benbox">
 	<div id="benliste_top">
 		<ul id="Benliste">
-        	
     	</ul>
     </div>
     <div id="benliste_bot">

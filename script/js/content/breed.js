@@ -6,7 +6,15 @@ $(document).ready(function() {
 	$(".testButton").click(function() {
 		$.notify("Eine Maus ist schwanger ","warn");
 	});
-	$("#mail_pic").click(fadeInOut());
+	$("#mail_pic").click(function(){
+		$("#benachrichtigungen").fadeToggle("slow");	
+		
+	});
+	$("#deleteall").click(function(){
+		$("#Benliste").empty();
+	});
+	
+	$("#benachrichtigungen").fadeToggle("slow");
 });
 
 function addBen(nachricht,art)
@@ -28,42 +36,12 @@ function addBen(nachricht,art)
            $.notify(nachricht,"info");
             break;
       }
-    $("#Benliste").append($('<li>').append(nachricht+"  ").append($('<a>').attr("onClick","$(this).parent().remove()").append("X")));
-}
-
-function fadeInOut(){
-	if ($("#benachrichtigungen").css('opacity') == 0){
-		unfade($("#benachrichtigungen"));
-	} else {
-		fade($("#benachrichtigungen"));
-	}
-}
-
-function fade(element) {
-    var op = 1;  // initial opacity
-    var timer = setInterval(function () {
-        if (op <= 0.1){
-            clearInterval(timer);
-            element.style.display = 'none';
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= op * 0.1;
-    }, 50);
-}
-
-function unfade(element) {
-    var op = 0.1;  // initial opacity
-    element.style.display = 'block';
-    var timer = setInterval(function () {
-        if (op >= 1){
-            clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += op * 0.1;
-        alert("here");
-    }, 10);
+		
+	  $("#Benliste").append($('<li>').append($('<div>').append(nachricht).attr("class","nachr"))
+	  .append($("<div>").append($('<a>').attr("onClick","$(this).parent().parent().remove()")
+	  .append("X")).attr("class","entfernen")).attr("class","clearing"));
+	  
+  	//  $("#Benliste").append($('<li>').append(nachricht+"  ").append($('<a>				 ').attr("onClick","$(this).parent().remove()").append("X")));
 }
 
 

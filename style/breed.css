@@ -9,6 +9,26 @@
 .cont{
 	margin:8px;
 }
+.entfernen{
+	float:right;
+	margin-right:15px;
+	width:10%;
+}
+.nachr{
+	float:left;
+	text-align:left;
+	overflow:scroll;
+	width:80%;
+}
+#Benliste {
+	margin:1em;
+	padding:0;
+}
+
+#Benliste li{
+	border-bottom:1px solid #000;
+}
+.clearing { clear: both; }
 
 .tile_top{
 	margin-top: 20px;
@@ -25,12 +45,12 @@
 }
 
 .benbox{
-	position:fixed;
-	margin-top:37px;
-	top:0;
-	width:200px;
-	height:300px;
-	overflow:hidden;
+	position: fixed;
+	margin-top: 37px;
+	top: 0;
+	width: 200px;
+	height: 300px;
+	overflow: hidden;
 	/* Firefox */
 	left: -moz-calc(100% - 77px);
 	/* WebKit */
@@ -40,8 +60,11 @@
 	/* Standard */
 	left: calc(100% - 77px);
 	margin-left: -180px;
-	background-color:#0F3;	
-	opacity:1;
+	background-color: #FFF;
+	opacity: 1;
+}
+#Benliste{
+	list-style:none;
 }
 
 #benliste_top{
