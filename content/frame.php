@@ -143,7 +143,8 @@
                 <ul class="nav nav-sidebar">
                     <li><a href="profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
                     </li>
-                    <li><a href="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Einstellungen</a>
+                    <li><a href="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            Einstellungen</a>
                     </li>
                     <li><a href="help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
@@ -152,8 +153,10 @@
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
-                    <li><a href="login"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Meine Zuchten</a></li>
-                    <li><a href="login"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a></li>
+                    <li><a href="login"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Meine Zuchten</a>
+                    </li>
+                    <li><a href="login"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                    </li>
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a href="login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
@@ -165,8 +168,10 @@
                 </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
-                <li><a href="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a></li>
-                <li><a href="aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a></li>
+                <li><a href="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
+                </li>
+                <li><a href="aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
+                </li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

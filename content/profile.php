@@ -1,5 +1,6 @@
-<h1 class="page-header">Profil</h1>
+
 <div class="col-md-10">
+    <h1 class="page-header">Profil</h1>
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#info_allgemein" role="tab" data-toggle="tab">Allgemein</a></li>
         <li role="presentation"><a href="#info_email" role="tab" data-toggle="tab">E-Mail-Adresse</a></li>

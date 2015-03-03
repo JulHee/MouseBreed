@@ -1,5 +1,4 @@
 <h1 class="page-header">Kontakt</h1>
-<div class="col-md-8">
     <form>
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
@@ -7,7 +6,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="contactInputEmail" placeholder="Enter email">
+            <input type="email" class="form-control" id="contactInputEmail" placeholder="Email-Adresse">
         </div>
         <div class="form-group">
             <label for="contactInputMessage">Nachricht</label>
@@ -15,4 +14,3 @@
         </div>
         <button type="submit" class="btn btn-default">Senden</button>
     </form>
-</div>
