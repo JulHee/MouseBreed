@@ -2,7 +2,7 @@
 
 ------------ TO DO -------------
 
--
+- mainBootstrap.css .sidebar Verhalten für mobile verbessern
 -
 -
 -

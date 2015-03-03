@@ -30,11 +30,16 @@ body {
  */
 
 /* Hide for mobile, show later */
+/* y- scrollbar bei zu kleiner Anwendung */
 .sidebar {
-  display: none;
+  /*display: none;*/
+    height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 @media (min-width: 768px) {
   .sidebar {
+    height: auto;
     position: fixed;
     top: 51px;
     bottom: 0;
