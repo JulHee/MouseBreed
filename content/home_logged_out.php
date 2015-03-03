@@ -1,3 +1,5 @@
+
+
 <div class="jumbotron">
   <h1>Mäusezucht</h1>
   <p class="lead">
@@ -8,3 +10,4 @@
   </p>
   <p><a class="btn btn-lg btn-success" href="login" role="button">Anmelden</a></p>
 </div>
+
