@@ -1,39 +1,44 @@
 <h1 class="page-header">Konto erstellen</h1>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Informationen</h3>
-  </div>
-  <div id="tablediv" class="panel-body">    
-        <table>
-            <tr>
-                <td><h4>Vorname:</h4></td>
-                <td><input id="firstname" name="firstname" type="text" class="input form-control"></td>
-            </tr>
-            <tr>
-                <td><h4>Nachname:</h4></td>
-                <td><input id="lastname" name="lastname" type="text" class="input form-control"></td>
-            </tr>
-            <tr>
-                <td><h4>Benutzername:</h4></td>
-                <td><input id="username" name="username" type="text" class="input form-control"></td>
-            </tr>
-            <tr>
-                <td><h4>E-Mail-Adresse:</h4></td>
-                <td><input id="email" name="email" type="text" class="input form-control"></td>
-            </tr>
-            <tr>
-                <td><h4>Passwort:</h4></td>
-                <td><input id="password" name="password" type="password" class="input form-control"></td>
-            </tr>
-            <tr>
-                <td><h4>Passwort wiederholen:</h4></td>
-                <td><input id="password2" name="password2" type="password" class="input form-control"></td>
-            </tr>
-            <tr>
-            	<td></td>
-                <td><button id="register_button" type="button" class="btn btn-default">Konto erstellen</button></td>
-            </tr>
-        </table>
-    </form>
+<form class="form-horizontal" id="register_form">
+    <div class="form-group">
+        <label for="registerInputfirstName" class="col-sm-2 control-label">Vorname</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="registerInputfirstName" placeholder="Vorname" required autofocus>
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <label for="registerInputlastName" class="col-sm-2 control-label">Nachname</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="registerInputlastName" placeholder="Nachname" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputEmail" class="col-sm-2 control-label">Benutzername</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="registerInputEmail" placeholder="Benutzername" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputUsername" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="registerInputUsername" placeholder="Vorname.Nachname@example.de" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputPassword" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="registerInputPassword" placeholder="Password" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputPasswordRe" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="registerInputPasswordRe" placeholder="Password wiederholen" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="register_button" type="submit" class="btn btn-success">Registrieren</button>
+        </div>
+    </div>
+</form>

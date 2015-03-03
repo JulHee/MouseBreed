@@ -39,7 +39,7 @@ function addBen(titel, nachricht, art) {
             $.notify(nachricht, "info");
             break;
         case "error":
-            $.notify(nachricht, "error", {gap: 30});
+            $.notify(nachricht, "error");
             break;
         default:
             $.notify(nachricht, "info");
