@@ -147,8 +147,6 @@ $(document).ready(function () {
         });
     $('#deleteall').click(
         function () {
-            // TODO Sehr unsauber sollte noch verbessert werden funktion wird nicht mehr angefügt nach Löschen
-
             $("#benliste_top").empty();
             // $("#benliste_top").prepend('<li class="divider"></li>');
             $("#benliste_top").prepend('<li id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
@@ -159,7 +157,7 @@ $(document).ready(function () {
         function () {
             $('#deleteall').click(
                 function () {
-                    // TODO Sehr unsauber sollte noch verbessert werden funktion wird nicht mehr angefügt nach Löschen
+                    // TODO Sehr unsabuer :)
 
                     $("#benliste_top").empty();
                     // $("#benliste_top").prepend('<li class="divider"></li>');

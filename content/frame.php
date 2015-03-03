@@ -20,7 +20,6 @@
     <?php if (file_exists('style/' . $page . '.css')) echo "<link rel=\"stylesheet\" href=\"/style/$page.css\"/>\n"; ?>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -178,15 +177,14 @@
             <?php include_once "$page.php"; ?>
         </div>
     </div>
-
-    <script src="/script/js/ext/jquery-2.1.1.min.js"></script>
-    <script src="/script/js/ext/jquery.cookie.js"></script>
-    <script src="/script/js/ext/notify.min.js"></script>
-    <script src="/script/js/boot/bootstrap.min.js"></script>
-    <script src="/script/js/boot/jasny-bootstrap.min.js"></script>
-    <script src="/script/js/main.js"></script>
-    <script src="/script/js/content/login.js"></script>
-    <?php if (file_exists('script/js/content/' . $page . '.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
-
+</div>
+<script src="/script/js/ext/jquery-2.1.1.min.js"></script>
+<script src="/script/js/ext/jquery.cookie.js"></script>
+<script src="/script/js/ext/notify.min.js"></script>
+<script src="/script/js/boot/bootstrap.min.js"></script>
+<script src="/script/js/boot/jasny-bootstrap.min.js"></script>
+<script src="/script/js/main.js"></script>
+<script src="/script/js/content/login.js"></script>
+<?php if (file_exists('script/js/content/' . $page . '.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
 </body>
 </html>

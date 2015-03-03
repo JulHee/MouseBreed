@@ -11,4 +11,3 @@
     		<a id="" class="button right" href="register">Registrieren</a>
     </form>
 </div>
-
