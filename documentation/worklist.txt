@@ -3,8 +3,13 @@
 ------------ TO DO -------------
 
 - mainBootstrap.css .sidebar Verhalten für mobile verbessern
--
--
+    - Änderungen aus mainBootstrap in eigene Dateien auslagern
+- Datenbank Zugriff für:
+    - Profil
+    - Erstellen von Zuchten
+    - Laden von Zuchten
+- Informationsübergabe (Zucht-ID) beim laden der Zuchten
+- Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
 -
 -
 -
