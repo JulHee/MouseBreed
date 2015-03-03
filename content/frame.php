@@ -141,11 +141,11 @@
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="settings"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+                    <li><a href="profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Einstellungen</a>
+                    <li><a href="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Einstellungen</a>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li><a href="help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } else { ?>
@@ -160,13 +160,13 @@
                     </li>
                     <li><a href="login"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             Einstellungen</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li><a href="help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
-                <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a></li>
+                <li><a href="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a></li>
+                <li><a href="aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
