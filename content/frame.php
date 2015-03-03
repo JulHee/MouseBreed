@@ -86,7 +86,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="ProfileDropDown">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="settings">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="profile">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     <?php echo $_SESSION['userdata']['username']; ?></a>
                             </li>
