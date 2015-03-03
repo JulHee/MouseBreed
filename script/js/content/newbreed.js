@@ -32,8 +32,9 @@ var Newbreed = {
     },
 
     start: function() {
-        alert(Newbreed.difficulty + " " + Newbreed.scenario);
-    }
+        //alert(Newbreed.difficulty + " " + Newbreed.scenario);
+    	addBen("Neue Zucht", $("#breedname").val(), "info");
+	}
 };
 
  function tab_funktion  (e) {
