@@ -5,7 +5,7 @@
             <input type="email" class="form-control" id="contactInputName" placeholder="Name">
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">Email-Adresse</label>
             <input type="email" class="form-control" id="contactInputEmail" placeholder="Email-Adresse">
         </div>
         <div class="form-group">

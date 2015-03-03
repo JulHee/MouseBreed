@@ -44,36 +44,6 @@
                         </a>
                         <!--Dropdown muss maximale breite haben-->
                         <ul id="benliste_top" class="dropdown-menu dropdown-max-width" role="menu">
-                            <li>
-                                <a href="#">
-                                    <div class="benTitle"><strong>John Smith</strong></div>
-                                    <div class="bentimestamp"><p class="text-muted"><em>Yesterday</em></p></div>
-                                    <div class="benMessage">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Pellentesque eleifend...
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div class="benTitle"><strong>John Smith</strong></div>
-                                    <div class="bentimestamp"><p class="text-muted"><em>Yesterday</em></p></div>
-                                    <div class="benMessage">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Pellentesque eleifend...
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div class="benTitle"><strong>John Smith</strong></div>
-                                    <div class="bentimestamp"><p class="text-muted"><em>Yesterday</em></p></div>
-                                    <div class="benMessage">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Pellentesque eleifend...
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
                             <li id="benLast">
                                 <button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button>
                             </li>
