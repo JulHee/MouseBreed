@@ -1,7 +1,3 @@
-/*
-
- */
-
 var Newbreed = {
 
     difficulty: "",
@@ -11,44 +7,38 @@ var Newbreed = {
 
     onReady: function() {
         $('input[name=difficulty]:radio').change(Newbreed.changeDifficulty);
-        $( '.h_menu > a' ).click(Newbreed.changeScenario);
         $( '.newbreed_button').click(Newbreed.start);
     },
 
     changeDifficulty:  function() {
         if(!Newbreed.scenarioVisibly) {
-            $( '.scenario_head').show();
+            $( '.scenario_head').removeClass("hidden");
             Newbreed.scenarioVisibly = true;
         }
-
-        var anchor = $( '#' + Newbreed.difficulty );
-
-        if(Newbreed.scenario != 1) {
-            anchor.children( '.h_menu' ).children( '#' + Newbreed.scenario ).removeClass("h_menu_selected");
-            anchor.children( '#' + Newbreed.scenario + ".scenario").toggle();
-            Newbreed.scenario = 1;
-            anchor.children( '.h_menu' ).children( '#' + Newbreed.scenario ).addClass("h_menu_selected");
-            anchor.children( '#' + Newbreed.scenario + ".scenario").toggle();
-        }
-
-        anchor.toggle();
-        Newbreed.difficulty = $(this).val();
-        $( '#' + Newbreed.difficulty ).toggle();
-    },
-
-    changeScenario:  function() {
-        var anchor = $( '#' + Newbreed.difficulty );
-        anchor.children( '.h_menu' ).children( '#' + Newbreed.scenario ).removeClass("h_menu_selected");
-        anchor.children( '#' + Newbreed.scenario + ".scenario").toggle();
-        Newbreed.scenario = $(this).attr('id');
-        anchor.children( '.h_menu' ).children( '#' + Newbreed.scenario ).addClass('h_menu_selected');
-        anchor.children( '#' + Newbreed.scenario + ".scenario").toggle();
+		var sender = document.querySelector('input[name="difficulty"]:checked').value;
+		difficulty = sender;
+		
+        var anchor = $( '#' + sender );
+		
+		var scenarios = $('.scenario_difficulty');
+		
+		for (var i = 0;i < scenarios.length; i++){
+			if (scenarios.get(i).id == sender) {
+				$('#'+scenarios.get(i).id).removeClass("hidden");	
+			} else {
+				$('#'+scenarios.get(i).id).addClass("hidden");	
+			}	
+		}
     },
 
     start: function() {
         alert(Newbreed.difficulty + " " + Newbreed.scenario);
     }
+};
 
+ function tab_funktion  (e) {
+  e.preventDefault();
+  $(this).tab('show');
 };
 
 $( document ).ready( Newbreed.onReady );
