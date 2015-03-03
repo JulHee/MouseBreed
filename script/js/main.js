@@ -45,9 +45,22 @@ function addBen(titel, nachricht, art) {
             $.notify(nachricht, "info");
             break;
     }
+
+    // Anbgeben der Zeit für die Benachrichtigung
     var date = new Date();
+    var dateHours = date.getHours();
+    var dateMinutes = date.getMinutes();
+    var dateSeconds = date.getSeconds();
+    if(dateHours < 10){dateHours = '0'+dateHours;}
+    if(dateMinutes < 10){dateMinutes = '0'+dateMinutes;}
+    if(dateSeconds < 10){dateSeconds = '0'+dateSeconds;}
+    var dateOutput = dateHours+":"+dateMinutes+":"+dateSeconds;
+
+    // Anfügen der neuen Benachrichtigung
     $("#benliste_top").prepend('<li class="divider"></li>');
-    $("#benliste_top").prepend('<li class="benMessagetoDelete"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><p class="text-muted"><em>' + date.toLocaleString() + '</em></p></div><div class="benMessage">' + nachricht + '</div></a></li>');
+    $("#benliste_top").prepend('<li class="benMessagetoDelete"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><p class="text-muted"><em>' + dateOutput + '</em></p></div><div class="benMessage">' + nachricht + '</div></a></li>');
+
+    // Setzten des Zählers
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 }
 
