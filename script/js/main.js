@@ -30,19 +30,19 @@ function addBen(titel, nachricht, art) {
     // TODO: Die Nachricht muss unterhalb der Oberen leiste angezeigt werden
     switch (art) {
         case "success":
-            $.notify(nachricht, "success");
+            $.notify(titel, "success");
             break;
         case "warn":
-            $.notify(nachricht, "warn");
+            $.notify(titel, "warn");
             break;
         case "info":
-            $.notify(nachricht, "info");
+            $.notify(titel, "info");
             break;
         case "error":
-            $.notify(nachricht, "error");
+            $.notify(titel, "error");
             break;
         default:
-            $.notify(nachricht, "info");
+            $.notify(titel, "info");
             break;
     }
 
