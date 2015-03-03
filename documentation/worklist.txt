@@ -1,4 +1,19 @@
+TODO - LIST !! (immer ergänzen!)
 
+------------ TO DO -------------
+
+- Benachrichtungen Text <-> Titel tauschen bei Einblendung 
+
+
+
+
+
+
+
+
+
+
+// Alt aber aktuell?
 --------------- To-do ---------------
 
 Datenbank

@@ -1,4 +1,4 @@
-<h1 class="page-header">Wilkommen</h1>
+<h1 class="page-header">Willkommen</h1>
 <h3>Testen Sie hier die Benachrichtigungen</h3><br>
 <form class="form-horizontal">
   <div class="form-group">
