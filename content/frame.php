@@ -55,9 +55,10 @@
                                          class="progress-bar progress-bar-danger progress-bar-striped active"
                                          role="progressbar" aria-valuenow="40" aria-valuemin="0"
                                          aria-valuemax="100" style="width: 40%">
-                                        <span class="sr-only">40% Complete (success)</span>
+                                        <span class="sr-only">40%</span>
                                     </div>
                                 </div>
+                                Tag: <span id="topDays">5</span>
                             </li>
                             <li class="list-group-item ">
                                 <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
@@ -73,7 +74,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="benachrichtigung" class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
                             <span id="NumBen" class="badge">0</span>
