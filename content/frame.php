@@ -171,10 +171,6 @@
                 <li><a href="/aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
                 </li>
             </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="" id="sidebarNextDay"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> nächter Tag</a>
-                </li>
-            </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <?php include_once "$page.php"; ?>

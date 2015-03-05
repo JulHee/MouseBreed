@@ -1,6 +1,6 @@
 <h1 class="page-header"><?php echo $loadedBreed['name']; ?></h1>
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-4">
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="cage" class="col-sm-2 control-label">Käfig</label>
@@ -16,6 +16,12 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+        <button type="button" id="sidebarNextDay"
+                class="pull-right btn btn-info"><span class="glyphicon glyphicon-time"
+                                                      aria-hidden="true"></span> Nächter Tag
+        </button>
     </div>
 </div>
 <div class="row">
@@ -112,6 +118,7 @@
             <div class="panel-heading">Main</div>
             <div class="panel-body">
                 <h3>Hier ist Workspace:</h3>
+
                 <h3>Mäuseartige</h3>
                 Die Mäuseartigen (Muroidea) sind eine zu den Mäuseverwandten gehörende Gruppe der Nagetiere. Mit
                 rund
