@@ -19,7 +19,7 @@ class breedModel {
         if($stmt->execute() && $breeds = $stmt->fetchAll()) {
             return $breeds;
         } else {
-            return false;
+            return Array();
         }
     }
 
