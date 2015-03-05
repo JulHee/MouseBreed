@@ -63,7 +63,7 @@ var Settings = {
         $.ajax({
             type: "POST",
             url: "/script/php/ajax/updateUserData.php",
-            data: { kyes: JSON.stringify(keys), values: JSON.stringify(values) },
+            data: { keys: JSON.stringify(keys), values: JSON.stringify(values) },
             dataType: "json"
         }).done(function(response) {
             if(response.success == true) {

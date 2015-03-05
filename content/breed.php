@@ -83,6 +83,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Main</div>
             <div class="panel-body">
+                <h3>Hier ist Workspace:</h3>
                 <h3>Mäuseartige</h3>
                 Die Mäuseartigen (Muroidea) sind eine zu den Mäuseverwandten gehörende Gruppe der Nagetiere. Mit rund
                 1500 Arten umfassen sie mehr als ein Viertel der beschriebenen Säugetierarten.
