@@ -36,9 +36,30 @@
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Ziel
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-max-width" role="menu" aria-labelledby="ProfileDropDown">
+                            <li id="" role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">
+                                    <div id="targetTitel" class="benTitle"><strong>Ziel</strong></div>
+                                    <div id="targetMessage" class="benMessage">
+                                        Sie sind ihrem Ziel noch nicht näher gekommen
+                                    </div>
+                                    <div class="progress">
+                                        <div id="targetProgress" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li id="benachrichtigung" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
                             <span id="NumBen" class="badge">0</span>
                             <span class="caret"></span>
                         </a>

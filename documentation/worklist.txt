@@ -12,7 +12,7 @@
 - Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
 - Benachrichtigungen auto-scrollbar einstellen
 - Menü blaue Hinterlegung mit der aktuellen Seite wandern lassen.
--
+- Notizfenster
 
 
 
