@@ -42,18 +42,34 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-max-width" role="menu" aria-labelledby="ProfileDropDown">
-                            <li id="" role="presentation">
-                                <a role="menuitem" tabindex="-1" href="#">
-                                    <div id="targetTitel" class="benTitle"><strong>Ziel</strong></div>
-                                    <div id="targetMessage" class="benMessage">
-                                        Sie sind ihrem Ziel noch nicht näher gekommen
+                            <li class="list-group-item">
+                                <h4 class="list-group-item-heading">Ziel</h4>
+
+                                <p class="list-group-item-text">Wie weit sie gekommen sind</p>
+                            </li>
+                            <li class="list-group-item ">
+                                <h4 class="list-group-item-heading">Verbleibende Tage</h4>
+
+                                <div class="progress">
+                                    <div id="targetProgress"
+                                         class="progress-bar progress-bar-danger progress-bar-striped active"
+                                         role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% Complete (success)</span>
                                     </div>
-                                    <div class="progress">
-                                        <div id="targetProgress" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item ">
+                                <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
+
+                                <div class="progress">
+                                    <div id="targetProgress"
+                                         class="progress-bar progress-bar-success progress-bar-striped active"
+                                         role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete (success)</span>
                                     </div>
-                                </a>
+                                </div>
                             </li>
                         </ul>
                     </li>
