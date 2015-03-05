@@ -33,7 +33,7 @@ class breedModel {
         if($stmt->execute() &&  $breed = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             return $breed;
         } else {
-            return false;
+            return Array();
         }
     }
 
