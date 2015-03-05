@@ -44,69 +44,78 @@
         <div class="panel panel-default">
             <div class="panel-heading">Steckbrief</div>
             <div id="MouseInfo" class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Name</label>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">Klaus</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Gewicht</label>
-
-                        <div class="col-sm-10">
-                            <p class="form-control-static">400g</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Geschlecht</label>
-
-                        <div class="col-sm-10">
-                            <p class="form-control-static">Männlich</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Alter</label>
-
-                        <div class="col-sm-10">
-                            <p class="form-control-static">10 Tage</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Eltern</label>
-
-                        <div class="col-sm-10">
-                            <p class="form-control-static">Franz & Maria</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-sm-offset-2">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#chooseGender">
-                            Geschlecht bestimmen
-                        </button>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="chooseGender" tabindex="-1" role="dialog" aria-labelledby="chooseGender"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Geschlecht bestimmen</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="data/img/bildkarten/Maennchen_2846.png"
-                                         class="img-rounded img-responsive center-block">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary pull-left">Männlich</button>
-                                    <button type="button" class="btn btn-primary">Weiblich</button>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">Klaus</p>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Gewicht</label>
+
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">400g</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Geschlecht</label>
+
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">Männlich</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Alter</label>
+
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">10 Tage</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Eltern</label>
+
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">Franz & Maria</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-4">
+                                <button type="button" class="btn btn-default" data-toggle="modal"
+                                        data-target="#chooseGender">
+                                    Geschlecht bestimmen
+                                </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="chooseGender" tabindex="-1" role="dialog"
+                                 aria-labelledby="chooseGender"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                    aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Geschlecht bestimmen</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="/data/img/bildkarten/Maennchen_2846.png"
+                                                 class="img-rounded img-responsive center-block">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary pull-left">Männlich</button>
+                                            <button type="button" class="btn btn-primary">Weiblich</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="col-md-6">
+                        <img src="http://placehold.it/400x320" class="img-responsive img-thumbnail">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
