@@ -118,7 +118,7 @@
                     <div class="form-group">
                         <input type="password" id="TOPpassword" placeholder="Password" class="form-control" required>
                     </div>
-                    <button id="TOPlogin_button" class="btn btn-success">Anmelden</button>
+                    <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
                 </form>
             <?php } ?>
         </div>
@@ -130,7 +130,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
@@ -138,46 +138,37 @@
                             <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
                         </a>
                         <ul class="dropdown-menu navmenu-nav" role="menu">
-                            <li class="menu-item"><a tabindex="-1" href="breed">Zucht 1</a></li>
-                            <li class="menu-item"><a tabindex="-1" href="breed">Zucht 2</a></li>
-                            <li class="menu-item"><a tabindex="-1" href="breed">Zucht 3</a></li>
-                            <li class="menu-item"><a tabindex="-1" href="breed">Zucht 4</a></li>
+                            <?php foreach($_SESSION['breeds'] as $breed) { ?>
+                            <li class="menu-item"><a tabindex="-1" href="/breed/<?php echo $breed['id']; ?>"><?php echo $breed['name']; ?></a></li>
+                            <?php } ?>
                         </ul>
                     </li>
-                    <li><a href="newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                    <li><a href="/newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+                    <li><a href="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
                     </li>
-                    <li><a href="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    <li><a href="/settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             Einstellungen</a>
                     </li>
-                    <li><a href="help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } else { ?>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
-                    <li><a href="login"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Meine Zuchten</a>
-                    </li>
-                    <li><a href="login"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
-                    </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
-                    </li>
-                    <li><a href="login"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            Einstellungen</a></li>
-                    <li><a href="help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
-                <li><a href="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
+                <li><a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
                 </li>
-                <li><a href="aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
+                <li><a href="/aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
                 </li>
             </ul>
             <ul class="nav nav-sidebar">
