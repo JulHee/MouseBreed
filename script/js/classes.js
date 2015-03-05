@@ -34,10 +34,10 @@ function Cage(id,max_number_of_mouses,breed_id){
 	this.max_number_od_mouses = max_number_od_mouses;
 	this.breed_id = breed_id;
 }
-function Breed(id,user_id,task,name){
+function Breed(id,user_id,target,name){
 	this.id = id;
 	this.user = user_id;
-	this.task = task;
+	this.task = target;
 	this.name = name;
     this.time_of_creation = Date.now();
     this.timeUnit = 0;
