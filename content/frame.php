@@ -132,7 +132,7 @@
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><a href="/breed">
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><a href="">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Meine Zuchten
                             <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
