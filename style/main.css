@@ -1,19 +1,16 @@
 #test {
     width: 20%;
 }
-#benachrichtigung{
-    width: 100px;
-}
-
 .dropdown-max-width{
     width: 310px;
+    max-width: 310px;
     overflow: auto;
     max-height: 500px;
 }
 
 .benMessage{
-    overflow: scroll;
-    white-space: pre-line
+    word-wrap: break-word;
+    white-space: pre-line;
 }
 
 .pull-right {

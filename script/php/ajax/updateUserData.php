@@ -7,12 +7,12 @@ if(isset($_SESSION['login']) && $_SESSION['login']) {
 
     $userData = new \model\userModel($db);
 
-    $kyes = json_decode($_POST['kyes']);
+    $keys = json_decode($_POST['keys']);
     $values = json_decode($_POST['values']);
 
-    if($userData->update($_SESSION['userdata']['id'], $kyes, $values)) {
-        for ($i = 0; $i < count($kyes); $i++) {
-            $_SESSION['userdata'][$kyes[$i]] = $values[$i];
+    if($userData->update($_SESSION['userdata']['id'], $keys, $values)) {
+        for ($i = 0; $i < count($keys); $i++) {
+            $_SESSION['userdata'][$keys[$i]] = $values[$i];
         }
         echo json_encode(array('success' => true));
     } else {

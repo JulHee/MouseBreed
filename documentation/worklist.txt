@@ -10,9 +10,9 @@
     - Laden von Zuchten
 - Informationsübergabe (Zucht-ID) beim laden der Zuchten
 - Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
--
--
--
+- Benachrichtigungen auto-scrollbar einstellen
+- Menü blaue Hinterlegung mit der aktuellen Seite wandern lassen.
+- Notizfenster
 
 
 

@@ -36,9 +36,47 @@
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="benachrichtigung" class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Ziel
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-max-width" role="menu" aria-labelledby="ProfileDropDown">
+                            <li class="list-group-item">
+                                <h4 class="list-group-item-heading">Ziel</h4>
+
+                                <p class="list-group-item-text">Wie weit sie gekommen sind</p>
+                            </li>
+                            <li class="list-group-item ">
+                                <h4 class="list-group-item-heading">Verbleibende Tage</h4>
+
+                                <div class="progress">
+                                    <div id="targetProgress"
+                                         class="progress-bar progress-bar-danger progress-bar-striped active"
+                                         role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40%</span>
+                                    </div>
+                                </div>
+                                Tag: <span id="topDays">5</span>
+                            </li>
+                            <li class="list-group-item ">
+                                <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
+
+                                <div class="progress">
+                                    <div id="targetProgress"
+                                         class="progress-bar progress-bar-success progress-bar-striped active"
+                                         role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
                             <span id="NumBen" class="badge">0</span>
                             <span class="caret"></span>
                         </a>
