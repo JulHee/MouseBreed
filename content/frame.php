@@ -51,7 +51,7 @@
                                 <h4 class="list-group-item-heading">Verbleibende Tage</h4>
 
                                 <div class="progress">
-                                    <div id="targetProgress"
+                                    <div id="targetDayProgress"
                                          class="progress-bar progress-bar-danger progress-bar-striped active"
                                          role="progressbar" aria-valuenow="40" aria-valuemin="0"
                                          aria-valuemax="100" style="width: 40%">
@@ -64,7 +64,7 @@
                                 <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
 
                                 <div class="progress">
-                                    <div id="targetProgress"
+                                    <div id="targetFinishProgress"
                                          class="progress-bar progress-bar-success progress-bar-striped active"
                                          role="progressbar" aria-valuenow="20" aria-valuemin="0"
                                          aria-valuemax="100" style="width: 20%">
@@ -172,7 +172,7 @@
                 </li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a id="sidebarNextDay"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> nächter Tag</a>
+                <li><a href="" id="sidebarNextDay"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> nächter Tag</a>
                 </li>
             </ul>
         </div>
