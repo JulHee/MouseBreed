@@ -1,4 +1,4 @@
-<h1 class="page-header">Zucht</h1>
+<h1 class="page-header"><?php echo $loadedBreed['name']; ?></h1>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <form class="form-horizontal">
