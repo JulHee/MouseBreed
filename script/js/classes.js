@@ -13,11 +13,20 @@ this.number_of_mouse = number_of_mouse;
 this.end_date = end_date;
 }
 
-function Mouse(id,cage_id,breed_id,user_id){
+function Mouse(id,gender,genotyp,age,weight,cage_id,breed_id,user_id){
 	this.id = id;
 	this.cage_id = cage_id;
 	this.breed_id = breed_id;
 	this.user_id = user_id;
+    this.gender = gender;
+    this.genotyp = genotyp;
+    this.age = age;
+    this.weight=weight;
+    this.usergender;
+
+    function toString() {
+        return "{" + this.gender + "," + this.genotyp + "," + this.age + "," + this.weight + "," + "}"
+    }
 }
 
 function Cage(id,max_number_of_mouses,breed_id){
@@ -32,4 +41,5 @@ function Breed(id,user_id,task,name){
 	this.name = name;
     this.time_of_creation = Date.now();
     this.timeUnit = 0;
+    this.mouseArray=[];
 }

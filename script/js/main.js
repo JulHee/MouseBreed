@@ -16,15 +16,7 @@ var Logout = {
 
 // Datenstruktur zum speichern der Elemente aus mouse.js
 
-function Mouse(sex, genotyp, age, weight) {
-    this.sex = sex;
-    this.genotyp = genotyp;
-    this.age = age;
-    this.weight = weight;
-    function toString() {
-        return "{" + this.sex + "," + this.genotyp + "," + this.age + "," + this.weight + "," + "}"
-    }
-}
+
 
 function addBen(titel, nachricht, art) {
     // TODO: Die Nachricht muss unterhalb der Oberen leiste angezeigt werden

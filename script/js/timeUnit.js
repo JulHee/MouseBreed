@@ -4,9 +4,13 @@
 
 function nextDay(breed){
     breed.timeUnit ++;
-    gainWeight()
+    gainWeight(breed.mouseArray)
 }
 
-function gainWeight(){
-    // pro Tag wachsen die Mäuse
+function gainWeight(mouseArray){
+    var addedWeight = 1;
+    for ( var i = 0, l = mouseArray.length; i < l; i++ ) {
+        mouseArray[i].weight += addedWeight;
+    };
+
 }

@@ -12,6 +12,7 @@
 - Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
 - Benachrichtigungen auto-scrollbar einstellen
 - Menü blaue Hinterlegung mit der aktuellen Seite wandern lassen.
+- breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.
 -
 
 
