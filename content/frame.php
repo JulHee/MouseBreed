@@ -42,13 +42,12 @@
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notizen
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu dropdown-max-width" role="menu" aria-labelledby="ProfileDropDown">
-                            <ul id="notizen_top" class="dropdown-menu dropdown-max-width" role="menu">
-                            <li id="notizen_bot">
-                                <button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button>
-                            </li>
-                        </ul>
+                        <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
 
+                            <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here" aria-describedby="basic-addon2">
+                            <li class="divider"></li>
+                            <li id="notizLast">
+                                <button id="addbnt" class="btn btn-danger center-block">Hinzufügen</button>
                             </li>
                         </ul>
                     </li>
@@ -191,6 +190,10 @@
                 <li <?=echoActiveClassIfRequestMatches("contact")?>><a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
                 </li>
                 <li <?=echoActiveClassIfRequestMatches("aboutus")?>><a href="/aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
+                </li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li <?=echoActiveClassIfRequestMatches("devtest")?>><a href="/devtest"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
                 </li>
             </ul>
         </div>
