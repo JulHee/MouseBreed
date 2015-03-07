@@ -7,13 +7,11 @@
 - Datenbank Zugriff für:
     - Profil
     - Erstellen von Zuchten
-
 - Informationsübergabe (Zucht-ID) beim laden der Zuchten
 - Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
-
-
-
 - breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.
+- Einstellungsmöglichkeiten überlegen/einfügen
+- FAQ erstellen (ausfüllen)
 - Notizfenster
 
 
