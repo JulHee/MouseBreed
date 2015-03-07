@@ -129,11 +129,11 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
-                <ul class="nav nav-sidebar">
+                <ul id="navSidebarZuchten" class="nav nav-sidebar">
                     <li <?=echoActiveClassIfRequestMatches("home")?>><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="dropdown" <?=echoActiveClassIfRequestMatches("zuchten")?>>
+                    <li  class="dropdown" <?=echoActiveClassIfRequestMatches("zuchten")?>>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Meine Zuchten
