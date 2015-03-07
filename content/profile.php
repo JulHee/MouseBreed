@@ -25,6 +25,11 @@
                             Änderungen
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a href="#deleteProfile" aria-controls="deleteProfile" role="tab" data-toggle="tab">
+                            Löschen
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -71,7 +76,6 @@
                         <li role="presentation"><a href="#info_email" role="tab"
                                                    data-toggle="tab">E-Mail-Adresse</a></li>
                         <li role="presentation"><a href="#info_pwd" role="tab" data-toggle="tab">Passwort</a></li>
-                        <li role="presentation"><a href="#info_del" role="tab" data-toggle="tab">Löschen</a></li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="info_allgemein"><br>
@@ -166,16 +170,9 @@
                             </form>
 
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="info_del"><br>
-
-                            <div class="alert alert-danger" role="alert">
-                                <p>Sind sie sich sicher das Sie ihren Account löschen wollen ?</p> <br>
-                                <button type="button" class="btn btn-danger">Löschen</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="breedInfo">
+                <div role="tabpanel" class="tab-pane fade in" id="breedInfo">
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -201,6 +198,13 @@
                             <td>1</td>
                         </tr>
                     </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="deleteProfile">
+                    <div class="alert alert-danger" role="alert">
+                        <p>Sind sie sich sicher das Sie ihren Account löschen wollen ?</p>
+                        <br>
+                        <button type="button" class="btn btn-danger">Löschen</button>
+                    </div>
                 </div>
             </div>
         </div>
