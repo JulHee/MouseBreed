@@ -132,11 +132,10 @@
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><a href="">
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Meine Zuchten
                             <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-                        </a>
                         <ul class="dropdown-menu navmenu-nav" role="menu">
                             <?php foreach($_SESSION['breeds'] as $breed) { ?>
                             <li class="menu-item"><a tabindex="-1" href="/breed/<?php echo $breed['id']; ?>"><?php echo $breed['name']; ?></a></li>
