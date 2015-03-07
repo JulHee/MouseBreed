@@ -20,7 +20,7 @@
 - erstes Scenario funktionen ! (add to worklist whats needed)
 
 (Jörn)
-- Notizfenster Funktion schreiben
+- Notizfenster Funktion schreiben // NotizFenster close on click beheben!!!
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?
 

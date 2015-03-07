@@ -159,10 +159,21 @@ $(document).ready(function () {
             );
         }
     );
+
     $("#navSidebarZuchten a").on("click", function(){
         $(".nav").find(".active").removeClass("active");
         $(this).parent().addClass("active");
     });
 
+    /*TODO
+    $('#addbtn').click(
+
+    var text = document.getElementById('noticetext').innerText;
+        function () {
+        $('#notizliste_top').prepend('<li class="divider"></li>');
+        $('#notizliste_top').prepend('<li class="noticetodel"> text </li>');
+        };
+    );
+    */
 });
 

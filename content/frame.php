@@ -46,9 +46,12 @@
 
                             <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here" aria-describedby="basic-addon2">
                             <li class="divider"></li>
-                            <li id="notizLast">
-                                <button id="addbnt" class="btn btn-danger center-block">Hinzufügen</button>
+
+                            <li id="notizLast" class="btn-block">
+                                <button id="addbnt" class="btn btn-danger col-md-6">Hinzufügen</button>
+                                <button id="delbnt" class="btn btn-danger col-md-6">Löschen</button>
                             </li>
+
                         </ul>
                     </li>
 
