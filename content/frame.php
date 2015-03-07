@@ -141,8 +141,9 @@
                         </a>
                         <ul class="dropdown-menu navmenu-nav" role="menu">
                             <?php foreach ($_SESSION['breeds'] as $breed) { ?>
-                                <li class="menu-item"><a tabindex="-1"
-                                                         href="/breed/<?php echo $breed['id']; ?>"><?php echo $breed['name']; ?></a>
+                                <li class="menu-item">
+                                    <a tabindex="-1"
+                                       href="/breed/<?php echo $breed['id']; ?>"><?php echo $breed['name']; ?></a>
                                 </li>
                             <?php } ?>
                         </ul>
