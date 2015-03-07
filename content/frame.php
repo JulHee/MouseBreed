@@ -36,6 +36,23 @@
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notizen
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-max-width" role="menu" aria-labelledby="ProfileDropDown">
+                            <ul id="notizen_top" class="dropdown-menu dropdown-max-width" role="menu">
+                            <li id="notizen_bot">
+                                <button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button>
+                            </li>
+                        </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Ziel
