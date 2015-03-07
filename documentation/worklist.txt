@@ -7,14 +7,14 @@
 - Datenbank Zugriff für:
     - Profil
     - Erstellen von Zuchten
-    - Laden von Zuchten
+   
 - Informationsübergabe (Zucht-ID) beim laden der Zuchten
 - Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
 - Benachrichtigungen auto-scrollbar einstellen
-- Menü blaue Hinterlegung mit der aktuellen Seite wandern lassen.
+
 - breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.
 - Notizfenster
-- MouseSteckbriefe-png adden (justforfun)
+
 
 
 

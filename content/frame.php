@@ -130,10 +130,10 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <li <?=echoActiveClassIfRequestMatches("home")?>><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown" <?=echoActiveClassIfRequestMatches("zuchten")?>>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Meine Zuchten
@@ -147,32 +147,32 @@
                             <?php } ?>
                         </ul>
                     </li>
-                    <li ><a href="/newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                    <li <?=echoActiveClassIfRequestMatches("newbreed")?>><a href="/newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+                    <li <?=echoActiveClassIfRequestMatches("profile")?>><a href="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
                     </li>
-                    <li><a href="/settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    <li <?=echoActiveClassIfRequestMatches("settings")?>><a href="/settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             Einstellungen</a>
                     </li>
-                    <li><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li <?=echoActiveClassIfRequestMatches("help")?>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } else { ?>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <li <?=echoActiveClassIfRequestMatches("home")?>><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li <?=echoActiveClassIfRequestMatches("help")?>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
-                <li><a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
+                <li <?=echoActiveClassIfRequestMatches("contact")?>><a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
                 </li>
-                <li><a href="/aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
+                <li <?=echoActiveClassIfRequestMatches("aboutus")?>><a href="/aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
                 </li>
             </ul>
         </div>
@@ -191,5 +191,17 @@
 
 
 <?php if (file_exists('script/js/content/' . $page . '.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
+<?php
+
+function echoActiveClassIfRequestMatches($requestUri)
+{
+    $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
+
+    if ($current_file_name == $requestUri)
+        echo 'class="active"';
+}
+
+?>
+
 </body>
 </html>
