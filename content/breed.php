@@ -113,7 +113,7 @@
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <img src="http://placehold.it/220x220" class="img-responsive img-thumbnail">
+                        <img src="/data/img/Malemouse.png"  width="220" height="220" class="img-responsive img-thumbnail">
                     </div>
                 </div>
             </div>
