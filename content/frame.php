@@ -131,7 +131,8 @@
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            Home<span class="sr-only">(current)</span></a></li>
+                            Home<span class="sr-only">(current)</span></a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
@@ -147,7 +148,7 @@
                             <?php } ?>
                         </ul>
                     </li>
-                    <li><a href="/newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                    <li ><a href="/newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
