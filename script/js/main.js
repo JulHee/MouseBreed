@@ -159,8 +159,12 @@ $(document).ready(function () {
             );
         }
     );
+    /* Funktioniert nicht mit php
 
-
-
+     $(".nav a").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+    */
 });
 
