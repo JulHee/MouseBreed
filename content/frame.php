@@ -70,7 +70,7 @@
 
                                 <p class="list-group-item-text">Wie weit sie gekommen sind</p>
                             </li>
-                            <li class="list-group-item ">
+                            <li class="list-group-item">
                                 <h4 class="list-group-item-heading">Verbleibende Tage</h4>
 
                                 <div class="progress">
