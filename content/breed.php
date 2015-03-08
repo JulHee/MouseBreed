@@ -28,16 +28,23 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">Mausung</div>
-            <ul id="ListMouse" class="list-group">
-                <li class="list-group-item">Maus 1</li>
-                <li class="list-group-item">Maus 2</li>
-                <li class="list-group-item">Maus 3</li>
-                <li class="list-group-item">Maus 4</li>
-                <li class="list-group-item">Maus 5</li>
-                <li class="list-group-item">Maus 6</li>
-                <li class="list-group-item">Maus 7</li>
-                <li class="list-group-item">Maus 8</li>
-            </ul>
+            <div id="ListMouse" class="list-group">
+                <a href="#" class="list-group-item active">Maus 1</a>
+                <a href="#" class="list-group-item">Maus 2</a>
+                <a href="#" class="list-group-item">Maus 3</a>
+                <a href="#" class="list-group-item">Maus 4</a>
+                <a href="#" class="list-group-item">Maus 5</a>
+                <a href="#" class="list-group-item">Maus 6</a>
+                <a href="#" class="list-group-item">Maus 7</a>
+                <a href="#" class="list-group-item">Maus 8</a>
+                <a href="#" class="list-group-item">Maus 9</a>
+                <a href="#" class="list-group-item">Maus 10</a>
+                <a href="#" class="list-group-item">Maus 11</a>
+                <a href="#" class="list-group-item">Maus 12</a>
+                <a href="#" class="list-group-item">Maus 13</a>
+                <a href="#" class="list-group-item">Maus 14</a>
+                <a href="#" class="list-group-item">Maus 15</a>
+            </div>
         </div>
     </div>
     <div class="col-md-8">

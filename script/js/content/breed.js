@@ -5,5 +5,14 @@ var BasicFunctions = {
         });
 
     }
-}
-$( document ).ready( BasicFunctions.onReady );
+};
+
+$(document).ready(function () {
+    BasicFunctions.onReady;
+
+    $("#ListMouse a").on("click", function(){
+        $("#ListMouse").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+});
