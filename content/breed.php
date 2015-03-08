@@ -120,7 +120,7 @@
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <img src="/data/img/Femalemouse.png" class="img-responsive img-thumbnail">
+                        <img id="mouseinfoProfileImg" src="/data/img/Femalemouse.png" class="img-responsive img-thumbnail">
                     </div>
                 </div>
             </div>

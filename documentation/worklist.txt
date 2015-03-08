@@ -19,9 +19,10 @@
 (christian)
 - breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.
 - erstes Scenario funktionen ! (add to worklist whats needed)
+- Mäuse zum Testen erstellen
+- Felder einer Maus spezifizieren
 
 (Jörn)
-- Notizfenster Funktion schreiben // NotizFenster close on click beheben!!!
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?
 

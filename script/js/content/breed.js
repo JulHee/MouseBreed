@@ -11,6 +11,8 @@ function updateMouseInfo(mouse){
     $('#mouseinfoWeight').innerHTML = mouse.weight;
     $('#mouseinfoGender').innerHTML = mouse.gender;
     $('#mouseinfoAge').innerHTML    = mouse.age;
+
+    $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
 }
 $(document).ready(function () {
     BasicFunctions.onReady;
