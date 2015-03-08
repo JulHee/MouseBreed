@@ -53,11 +53,8 @@
                                        aria-describedby="basic-addon2">
                             </li>
                             <li class="divider"></li>
-                            <li id="notizLast" class="btn-block center-block">
-                                <div class="col-md-offset-2">
-                                    <button id="addbtn" class="btn btn-danger">Hinzufügen</button>
-                                    <button id="delbtn" class="btn btn-danger">Löschen</button>
-                                </div>
+                            <li id="notizLast" class="btn-block">
+                                    <button id="addbtn" class="btn btn-danger center-block">Hinzufügen</button>
                             </li>
 
                         </ul>
