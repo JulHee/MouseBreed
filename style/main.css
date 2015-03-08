@@ -32,3 +32,8 @@
 .notifyjs-corner {
     top: 45px !important;
 }
+
+.notMessage {
+    word-wrap: break-word;
+    text-align: center;
+}

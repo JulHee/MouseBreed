@@ -42,7 +42,11 @@
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notizen
                             <span class="caret"></span>
                         </a>
+
                         <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
+                            <ul id="notizenT">
+
+                            </ul>
                             <li class="divider"></li>
                             <li>
                                 <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
