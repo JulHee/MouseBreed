@@ -38,7 +38,7 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a id="noticeid" href="#" class="dropdown-toggle" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notizen
                             <span class="caret"></span>
                         </a>

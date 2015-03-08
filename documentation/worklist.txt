@@ -6,7 +6,7 @@
     - Änderungen aus mainBootstrap in eigene Dateien auslagern
 - Einstellungsmöglichkeiten überlegen/einfügen
 - FAQ erstellen (ausfüllen)
-
+- Schwierigkeitsgrade Mittel und Schwer ausfüllen
 
 (christoph)
 - Datenbank Zugriff für:

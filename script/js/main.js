@@ -165,6 +165,19 @@ $(document).ready(function () {
         $(this).parent().addClass("active");
     });
 
+    $('#noticeid').on('click', function (event) {
+        $(this).parent().toggleClass('open');
+    });
+
+    $('body').on('click', function (e) {
+        if (!$('#noticeid').is(e.target)
+            && $('#noticeid').has(e.target).length === 0
+            && $('.open').has(e.target).length === 0
+        ) {
+            $('#noticeid').removeClass('open');
+        }
+    });
+
     /*TODO
     $('#addbtn').click(
 
