@@ -183,16 +183,12 @@ $(document).ready(function () {
         function(){
             var inText = $('#noticetext').val();
           //  $('#notizliste_top').prepend('<li class="divider"></li>');
-            $('#notizliste_top').prepend('<li class="divider"></li><li class="noticetodel benMessage"> '+ inText +' </li>');
+            $('#notizenT').prepend('<li class="divider"></li><li class="notMessage"> '+ inText +'<button onClick="this.parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
         });
 
-    /*
-     $('#delbnt').click(
-     function () {
 
-     }
-     )
-     */
+
+
 
 });
 
