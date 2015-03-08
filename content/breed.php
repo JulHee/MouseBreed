@@ -58,35 +58,35 @@
                                 <label class="col-sm-4 control-label">Name</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">Klaus</p>
+                                    <p id="mouseinfoName" class="form-control-static">Klaus</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Gewicht</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">400g</p>
+                                    <p id="mouseinfoWeight" class="form-control-static">400g</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Geschlecht</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">Männlich</p>
+                                    <p id="mouseinfoGender" class="form-control-static">Männlich</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Alter</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">10 Tage</p>
+                                    <p id="mouseinfoAge" class="form-control-static">10 Tage</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Eltern</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">Franz & Maria</p>
+                                    <p id="mouseinfoParents" class="form-control-static">Franz & Maria</p>
                                 </div>
                             </div>
                             <div class="col-sm-8 col-sm-offset-4">
@@ -107,7 +107,7 @@
                                             <h4 class="modal-title" id="myModalLabel">Geschlecht bestimmen</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <img src="/data/img/bildkarten/Maennchen_2846.png"
+                                            <img id="mouseinfoGenderPic" src="/data/img/bildkarten/Maennchen_2846.png"
                                                  class="img-rounded img-responsive center-block">
                                         </div>
                                         <div class="modal-footer">

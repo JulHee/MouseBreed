@@ -7,6 +7,11 @@ var BasicFunctions = {
     }
 };
 
+function updateMouseInfo(mouse){
+    $('#mouseinfoWeight').innerHTML = mouse.weight;
+    $('#mouseinfoGender').innerHTML = mouse.gender;
+    $('#mouseinfoAge').innerHTML    = mouse.age;
+}
 $(document).ready(function () {
     BasicFunctions.onReady;
 
