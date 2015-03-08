@@ -1,6 +1,11 @@
+html {
+    overflow-y: scroll;
+}
+
 #test {
     width: 20%;
 }
+
 .dropdown-max-width{
     width: 310px;
     max-width: 310px;

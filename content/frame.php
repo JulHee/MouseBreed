@@ -30,8 +30,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="home" class="pull-left" style="margin-top:5px"><img src="/data/img/mouse.png"></a>
-            <a class="navbar-brand" href="home" style="margin-left:5px">Mäusezucht</a>
+            <a class="pull-left" style="margin-top:5px"><img src="/data/img/mouse.png"></a>
+            <a class="navbar-brand" style="margin-left:5px">Mäusezucht</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
@@ -132,6 +132,8 @@
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
+                    <li><a href="/newbreed"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Einführung</a>
+                    </li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><a href="">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Meine Zuchten
@@ -147,11 +149,6 @@
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
-                    </li>
-                    <li><a href="/settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            Einstellungen</a>
-                    </li>
                     <li><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
