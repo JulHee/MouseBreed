@@ -48,14 +48,10 @@
 
                             </ul>
                             <li class="divider"></li>
-                            <li>
+                            <li class="input-group">
                                 <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
                                        aria-describedby="basic-addon2">
-                            </li>
-                            <li class="divider"></li>
-                            <li id="notizLast" class="btn-block">
-                                    <button id="addbtn" class="btn btn-danger center-block">Hinzufügen</button>
-                            </li>
+                                <span class="input-group-addon" id="addbtn">Hinzufügen</span>
 
                         </ul>
                     </li>
