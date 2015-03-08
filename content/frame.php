@@ -43,15 +43,16 @@
                             <span class="caret"></span>
                         </a>
                         <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
-
-                            <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
-                                   aria-describedby="basic-addon2">
                             <li class="divider"></li>
-
+                            <li>
+                                <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
+                                       aria-describedby="basic-addon2">
+                            </li>
+                            <li class="divider"></li>
                             <li id="notizLast" class="btn-block center-block">
                                 <div class="col-md-offset-2">
-                                    <button id="addbnt" class="btn btn-danger">Hinzufügen</button>
-                                    <button id="delbnt" class="btn btn-danger">Löschen</button>
+                                    <button id="addbtn" class="btn btn-danger">Hinzufügen</button>
+                                    <button id="delbtn" class="btn btn-danger">Löschen</button>
                                 </div>
                             </li>
 

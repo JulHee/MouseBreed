@@ -178,12 +178,21 @@ $(document).ready(function () {
         }
     });
 
-    $('#delbnt').click(
-        function () {
 
-        }
-    )
+    $('#addbtn').click(
+        function(){
+            var inText = $('#noticetext').val();
+          //  $('#notizliste_top').prepend('<li class="divider"></li>');
+            $('#notizliste_top').prepend('<li class="divider"></li><li class="noticetodel benMessage"> '+ inText +' </li>');
+        });
 
+    /*
+     $('#delbnt').click(
+     function () {
+
+     }
+     )
+     */
 
 });
 
