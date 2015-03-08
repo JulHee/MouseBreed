@@ -178,15 +178,12 @@ $(document).ready(function () {
         }
     });
 
-    /*TODO
-    $('#addbtn').click(
-
-    var text = document.getElementById('noticetext').innerText;
+    $('#delbnt').click(
         function () {
-        $('#notizliste_top').prepend('<li class="divider"></li>');
-        $('#notizliste_top').prepend('<li class="noticetodel"> text </li>');
-        };
-    );
-    */
+
+        }
+    )
+
+
 });
 
