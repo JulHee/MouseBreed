@@ -129,17 +129,20 @@
                     </li>
                 </ul>
             <?php } else { ?>
-                <form id="TOPlogin_form" class="navbar-form navbar-right" action="home"
-                      method="post">
-                    <div class="form-group">
-                        <input type="text" id="TOPusername" placeholder="Benutzername" class="form-control" required
-                               autofocus>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="TOPpassword" placeholder="Password" class="form-control" required>
-                    </div>
-                    <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
-                </form>
+                        <form id="TOPlogin_form" class="navbar-form navbar-right" action="home"
+                              method="post">
+                            <div class="form-group">
+                                <input type="text" id="TOPusername" placeholder="Benutzername" class="form-control"
+                                       required
+                                       autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="TOPpassword" placeholder="Password" class="form-control"
+                                       required>
+                            </div>
+                            <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
+                            <a href="register" class="btn btn-primary">Registrieren</a>
+                        </form>
             <?php } ?>
         </div>
     </div>

@@ -89,11 +89,13 @@
                                     <p id="mouseinfoParents" class="form-control-static">Franz & Maria</p>
                                 </div>
                             </div>
-                            <div class="col-sm-8 col-sm-offset-4">
-                                <button type="button" class="btn btn-default" data-toggle="modal"
-                                        data-target="#chooseGender">
-                                    Geschlecht bestimmen
-                                </button>
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <button type="button" class="btn btn-default" data-toggle="modal"
+                                            data-target="#chooseGender">
+                                        Geschlecht bestimmen
+                                    </button>
+                                </div>
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="chooseGender" tabindex="-1" role="dialog"
@@ -120,7 +122,8 @@
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <img id="mouseinfoProfileImg" src="/data/img/Femalemouse.png" class="img-responsive img-thumbnail">
+                        <img id="mouseinfoProfileImg" src="/data/img/Femalemouse.png"
+                             class="img-responsive img-thumbnail">
                     </div>
                 </div>
             </div>
