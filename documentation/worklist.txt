@@ -10,6 +10,7 @@
 - evtl. Notizenfenster schließen wenn irgendwo hingeklickt wird
 
 (christoph)
+- Login fixen
 - Datenbank Zugriff für:
     - Profil
     - Erstellen von Zuchten

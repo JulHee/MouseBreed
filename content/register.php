@@ -1,6 +1,6 @@
 <h1 class="page-header">Konto erstellen</h1>
 <div class="col-md-4 col-md-offset-4">
-<form class="form-horizontal" id="register_form">
+<form class="form-horizontal" id="register_form" action="login" >
     <div class="form-group">
         <label for="registerInputfirstName" class="col-sm-4 control-label">Vorname</label>
         <div class="col-sm-8">
@@ -26,20 +26,20 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="registerInputPassword" class="col-sm-4 control-label">Password</label>
+        <label for="registerInputPassword" class="col-sm-4 control-label">Passwort</label>
         <div class="col-sm-8">
-            <input type="password" class="form-control" id="registerInputPassword" placeholder="Password" required>
+            <input type="password" class="form-control" id="registerInputPassword" placeholder="Passwort" required>
         </div>
     </div>
     <div class="form-group">
-        <label for="registerInputPasswordRe" class="col-sm-4 control-label">Password</label>
+        <label for="registerInputPasswordRe" class="col-sm-4 control-label">Passwort</label>
         <div class="col-sm-8">
-            <input type="password" class="form-control" id="registerInputPasswordRe" placeholder="Password wiederholen" required>
+            <input type="password" class="form-control" id="registerInputPasswordRe" placeholder="Passwort wiederholen" required>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
-            <button id="register_button" type="submit" class="btn btn-success">Registrieren</button>
+            <button id="register_button" type="submit" class="btn btn-primary">Registrieren</button>
         </div>
     </div>
 </form>
