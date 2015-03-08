@@ -182,13 +182,7 @@ $(document).ready(function () {
     $('#addbtn').click(
         function(){
             var inText = $('#noticetext').val();
-          //  $('#notizliste_top').prepend('<li class="divider"></li>');
-            $('#notizenT').prepend('<li class="divider"></li><li class="notMessage"> '+ inText +'<button onClick="this.parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
+            $('#notizenT').prepend('<li class="notMessage list-group-item"> '+ inText +'<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
         });
-
-
-
-
-
-});
+    });
 

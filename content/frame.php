@@ -44,7 +44,7 @@
                         </a>
 
                         <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
-                            <ul id="notizenT">
+                            <ul id="notizenT" class="list-group">
 
                             </ul>
                             <li class="divider"></li>
