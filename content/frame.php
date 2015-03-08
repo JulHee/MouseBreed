@@ -44,12 +44,14 @@
                         </a>
                         <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
 
-                            <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here" aria-describedby="basic-addon2">
+                            <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
+                                   aria-describedby="basic-addon2">
                             <li class="divider"></li>
 
                             <li id="notizLast" class="btn-block">
-                                <button id="addbnt" class="btn btn-danger col-md-6">Hinzufügen</button>
-                                <button id="delbnt" class="btn btn-danger col-md-6">Löschen</button>
+                                <button id="addbnt" class="btn btn-danger">Hinzufügen</button>
+                                <button id="delbnt" class="btn btn-danger pull-right">Löschen</button>
+
                             </li>
 
                         </ul>
@@ -149,10 +151,11 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul id="navSidebarZuchten" class="nav nav-sidebar">
-                    <li <?=echoActiveClassIfRequestMatches("home")?>><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <li <?= echoActiveClassIfRequestMatches("home") ?>><a href="/home"><span
+                                class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li  class="dropdown" <?=echoActiveClassIfRequestMatches("zuchten")?>>
+                    <li class="dropdown" <?= echoActiveClassIfRequestMatches("zuchten") ?>>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Meine Zuchten
@@ -167,36 +170,45 @@
                             <?php } ?>
                         </ul>
                     </li>
-                    <li <?=echoActiveClassIfRequestMatches("newbreed")?>><a href="/newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                    <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
+                                class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li <?=echoActiveClassIfRequestMatches("profile")?>><a href="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+                    <li <?= echoActiveClassIfRequestMatches("profile") ?>><a href="/profile"><span
+                                class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
                     </li>
-                    <li <?=echoActiveClassIfRequestMatches("settings")?>><a href="/settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    <li <?= echoActiveClassIfRequestMatches("settings") ?>><a href="/settings"><span
+                                class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             Einstellungen</a>
                     </li>
-                    <li <?=echoActiveClassIfRequestMatches("help")?>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
+                                class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } else { ?>
                 <ul class="nav nav-sidebar">
-                    <li <?=echoActiveClassIfRequestMatches("home")?>><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <li <?= echoActiveClassIfRequestMatches("home") ?>><a href="/home"><span
+                                class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li <?=echoActiveClassIfRequestMatches("help")?>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
+                                class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
-                <li <?=echoActiveClassIfRequestMatches("contact")?>><a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
+                <li <?= echoActiveClassIfRequestMatches("contact") ?>><a href="/contact"><span
+                            class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
                 </li>
-                <li <?=echoActiveClassIfRequestMatches("aboutus")?>><a href="/aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
+                <li <?= echoActiveClassIfRequestMatches("aboutus") ?>><a href="/aboutus"><span
+                            class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
                 </li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li <?=echoActiveClassIfRequestMatches("devtest")?>><a href="/devtest"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
+                <li <?= echoActiveClassIfRequestMatches("devtest") ?>><a href="/devtest"><span
+                            class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
                 </li>
             </ul>
         </div>
