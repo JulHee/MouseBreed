@@ -30,12 +30,32 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="pull-left" style="margin-top:5px"><img src="/data/img/mouse.png"></a>
-            <a class="navbar-brand" style="margin-left:5px">Mäusezucht</a>
+            <a href="home" class="pull-left" style="margin-top:5px"><img src="/data/img/mouse.png"></a>
+            <a class="navbar-brand" href="home" style="margin-left:5px">Mäusezucht</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <a id="noticeid" href="#" class="dropdown-toggle" role="button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notizen
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
+                            <ul id="notizenT" class="list-group">
+
+                            </ul>
+                            <li class="divider"></li>
+                            <li class="input-group">
+                                <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
+                                       aria-describedby="basic-addon2">
+                                <span class="input-group-addon" id="addbtn">Hinzufügen</span>
+
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Ziel
@@ -47,7 +67,7 @@
 
                                 <p class="list-group-item-text">Wie weit sie gekommen sind</p>
                             </li>
-                            <li class="list-group-item ">
+                            <li class="list-group-item">
                                 <h4 class="list-group-item-heading">Verbleibende Tage</h4>
 
                                 <div class="progress">
@@ -109,17 +129,19 @@
                     </li>
                 </ul>
             <?php } else { ?>
-                <form id="TOPlogin_form" class="navbar-form navbar-right" action="home"
-                      method="post">
-                    <div class="form-group">
-                        <input type="text" id="TOPusername" placeholder="Benutzername" class="form-control" required
-                               autofocus>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="TOPpassword" placeholder="Password" class="form-control" required>
-                    </div>
-                    <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
-                </form>
+                        <form id="TOPlogin_form" class="navbar-form navbar-right" action="home"
+                              method="post">
+                            <div class="form-group">
+                                <input type="text" id="TOPusername" placeholder="Benutzername" class="form-control"
+                                       required
+                                       autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="TOPpassword" placeholder="Password" class="form-control"
+                                       required>
+                            </div>
+                            <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
+                        </form>
             <?php } ?>
         </div>
     </div>
@@ -129,45 +151,69 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
-                <ul class="nav nav-sidebar">
-                    <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            Home<span class="sr-only">(current)</span></a></li>
-                    <li><a href="/newbreed"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Einführung</a>
+                <ul id="navSidebarZuchten" class="nav nav-sidebar">
+                    <li <?= echoActiveClassIfRequestMatches("home") ?>><a href="/home"><span
+                                class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><a href="">
+                    <li class="dropdown" <?= echoActiveClassIfRequestMatches("zuchten") ?>>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Meine Zuchten
-                            <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                            <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu navmenu-nav" role="menu">
-                            <?php foreach($_SESSION['breeds'] as $breed) { ?>
-                            <li class="menu-item"><a tabindex="-1" href="/breed/<?php echo $breed['id']; ?>"><?php echo $breed['name']; ?></a></li>
+                            <?php foreach ($_SESSION['breeds'] as $breed) { ?>
+                                <li class="menu-item">
+                                    <a tabindex="-1"
+                                       href="/breed/<?php echo $breed['id']; ?>"><?php echo $breed['name']; ?></a>
+                                </li>
                             <?php } ?>
                         </ul>
                     </li>
-                    <li><a href="/newbreed"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                    <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
+                                class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li <?= echoActiveClassIfRequestMatches("profile") ?>><a href="/profile"><span
+                                class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+                    </li>
+                    <li <?= echoActiveClassIfRequestMatches("settings") ?>><a href="/settings"><span
+                                class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            Einstellungen</a>
+                    </li>
+                    <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
+                                class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } else { ?>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <li <?= echoActiveClassIfRequestMatches("home") ?>><a href="/home"><span
+                                class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                    <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
+                                class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
                     </li>
                 </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
-                <li><a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
+                <li <?= echoActiveClassIfRequestMatches("contact") ?>><a href="/contact"><span
+                            class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
                 </li>
-                <li><a href="/aboutus"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
+                <li <?= echoActiveClassIfRequestMatches("aboutus") ?>><a href="/aboutus"><span
+                            class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
                 </li>
             </ul>
+            <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
+            <ul class="nav nav-sidebar">
+                <li <?= echoActiveClassIfRequestMatches("devtest") ?>><a href="/devtest"><span
+                            class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
+                </li>
+            </ul>
+            <?php } ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <?php include_once "$page.php"; ?>
@@ -184,5 +230,17 @@
 
 
 <?php if (file_exists('script/js/content/' . $page . '.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
+<?php
+
+function echoActiveClassIfRequestMatches($requestUri)
+{
+    $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
+
+    if ($current_file_name == $requestUri)
+        echo 'class="active"';
+}
+
+?>
+
 </body>
 </html>

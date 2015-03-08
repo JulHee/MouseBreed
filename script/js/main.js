@@ -160,7 +160,29 @@ $(document).ready(function () {
         }
     );
 
+    $("#navSidebarZuchten a").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+
+    $('#noticeid').on('click', function (event) {
+        $(this).parent().toggleClass('open');
+    });
+
+    $('body').on('click', function (e) {
+        if (!$('#noticeid').is(e.target)
+            && $('#noticeid').has(e.target).length === 0
+            && $('.open').has(e.target).length === 0
+        ) {
+            $('#noticeid').removeClass('open');
+        }
+    });
 
 
-});
+    $('#addbtn').click(
+        function(){
+            var inText = $('#noticetext').val();
+            $('#notizenT').prepend('<li class="notMessage list-group-item"> '+ inText +'<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
+        });
+    });
 

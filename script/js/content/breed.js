@@ -5,5 +5,21 @@ var BasicFunctions = {
         });
 
     }
+};
+
+function updateMouseInfo(mouse){
+    $('#mouseinfoWeight').innerHTML = mouse.weight;
+    $('#mouseinfoGender').innerHTML = mouse.gender;
+    $('#mouseinfoAge').innerHTML    = mouse.age;
+
+    $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
 }
-$( document ).ready( BasicFunctions.onReady );
+$(document).ready(function () {
+    BasicFunctions.onReady;
+
+    $("#ListMouse a").on("click", function(){
+        $("#ListMouse").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+});

@@ -22,7 +22,6 @@ function Mouse(id,gender,genotyp,age,weight,cage_id,breed_id,user_id){
     this.genotyp = genotyp;
     this.age = age;
     this.weight=weight;
-    this.usergender;
 
     function toString() {
         return "{" + this.gender + "," + this.genotyp + "," + this.age + "," + this.weight + "," + "}"

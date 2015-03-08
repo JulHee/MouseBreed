@@ -28,16 +28,23 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">Mausung</div>
-            <ul id="ListMouse" class="list-group">
-                <li class="list-group-item">Maus 1</li>
-                <li class="list-group-item">Maus 2</li>
-                <li class="list-group-item">Maus 3</li>
-                <li class="list-group-item">Maus 4</li>
-                <li class="list-group-item">Maus 5</li>
-                <li class="list-group-item">Maus 6</li>
-                <li class="list-group-item">Maus 7</li>
-                <li class="list-group-item">Maus 8</li>
-            </ul>
+            <div id="ListMouse" class="list-group">
+                <a href="#" class="list-group-item active">Maus 1</a>
+                <a href="#" class="list-group-item">Maus 2</a>
+                <a href="#" class="list-group-item">Maus 3</a>
+                <a href="#" class="list-group-item">Maus 4</a>
+                <a href="#" class="list-group-item">Maus 5</a>
+                <a href="#" class="list-group-item">Maus 6</a>
+                <a href="#" class="list-group-item">Maus 7</a>
+                <a href="#" class="list-group-item">Maus 8</a>
+                <a href="#" class="list-group-item">Maus 9</a>
+                <a href="#" class="list-group-item">Maus 10</a>
+                <a href="#" class="list-group-item">Maus 11</a>
+                <a href="#" class="list-group-item">Maus 12</a>
+                <a href="#" class="list-group-item">Maus 13</a>
+                <a href="#" class="list-group-item">Maus 14</a>
+                <a href="#" class="list-group-item">Maus 15</a>
+            </div>
         </div>
     </div>
     <div class="col-md-8">
@@ -51,42 +58,44 @@
                                 <label class="col-sm-4 control-label">Name</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">Klaus</p>
+                                    <p id="mouseinfoName" class="form-control-static">Klaus</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Gewicht</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">400g</p>
+                                    <p id="mouseinfoWeight" class="form-control-static">400g</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Geschlecht</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">Männlich</p>
+                                    <p id="mouseinfoGender" class="form-control-static">Männlich</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Alter</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">10 Tage</p>
+                                    <p id="mouseinfoAge" class="form-control-static">10 Tage</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Eltern</label>
 
                                 <div class="col-sm-8">
-                                    <p class="form-control-static">Franz & Maria</p>
+                                    <p id="mouseinfoParents" class="form-control-static">Franz & Maria</p>
                                 </div>
                             </div>
-                            <div class="col-sm-8 col-sm-offset-4">
-                                <button type="button" class="btn btn-default" data-toggle="modal"
-                                        data-target="#chooseGender">
-                                    Geschlecht bestimmen
-                                </button>
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <button type="button" class="btn btn-default" data-toggle="modal"
+                                            data-target="#chooseGender">
+                                        Geschlecht bestimmen
+                                    </button>
+                                </div>
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="chooseGender" tabindex="-1" role="dialog"
@@ -100,7 +109,7 @@
                                             <h4 class="modal-title" id="myModalLabel">Geschlecht bestimmen</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <img src="/data/img/bildkarten/Maennchen_2846.png"
+                                            <img id="mouseinfoGenderPic" src="/data/img/bildkarten/Maennchen_2846.png"
                                                  class="img-rounded img-responsive center-block">
                                         </div>
                                         <div class="modal-footer">
@@ -113,7 +122,8 @@
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <img src="http://placehold.it/400x320" class="img-responsive img-thumbnail">
+                        <img id="mouseinfoProfileImg" src="/data/img/Femalemouse.png"
+                             class="img-responsive img-thumbnail">
                     </div>
                 </div>
             </div>

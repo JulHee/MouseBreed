@@ -1,19 +1,35 @@
 //TODO - LIST !! (immer ergänzen!)
 
 ------------ TO DO -------------
-
+(allgemein)
 - mainBootstrap.css .sidebar Verhalten für mobile verbessern
     - Änderungen aus mainBootstrap in eigene Dateien auslagern
+- Einstellungsmöglichkeiten überlegen/einfügen
+- FAQ erstellen (ausfüllen)
+- Schwierigkeitsgrade Mittel und Schwer ausfüllen
+- evtl. Notizenfenster schließen wenn irgendwo hingeklickt wird
+
+(christoph)
+- Login fixen
 - Datenbank Zugriff für:
     - Profil
     - Erstellen von Zuchten
-    - Laden von Zuchten
 - Informationsübergabe (Zucht-ID) beim laden der Zuchten
 - Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
-- Benachrichtigungen auto-scrollbar einstellen
-- Menü blaue Hinterlegung mit der aktuellen Seite wandern lassen.
+
+(christian)
 - breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.
-- Notizfenster
+- erstes Scenario funktionen ! (add to worklist whats needed)
+- Mäuse zum Testen erstellen
+- Felder einer Maus spezifizieren
+
+(Jörn)
+- Home logged in -- ordentliche Startseite erstellen!
+- Home logged out -- hintergrund per carousel ?
+
+(Julian)
+- Historie in Datenbank anlegen
+
 
 
 
