@@ -141,7 +141,6 @@
                                        required>
                             </div>
                             <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
-                            <a href="register" class="btn btn-primary">Registrieren</a>
                         </form>
             <?php } ?>
         </div>
@@ -208,11 +207,13 @@
                             class="glyphicon glyphicon-book" aria-hidden="true"></span> Impressum</a>
                 </li>
             </ul>
+            <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
             <ul class="nav nav-sidebar">
                 <li <?= echoActiveClassIfRequestMatches("devtest") ?>><a href="/devtest"><span
                             class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
                 </li>
             </ul>
+            <?php } ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <?php include_once "$page.php"; ?>
