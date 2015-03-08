@@ -178,15 +178,12 @@ $(document).ready(function () {
         }
     });
 
-    /*TODO
-    $('#addbtn').click(
 
-    var text = document.getElementById('noticetext').innerText;
-        function () {
-        $('#notizliste_top').prepend('<li class="divider"></li>');
-        $('#notizliste_top').prepend('<li class="noticetodel"> text </li>');
-        };
-    );
-    */
+    $('#addbtn').click(
+        function(){
+            var inText = $('#noticetext').val();
+          //  $('#notizliste_top').prepend('<li class="divider"></li>');
+            $('#notizliste_top').prepend('<li class="divider"></li><li class="noticetodel benMessage"> '+ inText +' </li>');
+        });
 });
 
