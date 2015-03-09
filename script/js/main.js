@@ -180,10 +180,10 @@ $(document).ready(function () {
 
 
     $('#addbtn').click(
-        function(){
+        function() {
             var inText = $('#noticetext').val();
-            $('#notizenT').prepend('<li class="notMessage list-group-item"> '+ inText +'<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
-        );
+            $('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
+        });
     });
 
 /*$('#noticetext').value= "";*/
