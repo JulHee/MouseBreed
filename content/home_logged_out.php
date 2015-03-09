@@ -11,7 +11,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="http://placehold.it/1200x500" alt="...">
+            <img src="/data/img/Blubb.png" alt="...">
 
             <div class="carousel-caption">
                 <h1>Willkommen</h1>
