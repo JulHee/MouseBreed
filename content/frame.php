@@ -225,6 +225,7 @@
 <script src="/script/js/ext/notify.min.js"></script>
 <script src="/script/js/boot/bootstrap.min.js"></script>
 <script src="/script/js/boot/jasny-bootstrap.min.js"></script>
+<script src="/script/js/ext/holder.min.js"></script>
 <script src="/script/js/main.js"></script>
 <script src="/script/js/content/login.js"></script>
 
