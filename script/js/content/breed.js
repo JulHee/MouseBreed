@@ -1,7 +1,7 @@
 var BasicFunctions = {
     onReady :  function () {
         $(nextDay()).click(function(){
-            nextDay(SESSION_breed);
+            nextDay($_SESSION['loadedBreed']);
         });
 
     }
@@ -14,6 +14,7 @@ function updateMouseInfo(mouse){
 
     $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
 }
+
 $(document).ready(function () {
     BasicFunctions.onReady;
 

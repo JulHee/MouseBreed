@@ -13,15 +13,21 @@ this.number_of_mouse = number_of_mouse;
 this.end_date = end_date;
 }
 
-function Mouse(id,gender,genotyp,age,weight,cage_id,breed_id,user_id){
+function Mouse(id,gender,genotyp,generation,age,weight,cage_id,breed_id,user_id){
 	this.id = id;
-	this.cage_id = cage_id;
-	this.breed_id = breed_id;
-	this.user_id = user_id;
     this.gender = gender;
     this.genotyp = genotyp;
+    this.generation = generation;
     this.age = age;
+    this.pubescent = false;
     this.weight=weight;
+    this.cage_id = cage_id;
+    this.breed_id = breed_id;
+    this.user_id = user_id;
+    this.motherID = 0;
+    this.fatherID = 0;
+    this.name = "";
+    this.mouseChildren = [];
 
     function toString() {
         return "{" + this.gender + "," + this.genotyp + "," + this.age + "," + this.weight + "," + "}"
