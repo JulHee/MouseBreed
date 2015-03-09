@@ -141,6 +141,7 @@
                                        required>
                             </div>
                             <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
+                            <a href="register" class="btn btn-primary">Registrieren</a>
                         </form>
             <?php } ?>
         </div>
