@@ -56,37 +56,6 @@ function addBen(titel, nachricht, art) {
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 }
 
-var loginTOP = {
-
-    onReady: function () {
-        $("#TOPlogin_button").click(loginTOP.check);
-        $(document).keypress(loginTOP.keyPressed);
-    },
-
-    check: function () {
-        $.ajax({
-            type: "POST",
-            url: "/script/php/ajax/login.php",
-            data: {password: $("#TOPpassword").val(), username: $("#TOPusername").val()},
-            dataType: "json"
-        }).done(function (response) {
-            if (response.success == true) {
-                $("#TOPlogin_form").submit();
-            } else {
-                $("#TOPusername").notify("Benutzername oder Passwort falsch", "error");
-            }
-        });
-    },
-
-    keyPressed: function (e) {
-        if (e.which == 13) {
-            $("#TOPlogin_button").click();
-            return false;
-        }
-    }
-
-};
-
 // Checken ob der Browser LocalStorage unterstützt
 function supports_html5_storage() {
     try {
@@ -131,7 +100,6 @@ function saveGameState(array_of_mouses) {
 
 $(document).ready(function () {
     Logout.onReady();
-    loginTOP.onReady();
 
     $("#mybutton").click(
         function () {
@@ -180,9 +148,11 @@ $(document).ready(function () {
 
 
     $('#addbtn').click(
-        function(){
+        function() {
             var inText = $('#noticetext').val();
-            $('#notizenT').prepend('<li class="notMessage list-group-item"> '+ inText +'<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
+            $('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
+            $('#noticetext').val("");
         });
     });
 
+/*$('#noticetext').value= "";*/

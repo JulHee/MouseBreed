@@ -43,6 +43,7 @@
 (Jörn)
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?
+- Noticeinput leeren nach button press
 
 (Julian)
 - Historie in Datenbank anlegen
