@@ -21,6 +21,7 @@ $(document).ready(function () {
     $("#ListMouse a").on("click", function(){
         $("#ListMouse").find(".active").removeClass("active");
         $(this).addClass("active");
+
     });
 
 });
