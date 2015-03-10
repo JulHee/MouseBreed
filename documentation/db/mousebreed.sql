@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 10. Mrz 2015 um 13:50
+-- Erstellungszeit: 10. Mrz 2015 um 14:08
 -- Server Version: 5.6.21
 -- PHP-Version: 5.6.3
 
@@ -89,19 +89,24 @@ CREATE TABLE IF NOT EXISTS `mouse` (
   `gender` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_general_mysql500_ci NOT NULL,
   `genotyp` varchar(50) COLLATE utf8_general_mysql500_ci NOT NULL,
-  `weight` int(11) NOT NULL,
+  `weight` double NOT NULL,
   `mother_id` int(11) NOT NULL,
   `father_id` int(11) NOT NULL,
   `age` int(11) NOT NULL,
   `img_name` varchar(200) COLLATE utf8_general_mysql500_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
 --
 -- Daten für Tabelle `mouse`
 --
 
 INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `name`, `genotyp`, `weight`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
-(1, 1, 1, 10, 0, 'Karl', 'AB', 200, 4, 4, 10, '');
+(1, 1, 1, 10, 0, 'Karl', 'AB', 200, 4, 4, 10, ''),
+(2, 1, 1, 10, 0, 'Paul', 'BA', 100, 2, 2, 5, ''),
+(3, 1, 1, 10, 1, 'Frauke', 'BB', 500, 2, 2, 5, ''),
+(4, 1, 1, 10, 1, 'Klara', 'AA', 1200, 2, 2, 80, ''),
+(5, 1, 1, 10, 0, 'Hans', 'AB', 500, 4, 4, 4, ''),
+(6, 1, 1, 10, 1, 'Berta', 'BB', 4000, 3, 3, 50, '');
 
 -- --------------------------------------------------------
 
@@ -182,7 +187,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT für Tabelle `mouse`
 --
 ALTER TABLE `mouse`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT für Tabelle `user`
 --
