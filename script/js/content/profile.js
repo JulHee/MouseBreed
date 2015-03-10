@@ -74,16 +74,16 @@ var Settings = {
                 $( '#save_button' ).notify(response.msg,{className: "error" ,elementPosition: 'left middle'});
             }
         });
+    },
+
+    leaveSite: function() {
+        if ( $( '#save_button' ).css('display') != 'none' ){
+            return 'Änderungen nicht gespeichert!';
+        }
     }
 
 };
 
 $( document ).ready( Settings.onReady );
 
-$( window ).on('beforeunload', function() {
-
-    if ( $( '#save_button' ).css('display') != 'none' ){
-        return 'Änderungen nicht gespeichert!';
-    }
-
-});
+$( window ).on('beforeunload', Settings.leaveSite );
