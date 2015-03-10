@@ -129,19 +129,19 @@
                     </li>
                 </ul>
             <?php } else { ?>
-                        <form id="TOPlogin_form" class="navbar-form navbar-right" action="home"
+                        <form id="login_form_top" class="navbar-form navbar-right" action="/home"
                               method="post">
                             <div class="form-group">
-                                <input type="text" id="TOPusername" placeholder="Benutzername" class="form-control"
+                                <input type="text" id="username" name="username" placeholder="Benutzername" class="form-control"
                                        required
                                        autofocus>
                             </div>
                             <div class="form-group">
-                                <input type="password" id="TOPpassword" placeholder="Password" class="form-control"
+                                <input type="password" id="password" name="password" placeholder="Passwort" class="form-control"
                                        required>
                             </div>
-                            <a id="TOPlogin_button" class="btn btn-success">Anmelden</a>
-                            <a href="register" class="btn btn-primary">Registrieren</a>
+                            <a id="login_button_top" class="btn btn-success">Anmelden</a>
+                            <a href="/register" class="btn btn-primary">Registrieren</a>
                         </form>
             <?php } ?>
         </div>
@@ -177,16 +177,6 @@
                     </li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li <?= echoActiveClassIfRequestMatches("profile") ?>><a href="/profile"><span
-                                class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
-                    </li>
-                    <li <?= echoActiveClassIfRequestMatches("settings") ?>><a href="/settings"><span
-                                class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            Einstellungen</a>
-                    </li>
-                    <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
-                                class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
-                    </li>
                 </ul>
             <?php } else { ?>
                 <ul class="nav nav-sidebar">
@@ -194,13 +184,11 @@
                                 class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a></li>
                 </ul>
-                <ul class="nav nav-sidebar">
-                    <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
-                                class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
-                    </li>
-                </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
+                <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
+                            class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</a>
+                </li>
                 <li <?= echoActiveClassIfRequestMatches("contact") ?>><a href="/contact"><span
                             class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a>
                 </li>

@@ -1,21 +1,23 @@
 var login = {
 
     onReady: function () {
+        $("#login_button_top").click(login.check);
         $("#login_button").click(login.check);
         $(document).keypress(login.keyPressed);
     },
 
     check: function () {
+        var button = $( this );
         $.ajax({
             type: "POST",
             url: "/script/php/ajax/login.php",
-            data: {password: $("#password").val(), username: $("#username").val()},
+            data: {password: button.parent().find("#password").val(), username: button.parent().find("#username").val()},
             dataType: "json"
         }).done(function (response) {
             if (response.success == true) {
-                $("#login_form").submit();
+                button.parent().submit();
             } else {
-                $("#login_button").notify("Benutzername oder Passwort falsch", "error");
+                button.parent().notify("Benutzername oder Passwort falsch", {className: "error", elementPosition: 'botttom center'});
             }
         });
     },

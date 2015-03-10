@@ -39,36 +39,39 @@
                 <div role="tabpanel" class="tab-pane fade in active" id="profileInfo">
                     <form class="form-horizontal">
                         <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Benutzername</label>
+
+                                <div class="col-sm-8">
+                                    <p class="form-control-static"><?php echo $_SESSION['userdata']['username']; ?></p>
+                                </div>
+                            </div>
                             <label class="col-sm-4 control-label">Vorname</label>
 
                             <div class="col-sm-8">
-                                <p class="form-control-static">(╯°□°)╯︵ ┻━┻ ︵ ╯(°□° ╯)</p>
+                                <p class="form-control-static"><?php echo $_SESSION['userdata']['firstname']; ?></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Nachname</label>
 
                             <div class="col-sm-8">
-                                <p class="form-control-static">┬─┬﻿ ノ( ゜-゜ノ)</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Benutzername</label>
-
-                            <div class="col-sm-8">
-                                <p class="form-control-static">(╯°□°)╯︵ ┻━┻</p>
+                                <p class="form-control-static"><?php echo $_SESSION['userdata']['lastname']; ?></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Email</label>
 
                             <div class="col-sm-8">
-                                <p class="form-control-static">(ﾉಥДಥ)ﾉ︵┻━┻･/</p>
+                                <p class="form-control-static"><?php echo $_SESSION['userdata']['email']; ?></p>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div role="tabpanel" class="tab-pane fade in" id="changeProfile">
+
+                    <div class="error_msg"></div>
+
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#info_allgemein" role="tab"
                                                                   data-toggle="tab">Allgemein</a>
@@ -82,24 +85,24 @@
 
                             <form class="form-horizontal">
                                 <div class="form-group">
+                                    <label for="eingabefeldVN" class="col-sm-2 control-label">Benutzername</label>
+
+                                    <div class="col-sm-10">
+                                        <input id="username" class="form-control" name="username" type="text" class="input" value="<?php echo $_SESSION['userdata']['username']; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="eingabefeldVN" class="col-sm-2 control-label">Vorname</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="eingabefeldVN"
-                                               placeholder="Vorname">
+                                        <input id="firstname" class="form-control" name="firstname" type="text" class="input" value="<?php echo $_SESSION['userdata']['firstname']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="eingabefeldNN" class="col-sm-2 control-label">Nachname</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="eingabefeldNN"
-                                               placeholder="Nachname">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-default">Speichern</button>
+                                        <input id="lastname" class="form-control" name="lastname" type="text" class="input" value="<?php echo $_SESSION['userdata']['lastname']; ?>">
                                     </div>
                                 </div>
                             </form>
@@ -111,22 +114,7 @@
                                     <label for="eingabefeldEmail" class="col-sm-2 control-label">Email</label>
 
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="eingabefeldEmail"
-                                               placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="eingabefeldEmail2"
-                                           class="col-sm-2 control-label">Wiederholen</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="eingabefeldEmail2"
-                                               placeholder="Wiederholen">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-default">Speichern</button>
+                                        <input id="email" class="form-control" name="email" type="text" class="input" value="<?php echo $_SESSION['userdata']['email']; ?>">
                                     </div>
                                 </div>
                             </form>
@@ -162,15 +150,14 @@
                                                placeholder="Wiederholen">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-default">Speichern</button>
-                                    </div>
-                                </div>
                             </form>
 
                         </div>
+
+                        <a id="save_button" class="btn btn-default" style="display: none; float: right;">Speichern</a>
+
                     </div>
+
                 </div>
                 <div role="tabpanel" class="tab-pane fade in" id="breedInfo">
                     <table class="table table-hover">

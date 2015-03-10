@@ -23,9 +23,9 @@ var Settings = {
 
     hideShowButton: function() {
         if(Settings.checkChange()) {
-            $( '.button').show();
+            $( '#save_button' ).show();
         } else {
-            $( '.button').hide();
+            $( '#save_button' ).hide();
         }
     },
 
@@ -33,7 +33,7 @@ var Settings = {
         var inputChanged = false;
         var i = 0;
 
-        $( 'input[type=text]').each(function(){
+        $( 'input[type=text]' ).each(function(){
             if(Settings.inputValues[i] !=  $(this).val()) {
                 inputChanged = true;
                 return false;
@@ -51,7 +51,7 @@ var Settings = {
         var i = 0;
         var j = 0;
 
-        $( 'input[type=text]').each(function(){
+        $( 'input[type=text]' ).each(function(){
             if(Settings.inputValues[i] !=  $(this).val()) {
                 keys[j] = $(this).attr('id');
                 values[j] = $(this).val();
@@ -68,11 +68,10 @@ var Settings = {
         }).done(function(response) {
             if(response.success == true) {
                 alert("Änderung gespeichert.");
+                $( '#save_button' ).hide();
                 location.reload();
             } else {
-                var error_msg = $(".error_msg");
-                error_msg.html(response.msg);
-                error_msg.show();
+                $( '#save_button' ).notify(response.msg,{className: "error" ,elementPosition: 'left middle'});
             }
         });
     }
@@ -80,3 +79,11 @@ var Settings = {
 };
 
 $( document ).ready( Settings.onReady );
+
+$( window ).on('beforeunload', function() {
+
+    if ( $( '#save_button' ).css('display') != 'none' ){
+        return 'Änderungen nicht gespeichert!';
+    }
+
+});
