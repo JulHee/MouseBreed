@@ -154,12 +154,12 @@ $(document).ready(function () {
             $('#noticetext').val("");
         });
 
-    $.('#chooseGenderMale').click(
+    $('#chooseGenderMale').click(
         function(){
             $("#ListMouse").find(".active").gender = 0;
         })
 
-    $.('#chooseGenderFemale').click(
+    $('#chooseGenderFemale').click(
         function(){
             $("#ListMouse").find(".active").gender = 1;
         })
