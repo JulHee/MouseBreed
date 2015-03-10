@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="home" class="pull-left" style="margin-top:5px"><img src="/data/img/mouse.png"></a>
-            <a class="navbar-brand" href="home" style="margin-left:5px">Mäusezucht</a>
+            <a class="navbar-brand" href="/home" style="margin-left:5px">Mäusezucht</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
@@ -121,7 +121,7 @@
                                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                                     Einstellungen</a></li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="#">
+                            <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="/home">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                                     Logout</a>
                             </li>
