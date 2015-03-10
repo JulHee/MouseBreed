@@ -1,8 +1,7 @@
-#ListMouse{
+.max-height{
     height: 320px;
     overflow-y:auto;
 }
 #MouseInfo{
-    height: 320px;
     overflow-y:auto;
 }

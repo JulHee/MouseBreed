@@ -22,5 +22,9 @@ $(document).ready(function () {
         $("#ListMouse").find(".active").removeClass("active");
         $(this).addClass("active");
     });
+    $("#ListCage a").on("click", function(){
+        $("#ListCage").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
 
 });
