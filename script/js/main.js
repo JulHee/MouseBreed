@@ -153,6 +153,16 @@ $(document).ready(function () {
             $('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
             $('#noticetext').val("");
         });
+
+    $('#chooseGenderMale').click(
+        function(){
+            $("#ListMouse").find(".active").gender = 0;
+        })
+
+    $('#chooseGenderFemale').click(
+        function(){
+            $("#ListMouse").find(".active").gender = 1;
+        })
     });
 
 /*$('#noticetext').value= "";*/

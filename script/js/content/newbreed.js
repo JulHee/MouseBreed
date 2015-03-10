@@ -6,13 +6,13 @@ var Newbreed = {
 
 
     onReady: function() {
-        $('input[name=difficulty]:radio').change(Newbreed.changeDifficulty);
-        $( '.newbreed_button').click(Newbreed.start);
+        $( 'input[name=difficulty]:radio' ).change(Newbreed.changeDifficulty);
+        $( '.newbreed_button' ).click(Newbreed.start);
     },
 
     changeDifficulty:  function() {
         if(!Newbreed.scenarioVisibly) {
-            $( '.scenario_head').removeClass("hidden");
+            $( '.scenario_head' ).removeClass("hidden");
             Newbreed.scenarioVisibly = true;
         }
 		var sender = document.querySelector('input[name="difficulty"]:checked').value;
@@ -32,8 +32,20 @@ var Newbreed = {
     },
 
     start: function() {
-        //alert(Newbreed.difficulty + " " + Newbreed.scenario);
-    	addBen("Neue Zucht", $("#breedname").val(), "info");
+        $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/newBreed.php",
+            data: { targetId: 1, name:  $( '#breedname').val() },
+            dataType: "json"
+        }).done(function(response) {
+            if(response.success == true) {
+                var form = $( '#newbreed_form');
+                form.attr('action', '/breed/' + response.id);
+                form.submit();
+            } else {
+                alert(response.msg);
+            }
+        });
 	}
 };
 
