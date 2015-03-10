@@ -1,0 +1,25 @@
+#ListMouse{
+    height: 320px;
+    overflow-y:auto;
+}
+#MouseInfo{
+    height: 320px;
+    overflow-y:auto;
+}
+
+.btn-group-vertical > button{
+    margin-bottom:10px;
+    border-radius:10px !important;
+}
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 16px; //change this to your desired size
+line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.firstborn {
+    margin-top: 50%;
+}

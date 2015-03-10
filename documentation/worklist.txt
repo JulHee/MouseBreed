@@ -11,6 +11,8 @@
 - Notizen: alter Text verschindet wenn auf Hinzufügen gedrückt wird
 		   Fenster Verschwindet, wenn irgendwo anderes geklickt wird (bis jetzt nur wenn nochmal auf das Notizenfeld geklickt wird.)
 
+
+
 (christoph)
 - Login fixen
 - Datenbank Zugriff für:
@@ -43,7 +45,7 @@
 (Jörn)
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?
-- Noticeinput leeren nach button press
+- Cageme funktionen einbinden/ auslesen daten
 
 (Julian)
 - Historie in Datenbank anlegen
