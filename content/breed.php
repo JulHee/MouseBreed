@@ -6,144 +6,122 @@
 </h1>
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="panel panel-default max-height">
-            <div class="panel-heading">Käfig</div>
-            <div id="ListCage" class="list-group">
-                <a href="#" class="list-group-item active">Käfig 1</a>
-                <a href="#" class="list-group-item">Käfig 2</a>
-                <a href="#" class="list-group-item">Käfig 3</a>
-                <a href="#" class="list-group-item">Käfig 4</a>
-                <a href="#" class="list-group-item">Käfig 5</a>
-                <a href="#" class="list-group-item">Käfig 6</a>
-                <a href="#" class="list-group-item">Käfig 7</a>
-                <a href="#" class="list-group-item">Käfig 8</a>
-                <a href="#" class="list-group-item">Käfig 9</a>
-                <a href="#" class="list-group-item">Käfig 10</a>
-                <a href="#" class="list-group-item">Käfig 11</a>
-                <a href="#" class="list-group-item">Käfig 12</a>
-                <a href="#" class="list-group-item">Käfig 13</a>
-                <a href="#" class="list-group-item">Käfig 14</a>
-                <a href="#" class="list-group-item">Käfig 15</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default max-height">
-            <div class="panel-heading">Mausung</div>
-            <div id="ListMouse" class="list-group">
-                <a href="#" class="list-group-item active">Maus 1</a>
-                <a href="#" class="list-group-item">Maus 2</a>
-                <a href="#" class="list-group-item">Maus 3</a>
-                <a href="#" class="list-group-item">Maus 4</a>
-                <a href="#" class="list-group-item">Maus 5</a>
-                <a href="#" class="list-group-item">Maus 6</a>
-                <a href="#" class="list-group-item">Maus 7</a>
-                <a href="#" class="list-group-item">Maus 8</a>
-                <a href="#" class="list-group-item">Maus 9</a>
-                <a href="#" class="list-group-item">Maus 10</a>
-                <a href="#" class="list-group-item">Maus 11</a>
-                <a href="#" class="list-group-item">Maus 12</a>
-                <a href="#" class="list-group-item">Maus 13</a>
-                <a href="#" class="list-group-item">Maus 14</a>
-                <a href="#" class="list-group-item">Maus 15</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default max-height">
-            <div class="panel-heading">Optionen</div>
-            <div class="panel-body">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Maus verschieben</button>
-                    <button type="button" class="btn btn-default btn-lg btn-block">Maus bestimmen</button>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-                    <button type="button" class="btn btn-default btn-lg btn-block">Block level button</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">Steckbrief</div>
-            <div id="MouseInfo" class="panel-body">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span class="panel-title">Informationen</span>
+                <div class="btn-group pull-right">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Käfig
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Käfig 1</a></li>
+                            <li><a href="#">Käfig 2</a></li>
+                            <li><a href="#">Käfig 3</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <form class="form-horizontal">
+                        <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">Name</label>
+                                <label class="col-sm-8 control-label">Größe</label>
 
-                                <div class="col-sm-8">
-                                    <p id="mouseinfoName" class="form-control-static">Klaus</p>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">30x40x50cm</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">Gewicht</label>
+                                <label class="col-sm-8 control-label">Max Anzahl an Mäusen</label>
 
-                                <div class="col-sm-8">
-                                    <p id="mouseinfoWeight" class="form-control-static">400g</p>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">50</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">Geschlecht</label>
+                                <label class="col-sm-8 control-label">Anzahl an Mäusen</label>
 
-                                <div class="col-sm-8">
-                                    <p id="mouseinfoGender" class="form-control-static">Männlich</p>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">10</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Alter</label>
-
-                                <div class="col-sm-8">
-                                    <p id="mouseinfoAge" class="form-control-static">10 Tage</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Eltern</label>
-
-                                <div class="col-sm-8">
-                                    <p id="mouseinfoParents" class="form-control-static">Franz & Maria</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-8 col-sm-offset-4">
-                                    <button type="button" class="btn btn-default" data-toggle="modal"
-                                            data-target="#chooseGender">
-                                        Geschlecht bestimmen
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="chooseGender" tabindex="-1" role="dialog"
-                                 aria-labelledby="chooseGender"
-                                 aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                                    aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Geschlecht bestimmen</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <img id="mouseinfoGenderPic" src="/data/img/bildkarten/Maennchen_2846.png"
-                                                 class="img-rounded img-responsive center-block">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button id="chooseGenderMale" type="button" class="btn btn-primary pull-left">Männlich</button>
-                                            <button id="chooseGenderFemale" type="button" class="btn btn-primary">Weiblich</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <img id="mouseinfoProfileImg" src="/data/img/Femalemouse.png"
-                             class="img-responsive img-thumbnail">
+                        <img class="img-rounded img-responsive" src="/data/img/cage.jpg"
+                             alt="Generic placeholder image">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <h3 class="text-center">
+                            Mausungen
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Geschlecht</th>
+                                <th>Genotyp</th>
+                                <th>Generation</th>
+                                <th>Alter</th>
+                                <th>Gewicht</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>Karl</td>
+                                <td>Männlich</td>
+                                <td>AB</td>
+                                <td>1</td>
+                                <td>10</td>
+                                <td>200g</td>
+                            </tr>
+                            <tr>
+                                <td>Karl</td>
+                                <td>Männlich</td>
+                                <td>AB</td>
+                                <td>1</td>
+                                <td>10</td>
+                                <td>200g</td>
+                            </tr>
+                            <tr>
+                                <td>Karl</td>
+                                <td>Männlich</td>
+                                <td>AB</td>
+                                <td>1</td>
+                                <td>10</td>
+                                <td>200g</td>
+                            </tr>
+                            <tr>
+                                <td>Karl</td>
+                                <td>Männlich</td>
+                                <td>AB</td>
+                                <td>1</td>
+                                <td>10</td>
+                                <td>200g</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-default">Option 1</button>
+                        <button type="button" class="btn btn-default">Option 2</button>
+                        <button type="button" class="btn btn-default">Option 3</button>
+                        <button type="button" class="btn btn-default">Option 4</button>
+                        <button type="button" class="btn btn-default">Option 5</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
