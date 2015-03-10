@@ -43,7 +43,7 @@ var Newbreed = {
                 form.attr('action', '/breed/' + response.id);
                 form.submit();
             } else {
-                alert(response.msg);
+                $.notify(response.msg,"error");
             }
         });
 	}

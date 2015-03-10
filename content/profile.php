@@ -1,3 +1,23 @@
+<?php
+/*
+    require_once "E:\\Web\\Mousebreed\\script\\php\\other\\dbConnection.php";
+    require_once "E:\\Web\\Mousebreed\\script\\php\\model\\breedModel.php";
+
+
+    $breedData = new \model\breedModel($db);
+
+    $myBreeds = $_SESSION['breeds'];
+    $myBreedInfo = array();
+
+    for($i=0; $i < count($myBreeds); $i++)
+    {
+        $myBreedInfo[] =  $breedData->getData($myBreeds[$i]['id']);
+    }
+    $_SESSION['myBreedInfo'] = $myBreedInfo;
+*/
+?>
+
+
 <div class="col-md-12">
     <h1 class="page-header">Profil</h1>
 
@@ -160,7 +180,7 @@
 
                 </div>
                 <div role="tabpanel" class="tab-pane fade in" id="breedInfo">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-bordered">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -170,20 +190,24 @@
                             <th>Anzahl an Käfigen</th>
                         </tr>
                         </thead>
-                        <tr>
-                            <td>Zuchthaus</td>
-                            <td>2015-03-07</td>
-                            <td>5</td>
-                            <td>20</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>Anstalt</td>
-                            <td>2015-03-05</td>
-                            <td>5</td>
-                            <td>40</td>
-                            <td>1</td>
-                        </tr>
+                        <?php foreach ($_SESSION['myBreedInfo'] as $breed) { ?>
+                            <tr>
+                                <td><?php echo $breed['name']; ?></td>
+                                <td><?php echo $breed['time_of_creation']; ?></td>
+                                <td><?php echo $breed['target']; ?></td>
+                                <td>
+                                    <?php
+                                    $num_mice = 0;
+                                    for($i=0; $i < count($breed['cages']); $i++)
+                                    {
+                                        $num_mice = $num_mice + count($breed['cages'][$i]['mice']);
+                                    }
+                                    echo $num_mice;
+                                    ?>
+                                </td>
+                                <td><?php echo count($breed['cages']); ?></td>
+                            </tr>
+                        <?php } ?>
                     </table>
                 </div>
                 <div role="tabpanel" class="tab-pane fade in" id="deleteProfile">

@@ -24,7 +24,7 @@ var login = {
 
     keyPressed: function (e) {
         if (e.which == 13) {
-            $("#login_button").click();
+            $("#login_button_top").click();
             return false;
         }
     }
