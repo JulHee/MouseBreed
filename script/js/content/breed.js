@@ -29,6 +29,9 @@ var BasicFunctions = {
 $(document).ready(function () {
     BasicFunctions.onReady;
 
-
+    $("#ListCage a").on("click", function(){
+        $("#ListCage").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
 
 });
