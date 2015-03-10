@@ -23,6 +23,7 @@
 
 (christian)
 - breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.(x)
+           updateListMouse benutzt derzeit $SESSION_['loadedListMouse']. Muss angepasst werden.
 - erstes Scenario funktionen. ! (add to worklist whats needed)
 --- Mäuse ohne mitochondriales Transportprotein:
     Ziel = 20 weibliche mit fehlendem Transportprotein (Gentyp(-/-); schnellst möglich; 6 Wochen  alt
