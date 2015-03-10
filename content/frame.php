@@ -113,11 +113,11 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="ProfileDropDown">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="profile">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/profile">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     <?php echo $_SESSION['userdata']['username']; ?></a>
                             </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="settings">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">
                                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                                     Einstellungen</a></li>
                             <li role="presentation" class="divider"></li>
