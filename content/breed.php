@@ -129,8 +129,8 @@
                                                  class="img-rounded img-responsive center-block">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary pull-left">Männlich</button>
-                                            <button type="button" class="btn btn-primary">Weiblich</button>
+                                            <button id="chooseGenderMale" type="button" class="btn btn-primary pull-left">Männlich</button>
+                                            <button id="chooseGenderFemale" type="button" class="btn btn-primary">Weiblich</button>
                                         </div>
                                     </div>
                                 </div>

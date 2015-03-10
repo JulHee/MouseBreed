@@ -8,6 +8,8 @@
 - FAQ erstellen (ausfüllen)
 - Schwierigkeitsgrade Mittel und Schwer ausfüllen
 - evtl. Notizenfenster schließen wenn irgendwo hingeklickt wird
+- Notizen: alter Text verschindet wenn auf Hinzufügen gedrückt wird
+		   Fenster Verschwindet, wenn irgendwo anderes geklickt wird (bis jetzt nur wenn nochmal auf das Notizenfeld geklickt wird.)
 
 (christoph)
 - Login fixen
