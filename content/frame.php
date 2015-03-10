@@ -129,20 +129,20 @@
                     </li>
                 </ul>
             <?php } else { ?>
-                        <form id="login_form_top" class="navbar-form navbar-right" action="/home"
-                              method="post">
-                            <div class="form-group">
-                                <input type="text" id="username" name="username" placeholder="Benutzername" class="form-control"
-                                       required
-                                       autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" id="password" name="password" placeholder="Passwort" class="form-control"
-                                       required>
-                            </div>
-                            <a id="login_button_top" class="btn btn-success">Anmelden</a>
-                            <a href="/register" class="btn btn-primary">Registrieren</a>
-                        </form>
+                <form id="login_form_top" class="navbar-form navbar-right" action="/home"
+                      method="post">
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" placeholder="Benutzername" class="form-control"
+                               required
+                               autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" placeholder="Passwort" class="form-control"
+                               required>
+                    </div>
+                    <a id="login_button_top" class="btn btn-success">Anmelden</a>
+                    <a href="/register" class="btn btn-primary">Registrieren</a>
+                </form>
             <?php } ?>
         </div>
     </div>
@@ -157,10 +157,16 @@
                                 class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             Home<span class="sr-only">(current)</span></a>
                     </li>
+                    <li <?= echoActiveClassIfRequestMatches("overview") ?>>
+                        <a href="/overview">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                            Zucht wechseln
+                        </a>
+                    </li>
                     <li class="dropdown" <?= echoActiveClassIfRequestMatches("zuchten") ?>>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                            Meine Zuchten
+                            Zuchten
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu navmenu-nav" role="menu">
@@ -178,8 +184,6 @@
                     <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
                                 class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>
-                </ul>
-                <ul class="nav nav-sidebar">
                 </ul>
             <?php } else { ?>
                 <ul class="nav nav-sidebar">
@@ -200,11 +204,11 @@
                 </li>
             </ul>
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
-            <ul class="nav nav-sidebar">
-                <li <?= echoActiveClassIfRequestMatches("devtest") ?>><a href="/devtest"><span
-                            class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
-                </li>
-            </ul>
+                <ul class="nav nav-sidebar">
+                    <li <?= echoActiveClassIfRequestMatches("devtest") ?>><a href="/devtest"><span
+                                class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
+                    </li>
+                </ul>
             <?php } ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

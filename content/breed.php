@@ -17,9 +17,11 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Käfig 1</a></li>
-                            <li><a href="#">Käfig 2</a></li>
-                            <li><a href="#">Käfig 3</a></li>
+                            <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
+                                foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
+                                    <li><a href="#">Käfig <?php echo $cage['id']; ?></a></li>
+                                <?php }
+                            } ?>
                         </ul>
                     </div>
                 </div>
@@ -28,7 +30,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-horizontal">
+                        <div class="form-horizontal pull-left">
                             <div class="form-group">
                                 <label class="col-sm-8 control-label">Größe</label>
 
@@ -40,20 +42,29 @@
                                 <label class="col-sm-8 control-label">Max Anzahl an Mäusen</label>
 
                                 <div class="col-sm-4">
-                                    <p class="form-control-static">50</p>
+                                    <p class="form-control-static">
+                                        <?php if (!empty($_SESSION['loadedBreed']['cages'][0]['max_number_of_mouses'])) {
+                                            echo $_SESSION['loadedBreed']['cages'][0]['max_number_of_mouses'];
+                                        } else {
+                                            echo "0";
+                                        } ?></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-8 control-label">Anzahl an Mäusen</label>
 
                                 <div class="col-sm-4">
-                                    <p class="form-control-static">10</p>
+                                    <p class="form-control-static"><?php if (!empty($_SESSION['loadedBreed']['cages'][0]['mice'])) {
+                                            echo count($_SESSION['loadedBreed']['cages'][0]['mice']);
+                                        } else {
+                                            echo "0";
+                                        } ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img class="img-rounded img-responsive" src="/data/img/cage.jpg"
+                        <img class="img-rounded img-responsive pull-right" src="/data/img/cage.jpg"
                              alt="Generic placeholder image">
                     </div>
                 </div>
@@ -77,38 +88,25 @@
                                 <th>Gewicht</th>
                             </tr>
                             </thead>
-                            <tr>
-                                <td>Karl</td>
-                                <td>Männlich</td>
-                                <td>AB</td>
-                                <td>1</td>
-                                <td>10</td>
-                                <td>200g</td>
-                            </tr>
-                            <tr>
-                                <td>Karl</td>
-                                <td>Männlich</td>
-                                <td>AB</td>
-                                <td>1</td>
-                                <td>10</td>
-                                <td>200g</td>
-                            </tr>
-                            <tr>
-                                <td>Karl</td>
-                                <td>Männlich</td>
-                                <td>AB</td>
-                                <td>1</td>
-                                <td>10</td>
-                                <td>200g</td>
-                            </tr>
-                            <tr>
-                                <td>Karl</td>
-                                <td>Männlich</td>
-                                <td>AB</td>
-                                <td>1</td>
-                                <td>10</td>
-                                <td>200g</td>
-                            </tr>
+                            <?php if (!empty($_SESSION['loadedBreed']['cages'][0]['mice'])) {
+                                foreach ($_SESSION['loadedBreed']['cages'][0]['mice'] as $mouse) { ?>
+                                    <tr>
+                                        <td><?php echo $mouse['name']; ?></td>
+                                        <td><?php
+                                            if ($mouse['gender'] == "0") {
+                                            echo "Männlich";
+                                            } else {
+                                            echo "Weiblich";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td><?php echo $mouse['genotyp']; ?></td>
+                                        <td>0 (Fehlt)</td>
+                                        <td><?php echo $mouse['age']; ?> Tage</td>
+                                        <td><?php echo $mouse['weight']; ?>g</td>
+                                    </tr>
+                                <?php }
+                            } ?>
                         </table>
                     </div>
                 </div>
