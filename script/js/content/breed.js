@@ -11,6 +11,7 @@ var BasicFunctions = {
             activeMouse.removeClass("active");
             $(this).addClass("active");
             updateMouseInfo(activeMouse);
+            updateListMouse();
 
         });
 
@@ -19,6 +20,20 @@ var BasicFunctions = {
         $('#mouseinfoGender').innerHTML = mouse.gender;
         $('#mouseinfoAge').innerHTML    = mouse.age;
         $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
+    }
+
+    updateListMouse : function updateListMouse(){
+        var allMice = $_SESSION['loadedListMouse'];
+        var activeBool = false;
+        $.each(allMice,function(){
+            if(!activeBool) {
+                activeBool = true;
+                $.('#ListMouse').append("\<a href=\" #\" class=\"list-group-item active\">"+this.name+"(#"+ this.id +") \</a>")
+            }else{
+                $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>")
+            }
+        })
+
     }
 
     }
