@@ -9,6 +9,8 @@
 - Schwierigkeitsgrade Mittel und Schwer ausfüllen
 - evtl. Notizenfenster schließen wenn irgendwo hingeklickt wird
 
+
+
 (christoph)
 - Login fixen
 - Datenbank Zugriff für:
@@ -41,7 +43,7 @@
 (Jörn)
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?
-- Noticeinput leeren nach button press
+- Cageme funktionen einbinden/ auslesen daten
 
 (Julian)
 - Historie in Datenbank anlegen
