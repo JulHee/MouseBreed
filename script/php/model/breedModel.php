@@ -37,6 +37,19 @@ class breedModel {
         }
     }
 
+    public function newBreed($user_id, $target, $name) {
+        $stmt =     "INSERT INTO `breed` ".
+                    "(user_id, target, name) ".
+                    "VALUES (?, ?, ?)";
+        $stmt = $this->db->prepare($stmt);
+
+        if($stmt->execute(array($user_id, $target, $name))) {
+            return $this->db->lastInsertId('id');
+        } else {
+            return -1;
+        }
+    }
+
 }
 
 ?>

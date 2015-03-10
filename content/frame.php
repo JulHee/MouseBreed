@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="home" class="pull-left" style="margin-top:5px"><img src="/data/img/mouse.png"></a>
-            <a class="navbar-brand" href="home" style="margin-left:5px">Mäusezucht</a>
+            <a class="navbar-brand" href="/home" style="margin-left:5px">Mäusezucht</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
@@ -113,15 +113,15 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="ProfileDropDown">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="profile">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/profile">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     <?php echo $_SESSION['userdata']['username']; ?></a>
                             </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="settings">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">
                                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                                     Einstellungen</a></li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="#">
+                            <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="/home">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                                     Logout</a>
                             </li>
@@ -171,6 +171,9 @@
                                 </li>
                             <?php } ?>
                         </ul>
+                    </li>
+                    <li <?= echoActiveClassIfRequestMatches("cageme") ?>><a href="/cageme"><span
+                                class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Cage me</a>
                     </li>
                     <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
                                 class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>

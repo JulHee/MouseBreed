@@ -1,5 +1,5 @@
 <h1 class="page-header">Neue Zucht starten</h1>
-<form>
+<form id="newbreed_form" action="" method="post">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
