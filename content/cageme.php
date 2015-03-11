@@ -62,7 +62,7 @@
                 <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
                     foreach ($_SESSION['loadedBreed']['cages'] as $cage) {
                         foreach( $cage['mice'] as $mice) { ?>
-                            <a href="#" class="list-group-item ">
+                            <a id="M<?php echo $mice['id']?>" href="#" class="list-group-item ">
                             <?php echo $mice['name']." #".$mice['id']."  (Käfig ".$cage['id'].")"; ?>
                             </a><?php
                         }
@@ -164,38 +164,33 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>KäfigID</th>
-                        <th>MausMasse</th>
-                        <th>KäfigMasse</th>
+                        <th>Name</th>
+                        <th>Geschlecht</th>
+                        <th>Genotyp</th>
+                        <th>Generation</th>
+                        <th>Alter</th>
+                        <th>Gewicht</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>Käfig 12</td>
-                        <td>20g</td>
-                        <td>180g</td>
-                    </tr>
-                    <tr>
-                        <td>Käfig 13</td>
-                        <td>38g</td>
-                        <td>180g</td>
-                    </tr>
-                    <tr>
-                        <td>Käfig 14</td>
-                        <td>1g</td>
-                        <td>180g</td>
-                    </tr>
-                    <tr>
-                        <td>Käfig 15</td>
-                        <td>48g</td>
-                        <td>180g</td>
-                    </tr>
-                    <tr>
-                        <td>Käfig 16</td>
-                        <td>70g</td>
-                        <td>180g</td>
-                    </tr>
-                    </tbody>
+                    <?php if (!empty($_SESSION['loadedBreed']['cages'][0]['mice'])) {
+                        foreach ($_SESSION['loadedBreed']['cages'][0]['mice'] as $mouse) { ?>
+                            <tr>
+                                <td><?php echo $mouse['name']; ?></td>
+                                <td><?php
+                                    if ($mouse['gender'] == "0") {
+                                        echo "Männlich";
+                                    } else {
+                                        echo "Weiblich";
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php echo $mouse['genotyp']; ?></td>
+                                <td>0 (Fehlt)</td>
+                                <td><?php echo $mouse['age']; ?> Tage</td>
+                                <td><?php echo $mouse['weight']; ?>g</td>
+                            </tr>
+                        <?php }
+                    } ?>
                 </table>
             </div>
         </div>

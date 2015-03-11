@@ -1,9 +1,10 @@
 $(document).ready(function () {
+    var activeone = null;
 
     $("#CListMouse a").on("click", function(){
-        if ($(this).hasClass("active")){
-        $(this).removeClass("active");}
-        else {$(this).addClass("active")};
+        $(".ListMouse").find(".active").removeClass("active");
+        $(this).addClass("active");
+        activeone = $(this).attr('id');
     });
 
     $("#mousetocage").on("click", function(){
@@ -11,8 +12,7 @@ $(document).ready(function () {
     });
 
     $("#cagetomouse").on("click", function(){
-
-        addBen("Maus entnommen","Hier steht welche Mäuse entnommen wurden","info");
+        addBen("Maus entnommen","Die Maus mit der ID #"+ activeone.substring(1) +" wurde entnommen","info");
 
     });
 
