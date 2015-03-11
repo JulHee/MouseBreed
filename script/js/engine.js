@@ -1,16 +1,34 @@
 var clock = {
 
     nextDay: function (breed) {
-        breed.timeUnit++;
-        gainWeight(breed.mouseArray)
+        breed[timeUnit] = breed[timeUnit]+1;
+        gainWeight(breed[mice]);
+        checkHomelessMouse(breed);
     },
 
     gainWeight: function (mouseArray) {
         /*siehe gewichtsentwicklung.xlsx*/
         var addedWeight = 1;
-        for (var i = 0, l = mouseArray.length; i < l; i++) {
+        for (var i = 0,l = mouseArray.length ; i < l; i++) {
             mouseArray[i].weight += addedWeight;
         }
+    },
+
+    checkHomelessMouse: function(breed){
+        var level = breed[target];
+        var mouseArray = breed[mice];
+        var l = mouseArray.length;
+        for(var i= 0;i<l;i++){
+            if(i[cage_id]==-1){
+                if(level=1){
+                    addBen("Nicht zugeordnete Mäuse","Es gibt Mäuse die noch keinem Käfig zugeordnet sind !!!","warn")
+                }else{
+                    addBen("†","Die freilauende Maus wurde von der Katze gefressen","error")
+                }
+            }
+
+        }
+
     },
 
     checkPubescent: function (mouseArray) {
