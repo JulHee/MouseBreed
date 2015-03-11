@@ -163,13 +163,9 @@
                 <ul class="nav nav-sidebar">
                     <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
                     <li <?= echoActiveClassIfRequestMatches("breed") ?>>
-                    <a href="/breed">
+                    <a href="/breed/<?php echo $_SESSION['loadedBreed']['id']; ?>">
                         <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                        <?php if (!empty($_SESSION['loadedBreed']['name'])) {
-                            echo $_SESSION['loadedBreed']['name'];
-                        } else {
-                            echo "Zucht";
-                        } ?>
+                        <?php echo $_SESSION['loadedBreed']['name']; ?>
                     </a>
                     </li>
                    <?php } ?>

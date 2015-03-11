@@ -41,10 +41,6 @@ class breedModel {
 
             $cages = $this->getCages($breed_id);
 
-            for($i = 0; $i < count($cages); ++$i) {
-                $cages[$i]['mice'] = $this->getMiceInCage($cages[$i]['id']);
-            }
-
             $breed['cages'] = $cages;
 
             return $breed;
@@ -88,7 +84,14 @@ class breedModel {
         $stmt->bindParam(1, $breedId);
 
         if($stmt->execute() && $cages = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
-            return $cages;
+            $cagesReturn = Array();
+
+            foreach($cages as $cage) {
+                $cage['mice'] = $this->getMiceInCage($cage['id']);
+                $cagesReturn[$cage['id']] = $cage;
+            }
+
+            return $cagesReturn;
         } else {
             return Array();
         }
