@@ -170,7 +170,12 @@
                 </ul>
                 <ul id="navSidebarZuchten" class="nav nav-sidebar">
                     <li <?= echoActiveClassIfRequestMatches("zuchten") ?>>
-                        <a href="/breed">
+                        <a href="   <?php if (!empty($_SESSION['loadedBreed']['name'])) {
+                                        echo "/breed";
+                                    } else {
+                                        echo "/overview";
+                                    } ?>
+                                ">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             <?php if (!empty($_SESSION['loadedBreed']['name'])) {
                                 echo $_SESSION['loadedBreed']['name'];

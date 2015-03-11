@@ -13,17 +13,17 @@ var BasicFunctions = {
             updateMouseInfo(activeMouse);
             updateListMouse();
 
-        });
+        });},
 
-    updateMouseInfo : function updateMouseInfo(mouse){
+    updateMouseInfo : function (mouse){
         $('#mouseinfoWeight').innerHTML = mouse.weight;
         $('#mouseinfoGender').innerHTML = mouse.gender;
         $('#mouseinfoAge').innerHTML    = mouse.age;
         $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
-    }
+    },
 
-    updateListMouse : function updateListMouse(){
-        var allMice = $_SESSION['loadedListMouse'];
+    updateListMouse : function (){
+        var allMice = $_SESSION['loadedListMouse']['mice'];
         var activeBool = false;
         $.each(allMice,function(){
             if(!activeBool) {
@@ -33,8 +33,6 @@ var BasicFunctions = {
                 $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>")
             }
         })
-
-    }
 
     }
 };

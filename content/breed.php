@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
                                 foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
-                                    <li><a href="#">Käfig <?php echo $cage['id']; ?></a></li>
+                                    <li><a href="/breed/<?php echo $_SESSION['loadedBreed']['id']."/".$cage['id']; ?>">Käfig <?php echo $cage['id']; ?></a></li>
                                 <?php }
                             } ?>
                         </ul>
