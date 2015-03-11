@@ -56,7 +56,7 @@ function Cage(id,maxMouseMass,breed_id){
 function Breed(id,user_id,target,name){
 	this.id = id;
 	this.user = user_id;
-	this.task = target;
+	this.target = target;
 	this.name = name;
     this.time_of_creation = Date.now();
     this.timeUnit = 0;

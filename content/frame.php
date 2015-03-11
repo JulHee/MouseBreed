@@ -153,14 +153,6 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav nav-sidebar">
-                    <li <?= echoActiveClassIfRequestMatches("overview") ?>>
-                        <a href="/overview">
-                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                            Zucht wechseln
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav nav-sidebar">
                     <li <?= echoActiveClassIfRequestMatches("home") ?>>
                         <a href="/home">
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -168,22 +160,28 @@
                         </a>
                     </li>
                 </ul>
-                <ul id="navSidebarZuchten" class="nav nav-sidebar">
-                    <li <?= echoActiveClassIfRequestMatches("zuchten") ?>>
-                        <a href="   <?php if (!empty($_SESSION['loadedBreed']['name'])) {
-                                        echo "/breed";
-                                    } else {
-                                        echo "/overview";
-                                    } ?>
-                                ">
-                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                            <?php if (!empty($_SESSION['loadedBreed']['name'])) {
-                                echo $_SESSION['loadedBreed']['name'];
-                            } else {
-                                echo "Zucht";
-                            } ?>
+                <ul class="nav nav-sidebar">
+                    <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
+                    <li <?= echoActiveClassIfRequestMatches("breed") ?>>
+                    <a href="/breed">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                        <?php if (!empty($_SESSION['loadedBreed']['name'])) {
+                            echo $_SESSION['loadedBreed']['name'];
+                        } else {
+                            echo "Zucht";
+                        } ?>
+                    </a>
+                    </li>
+                   <?php } ?>
+                    <li <?= echoActiveClassIfRequestMatches("overview") ?>>
+                        <a href="/overview">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                            Zucht laden
                         </a>
                     </li>
+                </ul>
+
+                <ul id="navSidebarZuchten" class="nav nav-sidebar">
                     <li <?= echoActiveClassIfRequestMatches("cageme") ?>><a href="/cageme"><span
                                 class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Mäusesort</a>
                     </li>
