@@ -62,7 +62,7 @@
                 <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
                     foreach ($_SESSION['loadedBreed']['cages'] as $cage) {
                         foreach( $cage['mice'] as $mice) { ?>
-                            <a id="M<?php echo $mice['id']?>" href="#" class="list-group-item ">
+                            <a id="M<?php echo $mice['id']?>" name="<?php echo $mice['name']?>" href="#" class="list-group-item ">
                             <?php echo $mice['name']." #".$mice['id']."  (Käfig ".$cage['id'].")"; ?>
                             </a><?php
                         }
@@ -85,35 +85,35 @@
                                 <label class="col-sm-4 control-label">Name</label>
 
                                 <div class="col-sm-8">
-                                    <p id="mouseinfoName" class="form-control-static">Klaus</p>
+                                    <p id="mouseinfoName" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Gewicht</label>
 
                                 <div class="col-sm-8">
-                                    <p id="mouseinfoWeight" class="form-control-static">400g</p>
+                                    <p id="mouseinfoWeight" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Geschlecht</label>
 
                                 <div class="col-sm-8">
-                                    <p id="mouseinfoGender" class="form-control-static">Männlich</p>
+                                    <p id="mouseinfoGender" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Alter</label>
 
                                 <div class="col-sm-8">
-                                    <p id="mouseinfoAge" class="form-control-static">10 Tage</p>
+                                    <p id="mouseinfoAge" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Eltern</label>
 
                                 <div class="col-sm-8">
-                                    <p id="mouseinfoParents" class="form-control-static">Franz & Maria</p>
+                                    <p id="mouseinfoParents" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
