@@ -28,9 +28,9 @@ var BasicFunctions = {
         $.each(allMice,function(){
             if(!activeBool) {
                 activeBool = true;
-                $.('#ListMouse').append("\<a href=\" #\" class=\"list-group-item active\">"+this.name+"(#"+ this.id +") \</a>")
+                $.('#ListMouse').append("\<a href=\" #\" class=\"list-group-item active\">"+this.name+"(#"+ this.id +") \</a>");
             }else{
-                $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>")
+                $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>");
             }
         })
 
