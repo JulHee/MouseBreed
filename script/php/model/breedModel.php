@@ -10,14 +10,21 @@ class breedModel {
     }
 
     public function getGeneralData($userId) {
-        $stmt =     "SELECT id, name ".
+        $stmt =     "SELECT id, name, time_of_creation, target ".
                     "FROM `breed` ".
                     "WHERE user_id = ?";
         $stmt = $this->db->prepare($stmt);
         $stmt->bindParam(1, $userId);
 
         if($stmt->execute() && $breeds = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
+
+            for($i = 0; $i < count($breeds); ++$i) {
+                $breeds[$i]['numberOfMice'] = $this->getNumberOfMice( $breeds[$i]['id']);
+                $breeds[$i]['numberOfCages'] = $this->getNumberOfCages( $breeds[$i]['id']);
+            }
+
             return $breeds;
+
         } else {
             return Array();
         }
@@ -84,6 +91,34 @@ class breedModel {
             return $cages;
         } else {
             return Array();
+        }
+    }
+
+    public function getNumberOfMice($breedId) {
+        $stmt =     "SELECT COUNT(*) ".
+            "FROM `mouse` ".
+            "WHERE breed_id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $breedId);
+
+        if($stmt->execute() &&  $num = $stmt->fetch(\PDO::FETCH_NUM)) {
+            return $num[0];
+        } else {
+            return -1;
+        }
+    }
+
+    public function getNumberOfCages($breedId) {
+        $stmt =     "SELECT COUNT(*) ".
+                    "FROM `cage` ".
+                    "WHERE breed_id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $breedId);
+
+        if($stmt->execute() &&  $num = $stmt->fetch(\PDO::FETCH_NUM)) {
+            return $num[0];
+        } else {
+            return -1;
         }
     }
 

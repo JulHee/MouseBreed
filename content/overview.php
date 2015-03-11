@@ -17,25 +17,17 @@
                     <th>Fortsetzen</th>
                 </tr>
                 </thead>
-                <?php foreach ($_SESSION['myBreedInfo'] as $breed) { ?>
+                <?php foreach ($_SESSION['breeds'] as $breed) { ?>
                     <tr>
                         <td><?php echo $breed['name']; ?></td>
                         <td><?php echo $breed['time_of_creation']; ?></td>
                         <td><?php echo $breed['target']; ?></td>
+                        <td><?php echo $breed['numberOfMice']; ?></td>
+                        <td><?php echo $breed['numberOfCages']; ?></td>
                         <td>
-                            <?php
-                            $num_mice = 0;
-                            for($i=0; $i < count($breed['cages']); $i++)
-                            {
-                                $num_mice = $num_mice + count($breed['cages'][$i]['mice']);
-                            }
-                            echo $num_mice;
-                            ?>
-                        </td>
-                        <td><?php echo count($breed['cages']); ?></td>
-                        <td>
-                            <button type="button" class="btn btn-success"><span
-                                    class="glyphicon glyphicon-play"></span></button>
+                            <a class="btn btn-success" href="/breed/<?php echo $breed['id']; ?>">
+                                <span class="glyphicon glyphicon-play"></span>
+                            </a>
                         </td>
                     </tr>
                 <?php } ?>
