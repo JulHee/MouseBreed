@@ -10,7 +10,7 @@ if (!isset($_GET['page']) || $_GET['page'] == "home") {
     $breedData = new \model\breedModel($db);
 
     $page = 'breed';
-    $_SESSION['loadedBreed'] = $breedData->getData($matches[1]);
+    //$_SESSION['loadedBreed'] = $breedData->getData($matches[1]);
     $_SESSION['selectedCage'] = isset($matches[3]) ? $matches[3] : reset($_SESSION['loadedBreed']['cages'])['id'];
 } elseif (!file_exists('content/'.$_GET['page'].'.php')) {
     $page = "404";

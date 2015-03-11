@@ -1,4 +1,5 @@
 var BasicFunctions = {
+
     onReady :  function () {
         /*Aktionen wenn ein Tag weiter geklickt wird*/
         $(nextDay()).click(function(){
@@ -13,15 +14,17 @@ var BasicFunctions = {
             updateMouseInfo(activeMouse);
             updateListMouse();
 
-        });},
+        });
+    },
 
     updateMouseInfo : function (mouse){
         $('#mouseinfoWeight').innerHTML = mouse.weight;
         $('#mouseinfoGender').innerHTML = mouse.gender;
         $('#mouseinfoAge').innerHTML    = mouse.age;
         $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
-    },
+    }
 
+    /* SyntaxError
     updateListMouse : function (){
         var allMice = $_SESSION['loadedListMouse']['mice'];
         var activeBool = false;
@@ -32,9 +35,10 @@ var BasicFunctions = {
             }else{
                 $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>");
             }
-        })
+        });
 
     }
+    */
 };
 
 

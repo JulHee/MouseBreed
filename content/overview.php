@@ -25,7 +25,7 @@
                         <td><?php echo $breed['numberOfMice']; ?></td>
                         <td><?php echo $breed['numberOfCages']; ?></td>
                         <td>
-                            <a class="btn btn-success" href="/breed/<?php echo $breed['id']; ?>">
+                            <a class="btn btn-success loadBreed" id="<?php echo $breed['id']; ?>">
                                 <span class="glyphicon glyphicon-play"></span>
                             </a>
                         </td>

@@ -24,7 +24,6 @@ class breedModel {
             }
 
             return $breeds;
-
         } else {
             return Array();
         }
@@ -99,8 +98,8 @@ class breedModel {
 
     public function getNumberOfMice($breedId) {
         $stmt =     "SELECT COUNT(*) ".
-            "FROM `mouse` ".
-            "WHERE breed_id = ?";
+                    "FROM `mouse` ".
+                    "WHERE breed_id = ?";
         $stmt = $this->db->prepare($stmt);
         $stmt->bindParam(1, $breedId);
 
