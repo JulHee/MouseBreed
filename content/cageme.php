@@ -29,12 +29,12 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">Mausung</div>
-            <div id="ListMouse" class="list-group">
+            <div id="MListMouse" class="list-group ListMouse">
                 <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
-                    foreach ($_SESSION['loadedBreed']['cages'] as $cage) {
-                        foreach( $cage['mice'] as $mice) { ?>
+                    foreach ($_SESSION['loadedBreed']['mice'] as $mices) {
+                        if ($mices.['id'] < 0) { ?>
                             <a href="#" class="list-group-item">
-                                <?php echo $mice['name']." #".$mice['id']."  (Käfig ".$cage['id'].")"; ?>
+                                <?php echo $mice['name']." #".$mice['id']; ?>
                             </a><?php
                         }
                     }
@@ -58,8 +58,16 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">Käfigung</div>
-            <div id="ListMouse" class="list-group">
-
+            <div id="CListMouse" class="list-group ListMouse">
+                <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
+                    foreach ($_SESSION['loadedBreed']['cages'] as $cage) {
+                        foreach( $cage['mice'] as $mice) { ?>
+                            <a href="#" class="list-group-item ">
+                            <?php echo $mice['name']." #".$mice['id']."  (Käfig ".$cage['id'].")"; ?>
+                            </a><?php
+                        }
+                    }
+                } ?>
             </div>
         </div>
     </div>
