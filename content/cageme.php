@@ -13,11 +13,11 @@
 
                 <div id="cage" class="col-sm-10">
                     <select class="form-control">
-                        <option>Käfig 1</option>
-                        <option>Käfig 2</option>
-                        <option>Käfig 3</option>
-                        <option>Käfig 4</option>
-                        <option>Käfig 5</option>
+                        <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
+                            foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
+                                <option>Käfig <?php echo $cage['id']; ?></option>
+                            <?php }
+                        } ?>
                     </select>
                 </div>
             </div>
@@ -30,21 +30,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">Mausung</div>
             <div id="ListMouse" class="list-group">
-                <a href="#" class="list-group-item active">Maus 1</a>
-                <a href="#" class="list-group-item">Maus 2</a>
-                <a href="#" class="list-group-item">Maus 3</a>
-                <a href="#" class="list-group-item">Maus 4</a>
-                <a href="#" class="list-group-item">Maus 5</a>
-                <a href="#" class="list-group-item">Maus 6</a>
-                <a href="#" class="list-group-item">Maus 7</a>
-                <a href="#" class="list-group-item">Maus 8</a>
-                <a href="#" class="list-group-item">Maus 9</a>
-                <a href="#" class="list-group-item">Maus 10</a>
-                <a href="#" class="list-group-item">Maus 11</a>
-                <a href="#" class="list-group-item">Maus 12</a>
-                <a href="#" class="list-group-item">Maus 13</a>
-                <a href="#" class="list-group-item">Maus 14</a>
-                <a href="#" class="list-group-item">Maus 15</a>
+                <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
+                    foreach ($_SESSION['loadedBreed']['cages'] as $cagek) {
+                        foreach( $cagek['mice'] as $mice) { ?>
+                            <a href="#" class="list-group-item">
+                                <?php echo $mice['name']." #".$mice['id']; ?>
+                            </a><?php
+                        }
+                    }
+                } ?>
             </div>
         </div>
     </div>
