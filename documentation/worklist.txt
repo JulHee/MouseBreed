@@ -7,10 +7,8 @@
 - Einstellungsmöglichkeiten überlegen/einfügen
 - FAQ erstellen (ausfüllen)
 - Schwierigkeitsgrade Mittel und Schwer ausfüllen
-- evtl. Notizenfenster schließen wenn irgendwo hingeklickt wird
-- Notizen: alter Text verschindet wenn auf Hinzufügen gedrückt wird
-		   Fenster Verschwindet, wenn irgendwo anderes geklickt wird (bis jetzt nur wenn nochmal auf das Notizenfeld geklickt wird.)
-
+- Notizen: Fenster Verschwindet, wenn irgendwo anderes geklickt wird (bis jetzt nur wenn nochmal auf das Notizenfeld geklickt wird.)
+- Steckbrief mit informationen Füllen
 
 
 (christoph)
@@ -47,7 +45,7 @@
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?
 - Cageme funktionen einbinden/ auslesen daten (need acces to mice)
-- Mehrfachauswahl über Array ermöglichen?
+
 
 (Julian)
 - Historie in Datenbank anlegen
