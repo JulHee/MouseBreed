@@ -152,31 +152,32 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
-                <ul id="navSidebarZuchten" class="nav nav-sidebar">
-                    <li <?= echoActiveClassIfRequestMatches("home") ?>><a href="/home"><span
-                                class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            Home<span class="sr-only">(current)</span></a>
-                    </li>
+                <ul class="nav nav-sidebar">
                     <li <?= echoActiveClassIfRequestMatches("overview") ?>>
                         <a href="/overview">
                             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                             Zucht wechseln
                         </a>
                     </li>
-                    <li class="dropdown" <?= echoActiveClassIfRequestMatches("zuchten") ?>>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                            Zuchten
-                            <b class="caret"></b>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li <?= echoActiveClassIfRequestMatches("home") ?>>
+                        <a href="/home">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            Home
                         </a>
-                        <ul class="dropdown-menu navmenu-nav" role="menu">
-                            <?php foreach ($_SESSION['breeds'] as $breed) { ?>
-                                <li class="menu-item">
-                                    <a tabindex="-1"
-                                       href="/breed/<?php echo $breed['id']; ?>"><?php echo $breed['name']; ?></a>
-                                </li>
-                            <?php } ?>
-                        </ul>
+                    </li>
+                </ul>
+                <ul id="navSidebarZuchten" class="nav nav-sidebar">
+                    <li <?= echoActiveClassIfRequestMatches("zuchten") ?>>
+                        <a href="/breed">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            <?php if (!empty($_SESSION['loadedBreed']['name'])) {
+                                echo $_SESSION['loadedBreed']['name'];
+                            } else {
+                                echo "Zucht";
+                            } ?>
+                        </a>
                     </li>
                     <li <?= echoActiveClassIfRequestMatches("cageme") ?>><a href="/cageme"><span
                                 class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Mäusesort</a>

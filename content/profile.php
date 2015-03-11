@@ -53,7 +53,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-6 col-md-offset-1">
+        <div class="col-md-9 col-md-offset-1">
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="profileInfo">

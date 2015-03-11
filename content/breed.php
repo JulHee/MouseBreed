@@ -32,16 +32,16 @@
                     <div class="col-md-6">
                         <div class="form-horizontal pull-left">
                             <div class="form-group">
-                                <label class="col-sm-8 control-label">Größe</label>
+                                <label class="col-sm-10 control-label">Größe</label>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <p class="form-control-static">30x40x50cm</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-8 control-label">Max Anzahl an Mäusen</label>
+                                <label class="col-sm-10 control-label">max. Mausmasse</label>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <p class="form-control-static">
                                         <?php if (!empty($_SESSION['loadedBreed']['cages'][0]['max_number_of_mouses'])) {
                                             echo $_SESSION['loadedBreed']['cages'][0]['max_number_of_mouses'];
@@ -51,9 +51,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-8 control-label">Anzahl an Mäusen</label>
+                                <label class="col-sm-10 control-label">Anzahl an Mäusen</label>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <p class="form-control-static"><?php if (!empty($_SESSION['loadedBreed']['cages'][0]['mice'])) {
                                             echo count($_SESSION['loadedBreed']['cages'][0]['mice']);
                                         } else {
