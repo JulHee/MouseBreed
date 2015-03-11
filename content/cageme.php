@@ -31,10 +31,10 @@
             <div class="panel-heading">Mausung</div>
             <div id="ListMouse" class="list-group">
                 <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
-                    foreach ($_SESSION['loadedBreed']['cages'] as $cagek) {
-                        foreach( $cagek['mice'] as $mice) { ?>
+                    foreach ($_SESSION['loadedBreed']['cages'] as $cage) {
+                        foreach( $cage['mice'] as $mice) { ?>
                             <a href="#" class="list-group-item">
-                                <?php echo $mice['name']." #".$mice['id']; ?>
+                                <?php echo $mice['name']." #".$mice['id']."  (Käfig ".$cage['id'].")"; ?>
                             </a><?php
                         }
                     }
