@@ -31,10 +31,10 @@
             <div class="panel-heading">Mausung</div>
             <div id="MListMouse" class="list-group ListMouse">
                 <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
-                    foreach ($_SESSION['loadedBreed']['mice'] as $mices) {
-                        if ($mices.['id'] < 0) { ?>
+                    foreach ($_SESSION['loadedBreed']['cages'][1]['mice'] as $mices) {
+                        if ($mices['id'] < 30) { ?>
                             <a href="#" class="list-group-item">
-                                <?php echo $mice['name']." #".$mice['id']; ?>
+                                <?php echo $mices['name']." #".$mices['id']; ?>
                             </a><?php
                         }
                     }
