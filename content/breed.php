@@ -43,8 +43,8 @@
 
                                 <div class="col-sm-2">
                                     <p class="form-control-static">
-                                        <?php if (!empty($_SESSION['loadedBreed']['cages'][0]['max_number_of_mouses'])) {
-                                            echo $_SESSION['loadedBreed']['cages'][0]['max_number_of_mouses'];
+                                        <?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mouses'])) {
+                                            echo $_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mouses'];
                                         } else {
                                             echo "0";
                                         } ?></p>
@@ -54,8 +54,8 @@
                                 <label class="col-sm-10 control-label">Anzahl an Mäusen</label>
 
                                 <div class="col-sm-2">
-                                    <p class="form-control-static"><?php if (!empty($_SESSION['loadedBreed']['cages'][0]['mice'])) {
-                                            echo count($_SESSION['loadedBreed']['cages'][0]['mice']);
+                                    <p class="form-control-static"><?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice'])) {
+                                            echo count($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice']);
                                         } else {
                                             echo "0";
                                         } ?></p>
@@ -88,8 +88,8 @@
                                 <th>Gewicht</th>
                             </tr>
                             </thead>
-                            <?php if (!empty($_SESSION['loadedBreed']['cages'][0]['mice'])) {
-                                foreach ($_SESSION['loadedBreed']['cages'][0]['mice'] as $mouse) { ?>
+                            <?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice'])) {
+                                foreach ($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice'] as $mouse) { ?>
                                     <tr>
                                         <td><?php echo $mouse['name']; ?></td>
                                         <td><?php
