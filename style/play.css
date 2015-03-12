@@ -1,0 +1,13 @@
+.min-height{
+    height: 340px;
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+.imgFix {
+    margin-bottom: 10px;
+}
+canvas {
+    width: 100%;
+    height: auto;
+    border:1px solid #000000;
+}

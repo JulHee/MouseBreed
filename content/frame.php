@@ -181,6 +181,9 @@
                     <li <?= echoActiveClassIfRequestMatches("cageme") ?>><a href="/cageme"><span
                                 class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Mäusesort</a>
                     </li>
+                    <li <?= echoActiveClassIfRequestMatches("play") ?>><a href="/play"><span
+                                class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Play</a>
+                    </li>
                     <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
                                 class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>
