@@ -11,3 +11,6 @@ canvas {
     height: auto;
     border:1px solid #000000;
 }
+body{
+    background:  url("/data/img/play/play_bg_big.jpg") repeat;
+}

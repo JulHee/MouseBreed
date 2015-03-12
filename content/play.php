@@ -4,11 +4,9 @@
                                                   aria-hidden="true"></span> Nächter Tag
     </button>
 </h1>
-<div class="col-md-12">
+<div class="col-md-12 mybg">
     <div class="row">
-        <div class="col-md-5">
-            <canvas id="playgorund" width="300" height="300">
-            </canvas>
+        <div id="canvasContainer" class="col-md-5">
         </div>
         <div class="col-md-7">
             <div class="col-md-6">
@@ -24,31 +22,31 @@
                         <div class="col-md-4">
                             <a href="#">
                                 <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
-                                alt="Responsive image">
+                                     alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
                                 <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
-                                alt="Responsive image">
+                                     alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
                                 <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
-                                alt="Responsive image">
+                                     alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
                                 <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
-                                alt="Responsive image">
+                                     alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
                                 <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
-                                alt="Responsive image">
+                                     alt="Responsive image">
                             </a>
                         </div>
                     </div>
@@ -142,11 +140,10 @@
             <div class="col-md-12">
                 <div class="panel panel-default min-height">
                     <div class="panel-heading">Ausgewählte Mäuse</div>
+                    <ul id="info"></ul>
                     <div class="panel-body">
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
