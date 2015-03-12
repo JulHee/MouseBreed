@@ -10,42 +10,90 @@
         </div>
         <div class="col-md-7">
             <div class="col-md-6">
-                <div class="panel panel-default min-height">
+                <div class="panel panel-default">
                     <div class="panel-heading">Käfige</div>
-                    <div class="panel-body">
+                    <div class="panel-body min-height">
                         <div class="col-md-4">
                             <a href="#">
-                                <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
                                      alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
-                                <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
                                      alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
-                                <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
                                      alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
-                                <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
                                      alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
-                                <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
                                      alt="Responsive image">
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a href="#">
-                                <img data-src="holder.js/500x500/auto" class="img-responsive img-thumbnail imgFix"
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                     alt="Responsive image">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
                                      alt="Responsive image">
                             </a>
                         </div>
@@ -53,9 +101,9 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="panel panel-default min-height">
+                <div class="panel panel-default">
                     <div class="panel-heading">Steckbrief</div>
-                    <div id="MouseInfo" class="panel-body">
+                    <div id="MouseInfo" class="panel-body min-height">
                         <div class="row">
                             <div class="col-md-8">
                                 <form class="form-horizontal">

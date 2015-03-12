@@ -6,17 +6,6 @@ canvas.height = 598;
 var ctx = canvas.getContext("2d");
 container.appendChild(canvas);
 
-var rnd = 0;
-
-// Monster image
-var MouseReady = false;
-var MouseImage = new Image();
-MouseImage.onload = function () {
-    MouseReady = true;
-};
-MouseImage.src = "data/img/play/play_mouse.png";
-
-
 // Background image
 var bgReady = false;
 var bgImage = new Image();
@@ -25,153 +14,152 @@ bgImage.onload = function () {
 };
 bgImage.src = "data/img/play/play_bg.png";
 
-var playMouse = {
-    target: {
-        x:0,
-        y:0
-    },
-    speed: 130, //movement pixels per second
-    x: 0,
-    y: 0
-};
-var updateTarget = function(mouse){
+function Target() {
+    this.x = 0;
+    this.y = 0;
+}
+
+Target.prototype.newTarget = function () {
     // Setzten des ersten Ziels für die Maus
-    mouse.target.x = 32 + (Math.random() * (canvas.width - 64));
-    mouse.target.y = 32 + (Math.random() * (canvas.height - 64));
-
-    /*
-        var text = document.getElementById("info");
-        var elem = document.createElement("li");
-        elem.innerHTML = "Target["+ mouse.target.x+","+mouse.target.y+"]";
-        text.appendChild(elem);
-    */
+    this.x = 32 + (Math.random() * (canvas.width - 64));
+    this.y = 32 + (Math.random() * (canvas.height - 64));
 };
 
-var reset = function () {
+
+function PlayMouse() {
+    this.x = 0;
+    this.y = 0;
+    this.speed = 130;
+    this.target = new Target();
+    this.id = Math.floor(Math.random()*100);
+}
+PlayMouse.prototype.reset = function () {
     // Throw the playMouse somewhere on the screen randomly
-    playMouse.x = 32 + (Math.random() * (canvas.width - 64));
-    playMouse.y =32 + (Math.random() * (canvas.height - 64));
+    this.x = 32 + (Math.random() * (canvas.width - 64));
+    this.y = 32 + (Math.random() * (canvas.height - 64));
 
     // Setzten des ersten Ziels für die Maus
-    updateTarget(playMouse);
-
+    this.target.newTarget();
 };
-
-
-
-// Handle keyboard controls
-var keysDown = {};
-
-addEventListener("keydown", function (e) {
-    keysDown[e.keyCode] = true;
-}, false);
-
-addEventListener("keyup", function (e) {
-    delete keysDown[e.keyCode];
-}, false);
-
-var moveMouse = function (mouse, move, direction) {
+PlayMouse.prototype.movemouse = function (move, direction) {
     var mouseheight = 32;
     var mouseweight = 32;
-    var mouseXmax = mouse.x + mouseweight;
-    var mouseYmax = mouse.y + mouseheight;
+    var mouseXmax = this.x + mouseweight;
+    var mouseYmax = this.y + mouseheight;
 
 
     switch (direction) {
         case 'upleft':
-            if (mouse.x - move > 0 && mouse.y - move > 0) {
-                mouse.x -= move;
-                mouse.y -= move;
+            if (this.x - move > 0 && this.y - move > 0) {
+                this.x -= move;
+                this.y -= move;
             }
             break;
         case 'upright':
-            if (mouse.y - move > 0 && mouseXmax + move < canvas.width) {
-                mouse.x += move;
-                mouse.y -= move;
+            if (this.y - move > 0 && mouseXmax + move < canvas.width) {
+                this.x += move;
+                this.y -= move;
             }
             break;
         case 'downleft':
-            if (mouseYmax + move < canvas.height && mouse.x - move > 0) {
-                mouse.x -= move;
-                mouse.y += move;
+            if (mouseYmax + move < canvas.height && this.x - move > 0) {
+                this.x -= move;
+                this.y += move;
             }
             break;
         case 'downright':
             if ((mouseXmax + move) < canvas.width && (mouseYmax + move) < canvas.width) {
-                mouse.x += move;
-                mouse.y += move;
+                this.x += move;
+                this.y += move;
             }
             break;
         case 'up':
-            if (mouse.y - move > 0){
-                mouse.y -= move;
+            if (this.y - move > 0) {
+                this.y -= move;
             }
             break;
         case 'down':
-            if(mouseYmax + move < canvas.height){
-                mouse.y += move;
+            if (mouseYmax + move < canvas.height) {
+                this.y += move;
             }
             break;
         case 'left':
-            if(mouse.x -move > 0){
-                mouse.x -= move;
+            if (this.x - move > 0) {
+                this.x -= move;
             }
             break;
         case 'right':
-            if(mouseXmax + move < canvas.weight){
-                mouse.x += move;
+            if (mouseXmax + move < canvas.weight) {
+                this.x += move;
             }
             break;
         default :
-            $.notify("Fehler","error");
+            $.notify("Fehler", "error");
             break;
     }
 };
 
+PlayMouse.prototype.update = function (modifier) {
+    var move = this.speed * modifier;
 
-var update = function (modifier) {
-    var move = playMouse.speed * modifier;
+    var absx = Math.abs(this.x - this.target.x);
+    var absy = Math.abs(this.y - this.target.y);
 
-    var absx = Math.abs(playMouse.x - playMouse.target.x);
-    var absy = Math.abs(playMouse.y - playMouse.target.y);
-
-    if ((playMouse.x == playMouse.target.x && playMouse.y == playMouse.target.y) || (absx < move || absy < move) ){
-        updateTarget(playMouse);
+    if ((this.x == this.target.x && this.y == this.target.y) || (absx < move || absy < move)) {
+        this.target.newTarget();
     } else {
-        if (playMouse.x < playMouse.target.x && playMouse.y < playMouse.target.y){
-            moveMouse(playMouse,move,"downright");
-        } else if(playMouse.x > playMouse.target.x && playMouse.y < playMouse.target.y){
-            moveMouse(playMouse,move,"downleft");
-        } else if(playMouse.x < playMouse.target.x && playMouse.y > playMouse.target.y){
-            moveMouse(playMouse,move,"upright");
-        } else if(playMouse.x > playMouse.target.x && playMouse.y > playMouse.target.y){
-            moveMouse(playMouse,move,"upleft")
-        } else if(playMouse.x == playMouse.target.x && playMouse.y < playMouse.target.y){
-            moveMouse(playMouse,move,"down");
-        } else if(playMouse.x == playMouse.target.x && playMouse.y > playMouse.target.y){
-            moveMouse(playMouse,move,"up");
-        } else if(playMouse.x < playMouse.target.x && playMouse.y == playMouse.target.y){
-            moveMouse(playMouse,move,"right");
-        } else if(playMouse.x > playMouse.target.x && playMouse.y == playMouse.target.y){
-            moveMouse(playMouse,move,"left");
+        if (this.x < this.target.x && this.y < this.target.y) {
+            this.movemouse(move, "downright");
+        } else if (this.x > this.target.x && this.y < this.target.y) {
+            this.movemouse(move, "downleft");
+        } else if (this.x < this.target.x && this.y > this.target.y) {
+            this.movemouse(move, "upright");
+        } else if (this.x > this.target.x && this.y > this.target.y) {
+            this.movemouse(move, "upleft")
+        } else if (this.x == this.target.x && this.y < this.target.y) {
+            this.movemouse(move, "down");
+        } else if (this.x == this.target.x && this.y > this.target.y) {
+            this.movemouse(move, "up");
+        } else if (this.x < this.target.x && this.y == this.target.y) {
+            this.movemouse(move, "right");
+        } else if (this.x > this.target.x && this.y == this.target.y) {
+            this.movemouse(move, "left");
         }
     }
+};
 
+// Mouse as big Class
+function AbsMouse() {
+    this.mouseImage = new Image();
+    this.mouseReady = false;
+    this.playMouse = new PlayMouse();
+}
 
+// Array for all Mouses
+var mouseArr = [];
+for (var i = 0; i < 6; i++)
+    mouseArr.push(new AbsMouse());
 
-    /*
-        rnd = Math.floor(Math.random() * 101);
-        if (rnd <= 25) {
-            moveMouse(playMouse, modifier, "upright");
-        } else if ((rnd > 25) && (rnd <= 50)) {
-            moveMouse(playMouse, modifier, "downright");
-        } else if ((rnd > 50) && (rnd <= 75)) {
-            moveMouse(playMouse, modifier, "downleft");
-        } else if ((rnd > 75)) {
-            moveMouse(playMouse, modifier, "upleft");
-        }
-    */
+for (i = 0; i <= mouseArr.length - 1; i++) {
+    var imgMouse = new Image();
+    imgMouse.onload = function () {
+        mouseArr[i].mouseReady = true;
+    };
+    imgMouse.src = "data/img/play/play_mouse.png";
+    mouseArr[i].mouseImage = imgMouse;
+}
 
+var update = function (modifier) {
+    for (i = 0; i <= mouseArr.length - 1; i++) {
+        mouseArr[i].playMouse.update(modifier);
+    }
+
+};
+
+var reset = function () {
+    for (i = 0; i <= mouseArr.length - 1; i++) {
+        mouseArr[i].playMouse.reset();
+    }
 };
 
 // Draw everything
@@ -179,9 +167,8 @@ var render = function () {
     if (bgReady) {
         ctx.drawImage(bgImage, 0, 0);
     }
-
-    if (MouseReady) {
-        ctx.drawImage(MouseImage, playMouse.x, playMouse.y);
+    for (i = 0; i <= mouseArr.length - 1; i++) {
+        ctx.drawImage(mouseArr[i].mouseImage, mouseArr[i].playMouse.x, mouseArr[i].playMouse.y);
     }
 };
 
@@ -190,6 +177,7 @@ var main = function () {
     var delta = now - then;
 
     update(delta / 1000);
+
     render();
 
     then = now;
@@ -197,6 +185,28 @@ var main = function () {
     // Request to do this again ASAP
     requestAnimationFrame(main);
 };
+
+// Weiterführende Elemente
+canvas.addEventListener('click', function (e) {  // use event argument
+
+    var rect = canvas.getBoundingClientRect();  // get element's abs. position
+    var x = e.clientX - rect.left;              // get mouse x and adjust for el.
+    var y = e.clientY - rect.top;               // get mouse y and adjust for el.
+
+    for (i = 0; i <= mouseArr.length - 1; i++) {
+        var mousex = mouseArr[i].playMouse.x;
+        var mousey = mouseArr[i].playMouse.y;
+
+        if (x > mousex && x < (mousex + 30) && y < (mousey + 32) && y > mousey) {
+            var info = document.getElementById("info");
+            var elem = document.createElement("li");
+            elem.innerHTML = mouseArr[i].playMouse.id;
+            info.appendChild(elem);
+        }
+
+    }
+
+});
 
 // Cross-browser support for requestAnimationFrame
 var w = window;
