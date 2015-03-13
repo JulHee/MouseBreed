@@ -24,8 +24,8 @@ function Target() {
 
 Target.prototype.newTarget = function () {
     // Setzten des ersten Ziels für die Maus
-    this.x =(Math.random() * (canvas.width - 20));
-    this.y =(Math.random() * (canvas.height - 20));
+    this.x = (Math.random() * (canvas.width - 33));
+    this.y = (Math.random() * (canvas.height - 33));
 };
 
 
@@ -34,8 +34,8 @@ function PlayMouse() {
     this.y = 0;
     this.speed = 100;
     this.target = new Target();
-    this.height = 33;
-    this.width = 33;
+    this.height = 55;
+    this.width = 30;
 }
 PlayMouse.prototype.reset = function () {
     // Throw the playMouse somewhere on the screen randomly
@@ -115,36 +115,36 @@ PlayMouse.prototype.update = function (modifier) {
         this.target.newTarget();
     } else {
         if (this.x < this.target.x && this.y < this.target.y) {
-            if (rnd <= 0.3){
+            if (rnd <= 0.3) {
                 this.movemouse(move, "downright");
             } else if (rnd > 0.3 <= 0.6) {
                 this.movemouse(move, "down");
             } else {
-                this.movemouse(move,"right");
+                this.movemouse(move, "right");
             }
         } else if (this.x > this.target.x && this.y < this.target.y) {
-            if (rnd <= 0.3){
+            if (rnd <= 0.3) {
                 this.movemouse(move, "downleft");
             } else if (rnd > 0.3 <= 0.6) {
                 this.movemouse(move, "down");
             } else {
-                this.movemouse(move,"left");
+                this.movemouse(move, "left");
             }
         } else if (this.x < this.target.x && this.y > this.target.y) {
-            if (rnd <= 0.3){
+            if (rnd <= 0.3) {
                 this.movemouse(move, "upright");
             } else if (rnd > 0.3 <= 0.6) {
                 this.movemouse(move, "up");
             } else {
-                this.movemouse(move,"right");
+                this.movemouse(move, "right");
             }
         } else if (this.x > this.target.x && this.y > this.target.y) {
-            if (rnd <= 0.3){
+            if (rnd <= 0.3) {
                 this.movemouse(move, "upleft");
             } else if (rnd > 0.3 <= 0.6) {
                 this.movemouse(move, "up");
             } else {
-                this.movemouse(move,"left");
+                this.movemouse(move, "left");
             }
         } else if (this.x == this.target.x && this.y < this.target.y) {
             this.movemouse(move, "down");
@@ -167,38 +167,37 @@ function AbsMouse() {
 }
 
 
-function updateMouseArray(cageid){
+function updateMouseArray(cageid) {
     mouseArr = [];
     // Auslesen der Elemente aus dem localStorage
     var data = localStorage.getItem("loadedBreed");
     var parsedData = JSON.parse(data);
     var thisCage = parsedData.cages;
     var thisMice = thisCage[cageid].mice;
+    console.log(thisMice);
 
-    for (var i = 1; i < thisCage[cageid].mice.length; i++) {
+    for (var i = 0; i <= thisCage[cageid].mice.length-1; i++) {
 
         // Neues Element
         var tmp = new AbsMouse();
-        tmp.playMouse.newTarget;
+        tmp.playMouse.reset();
 
         // Bildeigenschaften setzten
         tmp.mouseImage = new Image();
-        tmp.mouseImage.onload = function(){
+        tmp.mouseImage.onload = function () {
             tmp.mouseReady = true;
         };
-        tmp.mouseImage.src = "data/img/play/play_mouse.png";
-
+        tmp.mouseImage.src = "data/img/play/play_mouse_2.png";
 
 
         // Realen Mauseigenschaften setzen
         var aktMice = thisMice[i];
-        tmp.dataMouse = new Mouse(aktMice.id,aktMice.name,aktMice.gender,aktMice.genotyp,2,aktMice.age,aktMice.weight,aktMice.cage_id,aktMice.breed_id,11);
+        tmp.dataMouse = new Mouse(aktMice.id, aktMice.name, aktMice.gender, aktMice.genotyp, 2, aktMice.age, aktMice.weight, aktMice.cage_id, aktMice.breed_id, 11);
 
         // Element dem Array hinzufügen
         mouseArr.push(tmp);
     }
 }
-
 
 var update = function (modifier) {
     for (i = 0; i <= mouseArr.length - 1; i++) {
@@ -223,10 +222,32 @@ var render = function () {
     }
 };
 
+function ownDocumentReadyfunc() {
+    $('.mouseCageImg').off('click');
+    $('#mouseCageNew').off('click');
+    $('#mouseSelectedRemove').off('click');
+
+    $('.mouseCageImg').click(function () {
+        var selectedCage = $(this).attr('data-cage-id');
+        updateMouseArray(selectedCage);
+    });
+    $('#mouseCageNew').click(function () {
+        $.notify("Neuer Käfig", "info");
+    });
+
+    $('#mouseSelectedRemove').click(function () {
+        $(this).parent().parent().remove();
+    });
+}
+
+$(document).ready(function () {
+    ownDocumentReadyfunc();
+});
+
 var main = function () {
     var now = Date.now();
     var delta = now - then;
-
+    ownDocumentReadyfunc();
     update(delta / 1000);
 
     render();
@@ -237,10 +258,10 @@ var main = function () {
     requestAnimationFrame(main);
 };
 
-function updateInfo(mouse){
+function updateInfo(mouse) {
     $('#mouseinfoName').text(mouse.name);
     $('#mouseinfoWeight').text(mouse.weight);
-    if (mouse.gender == 1){
+    if (mouse.gender == 1) {
         $('#mouseinfoGender').text("Männlich");
     } else {
         $('#mouseinfoGender').text("Weiblich");
@@ -250,8 +271,14 @@ function updateInfo(mouse){
     addMouseToSelected(mouse);
 }
 
-function addMouseToSelected(mouse){
-    $("#mouseSelected").append('<tr><td>'+mouse.name+'</td><td>'+mouse.gender+'</td><td>'+mouse.genotyp+'</td>+<td>'+mouse.generation+'</td><td>'+mouse.age+'</td><td>'+mouse.weight+'</td><td>'+mouse.cage_id+'</td><td><a class="removeSelectedMouse"><span aria-hidden="true">&times;</span></a></td></tr>');
+function addMouseToSelected(mouse) {
+    var gender = "";
+    if (mouse.gender == 1) {
+        gender =  "Männlich";
+    } else {
+        gender = "Weiblich";
+    }
+    $("#mouseSelected").append('<tr><td>' + mouse.name + '</td><td>' + gender + '</td><td>' + mouse.genotyp + '</td>+<td>' + mouse.generation + '</td><td>' + mouse.age + '</td><td>' + mouse.weight + '</td><td>' + mouse.cage_id + '</td><td><button id="mouseSelectedRemove" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td></tr>');
 }
 
 // Weiterführende Elemente
@@ -271,15 +298,6 @@ canvas.addEventListener('click', function (e) {  // use event argument
     }
 });
 
-$(document).ready(function(){
-   $('.mouseCageImg').click(function() {
-       var selectedCage = $(this).attr('data-cage-id');
-       updateMouseArray(selectedCage);
-   });
-    $('#mouseCageNew').click(function(){
-        $.notify("Neuer Käfig","info");
-    });
-});
 
 // Cross-browser support for requestAnimationFrame
 var w = window;
