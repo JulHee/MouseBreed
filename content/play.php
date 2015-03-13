@@ -9,98 +9,24 @@
         <div id="canvasContainer" class="col-md-5">
         </div>
         <div class="col-md-7">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">Käfige</div>
                     <div class="panel-body min-height">
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                            </a>
-                        </div>
+                            <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
+                                foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
+                                    <div class="col-md-4">
+                                        <a href=""> <!-- <?php echo $cage['id']; ?> -->
+                                            <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                                 alt="Responsive image">
+                                        </a>
+                                    </div>
+                                <?php }
+                            } ?>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">Steckbrief</div>
                     <div id="MouseInfo" class="panel-body min-height">

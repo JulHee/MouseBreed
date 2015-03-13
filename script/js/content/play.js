@@ -1,4 +1,4 @@
-// Unser Canvas
+// Canvas
 var canvas = document.createElement("canvas");
 var container = document.getElementById("canvasContainer");
 canvas.width = 598;
@@ -21,8 +21,8 @@ function Target() {
 
 Target.prototype.newTarget = function () {
     // Setzten des ersten Ziels für die Maus
-    this.x = 32 + (Math.random() * (canvas.width - 64));
-    this.y = 32 + (Math.random() * (canvas.height - 64));
+    this.x =(Math.random() * (canvas.width - 20));
+    this.y =(Math.random() * (canvas.height - 20));
 };
 
 
@@ -31,7 +31,6 @@ function PlayMouse() {
     this.y = 0;
     this.speed = 130;
     this.target = new Target();
-    this.id = Math.floor(Math.random()*100);
 }
 PlayMouse.prototype.reset = function () {
     // Throw the playMouse somewhere on the screen randomly
@@ -133,20 +132,38 @@ function AbsMouse() {
     this.mouseImage = new Image();
     this.mouseReady = false;
     this.playMouse = new PlayMouse();
+    this.dataMouse = null;
 }
 
 // Array for all Mouses
 var mouseArr = [];
-for (var i = 0; i < 6; i++)
-    mouseArr.push(new AbsMouse());
 
-for (i = 0; i <= mouseArr.length - 1; i++) {
-    var imgMouse = new Image();
-    imgMouse.onload = function () {
-        mouseArr[i].mouseReady = true;
+// Auslesen der Elemente aus dem localStorage
+var data = localStorage.getItem("loadedBreed");
+var parsedData = JSON.parse(data);
+var thisCage = parsedData.cages;
+var thisMice = thisCage[1].mice;
+
+for (var i = 1; i < thisCage[1].mice.length; i++) {
+
+    // Neues Element
+    var tmp = new AbsMouse();
+
+    // Bildeigenschaften setzten
+    tmp.mouseImage = new Image();
+    tmp.mouseImage.onload = function(){
+        tmp.mouseReady = true;
     };
-    imgMouse.src = "data/img/play/play_mouse.png";
-    mouseArr[i].mouseImage = imgMouse;
+    tmp.mouseImage.src = "data/img/play/play_mouse.png";
+
+
+
+    // Realen Mauseigenschaften setzen
+    var aktMice = thisMice[i];
+    tmp.dataMouse = new Mouse(aktMice.id,aktMice.name,aktMice.gender,aktMice.genotyp,2,aktMice.age,aktMice.weight,aktMice.cage_id,aktMice.breed_id,11);
+
+    // Element dem Array hinzufügen
+    mouseArr.push(tmp);
 }
 
 var update = function (modifier) {
@@ -186,6 +203,19 @@ var main = function () {
     requestAnimationFrame(main);
 };
 
+function updateInfo(mouse){
+    $('#mouseinfoName').text(mouse.name);
+    $('#mouseinfoWeight').text(mouse.weight);
+    if (mouse.gender == 1){
+        $('mouseinfoGender').text("Männlich");
+    } else {
+        $('mouseinfoGender').text("Weiblich");
+    }
+    $('mouseinfoParents').text('Leer');
+    $('mouseinfoAge').text(mouse.age);
+    console.log(mouse.age);
+}
+
 // Weiterführende Elemente
 canvas.addEventListener('click', function (e) {  // use event argument
 
@@ -198,9 +228,10 @@ canvas.addEventListener('click', function (e) {  // use event argument
         var mousey = mouseArr[i].playMouse.y;
 
         if (x > mousex && x < (mousex + 30) && y < (mousey + 32) && y > mousey) {
+            updateInfo(mouseArr[i].dataMouse);
             var info = document.getElementById("info");
             var elem = document.createElement("li");
-            elem.innerHTML = mouseArr[i].playMouse.id;
+            elem.innerHTML = mouseArr[i].dataMouse.name+" #"+mouseArr[i].dataMouse.id;
             info.appendChild(elem);
         }
 
