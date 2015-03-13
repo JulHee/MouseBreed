@@ -7,6 +7,14 @@
 <div class="col-md-12 mybg">
     <div class="row">
         <div id="canvasContainer" class="col-md-5">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                    <input type="radio" name="grab" value="0" id="selectedInfo" autocomplete="off" checked>Information
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="grab" value="1" id="selectedGrab" autocomplete="off"> Auswählen
+                </label>
+                </div>
         </div>
         <div class="col-md-7">
             <div class="col-md-4">

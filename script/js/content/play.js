@@ -17,6 +17,9 @@ bgImage.src = "data/img/play/play_bg.png";
 // Array for all Mouses
 var mouseArr = [];
 
+// RadioButton Booleans
+var grab = 0;
+
 function Target() {
     this.x = 0;
     this.y = 0;
@@ -242,6 +245,15 @@ function ownDocumentReadyfunc() {
 
 $(document).ready(function () {
     ownDocumentReadyfunc();
+
+    //TODO Änderung der Variable wird nicht erkannt / Vllt Funktion auch nicht ausgeführt
+    $("input[type='radio']").click(function(){
+
+        var radioValue = $("input[name='grab']:checked").val();
+        console.log(radioValue);
+        grab = radioValue == 1 ? 1 : 0;
+
+    });
 });
 
 var main = function () {
@@ -268,7 +280,9 @@ function updateInfo(mouse) {
     }
     $('#mouseinfoParents').text('Leer');
     $('#mouseinfoAge').text(mouse.age);
-    addMouseToSelected(mouse);
+    if(grab == 1){
+        addMouseToSelected(mouse);
+    }
 }
 
 function addMouseToSelected(mouse) {
