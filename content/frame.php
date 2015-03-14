@@ -178,12 +178,14 @@
                 </ul>
 
                 <ul id="navSidebarZuchten" class="nav nav-sidebar">
+                    <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
                     <li <?= echoActiveClassIfRequestMatches("cageme") ?>><a href="/cageme"><span
                                 class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Mäusesort</a>
                     </li>
                     <li <?= echoActiveClassIfRequestMatches("play") ?>><a href="/play"><span
-                                class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Play</a>
+                                class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Play</a>
                     </li>
+                    <?php } ?>
                     <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
                                 class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
                     </li>

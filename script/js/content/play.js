@@ -229,7 +229,11 @@ $(document).ready(function () {
         updateMouseArray(selectedCage);
     });
     $('#mouseCageNew').click(function () {
-        $.notify("Neuer Käfig", "info");
+        var cage_id =Math.floor(-1 * (Math.random()*100));
+
+        $('#cageList').append('<div class="col-md-5 cagePadding"><a data-cage-id='+cage_id+'class="mouseCageImg"><img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix" alt="Responsive image"><span class="center-block">Käfig '+cage_id+'</span></a></div>');
+
+        addBen("Käfig","Es wurde ein neuer Käfig hinzugefügt","info");
     });
 
 });
@@ -302,8 +306,10 @@ canvas.addEventListener('click', function (e) {  // use event argument
     for (i = 0; i <= mouseArr.length - 1; i++) {
         var mousex = mouseArr[i].playMouse.x;
         var mousey = mouseArr[i].playMouse.y;
+        var mousexmax = mousex + mouseArr[i].playMouse.weight;
+        var mouseymax = mousey + mouseArr[i].playMouse.height;
 
-        if (x > mousex && x < (mousex + 30) && y < (mousey + 32) && y > mousey) {
+        if (x >= mousex && x <= mousexmax && y <= mouseymax && y >= mousey) {
             updateInfo(mouseArr[i].dataMouse);
         }
     }

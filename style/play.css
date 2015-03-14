@@ -15,3 +15,15 @@ canvas {
 body{
     background:  url("/data/img/play/play_bg_big.jpg") repeat;
 }
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.btnHoch{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+}
+.cagePadding{
+    padding: 0px 0px 0px 5px;
+}

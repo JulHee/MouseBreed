@@ -6,39 +6,45 @@
 </h1>
 <div class="col-md-12 mybg">
     <div class="row">
-        <div id="canvasContainer" class="col-md-5">
-            <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-primary active">
-                    <input type="radio" name="grab" value="0" id="selectedInfo" autocomplete="off" checked>Information
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" name="grab" value="1" id="selectedGrab" autocomplete="off"> Auswählen
-                </label>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-5 col-centered">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="grab" value="0" id="selectedInfo" autocomplete="off" checked>Information
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="grab" value="1" id="selectedGrab" autocomplete="off"> Auswählen
+                        </label>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+                <div id="canvasContainer"></div>
+            </div>
         </div>
         <div class="col-md-7">
             <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Käfige</div>
-                    <div class="panel-body min-height">
-                            <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
-                                foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
-                                    <div class="col-md-5">
-                                        <a data-cage-id="<?php echo $cage['id']; ?>" class="mouseCageImg">
-                                            <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
-                                                 alt="Responsive image">
-                                            <span class="center-block">Käfig <?php echo $cage['id']; ?></span>
-                                        </a>
-                                    </div>
-                                <?php }
-                            } ?>
-                        <div class="col-md-5">
-                            <a id="mouseCageNew">
-                                <img src="/data/img/play/cage_plus.png" class="img-responsive img-rounded imgFix"
-                                     alt="Responsive image">
-                                <span class="center-block">Hinzufügen</span>
-                            </a>
-                        </div>
+                    <div class="panel-heading">
+                        <span class="panel-title">Käfige</span>
+                        <a id="mouseCageNew" class="btn btn-success pull-right btnHoch" role="button">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            Käfig hinzufügen
+                        </a>
+                    </div>
+                    <div id="cageList" class="panel-body min-height">
+                        <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
+                            foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
+                                <div class="col-md-5 cagePadding">
+                                    <a data-cage-id="<?php echo $cage['id']; ?>" class="mouseCageImg">
+                                        <img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix"
+                                             alt="Responsive image">
+                                        <span class="center-block">Käfig <?php echo $cage['id']; ?></span>
+                                    </a>
+                                </div>
+                            <?php }
+                        } ?>
                     </div>
                 </div>
             </div>
