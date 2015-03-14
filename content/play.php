@@ -134,6 +134,7 @@
                         <table id="mouseSelected" class="table table-hover">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Geschlecht</th>
                                 <th>Genotyp</th>

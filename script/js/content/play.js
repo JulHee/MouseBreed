@@ -17,8 +17,6 @@ bgImage.src = "data/img/play/play_bg.png";
 // Array for all Mouses
 var mouseArr = [];
 
-// RadioButton Booleans
-var grab = 0;
 
 function Target() {
     this.x = 0;
@@ -179,7 +177,7 @@ function updateMouseArray(cageid) {
     var thisMice = thisCage[cageid].mice;
     console.log(thisMice);
 
-    for (var i = 0; i <= thisCage[cageid].mice.length-1; i++) {
+    for (var i = 0; i <= thisCage[cageid].mice.length - 1; i++) {
 
         // Neues Element
         var tmp = new AbsMouse();
@@ -225,11 +223,7 @@ var render = function () {
     }
 };
 
-function ownDocumentReadyfunc() {
-    $('.mouseCageImg').off('click');
-    $('#mouseCageNew').off('click');
-    $('#mouseSelectedRemove').off('click');
-
+$(document).ready(function () {
     $('.mouseCageImg').click(function () {
         var selectedCage = $(this).attr('data-cage-id');
         updateMouseArray(selectedCage);
@@ -238,28 +232,11 @@ function ownDocumentReadyfunc() {
         $.notify("Neuer Käfig", "info");
     });
 
-    $('#mouseSelectedRemove').click(function () {
-        $(this).parent().parent().remove();
-    });
-}
-
-$(document).ready(function () {
-    ownDocumentReadyfunc();
-
-    //TODO Änderung der Variable wird nicht erkannt / Vllt Funktion auch nicht ausgeführt
-    $("input[type='radio']").click(function(){
-
-        var radioValue = $("input[name='grab']:checked").val();
-        console.log(radioValue);
-        grab = radioValue == 1 ? 1 : 0;
-
-    });
 });
 
 var main = function () {
     var now = Date.now();
     var delta = now - then;
-    ownDocumentReadyfunc();
     update(delta / 1000);
 
     render();
@@ -280,19 +257,39 @@ function updateInfo(mouse) {
     }
     $('#mouseinfoParents').text('Leer');
     $('#mouseinfoAge').text(mouse.age);
-    if(grab == 1){
+
+    var radioValue = $("input[name='grab']:checked").val();
+
+    if (radioValue == 1) {
         addMouseToSelected(mouse);
     }
 }
 
 function addMouseToSelected(mouse) {
-    var gender = "";
-    if (mouse.gender == 1) {
-        gender =  "Männlich";
-    } else {
-        gender = "Weiblich";
+
+    var intable = false;
+    // Check if already in Table
+    $("#mouseSelected tr").each(function(index) {
+        if (index !== 0) {
+
+            $row = $(this);
+
+            var id = $row.find("td:first").text();
+
+            if (id.indexOf(mouse.id) === 0) {
+                intable = true;
+            }
+        }
+    });
+    if (!intable) {
+        var gender = "";
+        if (mouse.gender == 1) {
+            gender = "Männlich";
+        } else {
+            gender = "Weiblich";
+        }
+        $("#mouseSelected").append('<tr><td>' + mouse.id + '</td><td>' + mouse.name + '</td><td>' + gender + '</td><td>' + mouse.genotyp + '</td>+<td>' + mouse.generation + '</td><td>' + mouse.age + '</td><td>' + mouse.weight + '</td><td>' + mouse.cage_id + '</td><td><button id="mouseSelectedRemove" onclick="$(this).parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td></tr>');
     }
-    $("#mouseSelected").append('<tr><td>' + mouse.name + '</td><td>' + gender + '</td><td>' + mouse.genotyp + '</td>+<td>' + mouse.generation + '</td><td>' + mouse.age + '</td><td>' + mouse.weight + '</td><td>' + mouse.cage_id + '</td><td><button id="mouseSelectedRemove" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td></tr>');
 }
 
 // Weiterführende Elemente
