@@ -40,6 +40,11 @@
 
 - Mäuse zum Testen erstellen
 
+- Funktion um Mäusen andere Käfige zu zu weisen. Z.b. changeCage(mouse_ID,cage_id,cage_ID)
+- um den localstorage zu aktualisieren um das Feld von den Mäusen für das vom user gewählten Geschlecht
+- Funktion um das zu aktualisieren.
+- Hinzufügen von Käfigen/Mäusen
+
 
 (Jörn)
 - Home logged in -- ordentliche Startseite erstellen!

@@ -25,8 +25,8 @@ function Target() {
 
 Target.prototype.newTarget = function () {
     // Setzten des ersten Ziels für die Maus
-    this.x = (Math.random() * (canvas.width - 33));
-    this.y = (Math.random() * (canvas.height - 33));
+    this.x = (Math.random() * (canvas.width - 55));
+    this.y = (Math.random() * (canvas.height - 55));
 };
 
 
@@ -304,10 +304,13 @@ canvas.addEventListener('click', function (e) {  // use event argument
     var y = e.clientY - rect.top;               // get mouse y and adjust for el.
 
     for (i = 0; i <= mouseArr.length - 1; i++) {
-        var mousex = mouseArr[i].playMouse.x;
-        var mousey = mouseArr[i].playMouse.y;
-        var mousexmax = mousex + mouseArr[i].playMouse.weight;
-        var mouseymax = mousey + mouseArr[i].playMouse.height;
+
+        var hitbox =15;
+
+        var mousex = mouseArr[i].playMouse.x -hitbox;
+        var mousey = mouseArr[i].playMouse.y -hitbox;
+        var mousexmax = mousex +  mouseArr[i].playMouse.width +hitbox;
+        var mouseymax = mousey + mouseArr[i].playMouse.height +hitbox;
 
         if (x >= mousex && x <= mousexmax && y <= mouseymax && y >= mousey) {
             updateInfo(mouseArr[i].dataMouse);
