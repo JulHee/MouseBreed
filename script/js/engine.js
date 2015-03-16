@@ -1,3 +1,45 @@
+var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
+
+
+
+
+var engine = {
+
+    /*
+     * genotyp mix with length of 2(ex: Ab,AA,...)
+     * @param geno1 string with 2 Chars
+     * @param geno2 string with 2 Chars
+     * @return one possible Genotypes, each one has 25%
+     */
+    mixGenotyp: function (mouseOne, mouseTwo) {
+
+        var x = mouseOne.genotyp;
+        var y = mouseTwo.genotyp;
+
+        var x1 = x.charAt(0);
+        var x2 = x.charAt(1);
+        var y1 = y.charAt(0);
+        var y2 = y.charAt(1);
+
+        var res1 = x1 + y1;
+        var res2 = x1 + y2;
+        var res3 = x2 + y1;
+        var res4 = x2 + y2;
+
+        var genoarray = [res1, res2, res3, res4];
+        var randNum = Math.floor((Math.random() * 4) + 1);
+
+        return genoarray[randNum]
+    },
+
+    changeCage: function(mouse_ID,old_cage_ID,new_cage_ID){
+        var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];   /*gewünschte Maus heraussuchen*/
+        choosenMouse["cage_id"] = new_cage_ID;                                     /*die neue cage_ID wird gesetzt*/
+        loadedBreed['cages'][new_cage_ID]['mice'][mouse_ID] = choosenMouse; /*choosenMouse wird in den neuen Käfig angefügt*/
+        delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];         /*choosenMouse aus dem Alten Käfig-Objekt löschen*/
+    }
+}
+
 var clock = {
 
     nextDay: function (breed) {
@@ -58,36 +100,4 @@ var clock = {
         }
     }
 };
-
-
-var engine = {
-    /*
-     * genotyp mix with length of 2(ex: Ab,AA,...)
-     * @param geno1 string with 2 Chars
-     * @param geno2 string with 2 Chars
-     * @return one possible Genotypes, each one has 25%
-     */
-    mixGenotyp: function (mouseOne, mouseTwo) {
-
-        var x = mouseOne.genotyp;
-        var y = mouseTwo.genotyp;
-
-        var x1 = x.charAt(0);
-        var x2 = x.charAt(1);
-        var y1 = y.charAt(0);
-        var y2 = y.charAt(1);
-
-        var res1 = x1 + y1;
-        var res2 = x1 + y2;
-        var res3 = x2 + y1;
-        var res4 = x2 + y2;
-
-        var genoarray = [res1, res2, res3, res4];
-        var randNum = Math.floor((Math.random() * 4) + 1);
-
-        return genoarray[randNum]
-    }
-}
-
-
 
