@@ -7,7 +7,7 @@ var clock = {
     },
 
     gainWeight: function (mouseArray) {
-        /*siehe gewichtsentwicklung.xlsx*/
+        /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/
         var addWeightMale = [0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.84, 0.53, 0.53, 0.53, 0.53,
             0.53, 0.53, 0.52, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.26, 0.26, 0.26, 0.26, 0.26, 0.26, 0.26, 0.24, 0.16,
             0.16, 0.16, 0.16, 0.16, 0.16, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.16, 0.09, 0.09, 0.09, 0.09, 0.09,

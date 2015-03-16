@@ -1,3 +1,4 @@
+<script type="text/javascript" src="../script/js/ext/jquery-2.1.1.min.js"></script>
 <h1 class="page-header">Testpage</h1>
 <h3>Testen Sie hier die Benachrichtigungen</h3><br>
 <form class="form-horizontal">
@@ -36,5 +37,11 @@
         </div>
     </div>
 </form>
+
+<div id="ChristianDiv">
+    <button id="ChristianButton">Click</button>
+    <p id="ChristianP">.......</p>
+</div>
+<script type="text/javascript" src="/script/js/chbTest.js"></script>
 
 
