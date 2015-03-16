@@ -177,6 +177,30 @@ function updateMouseArray(cageid) {
     var thisMice = thisCage[cageid].mice;
     console.log(thisMice);
 
+    for (var key in thisMice) {
+
+        // Neues Element
+        var tmp = new AbsMouse();
+        tmp.playMouse.reset();
+
+        // Bildeigenschaften setzten
+        tmp.mouseImage = new Image();
+        tmp.mouseImage.onload = function () {
+            tmp.mouseReady = true;
+        };
+        tmp.mouseImage.src = "data/img/play/play_mouse_2.png";
+
+
+        // Realen Mauseigenschaften setzen
+        var aktMice = thisMice[key];
+        tmp.dataMouse = new Mouse(aktMice.id, aktMice.name, aktMice.gender, aktMice.genotyp, 2, aktMice.age, aktMice.weight, aktMice.cage_id, aktMice.breed_id, 11);
+
+        // Element dem Array hinzufügen
+        mouseArr.push(tmp);
+
+    }
+
+    /*
     for (var i = 0; i <= thisCage[cageid].mice.length - 1; i++) {
 
         // Neues Element
@@ -198,6 +222,7 @@ function updateMouseArray(cageid) {
         // Element dem Array hinzufügen
         mouseArr.push(tmp);
     }
+    */
 }
 
 var update = function (modifier) {
