@@ -1,8 +1,5 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
 
-
-
-
 var engine = {
 
     /*
@@ -35,8 +32,24 @@ var engine = {
     changeCage: function(mouse_ID,old_cage_ID,new_cage_ID){
         var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];   /*gewünschte Maus heraussuchen*/
         choosenMouse["cage_id"] = new_cage_ID;                                     /*die neue cage_ID wird gesetzt*/
-        loadedBreed['cages'][new_cage_ID]['mice'][mouse_ID] = choosenMouse; /*choosenMouse wird in den neuen Käfig angefügt*/
+        loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse; /*choosenMouse wird in den neuen Käfig angefügt*/
         delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];         /*choosenMouse aus dem Alten Käfig-Objekt löschen*/
+    },
+    /*@param new_cage_ID als String übergeben*/
+    newCage: function(){
+     /*ajax*/
+     loadedBreed["cages"][..neu erzeugte id..] = was zurückgegeben wird vom ajax Aufruf;
+
+
+    },
+    newMouse: function(){
+        /*ajax*/
+        loadedBreed["cages"][..neu erzeugte maus id] = was von ajax zurückkommt als Objekt;
+
+    },
+
+    setOwnGender : function(mouse_ID,ownGender){
+        loadedBreed["currentCage"]["mice"][mouse_ID]["gender"] = ownGender;
     }
 }
 
