@@ -38,9 +38,8 @@ class breedModel {
 
         if($stmt->execute() &&  $breed = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
-            $cages = $this->getCages($breed_id);
-
-            $breed['cages'] = $cages;
+            $breed['mice'] = $this->getMice($breed_id);
+            $breed['cages'] = $this->getCages($breed_id);
 
             return $breed;
         } else {
@@ -74,6 +73,21 @@ class breedModel {
             return Array();
         }
     }
+
+    public function getMice($breedId) {
+        $stmt =     "SELECT * ".
+                    "FROM `mouse` ".
+                    "WHERE breed_id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $breedId);
+
+        if($stmt->execute() && $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
+            return $mice;
+        } else {
+            return Array();
+        }
+    }
+
 
     public function getCages($breedId) {
         $stmt =     "SELECT * ".

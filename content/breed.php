@@ -1,3 +1,5 @@
+<?php print_r($_SESSION['loadedBreed']); ?>
+
 <h1 class="page-header"><?php echo $_SESSION['loadedBreed']['name']; ?>
     <button type="button" id="sidebarNextDay"
             class="pull-right btn btn-info"><span class="glyphicon glyphicon-time"
