@@ -1,23 +1,3 @@
-<?php
-/*
-    require_once "E:\\Web\\Mousebreed\\script\\php\\other\\dbConnection.php";
-    require_once "E:\\Web\\Mousebreed\\script\\php\\model\\breedModel.php";
-
-
-    $breedData = new \model\breedModel($db);
-
-    $myBreeds = $_SESSION['breeds'];
-    $myBreedInfo = array();
-
-    for($i=0; $i < count($myBreeds); $i++)
-    {
-        $myBreedInfo[] =  $breedData->getData($myBreeds[$i]['id']);
-    }
-    $_SESSION['myBreedInfo'] = $myBreedInfo;
-*/
-?>
-
-
 <div class="col-md-12">
     <h1 class="page-header">Profil</h1>
 
@@ -126,6 +106,7 @@
                                     </div>
                                 </div>
                             </form>
+                            <a id="" class="btn btn-default save_button_general" style="float: right;">Speichern</a>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="info_email"><br>
 
@@ -138,7 +119,7 @@
                                     </div>
                                 </div>
                             </form>
-
+                            <a id="" class="btn btn-default save_button_general" style="float: right;">Speichern</a>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="info_pwd"><br>
 
@@ -171,11 +152,8 @@
                                     </div>
                                 </div>
                             </form>
-
+                            <a id="save_button_password" class="btn btn-default save_button_password" style="float: right;">Speichern</a>
                         </div>
-
-                        <a id="save_button" class="btn btn-default" style="display: none; float: right;">Speichern</a>
-
                     </div>
 
                 </div>

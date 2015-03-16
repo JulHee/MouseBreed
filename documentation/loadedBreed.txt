@@ -1,11 +1,104 @@
- Array(
+Array(
     [id] => 1
     [user_id] => 10
     [time_of_creation] => 2015-03-05 00:00:00
     [target] => 4
     [name] => Mousehattan
-    [cages] => Array(
+    [mice] => Array(
             [0] => Array(
+                    [id] => 1
+                    [cage_id] => 1
+                    [breed_id] => 1
+                    [user_id] => 10
+                    [gender] => 0
+                    [name] => Karl
+                    [genotyp] => AB
+                    [weight] => 200
+                    [mother_id] => 4
+                    [father_id] => 4
+                    [age] => 10
+                    [img_name] => 
+                )
+
+            [1] => Array(
+                    [id] => 2
+                    [cage_id] => 1
+                    [breed_id] => 1
+                    [user_id] => 10
+                    [gender] => 0
+                    [name] => Paul
+                    [genotyp] => BA
+                    [weight] => 100
+                    [mother_id] => 2
+                    [father_id] => 2
+                    [age] => 5
+                    [img_name] => 
+                )
+
+            [2] => Array(
+                    [id] => 3
+                    [cage_id] => 1
+                    [breed_id] => 1
+                    [user_id] => 10
+                    [gender] => 1
+                    [name] => Frauke
+                    [genotyp] => BB
+                    [weight] => 500
+                    [mother_id] => 2
+                    [father_id] => 2
+                    [age] => 5
+                    [img_name] => 
+                )
+
+            [3] => Array(
+                    [id] => 4
+                    [cage_id] => 1
+                    [breed_id] => 1
+                    [user_id] => 10
+                    [gender] => 1
+                    [name] => Klara
+                    [genotyp] => AA
+                    [weight] => 1200
+                    [mother_id] => 2
+                    [father_id] => 2
+                    [age] => 80
+                    [img_name] => 
+                )
+
+            [4] => Array(
+                    [id] => 5
+                    [cage_id] => 1
+                    [breed_id] => 1
+                    [user_id] => 10
+                    [gender] => 0
+                    [name] => Hans
+                    [genotyp] => AB
+                    [weight] => 500
+                    [mother_id] => 4
+                    [father_id] => 4
+                    [age] => 4
+                    [img_name] => 
+                )
+
+            [5] => Array(
+                    [id] => 6
+                    [cage_id] => 1
+                    [breed_id] => 1
+                    [user_id] => 10
+                    [gender] => 1
+                    [name] => Berta
+                    [genotyp] => BB
+                    [weight] => 4000
+                    [mother_id] => 3
+                    [father_id] => 3
+                    [age] => 50
+                    [img_name] => 
+                )
+
+        )
+
+    [cages] => Array(
+            [1] => Array(
                     [id] => 1
                     [max_number_of_mouses] => 20
                     [breed_id] => 1
@@ -22,7 +115,7 @@
                                     [mother_id] => 4
                                     [father_id] => 4
                                     [age] => 10
-                                    [img_name] =>
+                                    [img_name] => 
                                 )
 
                             [1] => Array(
@@ -37,7 +130,7 @@
                                     [mother_id] => 2
                                     [father_id] => 2
                                     [age] => 5
-                                    [img_name] =>
+                                    [img_name] => 
                                 )
 
                             [2] => Array(
@@ -52,7 +145,7 @@
                                     [mother_id] => 2
                                     [father_id] => 2
                                     [age] => 5
-                                    [img_name] =>
+                                    [img_name] => 
                                 )
 
                             [3] => Array(
@@ -67,7 +160,7 @@
                                     [mother_id] => 2
                                     [father_id] => 2
                                     [age] => 80
-                                    [img_name] =>
+                                    [img_name] => 
                                 )
 
                             [4] => Array(
@@ -82,7 +175,7 @@
                                     [mother_id] => 4
                                     [father_id] => 4
                                     [age] => 4
-                                    [img_name] =>
+                                    [img_name] => 
                                 )
 
                             [5] => Array(
@@ -97,18 +190,19 @@
                                     [mother_id] => 3
                                     [father_id] => 3
                                     [age] => 50
-                                    [img_name] =>
+                                    [img_name] => 
                                 )
 
                         )
 
                 )
 
-            [1] => Array(
+            [2] => Array(
                     [id] => 2
                     [max_number_of_mouses] => 10
                     [breed_id] => 1
                     [mice] => Array()
+
                 )
 
         )

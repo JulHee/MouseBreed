@@ -6,8 +6,7 @@ var Settings = {
 
     onReady: function() {
         Settings.fillInputValues();
-        $( 'input[type=text]' ).keyup(Settings.hideShowButton);
-        $( '#save_button').click(Settings.saveChange)
+        $( '.save_button_general' ).click(Settings.saveGeneral)
     },
 
     fillInputValues:  function() {
@@ -19,14 +18,6 @@ var Settings = {
             i++;
         });
 
-    },
-
-    hideShowButton: function() {
-        if(Settings.checkChange()) {
-            $( '#save_button' ).show();
-        } else {
-            $( '#save_button' ).hide();
-        }
     },
 
     checkChange:  function() {
@@ -44,40 +35,47 @@ var Settings = {
         return inputChanged;
     },
 
-    saveChange:  function() {
-        var keys = [];
-        var values = [];
+    saveGeneral:  function() {
+        var clicked = $( this );
 
-        var i = 0;
-        var j = 0;
+        if(Settings.checkChange()) {
 
-        $( 'input[type=text]' ).each(function(){
-            if(Settings.inputValues[i] !=  $(this).val()) {
-                keys[j] = $(this).attr('id');
-                values[j] = $(this).val();
-                j++;
-            }
-            i++;
-        });
+            var keys = [];
+            var values = [];
 
-        $.ajax({
-            type: "POST",
-            url: "/script/php/ajax/updateUserData.php",
-            data: { keys: JSON.stringify(keys), values: JSON.stringify(values) },
-            dataType: "json"
-        }).done(function(response) {
-            if(response.success == true) {
-                alert("Änderung gespeichert.");
-                $( '#save_button' ).hide();
-                location.reload();
-            } else {
-                $( '#save_button' ).notify(response.msg,{className: "error" ,elementPosition: 'left middle'});
-            }
-        });
+            var i = 0;
+            var j = 0;
+
+            $('input[type=text]').each(function () {
+                if (Settings.inputValues[i] != $(this).val()) {
+                    keys[j] = $(this).attr('id');
+                    values[j] = $(this).val();
+                    j++;
+                }
+                i++;
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/script/php/ajax/updateUserData.php",
+                data: {keys: JSON.stringify(keys), values: JSON.stringify(values)},
+                dataType: "json"
+            }).done(function (response) {
+                if (response.success == true) {
+                    Settings.fillInputValues();
+                    alert("Änderung gespeichert.");
+                    location.reload();
+                } else {
+                    clicked.notify(response.msg, {className: "error", elementPosition: 'left middle'});
+                }
+            });
+        } else {
+            clicked.notify("Keine Änderung vorhanden.", {className: "error", elementPosition: 'left middle'});
+        }
     },
 
     leaveSite: function() {
-        if ( $( '#save_button' ).css('display') != 'none' ){
+        if ( Settings.checkChange() ){
             return 'Änderungen nicht gespeichert!';
         }
     }
