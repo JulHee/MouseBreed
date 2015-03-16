@@ -1,5 +1,7 @@
 var loadBreed = {
 
+    test: "Hallo",
+
     onReady: function () {
         $('.loadBreed').click(loadBreed.load);
     },

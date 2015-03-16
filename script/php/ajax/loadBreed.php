@@ -10,7 +10,7 @@ if(isset($_SESSION['login']) && $_SESSION['login']) {
     $_SESSION['loadedBreed'] = $breedModel->getData($_POST['id']);
     $_SESSION['selectedCage'] = isset($matches[3]) ? $matches[3] : reset($_SESSION['loadedBreed']['cages'])['id'];
 
-    echo json_encode(array('success' => true, 'loadedBreed' => $_SESSION['loadedBreed']));
+    echo json_encode(array('success' => true, 'loadedBreed' => $_SESSION['loadedBreed']), JSON_FORCE_OBJECT);
 
 } else {
     echo json_encode(array('success' => false, 'msg' => 'Fehler'));
