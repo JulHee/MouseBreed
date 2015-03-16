@@ -1,3 +1,7 @@
+<script>
+    var breed = JSON.parse(localStorage.getItem('loadedBreed'));
+</script>
+
 <?php print_r($_SESSION['loadedBreed']); ?>
 
 <h1 class="page-header"><?php echo $_SESSION['loadedBreed']['name']; ?>

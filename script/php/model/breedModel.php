@@ -38,7 +38,6 @@ class breedModel {
 
         if($stmt->execute() &&  $breed = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
-            $breed['mice'] = $this->getMice($breed_id);
             $breed['cages'] = $this->getCages($breed_id);
 
             return $breed;
@@ -68,7 +67,13 @@ class breedModel {
         $stmt->bindParam(1, $cageId);
 
         if($stmt->execute() && $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
-            return $mice;
+            $miceReturn = Array();
+
+            foreach($mice as $mouse) {
+                $miceReturn[$mouse['id']] = $mouse;
+            }
+
+            return $miceReturn;
         } else {
             return Array();
         }
@@ -82,7 +87,13 @@ class breedModel {
         $stmt->bindParam(1, $breedId);
 
         if($stmt->execute() && $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
-            return $mice;
+            $miceReturn = Array();
+
+            foreach($mice as $mouse) {
+                $miceReturn[$mouse['id']] = $mouse;
+            }
+
+            return $miceReturn;
         } else {
             return Array();
         }
