@@ -43,6 +43,7 @@
 
 - Funktion um Mäusen andere Käfige zu zu weisen. Z.b. changeCage(mouse_ID,cage_id,cage_ID)
 - um das Feld von den Mäusen für das vom user gewählten Geschlecht, Funktion um das zu aktualisieren.
+-- setze currentCage richtig!!!
 - Hinzufügen von Käfigen/Mäusen
 
 
