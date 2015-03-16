@@ -18,6 +18,7 @@
     - Erstellen von Zuchten
 - Informationsübergabe (Zucht-ID) beim laden der Zuchten
 - Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
+- um den Localstorage zu aktualisieren
 
 (christian)
 - breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.(x)
@@ -41,8 +42,7 @@
 - Mäuse zum Testen erstellen
 
 - Funktion um Mäusen andere Käfige zu zu weisen. Z.b. changeCage(mouse_ID,cage_id,cage_ID)
-- um den localstorage zu aktualisieren um das Feld von den Mäusen für das vom user gewählten Geschlecht
-- Funktion um das zu aktualisieren.
+- um das Feld von den Mäusen für das vom user gewählten Geschlecht, Funktion um das zu aktualisieren.
 - Hinzufügen von Käfigen/Mäusen
 
 

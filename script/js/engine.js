@@ -35,8 +35,15 @@ var engine = {
     changeCage: function(mouse_ID,old_cage_ID,new_cage_ID){
         var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];   /*gewünschte Maus heraussuchen*/
         choosenMouse["cage_id"] = new_cage_ID;                                     /*die neue cage_ID wird gesetzt*/
-        loadedBreed['cages'][new_cage_ID]['mice'][mouse_ID] = choosenMouse; /*choosenMouse wird in den neuen Käfig angefügt*/
+        loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse; /*choosenMouse wird in den neuen Käfig angefügt*/
         delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];         /*choosenMouse aus dem Alten Käfig-Objekt löschen*/
+    },
+
+    newCage: function(){
+
+    },
+    newMouse: function(){
+
     }
 }
 
