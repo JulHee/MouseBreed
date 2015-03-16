@@ -1,4 +1,60 @@
+//TODO - LIST !! (immer ergänzen!)
 
+------------ TO DO -------------
+(allgemein)
+- mainBootstrap.css .sidebar Verhalten für mobile verbessern
+    - Änderungen aus mainBootstrap in eigene Dateien auslagern
+- Einstellungsmöglichkeiten überlegen/einfügen
+- FAQ erstellen (ausfüllen)
+- Schwierigkeitsgrade Mittel und Schwer ausfüllen
+- Notizen: Fenster Verschwindet, wenn irgendwo anderes geklickt wird (bis jetzt nur wenn nochmal auf das Notizenfeld geklickt wird.)
+- Steckbrief mit informationen Füllen
+
+
+(christoph)
+- Login fixen
+- Datenbank Zugriff für:
+    - Profil
+    - Erstellen von Zuchten
+- Informationsübergabe (Zucht-ID) beim laden der Zuchten
+- Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
+
+(christian)
+- breed.js onReady-nextDay() Übergabeparameter anpassen. Soll die aktuelle Breed aus der Session beziehen.(x)
+           updateListMouse benutzt derzeit $SESSION_['loadedListMouse']. Muss angepasst werden.  statt append überschreiben.
+- erstes Scenario funktionen. ! (add to worklist whats needed)
+--- Mäuse ohne mitochondriales Transportprotein:
+    Ziel = 20 weibliche mit fehlendem Transportprotein (Gentyp(-/-); schnellst möglich; 6 Wochen  alt
+    Start= 3 männliche (+/+) zuchtreif; 3 weibliche (-/-) zuchtreif
+
+    Mix-Funktion mit +/-
+    Maus wirft -> in neuen leeren Käfig
+    soziale Unverträglichkeit = gleich geschlechtlich NUR aus einem Wurf gut.
+                                Ein Männchen zu ein bzw. mehreren Weibchen(1:N).
+                                Nach der Paarung Männchen NUR möglich bei Weibchen bleiben , oder einzel Käfig
+    Paarung erfolgt sofort nach dem Zusammensetzten von M und W.
+
+- Steckbrief
+--- Gewicht ab 20 Tage sichtbar
+
+
+- Mäuse zum Testen erstellen
+
+
+(Jörn)
+- Home logged in -- ordentliche Startseite erstellen!
+- Home logged out -- hintergrund per carousel ?
+- Cageme funktionen einbinden/ auslesen daten (need acces to mice)
+
+
+(Julian)
+- Historie in Datenbank anlegen
+
+
+
+
+
+// Alt aber aktuell?
 --------------- To-do ---------------
 
 Datenbank
@@ -12,6 +68,7 @@ Datenbank
     - Registrierung
     - bei Logout auf Startseite
 
+-Genotyp -> Phänotyp (enum(?) to declare what a Genotyp does: "Ab" --> blue/yellow mouse)
 
 
 

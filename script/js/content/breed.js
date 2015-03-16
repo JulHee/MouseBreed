@@ -1,47 +1,54 @@
-$(document).ready(function() {
-	$("#mybutton").click(
-		function(){
-			addBen($("#name").val(),$("#optionlist").val());
-	});
-	$(".testButton").click(function() {
-		$.notify("Eine Maus ist schwanger ","warn");
-	});
-	$("#mail_pic").click(function(){
-		$("#benachrichtigungen").fadeToggle("slow");	
-		
-	});
-	$("#deleteall").click(function(){
-		$("#Benliste").empty();
-	});
-	
-	$("#benachrichtigungen").fadeToggle("slow");
+var BasicFunctions = {
+
+    onReady :  function () {
+        /*Aktionen wenn ein Tag weiter geklickt wird*/
+        $(nextDay()).click(function(){
+            nextDay($_SESSION['loadedBreed']);
+        });
+
+        /*Wechsel der ausgewähltn Maus*/
+        $("#ListMouse a").on("click", function(){
+            var activeMouse = $('#ListMouse').find(".active");
+            activeMouse.removeClass("active");
+            $(this).addClass("active");
+            updateMouseInfo(activeMouse);
+            updateListMouse();
+
+        });
+    },
+
+    updateMouseInfo : function (mouse){
+        $('#mouseinfoWeight').innerHTML = mouse.weight;
+        $('#mouseinfoGender').innerHTML = mouse.gender;
+        $('#mouseinfoAge').innerHTML    = mouse.age;
+        $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
+    }
+
+    /* SyntaxError
+    updateListMouse : function (){
+        var allMice = $_SESSION['loadedListMouse']['mice'];
+        var activeBool = false;
+        $.each(allMice,function(){
+            if(!activeBool) {
+                activeBool = true;
+                $.('#ListMouse').append("\<a href=\" #\" class=\"list-group-item active\">"+this.name+"(#"+ this.id +") \</a>");
+            }else{
+                $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>");
+            }
+        });
+
+    }
+    */
+};
+
+
+
+$(document).ready(function () {
+    BasicFunctions.onReady;
+
+    $("#ListCage a").on("click", function(){
+        $("#ListCage").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
 });
-
-function addBen(nachricht,art)
-{
-  switch (art) {
-        case "success":
-          $.notify(nachricht,"success");
-            break;
-        case "warn":
-           $.notify(nachricht,"warn");
-            break;
-        case "info":
-           $.notify(nachricht,"info");
-            break;
-        case "error":
-           $.notify(nachricht,"error");
-            break;
-        default:
-           $.notify(nachricht,"info");
-            break;
-      }
-		
-	  $("#Benliste").append($('<li>').append($('<div>').append(nachricht).attr("class","nachr"))
-	  .append($("<div>").append($('<a>').attr("onClick","$(this).parent().parent().remove()")
-	  .append("X")).attr("class","entfernen")).attr("class","clearing"));
-	  
-  	//  $("#Benliste").append($('<li>').append(nachricht+"  ").append($('<a>				 ').attr("onClick","$(this).parent().remove()").append("X")));
-}
-
-

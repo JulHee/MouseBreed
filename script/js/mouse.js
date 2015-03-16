@@ -1,18 +1,8 @@
 /*
- * Mouse with Parameters to define it
- */
-function Mouse(sex,genotyp,age,weight){
-	this.sex = sex;
-	this.genotyp = genotyp;
-	this.age = age;
-	this.weight = weight;
-}
-
-/*
- * genotyp mix with length of 2(ex: Ab,AA,...)  
+ * genotyp mix with length of 2(ex: Ab,AA,...)
  * @param geno1 string with 2 Chars
  * @param geno2 string with 2 Chars 
- * @return Array with all possible Genotypes
+ * @return one possible Genotypes, each one has 25%
  */
 function Mix(geno1,geno2){
 	var x = geno1;
@@ -29,10 +19,7 @@ function Mix(geno1,geno2){
 	var res4 = x2 + y2; 
 	
 	var genoarray = [res1,res2,res3,res4];
-	return genoarray
-}
+    var randNum = Math.floor((Math.random() * 4) + 1);
 
-/* TODO
- * - Genotyp -> Phänotyp (enum(?) to declare what a Genotyp does: "Ab" --> blue/yellow mouse)
- * - other Classes [Cage,breed,User,"Mission/Task"]
- */
+	return genoarray[randNum]
+}

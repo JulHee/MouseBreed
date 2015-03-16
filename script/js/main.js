@@ -1,115 +1,168 @@
-
 var URL_ROOT = "http://local.mousebreed";
-
-var Navi = {
-
-    onReady: function() {
-        // check is naviHidden cookie is set, default value is false
-        if(!($.cookie('naviHidden') == "true" || $.cookie('naviHidden') == "false")) {
-            $.cookie('naviHidden', 'false');
-        }
-        var naviAnchor = $( ".menu_container" );
-        naviAnchor.on('click', '.arrow_in', Navi.toogleOut);
-        naviAnchor.on('click', '.arrow_out', Navi.toogleIn);
-    },
-
-    toogleOut: function() {
-        $( ".menu_container").animate({ "margin-left": "-250px" }, "slow" );
-        $( ".arrow").removeClass("arrow_in").addClass("arrow_out");
-        $.cookie('naviHidden', 'true');
-    },
-
-    toogleIn: function() {
-        $( ".menu_container").animate({ "margin-left": "0" }, "slow" );
-        $( ".arrow").removeClass("arrow_out").addClass("arrow_in");
-        $.cookie('naviHidden', 'false');
-    }
-};
-
 var Logout = {
 
-    onReady: function() {
-        $( "#logout" ).click(Logout.run);
+    onReady: function () {
+        $("#logout").click(Logout.run);
     },
 
-    run: function() {
+    run: function () {
         $.ajax({
             url: "/script/php/ajax/logout.php"
-        }).done(function() {
+        }).done(function () {
             location.replace(URL_ROOT);
         });
     }
 };
 
-$( document ).ready(function() {
-
-    Navi.onReady();
-    Logout.onReady();
-
-    /*
-    // testen des LocalStorage
-    var m = new Mouse("m","ACAD",10,500);
-    var k = new Mouse("m","ACAD",5,100);
-    var arr = new Array(m,k);
-
-    saveGameState(arr);
-    */
-});
-
 // Datenstruktur zum speichern der Elemente aus mouse.js
 
-function Mouse(sex,genotyp,age,weight){
-    this.sex = sex;
-    this.genotyp = genotyp;
-    this.age = age;
-    this.weight = weight;
-    function toString(){
-        return "{"+this.sex+","+this.genotyp+","+this.age+","+this.weight+","+"}"
+
+
+function addBen(titel, nachricht, art) {
+    // TODO: Die Nachricht muss unterhalb der Oberen leiste angezeigt werden
+    switch (art) {
+        case "success":
+            $.notify(titel, "success");
+            break;
+        case "warn":
+            $.notify(titel, "warn");
+            break;
+        case "info":
+            $.notify(titel, "info");
+            break;
+        case "error":
+            $.notify(titel, "error");
+            break;
+        default:
+            $.notify(titel, "info");
+            break;
     }
+
+    // Anbgeben der Zeit für die Benachrichtigung
+    var date = new Date();
+    var dateHours = date.getHours();
+    var dateMinutes = date.getMinutes();
+    var dateSeconds = date.getSeconds();
+    if(dateHours < 10){dateHours = '0'+dateHours;}
+    if(dateMinutes < 10){dateMinutes = '0'+dateMinutes;}
+    if(dateSeconds < 10){dateSeconds = '0'+dateSeconds;}
+    var dateOutput = dateHours+":"+dateMinutes+":"+dateSeconds;
+
+    // Anfügen der neuen Benachrichtigung
+    $("#benliste_top").prepend('<li class="divider"></li>');
+    $("#benliste_top").prepend('<li class="benMessagetoDelete"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><p class="text-muted"><em>' + dateOutput + '</em></p></div><div class="benMessage">' + nachricht + '</div></a></li>');
+
+    // Setzten des Zählers
+    $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 }
 
-
 // Checken ob der Browser LocalStorage unterstützt
-function supports_html5_storage(){
-    try{
+function supports_html5_storage() {
+    try {
         return 'localStorage' in window && window['localStorage'] !== null;
-    } catch (e){
+    } catch (e) {
         return false;
     }
 }
 
 /*
-    Man setzt zwei Elementidentifikatoren als Standart z.b.:
-        i.      mouse
-        ii.     name
-        iii.    info
+ Man setzt zwei Elementidentifikatoren als Standart z.b.:
+ i.      mouse
+ ii.     name
+ iii.    info
  */
 
-
-function loadGameState(){
-    if (!supports_html5_storage())
-    {
+function loadGameState() {
+    if (!supports_html5_storage()) {
         alert("Der Browser unterstützt das Feature 'LocalStorage' nicht");
     }
 
     var name_of_mouse = parseInt(localStorage.getItem("mousebreed.gamestate.mouse_number"));
     var array_of_mouse_info = new Array(name_of_mouse);
-    for (i = 0; i < name_of_mouse;i++){
-       array_of_mouse_info[i] = JSON.parse(localStorage.getItem("mousebreed.gamestate.mouse."+i));
+    for (i = 0; i < name_of_mouse; i++) {
+        array_of_mouse_info[i] = JSON.parse(localStorage.getItem("mousebreed.gamestate.mouse." + i));
     }
     return array_of_mouse_info;
 }
 
-function saveGameState(array_of_mouses){
-    if (!supports_html5_storage())
-    {
+function saveGameState(array_of_mouses) {
+    if (!supports_html5_storage()) {
         alert("Der Browser unterstützt das Feature 'LocalStorage' nicht");
     }
     // Set the number of Mouses to save in localStorage
-    localStorage.setItem("mousebreed.gamestate.mouse_number",array_of_mouses.length);
-    for (var i=0; i < array_of_mouses.length; i++){
-        localStorage.setItem(["mousebreed.gamestate.mouse."+i],JSON.stringify(array_of_mouses[i]));
+    localStorage.setItem("mousebreed.gamestate.mouse_number", array_of_mouses.length);
+    for (var i = 0; i < array_of_mouses.length; i++) {
+        localStorage.setItem(["mousebreed.gamestate.mouse." + i], JSON.stringify(array_of_mouses[i]));
     }
 
 }
 
+
+$(document).ready(function () {
+    Logout.onReady();
+
+    $("#mybutton").click(
+        function () {
+            addBen($("#title").val(), $("#name").val(), document.querySelector('input[name="inlineRadioOptionen"]:checked').value);
+        });
+    $('#deleteall').click(
+        function () {
+            $("#benliste_top").empty();
+            // $("#benliste_top").prepend('<li class="divider"></li>');
+            $("#benliste_top").prepend('<li id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
+            $("#NumBen").html(0);
+        }
+    );
+    $('#benachrichtigung').click(
+        function () {
+            $('#deleteall').click(
+                function () {
+                    // TODO Sehr unsabuer :)
+
+                    $("#benliste_top").empty();
+                    // $("#benliste_top").prepend('<li class="divider"></li>');
+                    $("#benliste_top").prepend('<li id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
+                    $("#NumBen").html(0);
+                }
+            );
+        }
+    );
+
+    $("#navSidebarZuchten a").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+
+    $('#noticeid').on('click', function (event) {
+        $(this).parent().toggleClass('open');
+    });
+
+    $('body').on('click', function (e) {
+        if (!$('#noticeid').is(e.target)
+            && $('#noticeid').has(e.target).length === 0
+            && $('.open').has(e.target).length === 0
+        ) {
+            $('#noticeid').removeClass('open');
+        }
+    });
+
+
+    $('#addbtn').click(
+        function() {
+            var inText = $('#noticetext').val();
+            $('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
+            $('#noticetext').val("");
+        });
+
+    $('#chooseGenderMale').click(
+        function(){
+            $("#ListMouse").find(".active").gender = 0;
+        })
+
+    $('#chooseGenderFemale').click(
+        function(){
+            $("#ListMouse").find(".active").gender = 1;
+        })
+    });
+
+/*$('#noticetext').value= "";*/

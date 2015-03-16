@@ -1,35 +1,34 @@
-
 var login = {
 
-    onReady: function() {
+    onReady: function () {
+        $("#login_button_top").click(login.check);
         $("#login_button").click(login.check);
         $(document).keypress(login.keyPressed);
     },
 
-    check:  function() {
+    check: function () {
+        var button = $( this );
         $.ajax({
             type: "POST",
             url: "/script/php/ajax/login.php",
-            data: { password: $("#password").val(), username: $("#username").val() },
+            data: {password: button.parent().find("#password").val(), username: button.parent().find("#username").val()},
             dataType: "json"
-        }).done(function(response) {
-            if(response.success == true) {
-                $("#login_form").submit();
+        }).done(function (response) {
+            if (response.success == true) {
+                button.parent().submit();
             } else {
-                var error_msg = $(".error_msg");
-                error_msg.html("Fehlermeldung");
-                error_msg.show();
+                button.parent().notify("Benutzername oder Passwort falsch", {className: "error", elementPosition: 'botttom center'});
             }
         });
     },
 
-    keyPressed: function(e) {
+    keyPressed: function (e) {
         if (e.which == 13) {
-            $("#login_button").click();
+            $("#login_button_top").click();
             return false;
         }
     }
 
 };
 
-$( document ).ready( login.onReady );
+$(document).ready(login.onReady);

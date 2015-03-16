@@ -1,21 +1,35 @@
 
-<p class="top_head">Einstellungen</p>
 
-<div class="h_menu">
-    <a class="<?php echo ($subpage == "general") ? "h_menu_selected" : ""; ?>" href="/settings/general">
-        Allgemein
-    </a>
-    <a class="<?php echo ($subpage == "email") ? "h_menu_selected" : ""; ?>"  href="/settings/email">
-        E-Mail-Adresse
-    </a>
-    <a class="<?php echo ($subpage == "password") ? "h_menu_selected" : ""; ?>"  href="/settings/password">
-        Passwort
-    </a>
-    <a class="<?php echo ($subpage == "delete") ? "h_menu_selected" : ""; ?>"  href="/settings/delete">
-        Konto löschen
-    </a>
-</div>
+<div class="col-md-10">
+    <h1 class="page-header">Einstellungen</h1>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#settings_allgemein" role="tab" data-toggle="tab">Allgemein</a></li>
+        <li role="presentation"><a href="#settings_benachrichtigung" role="tab" data-toggle="tab">Benachrichtigung</a></li>
+        <li role="presentation"><a href="#settings_privatsphaere" role="tab" data-toggle="tab">Privatsphäre</a></li>
+    </ul>
 
-<div class="setting_subpage">
-    <?php include "settings/$subpage.php"; ?>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="settings_allgemein"><br>
+
+            <form class="form-horizontal">
+              <!-- INHALT -->
+            </form>
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="settings_benachrichtigung"><br>
+
+            <form class="form-horizontal">
+                <!-- INHALT -->
+            </form>
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="settings_privatsphaere"><br>
+
+            <form class="form-horizontal">
+               <!-- INHALt -->
+            </form>
+
+        </div>
+
+    </div>
 </div>

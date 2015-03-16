@@ -10,18 +10,16 @@ var Register = {
         $.ajax({
             type: "POST",
             url: "/script/php/ajax/register.php",
-            data: { username: $("#username").val(), password: $("#password").val(),
-                    password2: $("#password2").val(),  lastname: $("#lastname").val(),
-                    firstname: $("#firstname").val(), email: $("#email").val() },
+            data: { username: $("#registerInputUsername").val(), password: $("#registerInputPassword").val(),
+                    password2: $("#registerInputPasswordRe").val(),  lastname: $("#registerInputlastName").val(),
+                    firstname: $("#registerInputfirstName").val(), email: $("#registerInputEmail").val() },
             dataType: "json"
         }).done(function(response) {
             if(response.success == true) {
-                alert("Konto wurde erfolgreich erstellt.");
+                $.notify("Konto wurde erfolgreich erstellt.","success");
                 $("#register_form").submit();
             } else {
-                var error_msg = $(".error_msg");
-                error_msg.html(response.msg);
-                error_msg.show();
+                $("#register_button").notify(response.msg,{className: "error" ,elementPosition: 'right middle'});
             }
         });
     },

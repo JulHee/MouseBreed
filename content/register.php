@@ -1,36 +1,46 @@
-<div class="middle_box">
-    <span class="larger bold">Konto erstellen</span>
-    <hr>
-    <p class="error_msg"></p>
-    <form id="register_form" action="http://local.mousebreed/home" method="post">
-        <table>
-            <tr>
-                <td>Vorname:</td>
-                <td><input id="firstname" name="firstname" type="text" class="input"></td>
-            </tr>
-            <tr>
-                <td>Nachname:</td>
-                <td><input id="lastname" name="lastname" type="text" class="input"></td>
-            </tr>
-            <tr>
-                <td>Benutzername:</td>
-                <td><input id="username" name="username" type="text" class="input"></td>
-            </tr>
-            <tr>
-                <td>E-Mail-Adresse:</td>
-                <td><input id="email" name="email" type="text" class="input"></td>
-            </tr>
-            <tr>
-                <td>Passwort:</td>
-                <td><input id="password" name="password" type="password" class="input"></td>
-            </tr>
-            <tr>
-                <td>Passwort wiederholen:</td>
-                <td><input id="password2" name="password2" type="password" class="input"></td>
-            </tr>
-        </table>
-    </form>
-    <a id="register_button" class="button right">
-        <span>Konto erstellen</span>
-    </a>
+<h1 class="page-header">Konto erstellen</h1>
+<div class="col-md-4 col-md-offset-4">
+<form class="form-horizontal" id="register_form" action="\login" >
+    <div class="form-group">
+        <label for="registerInputfirstName" class="col-sm-4 control-label">Vorname</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="registerInputfirstName" placeholder="Vorname" required autofocus>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputlastName" class="col-sm-4 control-label">Nachname</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="registerInputlastName" placeholder="Nachname" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputEmail" class="col-sm-4 control-label">Benutzername</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="registerInputUsername" placeholder="Benutzername" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputUsername" class="col-sm-4 control-label">Email</label>
+        <div class="col-sm-8">
+            <input type="email" class="form-control" id="registerInputEmail" placeholder="Vorname.Nachname@example.de" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputPassword" class="col-sm-4 control-label">Passwort</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" id="registerInputPassword" placeholder="Passwort" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="registerInputPasswordRe" class="col-sm-4 control-label">Passwort</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" id="registerInputPasswordRe" placeholder="Passwort wiederholen" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <a id="register_button" class="btn btn-primary">Registrieren</a>
+        </div>
+    </div>
+</form>
 </div>

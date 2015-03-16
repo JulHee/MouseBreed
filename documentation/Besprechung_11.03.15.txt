@@ -1,0 +1,4 @@
+-Erst losspielen, dann beim Speichern/ nächsten Tag / o.ä den Benutzer mit Passwort anlegen
+-Die Seite "Put them into cages" soll eine Spieloberfläche erhalten, also evtl. ansprechender gestaltet werden. Mehr Spiel-Feeling
+-Dokumentation: ca. 1 Seite mit verwendeten Technologien, wichtigen tech. Details. Im Hinblick auf Wartung von Biologen, oder einer Weiterführung einer nächsten FOPRA-Gruppe.
+- Ziele in boolschen Ausdruck realisieren.

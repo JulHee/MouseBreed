@@ -1,21 +1,34 @@
-<div class="left_list_container left noselect">
-    <div class="left_list_head larger bold">
-        Meine Zuchten
+<h1 class="page-header">Willkommen</h1>
+<div class="row">
+    <div class="col-lg-4">
+        <h2>Zucht</h2>
+        <p>Wählen Sie zu beginn eine Zucht aus mit der sie weiter Spielen wollen</p>
+        <p><a class="btn btn-primary" href="overview" role="button">Anzeigen &raquo;</a></p>
     </div>
-    <div class="left_list">
-        <div id="1" class="list_item">
-            Zucht 1
-        </div>
-        <div id="2" class="list_item">
-            Zucht 2
-        </div>
-        <div id="3" class="list_item">
-            Zucht 3
-        </div>
+    <div class="col-lg-4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
     </div>
 </div>
-<div class="selected_breed_container left">
-    <span class="selected_breed_head larger"></span>
-</div>
-
 
