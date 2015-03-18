@@ -35,16 +35,57 @@ var engine = {
         loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse; /*choosenMouse wird in den neuen Käfig angefügt*/
         delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];         /*choosenMouse aus dem Alten Käfig-Objekt löschen*/
     },
-    /*@param new_cage_ID als String übergeben*/
-    newCage: function(){
-     /*ajax*/
-     loadedBreed["cages"][..neu erzeugte id..] = was zurückgegeben wird vom ajax Aufruf;
 
+    newCage: function(maxNumberMice){
+
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/newCage.php",
+            data: { max_number_of_mice: maxNumberMice },
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if(response.success == true) {
+            loadedBreed["cages"][response.id] = {breed_id: loadedBreed.id, id: response.id, max_number_of_mice: maxNumberMice, mice: {}};
+
+            // erfolgreich erstellt
+
+            // Rückgabe?
+        } else {
+
+            // nicht erstellt
+
+            // Rückgabe?
+        }
 
     },
-    newMouse: function(){
-        /*ajax*/
-        loadedBreed["cages"][..neu erzeugte maus id] = was von ajax zurückkommt als Objekt;
+
+    newMouse: function(cage_id, gender, name, genotyp, weight, mother_id, father_id, age, img_name){
+
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/newMouse.php",
+            data: { cage_id: cage_id, gender: gender, name: name, genotyp: genotyp, weight: weight, mother_id: mother_id,
+                    father_id: father_id, age: age, img_name: img_name },
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if(response.success == true) {
+            loadedBreed['cages'][cage_id]['mice'][response.id] = { cage_id: cage_id, gender: gender, name: name,
+                genotyp: genotyp, weight: weight, mother_id: mother_id, father_id: father_id, age: age,
+                img_name: img_name };
+
+            // erfolgreich erstellt
+
+            // Rückgabe?
+        } else {
+
+            // nicht erstellt
+
+            // Rückgabe?
+        }
 
     },
 

@@ -47,8 +47,8 @@
 
                                 <div class="col-sm-2">
                                     <p class="form-control-static">
-                                        <?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mouses'])) {
-                                            echo $_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mouses'];
+                                        <?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mice'])) {
+                                            echo $_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mice'];
                                         } else {
                                             echo "0";
                                         } ?></p>
