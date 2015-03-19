@@ -27,3 +27,8 @@ body{
 .cagePadding{
     padding: 0px 0px 0px 5px;
 }
+
+.nonresponsibile{
+    max-width: none !important;
+    width: 640px;
+}

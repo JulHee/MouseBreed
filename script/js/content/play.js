@@ -1,8 +1,8 @@
 // Canvas
 var canvas = document.createElement("canvas");
 var container = document.getElementById("canvasContainer");
-canvas.width = 598;
-canvas.height = 598;
+canvas.width = 640;
+canvas.height = 300;
 var ctx = canvas.getContext("2d");
 container.appendChild(canvas);
 
@@ -12,7 +12,7 @@ var bgImage = new Image();
 bgImage.onload = function () {
     bgReady = true;
 };
-bgImage.src = "data/img/play/play_bg.png";
+bgImage.src = "data/img/play/play_bg_cage.png";
 
 // Array for all Mouses
 var mouseArr = [];

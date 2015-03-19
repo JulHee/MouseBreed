@@ -20,33 +20,9 @@
 </div>
 <div class="col-md-12 mybg">
     <div class="row">
-        <div class="col-md-7 clearfix">
-            <div class="row">
-                <div id="canvasContainer"></div>
-            </div>
-        </div>
-        <div class="col-md-4 col-md-offset-1">
-            <div class="list-group">
-                <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
-                    foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
-                        <a data-cage-id="<?php echo $cage['id']; ?>" class="list-group-item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="/data/img/play/cage.png" class="media-object"
-                                         alt="Responsive image" width="30px">
-                                </div>
-                                <div class="col-md-7">
-                                    <h4 class="list-group-item-heading">Käfig <?php echo $cage['id']; ?></h4>
-                                </div>
-                            </div>
-                        </a>
-                    <?php }
-                } ?>
-            </div>
-        </div>
+                <div id="canvasContainer" class="nonresponsibile"></div>
     </div>
     <div class="row">
-        <div class="col-md-12">
             <div class="panel panel-default min-height">
                 <div class="panel-heading">Ausgewählte Mäuse</div>
                 <div class="panel-body">
@@ -68,10 +44,8 @@
                     </table>
                 </div>
             </div>
-        </div>
     </div>
     <div class="row">
-        <div class="col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading">Steckbrief</div>
                 <div id="MouseInfo" class="panel-body">
@@ -155,6 +129,5 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
