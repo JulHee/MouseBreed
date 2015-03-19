@@ -157,12 +157,18 @@ $(document).ready(function () {
     $('#chooseGenderMale').click(
         function(){
             $("#ListMouse").find(".active").gender = 0;
-        })
+        });
 
     $('#chooseGenderFemale').click(
         function(){
             $("#ListMouse").find(".active").gender = 1;
-        })
+        });
+    $('#slide-submenu').on('click',function() {
+            $('#mini-submenu').fadeIn();
+    });
+    $('#mini-submenu').on('click',function(){
+        $('#mini-submenu').hide();
+    });
     });
 
 /*$('#noticetext').value= "";*/
