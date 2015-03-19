@@ -59,6 +59,32 @@ class breedModel {
         }
     }
 
+    public function newCage($max_number_of_mice, $breed_id) {
+        $stmt =     "INSERT INTO `cage` ".
+                    "(max_number_of_mice, breed_id) ".
+                    "VALUES (?, ?)";
+        $stmt = $this->db->prepare($stmt);
+
+        if($stmt->execute(array($max_number_of_mice, $breed_id))) {
+            return $this->db->lastInsertId('id');
+        } else {
+            return -1;
+        }
+    }
+
+    public function newMouse($cage_id, $breed_id, $user_id, $gender, $name, $genotyp, $weight, $mother_id, $father_id, $age, $img_name) {
+        $stmt =     "INSERT INTO `mouse` ".
+                    "(cage_id, breed_id, user_id, gender, name, genotyp, weight, mother_id, father_id, age, img_name) ".
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->db->prepare($stmt);
+
+        if($stmt->execute(array($cage_id, $breed_id, $user_id, $gender, $name, $genotyp, $weight, $mother_id, $father_id, $age, $img_name))) {
+            return $this->db->lastInsertId('id');
+        } else {
+            return -1;
+        }
+    }
+
     public function getMiceInCage($cageId) {
         $stmt =     "SELECT * ".
                     "FROM `mouse` ".
