@@ -20,19 +20,20 @@
     <?php if (file_exists('style/' . $page . '.css')) echo "<link rel=\"stylesheet\" href=\"/style/$page.css\"/>\n"; ?>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="home" class="pull-left" style="margin-top:5px"><img src="/data/img/mouse.png"></a>
-            <a class="navbar-brand" href="/home" style="margin-left:5px">Mäusezucht</a>
-        </div>
+<div class="navbar-xs">
+    <div class="navbar-primary">
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand visible-xs" href="/home">Mäusezucht</a>
+            </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav navbar-nav navbar-right">
@@ -107,7 +108,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown" style="margin-right: 10px">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             <span class="caret"></span>
@@ -128,29 +129,19 @@
                         </ul>
                     </li>
                 </ul>
-            <?php } else { ?>
-                <form id="login_form_top" class="navbar-form navbar-right" action="/home"
-                      method="post">
-                    <div class="form-group">
-                        <input type="text" id="username" name="username" placeholder="Benutzername" class="form-control"
-                               required
-                               autofocus>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="password" name="password" placeholder="Passwort" class="form-control"
-                               required>
-                    </div>
-                    <a id="login_button_top" class="btn btn-success">Anmelden</a>
-                    <a href="/register" class="btn btn-primary">Registrieren</a>
-                </form>
             <?php } ?>
         </div>
     </div>
-</nav>
+</div>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+            <div class="mycenter">
+                <img src="/data/img/mouse_bk.png">
+                <h3 class="text-center">Mäusezucht</h3>
+            </div>
+            <br>
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                 <ul class="nav nav-sidebar">
                     <li <?= echoActiveClassIfRequestMatches("home") ?>>
