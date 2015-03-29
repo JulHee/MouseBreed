@@ -1,8 +1,14 @@
 <style>
+
+    #cage {
+        resize: both;
+        overflow: auto;
+    }
+
     .mouse {
-        width: 55px;
-        height: 30px;
-        background-image: url('/data/img/play/play_mouse_2.png');
+        width: 59px;
+        height: 34px;
+        background: url('/data/img/play/play_mouse_2.png') no-repeat center;
         position: absolute;
     }
 
@@ -11,17 +17,9 @@
     }
 
     .stopped {
-        border: 1px solid red;
+        border: 2px solid red;
+        border-radius: 5px;
     }
 </style>
 
-<div id="cage" style="height: 600px; width: 600px; background-color: #e0e0e0; position: relative;">
-
-    <div class="mouse"></div>
-    <div class="mouse"></div>
-    <div class="mouse"></div>
-    <div class="mouse"></div>
-    <div class="mouse"></div>
-    <div class="mouse"></div>
-
-</div>
+<div id="cage" style="height: 600px; width: 600px; background-color: #e0e0e0; position: relative;"></div>
