@@ -15,28 +15,28 @@ var Game = {
 
 };
 
+
 var GUI = {
 
-    selectors: {
+    Selectors: {
         cage: $('#cage')
     },
 
     onReady: function() {
         GUI.inital();
 
-        GUI.selectors.cage.on('mouseover', '.mouse', function() {
+        GUI.Selectors.cage.on('mouseover', '.mouse', function() {
             $(this).addClass('stopped');
-            $(this).stop();
         });
 
-        GUI.selectors.cage.on('mouseleave', '.mouse', function() {
+        GUI.Selectors.cage.on('mouseleave', '.mouse', function() {
             $(this).removeClass('stopped');
-            GUI.animateMouse($(this));
+            GUI.Animation.animateMouse($(this));
         });
 
-        GUI.selectors.cage.on('click', '.mouse', function() {
+        GUI.Selectors.cage.on('click', '.mouse', function() {
             if($(this).hasClass('stopped')) {
-                alert($(this).attr('id'));
+                $('#clickedMouse').text($(this).attr('id'));
             }
         });
     },
@@ -47,55 +47,76 @@ var GUI = {
 
     fillCage: function() {
         for (var key in breed.cages[Game.state.selectedCage].mice) {
-            GUI.selectors.cage.append("<div id=\"" + key + "\" class=\"mouse\"></div>");
+            GUI.Selectors.cage.append("<div id=\"" + key + "\" class=\"mouse\"></div>");
         }
 
-        GUI.selectors.mouse = $('.mouse');
+        GUI.Selectors.mouse = $('.mouse');
 
-        GUI.selectors.mouse.each(function() {
-            $(this).css({ top: Dimension.rndH(), left: Dimension.rndW() });
-            GUI.animateMouse($(this));
+        GUI.Selectors.mouse.each(function() {
+            var rndPos = GUI.Animation.rndPos($(this));
+            $(this).css({ left: rndPos[0] , top: rndPos[1] });
+            GUI.Animation.animateMouse($(this));
         });
 
     },
 
-    animateMouse: function(mouse) {
-        if(!mouse.hasClass('stopped')) {
+    Animation: {
+        animateMouse: function(mouse) {
             setTimeout(function() {
-                if(!mouse.hasClass('stopped')) {
-                    mouse.animate({ top: Dimension.rndH(), left: Dimension.rndW() },
-                        { duration: Math.random() * 2000 + 2000, complete: function() { GUI.animateMouse(mouse) } });
-                }
-            },  Math.random() * 5000);
+                    var rndPos = GUI.Animation.rndPos(mouse);
+                    mouse.animate({
+                            left: rndPos[0],
+                            top: rndPos[1]
+                        }, {
+                            duration: Math.random() * 2000 + 2000,
+                            progress: function() {
+                                if(mouse.hasClass('stopped')) {
+                                    mouse.stop();
+                                }
+                            },
+                            complete: function() {
+                                GUI.Animation.animateMouse(mouse)
+                            }
+                        }
+                    );
+                },
+                Math.random() * 5000
+            );
+        },
+
+        rndPos: function(mouse) {
+            var w = GUI.Selectors.cage.width() - mouse.width();
+            var h = GUI.Selectors.cage.height() - mouse.height();
+
+            return [Math.floor(Math.random() * w), Math.floor(Math.random() * h)];
         }
+
+        /* Kollisionsabfrage (Prototyp)
+        collision: function(mouse) {
+            var coll = false;
+            var c1 = {r: 21, x: mouse.position().left + 15, y: mouse.position().top + 15};
+
+            GUI.Selectors.mouse.each(function() {
+                if(!$(this).is(mouse)) {
+                    var c2 = {r: 21, x: $(this).position().left + 15, y: $(this).position().top + 15};
+
+                    var dx = (c1.x + c1.r) - (c2.x + c2.r);
+                    var dy = (c1.y + c1.r) - (c2.y + c2.r);
+                    var d = Math.sqrt(dx * dx + dy * dy);
+
+
+                    if (d < c1.r + c2.r){
+                        coll = true;
+                        return false;
+                    }
+                }
+            });
+
+            return coll;
+        }
+        */
     }
 
-};
-
-var Dimension = {
-    h: GUI.selectors.cage.height() - 34,
-    w: GUI.selectors.cage.width() - 59,
-
-    update: function() {
-        Dimension.h = GUI.selectors.cage.height() - 34;
-        Dimension.w = GUI.selectors.cage.width() - 59;
-    },
-
-    rndH: function() {
-        return Math.floor(Math.random() * Dimension.h);
-    },
-
-    rndW: function() {
-        return Math.floor(Math.random() * Dimension.w);
-    }
-
-};
-
-// Class Intervall
-function Intervall(a, b){}
-
-Intervall.prototype.intersects = function(that) {
-    return Math.max(this.a, that.a) <= Math.min(this.b, that.b)
 };
 
 
