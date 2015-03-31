@@ -4,8 +4,6 @@ var stage;
 var arrMouse = [];
 // Der aktuelle Käfig
 var selectedCage = 1;
-
-
 function Mouse(id) {
     this.src = "/data/img/play/play_mouse_2.png";
     this.id = id;
@@ -16,7 +14,7 @@ function Mouse(id) {
     this.mouselabel = null;
 }
 // Initialisieren der Informatioenen
-Mouse.prototype.init = function () {
+Mouse.prototype.init = function() {
     // Holen der Informationen zu der Maus aus dem LocalStorage
     var tmpInfoMouse = getInfo(this.id);
     // Laden des Bilds
@@ -35,52 +33,62 @@ Mouse.prototype.init = function () {
     this.mousecontrainer.mouseid = this.id;
     this.mousecontrainer.direction = 90;
     this.mousecontrainer.ismove = true;
+    this.mousecontrainer.isdrag = false;
     this.mousecontrainer.vX = 2;
     this.mousecontrainer.vY = 2;
     this.mousecontrainer.x = 16 + Math.random() * 300;
     this.mousecontrainer.y = 32 + Math.random() * 300;
     this.mousecontrainer.sizex = this.mouseimg.width;
     this.mousecontrainer.sizey = this.mouseimg.height;
-
     // Erstellen eines Ziels für die Maus
-    this.mousecontrainer.targetx = this.mousecontrainer.sizex + (Math.random() * (stage.canvas.width -  this.mousecontrainer.sizex));
-    this.mousecontrainer.targety = this.mousecontrainer.sizey + (Math.random() * (stage.canvas.height -  this.mousecontrainer.sizey));
-
-
-
+    this.mousecontrainer.targetx = this.mousecontrainer.sizex + (Math.random() * (stage.canvas.width - this.mousecontrainer.sizex));
+    this.mousecontrainer.targety = this.mousecontrainer.sizey + (Math.random() * (stage.canvas.height - this.mousecontrainer.sizey));
     // Erstellen der Hitbox. Achtung laut Docs püft hitTest() nicht auf Hitboxen
     var hit = new createjs.Shape();
     hit.graphics.beginFill("#000").drawRect(0, 0, this.mouseimg.width, this.mouseimg.height);
     this.mousecontrainer.hitArea = hit;
     // Registrieren der Events
     // Beim klicken laden der Informationen
-    this.mousecontrainer.on("click", function (elem) {
+    this.mousecontrainer.on("click", function(elem) {
         clickedMouse(elem.target.mouseid);
     });
     // Bei Maustastendruck (Drag-and-Drop). Später für Käfige
-    /* this.mousecontrainer.on("pressmove", function(evt) {
-     console.log(evt.currentTarget);
-     evt.currentTarget.ismove = false;
-     // currentTarget will be the container that the event listener was added to:
-     evt.currentTarget.x = evt.stageX;
-     evt.currentTarget.y = evt.stageY;
-     // make sure to redraw the stage to show the change:
-     stage.update();
-     });
-     // Beim loslasen der Maustaste
-     this.mousecontrainer.on("pressup", function(evt) {
-     evt.currentTarget.ismove = true;
-     });*/
+    this.mousecontrainer.on("pressmove", function(evt) {
+        evt.currentTarget.ismove = false;
+        evt.currentTarget.isdrag = true;
+        // currentTarget will be the container that the event listener was added to:
+        evt.currentTarget.x = evt.stageX;
+        evt.currentTarget.y = evt.stageY;
+        // make sure to redraw the stage to show the change:
+        stage.update();
+    });
+    // Beim loslasen der Maustaste
+    this.mousecontrainer.on("pressup", function(evt) {
+        evt.currentTarget.isdrag = false;
+        evt.currentTarget.ismove = true;
+    });
 };
-function refreshTarget (mousecontrainer) {
-    mousecontrainer.targetx = mousecontrainer.sizex + (Math.random() * (stage.canvas.width -  mousecontrainer.sizex));
-    mousecontrainer.targety = mousecontrainer.sizey + (Math.random() * (stage.canvas.height -  mousecontrainer.sizey));
+
+function refreshTarget(mousecontrainer) {
+    mousecontrainer.targetx = mousecontrainer.sizex + (Math.random() * (stage.canvas.width - mousecontrainer.sizex));
+    mousecontrainer.targety = mousecontrainer.sizey + (Math.random() * (stage.canvas.height - mousecontrainer.sizey));
 };
+
+function refreshTargetAbove(mousecontrainer, x, y) {
+    mousecontrainer.targetx = x + (Math.random() * (stage.canvas.width - x));
+    mousecontrainer.targety = y + (Math.random() * (stage.canvas.width - y));
+}
+
+function refreshTargetBelow(mousecontrainer, x, y) {
+    mousecontrainer.targetx = x - (Math.random() * (stage.canvas.width - x));
+    mousecontrainer.targety = y - (Math.random() * (stage.canvas.width - y));
+}
 
 function move(mousecontrainer) {
+    // Prüfen auf Collision
+    checkCollision();
     var absx = Math.abs(mousecontrainer.x - mousecontrainer.targetx);
     var absy = Math.abs(mousecontrainer.y - mousecontrainer.targety);
-
     if (absx <= 10 || absy <= 10) {
         refreshTarget(mousecontrainer);
     } else {
@@ -162,38 +170,39 @@ function init() {
 function checkCollision() {
     for (var i = 0; i < arrMouse.length - 1; i++) {
         for (var k = i + 1; k < arrMouse.length - 1; k++) {
-            var isCollision = ndgmr.checkRectCollision(arrMouse[i].mousecontrainer, arrMouse[k].mousecontrainer);
-            if (isCollision != null) {
-                // Eine Kollision ist aufgetretten
-                arrMouse[i].mousecontrainer.ismove = false;
-                arrMouse[i].mousecontrainer.alpha = 0.2;
-            } else {
-                arrMouse[i].mousecontrainer.ismove = true;
-                arrMouse[i].mousecontrainer.alpha = 1;
+            var elem1 = arrMouse[i].mousecontrainer;
+            var elem2 = arrMouse[k].mousecontrainer;
+            if (!(elem1.isdrag || elem2.isdrag)) {
+                var isCollision = ndgmr.checkRectCollision(elem1, elem2);
+                if (isCollision != null) {
+                    // Eine Kollision ist aufgetretten
+                    // Bestimmen werlches das obere Element ist
+                    if (elem1.y > elem1.y) {
+                        refreshTargetAbove(elem1, elem1.x, elem1.y);
+                        refreshTargetBelow(elem2, elem2.x, elem2.y);
+                    } else {
+                        refreshTargetBelow(elem1, elem1.x, elem1.y);
+                        refreshTargetAbove(elem2, elem2.x, elem2.y);
+                    }
+                }
             }
         }
     }
 }
 
 function tick(event) {
-
-    // Prüfen auf Collision
-    checkCollision();
-
     for (var i = 0; i < arrMouse.length - 1; i++) {
         // Aktuelles Element
         var elem = arrMouse[i].mousecontrainer;
         // Umrechnen der Maus von Gobal nach Lokal
         var pt = elem.globalToLocal(stage.mouseX, stage.mouseY);
-
         // Checken über welchem Element die Maus schwebt
         if (stage.mouseInBounds && elem.hitTest(pt.x, pt.y)) {
             elem.alpha = 0.5;
         } else {
             elem.alpha = 1;
-
             // Wenn das Element nicht eine Collision erzeugt bewegt wird
-            if (elem.ismove) {
+            if (!elem.isdrag && elem.ismove) {
                 move(elem);
             }
         }
@@ -201,7 +210,7 @@ function tick(event) {
     // Aktualisieren des Canvas
     stage.update(event);
 }
-$(document).ready(function () {
+$(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
 });
