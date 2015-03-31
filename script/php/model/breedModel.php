@@ -175,6 +175,24 @@ class breedModel {
         }
     }
 
+    public function saveBreed($breed) {
+
+        foreach($breed['cages'] as $cage) {
+            foreach($cage['mice'] as $mouse) {
+                $stmt =     "UPDATE mouse ".
+                            "SET cage_id = ?, weight = ?, age = ? ".
+                            "WHERE id = ?";
+                $stmt = $this->db->prepare($stmt);
+
+                if(!$stmt->execute(array($mouse['cage_id'], $mouse['weight'], $mouse['age'], $mouse['id']))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
 }
 
 ?>

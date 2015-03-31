@@ -213,6 +213,9 @@
                     <li <?= echoActiveClassIfRequestMatches("devtest") ?>><a href="/devtest"><span
                                 class="glyphicon glyphicon-check" aria-hidden="true"></span> DevTest</a>
                     </li>
+                    <li <?= echoActiveClassIfRequestMatches("animationTest") ?>><a href="/animationTest"><span
+                                class="glyphicon glyphicon-check" aria-hidden="true"></span> AnimationTest</a>
+                    </li>
                 </ul>
             <?php } ?>
         </div>

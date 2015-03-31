@@ -89,8 +89,25 @@ var engine = {
 
     },
 
+
     setOwnGender : function(mouse_ID,userGender){
         loadedBreed["currentCage"]["mice"][mouse_ID]["userGender"] = userGender;
+    },
+
+    save: function() {
+
+        $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/saveBreed.php",
+            data: { breed: JSON.stringify(loadedBreed) },
+            dataType: "json"
+        }).done(function (response) {
+            if (response.success == true) {
+                alert("Gespeichert");
+            } else {
+                alert("Fehler");
+            }
+        });
     }
 }
 
