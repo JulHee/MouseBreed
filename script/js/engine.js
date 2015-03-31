@@ -31,7 +31,7 @@ var engine = {
 
     changeCage: function(mouse_ID,old_cage_ID,new_cage_ID){
         var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];   /*gewünschte Maus heraussuchen*/
-        choosenMouse["cage_id"] = new_cage_ID;                                     /*die neue cage_ID wird gesetzt*/
+        choosenMouse["cage_id"] = new_cage_ID;                              /*die neue cage_ID wird gesetzt*/
         loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse; /*choosenMouse wird in den neuen Käfig angefügt*/
         delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];         /*choosenMouse aus dem Alten Käfig-Objekt löschen*/
     },
@@ -55,7 +55,7 @@ var engine = {
         } else {
 
             // nicht erstellt
-
+            addBen("Käfig nicht erstellt","Der Käfig wurde nicht erstellt, Fehler beim Datenbankzugriff","Warn");
             // Rückgabe?
         }
 
@@ -83,14 +83,14 @@ var engine = {
         } else {
 
             // nicht erstellt
-
+            addBen("Käfig nicht erstellt","Die Maus wurde nicht erstellt, Fehler beim Datenbankzugriff","Warn");
             // Rückgabe?
         }
 
     },
 
-    setOwnGender : function(mouse_ID,ownGender){
-        loadedBreed["currentCage"]["mice"][mouse_ID]["gender"] = ownGender;
+    setOwnGender : function(mouse_ID,userGender){
+        loadedBreed["currentCage"]["mice"][mouse_ID]["userGender"] = userGender;
     }
 }
 
@@ -133,7 +133,7 @@ var clock = {
         var l = mouseArray.length;
         for(var i= 0;i<l;i++){
             if(i[cage_id]==-1){
-                if(level=1){
+                if(level==1){
                     addBen("Nicht zugeordnete Mäuse","Es gibt Mäuse die noch keinem Käfig zugeordnet sind !!!","warn")
                 }else{
                     addBen("†","Die freilauende Maus wurde von der Katze gefressen","error")
