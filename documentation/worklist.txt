@@ -33,18 +33,12 @@
     soziale Unverträglichkeit = gleich geschlechtlich NUR aus einem Wurf gut.
                                 Ein Männchen zu ein bzw. mehreren Weibchen(1:N).
                                 Nach der Paarung Männchen NUR möglich bei Weibchen bleiben , oder einzel Käfig
-    Paarung erfolgt sofort nach dem Zusammensetzten von M und W.
+-Paarung erfolgt nach dem Zusammensetzten von M und W bei nextDay().
 
 - Steckbrief
 --- Gewicht ab 20 Tage sichtbar
-
-
-- Mäuse zum Testen erstellen
-
-- Funktion um Mäusen andere Käfige zu zu weisen. Z.b. changeCage(mouse_ID,cage_id,cage_ID)
 - um das Feld von den Mäusen für das vom user gewählten Geschlecht, Funktion um das zu aktualisieren.
 -- setze currentCage richtig!!!
-- Hinzufügen von Käfigen/Mäusen
 
 
 (Jörn)

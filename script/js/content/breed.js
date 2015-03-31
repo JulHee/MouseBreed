@@ -1,6 +1,11 @@
 var BasicFunctions = {
 
     onReady :  function () {
+
+        $("#save").click(function(){
+            engine.save();
+        })
+
         /*Aktionen wenn ein Tag weiter geklickt wird*/
         $(nextDay()).click(function(){
             nextDay($_SESSION['loadedBreed']);

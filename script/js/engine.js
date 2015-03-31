@@ -119,7 +119,11 @@ var clock = {
         checkHomelessMouse(breed);
     },
 
-    gainWeight: function (mouseArray) {
+    pairing: function (breed) {
+
+    },
+
+    gainWeight: function (breed) {
         /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/
         var addWeightMale = [0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.84, 0.53, 0.53, 0.53, 0.53,
             0.53, 0.53, 0.52, 0.24, 0.24, 0.24, 0.24, 0.24, 0.24, 0.26, 0.26, 0.26, 0.26, 0.26, 0.26, 0.26, 0.24, 0.16,
@@ -135,25 +139,31 @@ var clock = {
             0.14, 0.14, 0.16, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.06, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.06, 0.04,
             0.04, 0.04, 0.04, 0.04, 0.04, 0.06, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.06, 0.06, 0.06, 0.06, 0.06,
             0.06, 0.04, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.08, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.04];
-        for (var i = 0,l = mouseArray.length ; i < l; i++) {
-            if(mouseArray[i].gender=0) {
-                mouseArray[i].weight += addWeightMale[$_SESSION['loadedBreed'][timeUnit]];
-            }else{
-                mouseArray[i].weight += addWeightFemale[$_SESSION['loadedBreed'][timeUnit]];
+        for ( i in breed["cages"]) {
+            for( j in breed["cages"][i]["mice"]){
+                var tmpMouse = breed["cages"][i]["mice"][j];
+                if(tmpMouse["age"]>20)
+                {
+                    if (tmpMouse["gender"] == 0) {
+                        tmpMouse["weight"] += addWeightFemale[tmpMouse["age"-20]];
+                    } else {
+                        tmpMouse["weight"] += addWeightMale[tmpMouse["age"-20]];
+                    }
+                }
             }
         }
     },
 
     checkHomelessMouse: function(breed){
-        var level = breed[target];
-        var mouseArray = breed[mice];
-        var l = mouseArray.length;
-        for(var i= 0;i<l;i++){
-            if(i[cage_id]==-1){
-                if(level==1){
-                    addBen("Nicht zugeordnete Mäuse","Es gibt Mäuse die noch keinem Käfig zugeordnet sind !!!","warn")
-                }else{
-                    addBen("†","Die freilauende Maus wurde von der Katze gefressen","error")
+        var level = breed["target"];
+        for(i in loadedBreed["cages"]){
+            for(j in loadedBreed["cages"][i]["mice"]) {
+                if (j["cage_id"] == -1) {
+                    if (level == 1) {
+                        addBen("Nicht zugeordnete Mäuse", "Es gibt Mäuse die noch keinem Käfig zugeordnet sind !!!", "warn")
+                    } else {
+                        addBen("†", "Die freilauende Maus wurde von der Katze gefressen", "error")
+                    }
                 }
             }
 
