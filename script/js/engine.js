@@ -1,4 +1,5 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
+var numberOfDays= 0;
 
 var engine = {
 
@@ -113,15 +114,29 @@ var engine = {
 
 var clock = {
 
-    nextDay: function (breed) {
-        breed[timeUnit] = breed[timeUnit]+1;
-        gainWeight(breed[mice]);
-        checkHomelessMouse(breed);
+    nextDay: function () {
+        loadedBreed[timeUnit] = breed[timeUnit]+1;
+        gainWeight(loadedBreed);
+        checkHomelessMouse(loadedBreed);
     },
 
     pairing: function (breed) {
 
     },
+
+    /*increaseDay: function(){
+        var currDate = new Date();
+        var currYear = currDate.getFullYear();
+        var currMonth = currDate.getUTCMonth();
+        var currDay = currDate.getUTCDay();
+        var Date = loadedBreed["time_of_creation"].split("-");
+        if(currYear == Date[0] && currMonth == Date[1]){
+            numberOfDays = currDay - Date[2];
+        }else{
+            if(...)
+        }
+
+    }, */
 
     gainWeight: function (breed) {
         /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/

@@ -6,11 +6,6 @@ var BasicFunctions = {
             engine.save();
         })
 
-        /*Aktionen wenn ein Tag weiter geklickt wird*/
-        $(nextDay()).click(function(){
-            nextDay($_SESSION['loadedBreed']);
-        });
-
         /*Wechsel der ausgewähltn Maus*/
         $("#ListMouse a").on("click", function(){
             var activeMouse = $('#ListMouse').find(".active");

@@ -96,10 +96,21 @@ function saveGameState(array_of_mouses) {
     }
 
 }
+var NextDay = {
 
+    onReady: function () {
+        $("#sidebarNextDay").click(NextDay.run);
+    },
+
+    run: function () {
+        clock.nextDay();
+
+    }
+};
 
 $(document).ready(function () {
     Logout.onReady();
+    NextDay.onReady();
 
     $("#mybutton").click(
         function () {
