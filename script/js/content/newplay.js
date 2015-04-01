@@ -10,7 +10,7 @@ function Mouse(id) {
     this.move = true;
     this.mouseimg = new Image();
     this.mouseani = null;
-    this.mousecontrainer = null;
+    this.mousecontainer = null;
     this.mouselabel = null;
 }
 // Initialisieren der Informatioenen
@@ -28,32 +28,32 @@ Mouse.prototype.init = function() {
     this.mouselabel.y = 35;
     this.mouselabel.x = 20;
     // Erstellen des Containers der das Label und das Bild beinhaltet
-    this.mousecontrainer = new createjs.Container();
-    this.mousecontrainer.addChild(this.mouseani, this.mouselabel);
-    this.mousecontrainer.mouseid = this.id;
-    this.mousecontrainer.direction = 90;
-    this.mousecontrainer.ismove = true;
-    this.mousecontrainer.isdrag = false;
-    this.mousecontrainer.vX = 2;
-    this.mousecontrainer.vY = 2;
-    this.mousecontrainer.x = 16 + Math.random() * 300;
-    this.mousecontrainer.y = 32 + Math.random() * 300;
-    this.mousecontrainer.sizex = this.mouseimg.width;
-    this.mousecontrainer.sizey = this.mouseimg.height;
+    this.mousecontainer = new createjs.Container();
+    this.mousecontainer.addChild(this.mouseani, this.mouselabel);
+    this.mousecontainer.mouseid = this.id;
+    this.mousecontainer.direction = 90;
+    this.mousecontainer.ismove = true;
+    this.mousecontainer.isdrag = false;
+    this.mousecontainer.vX = 2;
+    this.mousecontainer.vY = 2;
+    this.mousecontainer.x = 16 + Math.random() * 300;
+    this.mousecontainer.y = 32 + Math.random() * 300;
+    this.mousecontainer.sizex = this.mouseimg.width;
+    this.mousecontainer.sizey = this.mouseimg.height;
     // Erstellen eines Ziels für die Maus
-    this.mousecontrainer.targetx = this.mousecontrainer.sizex + (Math.random() * (stage.canvas.width - this.mousecontrainer.sizex));
-    this.mousecontrainer.targety = this.mousecontrainer.sizey + (Math.random() * (stage.canvas.height - this.mousecontrainer.sizey));
+    this.mousecontainer.targetx = this.mousecontainer.sizex + (Math.random() * (stage.canvas.width - this.mousecontainer.sizex));
+    this.mousecontainer.targety = this.mousecontainer.sizey + (Math.random() * (stage.canvas.height - this.mousecontainer.sizey));
     // Erstellen der Hitbox. Achtung laut Docs püft hitTest() nicht auf Hitboxen
     var hit = new createjs.Shape();
     hit.graphics.beginFill("#000").drawRect(0, 0, this.mouseimg.width, this.mouseimg.height);
-    this.mousecontrainer.hitArea = hit;
+    this.mousecontainer.hitArea = hit;
     // Registrieren der Events
     // Beim klicken laden der Informationen
-    this.mousecontrainer.on("click", function(elem) {
+    this.mousecontainer.on("click", function(elem) {
         clickedMouse(elem.target.mouseid);
     });
     // Bei Maustastendruck (Drag-and-Drop). Später für Käfige
-    this.mousecontrainer.on("pressmove", function(evt) {
+    this.mousecontainer.on("pressmove", function(evt) {
         evt.currentTarget.ismove = false;
         evt.currentTarget.isdrag = true;
         // currentTarget will be the container that the event listener was added to:
@@ -63,65 +63,65 @@ Mouse.prototype.init = function() {
         stage.update();
     });
     // Beim loslasen der Maustaste
-    this.mousecontrainer.on("pressup", function(evt) {
+    this.mousecontainer.on("pressup", function(evt) {
         evt.currentTarget.isdrag = false;
         evt.currentTarget.ismove = true;
     });
 };
 
-function refreshTarget(mousecontrainer) {
-    mousecontrainer.targetx = mousecontrainer.sizex + (Math.random() * (stage.canvas.width - mousecontrainer.sizex));
-    mousecontrainer.targety = mousecontrainer.sizey + (Math.random() * (stage.canvas.height - mousecontrainer.sizey));
+function refreshTarget(mousecontainer) {
+    mousecontainer.targetx = mousecontainer.sizex + (Math.random() * (stage.canvas.width - mousecontainer.sizex));
+    mousecontainer.targety = mousecontainer.sizey + (Math.random() * (stage.canvas.height - mousecontainer.sizey));
 };
 
-function refreshTargetAbove(mousecontrainer, x, y) {
-    mousecontrainer.targetx = x + (Math.random() * (stage.canvas.width - x));
-    mousecontrainer.targety = y + (Math.random() * (stage.canvas.width - y));
+function refreshTargetAbove(mousecontainer, x, y) {
+    mousecontainer.targetx = x + (Math.random() * (stage.canvas.width - x));
+    mousecontainer.targety = y + (Math.random() * (stage.canvas.width - y));
 }
 
-function refreshTargetBelow(mousecontrainer, x, y) {
-    mousecontrainer.targetx = x - (Math.random() * (stage.canvas.width - x));
-    mousecontrainer.targety = y - (Math.random() * (stage.canvas.width - y));
+function refreshTargetBelow(mousecontainer, x, y) {
+    mousecontainer.targetx = x - (Math.random() * (stage.canvas.width - x));
+    mousecontainer.targety = y - (Math.random() * (stage.canvas.width - y));
 }
 
-function move(mousecontrainer) {
+function move(mousecontainer) {
     // Prüfen auf Collision
     checkCollision();
-    var absx = Math.abs(mousecontrainer.x - mousecontrainer.targetx);
-    var absy = Math.abs(mousecontrainer.y - mousecontrainer.targety);
+    var absx = Math.abs(mousecontainer.x - mousecontainer.targetx);
+    var absy = Math.abs(mousecontainer.y - mousecontainer.targety);
     if (absx <= 10 || absy <= 10) {
-        refreshTarget(mousecontrainer);
+        refreshTarget(mousecontainer);
     } else {
-        if (mousecontrainer.x < mousecontrainer.targetx && mousecontrainer.y < mousecontrainer.targety) {
-            mousecontrainer.x += mousecontrainer.vX;
-            mousecontrainer.y += mousecontrainer.vY;
-        } else if (mousecontrainer.x > mousecontrainer.targetx && mousecontrainer.y < mousecontrainer.targety) {
-            mousecontrainer.x -= mousecontrainer.vX;
-            mousecontrainer.y += mousecontrainer.vY;
-        } else if (mousecontrainer.x < mousecontrainer.targetx && mousecontrainer.y > mousecontrainer.targety) {
-            mousecontrainer.x += mousecontrainer.vX;
-            mousecontrainer.y -= mousecontrainer.vY;
-        } else if (mousecontrainer.x > mousecontrainer.targetx && mousecontrainer.y > mousecontrainer.targety) {
-            mousecontrainer.x -= mousecontrainer.vX;
-            mousecontrainer.y -= mousecontrainer.vY;
-        } else if (mousecontrainer.x == mousecontrainer.targetx && mousecontrainer.y < mousecontrainer.targety) {
-            mousecontrainer.y += mousecontrainer.vY;
-        } else if (mousecontrainer.x == mousecontrainer.targetx && mousecontrainer.y > mousecontrainer.targety) {
-            mousecontrainer.y -= mousecontrainer.vY;
-        } else if (mousecontrainer.x < mousecontrainer.targetx && mousecontrainer.y == mousecontrainer.targety) {
-            mousecontrainer.x += mousecontrainer.vX;
-        } else if (mousecontrainer.x > mousecontrainer.targetx && mousecontrainer.y == mousecontrainer.targety) {
-            mousecontrainer.x -= mousecontrainer.vX;
+        if (mousecontainer.x < mousecontainer.targetx && mousecontainer.y < mousecontainer.targety) {
+            mousecontainer.x += mousecontainer.vX;
+            mousecontainer.y += mousecontainer.vY;
+        } else if (mousecontainer.x > mousecontainer.targetx && mousecontainer.y < mousecontainer.targety) {
+            mousecontainer.x -= mousecontainer.vX;
+            mousecontainer.y += mousecontainer.vY;
+        } else if (mousecontainer.x < mousecontainer.targetx && mousecontainer.y > mousecontainer.targety) {
+            mousecontainer.x += mousecontainer.vX;
+            mousecontainer.y -= mousecontainer.vY;
+        } else if (mousecontainer.x > mousecontainer.targetx && mousecontainer.y > mousecontainer.targety) {
+            mousecontainer.x -= mousecontainer.vX;
+            mousecontainer.y -= mousecontainer.vY;
+        } else if (mousecontainer.x == mousecontainer.targetx && mousecontainer.y < mousecontainer.targety) {
+            mousecontainer.y += mousecontainer.vY;
+        } else if (mousecontainer.x == mousecontainer.targetx && mousecontainer.y > mousecontainer.targety) {
+            mousecontainer.y -= mousecontainer.vY;
+        } else if (mousecontainer.x < mousecontainer.targetx && mousecontainer.y == mousecontainer.targety) {
+            mousecontainer.x += mousecontainer.vX;
+        } else if (mousecontainer.x > mousecontainer.targetx && mousecontainer.y == mousecontainer.targety) {
+            mousecontainer.x -= mousecontainer.vX;
         }
     }
     /*
-    mousecontrainer.x += mousecontrainer.vX;
-    mousecontrainer.y += mousecontrainer.vY;
-    if (mousecontrainer.x > stage.canvas.width) {
-        mousecontrainer.x = 0;
+    mousecontainer.x += mousecontainer.vX;
+    mousecontainer.y += mousecontainer.vY;
+    if (mousecontainer.x > stage.canvas.width) {
+        mousecontainer.x = 0;
     }
-    if (mousecontrainer.y > stage.canvas.height) {
-        mousecontrainer.y = 0;
+    if (mousecontainer.y > stage.canvas.height) {
+        mousecontainer.y = 0;
     }*/
 }
 
@@ -158,7 +158,7 @@ function init() {
     updateMouseArray(1);
     // Hinzufügen aller Mäuse im Array in das Canvas
     for (var i = 0; i < arrMouse.length - 1; i++) {
-        stage.addChild(arrMouse[i].mousecontrainer);
+        stage.addChild(arrMouse[i].mousecontainer);
     }
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
@@ -170,8 +170,8 @@ function init() {
 function checkCollision() {
     for (var i = 0; i < arrMouse.length - 1; i++) {
         for (var k = i + 1; k < arrMouse.length - 1; k++) {
-            var elem1 = arrMouse[i].mousecontrainer;
-            var elem2 = arrMouse[k].mousecontrainer;
+            var elem1 = arrMouse[i].mousecontainer;
+            var elem2 = arrMouse[k].mousecontainer;
             if (!(elem1.isdrag || elem2.isdrag)) {
                 var isCollision = ndgmr.checkRectCollision(elem1, elem2);
                 if (isCollision != null) {
@@ -193,7 +193,7 @@ function checkCollision() {
 function tick(event) {
     for (var i = 0; i < arrMouse.length - 1; i++) {
         // Aktuelles Element
-        var elem = arrMouse[i].mousecontrainer;
+        var elem = arrMouse[i].mousecontainer;
         // Umrechnen der Maus von Gobal nach Lokal
         var pt = elem.globalToLocal(stage.mouseX, stage.mouseY);
         // Checken über welchem Element die Maus schwebt
