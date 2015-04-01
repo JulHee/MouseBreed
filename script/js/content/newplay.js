@@ -2,6 +2,8 @@
 var stage;
 // Array das alle Mause enthält
 var arrMouse = [];
+// Array das alle Käfige enthält
+var arrCage = [];
 // Der aktuelle Käfig
 var selectedCage = 1;
 //linke Breite des Canvas (Mausbereich)
@@ -68,12 +70,18 @@ Mouse.prototype.init = function() {
     this.mousecontainer.on("pressup", function(evt) {
         evt.currentTarget.isdrag = false;
         evt.currentTarget.ismove = true;
+
+        /*
+            // Prüfen ob die Maus über einem der Käfige schwebt
+            var isCollision = ndgmr.checkRectCollision(elem1, elem2);
+         */
+
     });
 };
 
 function Cage(id){
     this.id = id;
-    this.src = "/data/img/play/cage_small_with_bg.png";
+    this.src = "/data/img/play/cage_small_with_bg_rounded.png";
     this.cagecontainer = null;
     this.cagelabel = null;
     this.cageani = null;
@@ -88,7 +96,13 @@ Cage.prototype.init = function(y) {
     this.cagecontainer = new createjs.Container();
     this.cagecontainer.addChild(this.cageani,this.cagelabel);
     this.cagecontainer.x = 600;
-    this.cagecontainer.y = y*63;
+    this.cagecontainer.y = y*62;
+    this.cagecontainer.cageid = this.id;
+
+    this.cagecontainer.on("click", function(evt){
+        console.log(evt);
+        addBen("Käfig #"+evt.currentTarget.cageid,"Es wurde der Käfig gewechselt","info");
+    });
 };
 
 function refreshTarget(mousecontainer) {
@@ -169,7 +183,20 @@ function clickedMouse(id) {
 
 }
 
-
+function getCages(){
+    // Auslesen der Elemente aus dem localStorage
+    var data = localStorage.getItem("loadedBreed");
+    var parsedData = JSON.parse(data);
+    var thisCage = parsedData.cages;
+    var counter = 0;
+    for (var cages in thisCage){
+        var tmp = new Cage(thisCage[cages].id);
+        tmp.init(counter);
+        arrCage.push(tmp);
+        console.log(tmp.cagecontainer.y);
+        counter +=1;
+    }
+}
 
 function updateMouseArray(cageid) {
     selectedCage = cageid;
@@ -208,18 +235,19 @@ function init() {
     // Zeichnen des Hintergrundes
     drawBackground();
 
-    // Test Käfig
-    var test = new Cage(3);
-    test.init(0);
-    stage.addChild(test.cagecontainer);
-    var test2 = new Cage(2);
-    test2.init(1);
-    stage.addChild(test2.cagecontainer);
+    // Laden der Käfiginformationen
+    getCages();
+
+    // Hinzufügen der Käfige
+    console.log(arrCage);
+    for (i=0;i < arrCage.length;i++){
+      stage.addChild(arrCage[i].cagecontainer);
+    }
 
     // Laden der Käfiginformationen
     updateMouseArray(1);
     // Hinzufügen aller Mäuse im Array in das Canvas
-    for (var i = 0; i < arrMouse.length - 1; i++) {
+    for (i = 0; i < arrMouse.length; i++) {
         stage.addChild(arrMouse[i].mousecontainer);
     }
 
@@ -231,8 +259,8 @@ function init() {
 }
 
 function checkCollision() {
-    for (var i = 0; i < arrMouse.length - 1; i++) {
-        for (var k = i + 1; k < arrMouse.length - 1; k++) {
+    for (var i = 0; i < arrMouse.length; i++) {
+        for (var k = i + 1; k < arrMouse.length; k++) {
             var elem1 = arrMouse[i].mousecontainer;
             var elem2 = arrMouse[k].mousecontainer;
             if (!(elem1.isdrag || elem2.isdrag)) {
@@ -254,7 +282,7 @@ function checkCollision() {
 }
 
 function tick(event) {
-    for (var i = 0; i < arrMouse.length - 1; i++) {
+    for (var i = 0; i < arrMouse.length; i++) {
         // Aktuelles Element
         var elem = arrMouse[i].mousecontainer;
         // Umrechnen der Maus von Gobal nach Lokal
