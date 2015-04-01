@@ -146,10 +146,6 @@ function move(mousecontainer) {
     }
 }
 
-function clickedMouse(id) {
-    $('#clickinfo').text(id);
-}
-
 function getInfo(mouseid) {
     var data = localStorage.getItem("loadedBreed");
     var parsedData = JSON.parse(data);
@@ -157,6 +153,21 @@ function getInfo(mouseid) {
     var thisMice = thisCage[selectedCage].mice;
     return thisMice[mouseid];
 }
+
+function clickedMouse(id) {
+    var info = getInfo(id);
+    $("#mouseinfoName").text(info.name);
+    $("#mouseinfoAge").text(info.age);
+    if (info.gender == 1) {
+        $('#mouseinfoGender').text("Männlich");
+    } else {
+        $('#mouseinfoGender').text("Weiblich");
+    }
+    $("#mouseinfoWeight").text(info.weight);
+
+}
+
+
 
 function updateMouseArray(cageid) {
     selectedCage = cageid;
@@ -195,13 +206,6 @@ function init() {
     // Zeichnen des Hintergrundes
     drawBackground();
 
-    // Laden der Käfiginformationen
-    updateMouseArray(1);
-    // Hinzufügen aller Mäuse im Array in das Canvas
-    for (var i = 0; i < arrMouse.length - 1; i++) {
-        stage.addChild(arrMouse[i].mousecontainer);
-    }
-
     // Test Käfig
     var test = new Cage(3);
     test.init(0);
@@ -210,6 +214,12 @@ function init() {
     test2.init(1);
     stage.addChild(test2.cagecontainer);
 
+    // Laden der Käfiginformationen
+    updateMouseArray(1);
+    // Hinzufügen aller Mäuse im Array in das Canvas
+    for (var i = 0; i < arrMouse.length - 1; i++) {
+        stage.addChild(arrMouse[i].mousecontainer);
+    }
 
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
@@ -250,6 +260,7 @@ function tick(event) {
         // Checken über welchem Element die Maus schwebt
         if (stage.mouseInBounds && elem.hitTest(pt.x, pt.y)) {
             elem.alpha = 0.5;
+            clickedMouse(elem.mouseid);
         } else {
             elem.alpha = 1;
             // Wenn das Element nicht eine Collision erzeugt bewegt wird
