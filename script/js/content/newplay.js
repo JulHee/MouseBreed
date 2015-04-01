@@ -93,13 +93,23 @@ function refreshTarget(mousecontainer) {
 }
 
 function refreshTargetAbove(mousecontainer, x, y) {
-    mousecontainer.targetx = x + (Math.random() * (stage.canvas.width - x));
+    var rngv = Math.random();
     mousecontainer.targety = y + (Math.random() * (stage.canvas.width - y));
+    if (rngv <= 0.5) {
+        mousecontainer.targetx = x + (Math.random() * (stage.canvas.width - x));
+    } else {
+        mousecontainer.targetx = x - (Math.random() * (stage.canvas.width - x));
+    }
 }
 
 function refreshTargetBelow(mousecontainer, x, y) {
-    mousecontainer.targetx = x - (Math.random() * (stage.canvas.width - x));
+    var rngv2 = Math.random();
     mousecontainer.targety = y - (Math.random() * (stage.canvas.width - y));
+    if (rngv2 <= 0.5) {
+        mousecontainer.targetx = x - (Math.random() * (stage.canvas.width - x));
+    } else {
+        mousecontainer.targetx = x + (Math.random() * (stage.canvas.width - x));
+    }
 }
 
 function move(mousecontainer) {
