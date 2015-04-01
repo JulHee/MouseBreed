@@ -78,7 +78,7 @@
         </div>
     </div>
     <div class="mycenter">
-        <canvas id="demoCanvas" width="800" height="500" style="border: solid #201d1b;"></canvas>
+        <canvas id="demoCanvas" width="800" height="500"></canvas>
     </div>
 </div>
 

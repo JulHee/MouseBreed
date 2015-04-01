@@ -11,8 +11,6 @@ var mousezone = 600;
 function Mouse(id) {
     this.src = "/data/img/play/play_mouse_2.png";
     this.id = id;
-    this.move = true;
-    this.mouseimg = new Image();
     this.mouseani = null;
     this.mousecontainer = null;
     this.mouselabel = null;
@@ -21,10 +19,8 @@ function Mouse(id) {
 Mouse.prototype.init = function() {
     // Holen der Informationen zu der Maus aus dem LocalStorage
     var tmpInfoMouse = getInfo(this.id);
-    // Laden des Bilds
-    this.mouseimg.src = this.src;
     // Konvertieren in ein createjs.Bitmap
-    this.mouseani = new createjs.Bitmap(this.mouseimg);
+    this.mouseani = new createjs.Bitmap(this.src);
     // Erstellen des Labels
     this.mouselabel = new createjs.Text("#" + tmpInfoMouse.id + ":" + tmpInfoMouse.name, "bold 14px Arial", "#314ddf");
     this.mouselabel.textAlign = "center";
@@ -42,22 +38,29 @@ Mouse.prototype.init = function() {
     this.mousecontainer.vY = 2;
     this.mousecontainer.x = 16 + Math.random() * 300;
     this.mousecontainer.y = 32 + Math.random() * 300;
-    this.mousecontainer.sizex = this.mouseimg.width;
-    this.mousecontainer.sizey = this.mouseimg.height;
+    this.mousecontainer.sizex = this.mousecontainer.getBounds().width;
+    this.mousecontainer.sizey = this.mousecontainer.getBounds().height;
     // Erstellen eines Ziels für die Maus
     this.mousecontainer.targetx = this.mousecontainer.sizex + (Math.random() * (mousezone - this.mousecontainer.sizex));
     this.mousecontainer.targety = this.mousecontainer.sizey + (Math.random() * (stage.canvas.height - this.mousecontainer.sizey));
     // Erstellen der Hitbox. Achtung laut Docs püft hitTest() nicht auf Hitboxen
     var hit = new createjs.Shape();
-    hit.graphics.beginFill("#000").drawRect(0, 0, this.mouseimg.width, this.mouseimg.height);
+    hit.graphics.beginFill("#000").drawRect(0, 0, this.mousecontainer.width, this.mousecontainer.height);
     this.mousecontainer.hitArea = hit;
     // Registrieren der Events
     // Beim klicken laden der Informationen
-    this.mousecontainer.on("click", function(elem) {
-        clickedMouse(elem.target.mouseid);
+    this.mousecontainer.on("click",function(evt){
+        console.log("test");
+        clickedMouse(evt.target.mouseid);
+    });
+
+    this.mousecontainer.on("mouseover", function(elem) {
+        console.log(elem);
+        elem.target.ismove = false;
+        stage.update();
     });
     // Bei Maustastendruck (Drag-and-Drop). Später für Käfige
-    this.mousecontainer.on("pressmove", function(evt) {
+    this.mousecontainer.addEventListener("mousedown", function(evt) {
         evt.currentTarget.ismove = false;
         evt.currentTarget.isdrag = true;
         // currentTarget will be the container that the event listener was added to:
@@ -68,14 +71,15 @@ Mouse.prototype.init = function() {
     });
     // Beim loslasen der Maustaste
     this.mousecontainer.on("pressup", function(evt) {
+        // Prüfen ob die Maus über einem der Käfige schwebt
+        for (var i=0; i < arrCage.length;i++){
+            var isCollision = ndgmr.checkRectCollision(evt.currentTarget,arrCage[i].cagecontainer);
+            if (isCollision!=null){
+                console.log(i);
+            }
+        }
         evt.currentTarget.isdrag = false;
         evt.currentTarget.ismove = true;
-
-        /*
-            // Prüfen ob die Maus über einem der Käfige schwebt
-            var isCollision = ndgmr.checkRectCollision(elem1, elem2);
-         */
-
     });
 };
 
@@ -193,7 +197,6 @@ function getCages(){
         var tmp = new Cage(thisCage[cages].id);
         tmp.init(counter);
         arrCage.push(tmp);
-        console.log(tmp.cagecontainer.y);
         counter +=1;
     }
 }
@@ -232,6 +235,8 @@ function drawBackground(){
 function init() {
     // Laden des Canvas
     stage = new createjs.Stage("demoCanvas");
+    stage.enableMouseOver();
+    stage.mouseChildren = true;
     // Zeichnen des Hintergrundes
     drawBackground();
 
@@ -239,7 +244,6 @@ function init() {
     getCages();
 
     // Hinzufügen der Käfige
-    console.log(arrCage);
     for (i=0;i < arrCage.length;i++){
       stage.addChild(arrCage[i].cagecontainer);
     }
@@ -251,11 +255,14 @@ function init() {
         stage.addChild(arrMouse[i].mousecontainer);
     }
 
+
+
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
     createjs.Ticker.setFPS(60);
     stage.update();
+    console.log(stage);
 }
 
 function checkCollision() {
@@ -285,7 +292,10 @@ function tick(event) {
     for (var i = 0; i < arrMouse.length; i++) {
         // Aktuelles Element
         var elem = arrMouse[i].mousecontainer;
-        // Umrechnen der Maus von Gobal nach Lokal
+
+
+
+       // Umrechnen der Maus von Gobal nach Lokal
         var pt = elem.globalToLocal(stage.mouseX, stage.mouseY);
         // Checken über welchem Element die Maus schwebt
         if (stage.mouseInBounds && elem.hitTest(pt.x, pt.y)) {
