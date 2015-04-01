@@ -69,10 +69,28 @@ Mouse.prototype.init = function() {
     });
 };
 
+function Cage(id){
+    this.id = id;
+    this.src = "/data/img/play/cage_small.png";
+    this.cagecontainer = null;
+    this.cagelabel = null;
+    this.cageani = null;
+}
+
+Cage.prototype.init = function() {
+    this.cageani = new createjs.Bitmap(this.src);
+    this.cagelabel = new createjs.Text("Käfig Nr."+this.id, "20px Arial", "#201d1b");
+    this.cagelabel.textAlign = "center";
+    this.cagelabel.y = 20;
+    this.cagelabel.x = 115;
+    this.cagecontainer = new createjs.Container();
+    this.cagecontainer.addChild(this.cageani,this.cagelabel);
+};
+
 function refreshTarget(mousecontainer) {
     mousecontainer.targetx = mousecontainer.sizex + (Math.random() * (stage.canvas.width - mousecontainer.sizex));
     mousecontainer.targety = mousecontainer.sizey + (Math.random() * (stage.canvas.height - mousecontainer.sizey));
-};
+}
 
 function refreshTargetAbove(mousecontainer, x, y) {
     mousecontainer.targetx = x + (Math.random() * (stage.canvas.width - x));
@@ -114,15 +132,6 @@ function move(mousecontainer) {
             mousecontainer.x -= mousecontainer.vX;
         }
     }
-    /*
-    mousecontainer.x += mousecontainer.vX;
-    mousecontainer.y += mousecontainer.vY;
-    if (mousecontainer.x > stage.canvas.width) {
-        mousecontainer.x = 0;
-    }
-    if (mousecontainer.y > stage.canvas.height) {
-        mousecontainer.y = 0;
-    }*/
 }
 
 function clickedMouse(id) {
@@ -154,12 +163,33 @@ function updateMouseArray(cageid) {
 function init() {
     // Laden des Canvas
     stage = new createjs.Stage("demoCanvas");
+
+    // Hinzufügen der Linie
+    var line = new createjs.Shape();
+    line.graphics.setStrokeStyle(1);
+    line.graphics.beginStroke("#201d1b");
+    line.graphics.moveTo(600,0);
+    line.graphics.lineTo(600, 500);
+    line.graphics.endStroke();
+    stage.addChild(line);
+
+    var cage_bg = new createjs.Bitmap("/data/img/play/cage_bg.png");
+    cage_bg.x = 600;
+    cage_bg.y = 0;
+    stage.addChild(cage_bg);
+
+
     // Laden der Käfiginformationen
     updateMouseArray(1);
     // Hinzufügen aller Mäuse im Array in das Canvas
     for (var i = 0; i < arrMouse.length - 1; i++) {
         stage.addChild(arrMouse[i].mousecontainer);
     }
+    var test = new Cage(3);
+    test.init();
+    stage.addChild(test.cagecontainer);
+    test.cagecontainer.x = 610;
+    test.cagecontainer.y = 0;
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;

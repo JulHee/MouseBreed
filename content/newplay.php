@@ -6,7 +6,7 @@
 </h1>
 <div class="row">
     <div class="mycenter">
-        <canvas id="demoCanvas" width="600" height="500" style="border: solid #269abc;"></canvas>
+        <canvas id="demoCanvas" width="800" height="500" style="border: solid #201d1b;"></canvas>
     </div>
 </div>
 <div class="row">
