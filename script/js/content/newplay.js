@@ -92,27 +92,27 @@ Cage.prototype.init = function(y) {
 };
 
 function refreshTarget(mousecontainer) {
-    mousecontainer.targetx = mousecontainer.sizex + (Math.random() * (mousezone - mousecontainer.sizex));
+    mousecontainer.targetx = mousecontainer.sizex + (Math.random() * ((mousezone - mousecontainer.sizex) - mousecontainer.sizex));
     mousecontainer.targety = mousecontainer.sizey + (Math.random() * (stage.canvas.height - mousecontainer.sizey));
 }
 
 function refreshTargetAbove(mousecontainer, x, y) {
     var rngv = Math.random();
-    mousecontainer.targety = y + (Math.random() * (stage.canvas.height - mousecontainer.sizey));
+    mousecontainer.targety = y + (Math.random() * (stage.canvas.height - y));
     if (rngv <= 0.5) {
-        mousecontainer.targetx = x + (Math.random() * (mousezone - mousecontainer.sizex));
+        mousecontainer.targetx = x + (Math.random() * (mousezone - x));
     } else {
-        mousecontainer.targetx = x - (Math.random() * (mousezone - mousecontainer.sizex));
+        mousecontainer.targetx = x - (Math.random() * (mousezone - x));
     }
 }
 
 function refreshTargetBelow(mousecontainer, x, y) {
     var rngv2 = Math.random();
-    mousecontainer.targety = y - (Math.random() * (stage.canvas.height - mousecontainer.sizey));
+    mousecontainer.targety = y - (Math.random() * (stage.canvas.height - y));
     if (rngv2 <= 0.5) {
-        mousecontainer.targetx = x - (Math.random() * (mousezone - mousecontainer.sizex));
+        mousecontainer.targetx = x - (Math.random() * (mousezone - x));
     } else {
-        mousecontainer.targetx = x + (Math.random() * (mousezone - mousecontainer.sizex));
+        mousecontainer.targetx = x + (Math.random() * (mousezone - x));
     }
 }
 
