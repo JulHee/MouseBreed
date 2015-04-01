@@ -71,13 +71,13 @@ Mouse.prototype.init = function() {
 
 function Cage(id){
     this.id = id;
-    this.src = "/data/img/play/cage_small.png";
+    this.src = "/data/img/play/cage_small_with_bg.png";
     this.cagecontainer = null;
     this.cagelabel = null;
     this.cageani = null;
 }
 
-Cage.prototype.init = function() {
+Cage.prototype.init = function(y) {
     this.cageani = new createjs.Bitmap(this.src);
     this.cagelabel = new createjs.Text("Käfig Nr."+this.id, "20px Arial", "#201d1b");
     this.cagelabel.textAlign = "center";
@@ -85,6 +85,8 @@ Cage.prototype.init = function() {
     this.cagelabel.x = 115;
     this.cagecontainer = new createjs.Container();
     this.cagecontainer.addChild(this.cageani,this.cagelabel);
+    this.cagecontainer.x = 600;
+    this.cagecontainer.y = y*63;
 };
 
 function refreshTarget(mousecontainer) {
@@ -170,10 +172,7 @@ function updateMouseArray(cageid) {
     }
 }
 
-function init() {
-    // Laden des Canvas
-    stage = new createjs.Stage("demoCanvas");
-
+function drawBackground(){
     // Hinzufügen der Linie
     var line = new createjs.Shape();
     line.graphics.setStrokeStyle(1);
@@ -183,11 +182,18 @@ function init() {
     line.graphics.endStroke();
     stage.addChild(line);
 
+    // Zeichen des Käfighintergrundes
     var cage_bg = new createjs.Bitmap("/data/img/play/cage_bg.png");
     cage_bg.x = 600;
     cage_bg.y = 0;
     stage.addChild(cage_bg);
+}
 
+function init() {
+    // Laden des Canvas
+    stage = new createjs.Stage("demoCanvas");
+    // Zeichnen des Hintergrundes
+    drawBackground();
 
     // Laden der Käfiginformationen
     updateMouseArray(1);
@@ -195,11 +201,16 @@ function init() {
     for (var i = 0; i < arrMouse.length - 1; i++) {
         stage.addChild(arrMouse[i].mousecontainer);
     }
+
+    // Test Käfig
     var test = new Cage(3);
-    test.init();
+    test.init(0);
     stage.addChild(test.cagecontainer);
-    test.cagecontainer.x = 610;
-    test.cagecontainer.y = 0;
+    var test2 = new Cage(2);
+    test2.init(1);
+    stage.addChild(test2.cagecontainer);
+
+
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
