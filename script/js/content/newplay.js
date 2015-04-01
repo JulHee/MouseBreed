@@ -4,6 +4,8 @@ var stage;
 var arrMouse = [];
 // Der aktuelle Käfig
 var selectedCage = 1;
+//linke Breite des Canvas (Mausbereich)
+var mousezone = 600;
 function Mouse(id) {
     this.src = "/data/img/play/play_mouse_2.png";
     this.id = id;
@@ -41,7 +43,7 @@ Mouse.prototype.init = function() {
     this.mousecontainer.sizex = this.mouseimg.width;
     this.mousecontainer.sizey = this.mouseimg.height;
     // Erstellen eines Ziels für die Maus
-    this.mousecontainer.targetx = this.mousecontainer.sizex + (Math.random() * (stage.canvas.width - this.mousecontainer.sizex));
+    this.mousecontainer.targetx = this.mousecontainer.sizex + (Math.random() * (mousezone - this.mousecontainer.sizex));
     this.mousecontainer.targety = this.mousecontainer.sizey + (Math.random() * (stage.canvas.height - this.mousecontainer.sizey));
     // Erstellen der Hitbox. Achtung laut Docs püft hitTest() nicht auf Hitboxen
     var hit = new createjs.Shape();
@@ -90,27 +92,27 @@ Cage.prototype.init = function(y) {
 };
 
 function refreshTarget(mousecontainer) {
-    mousecontainer.targetx = mousecontainer.sizex + (Math.random() * (stage.canvas.width - mousecontainer.sizex));
+    mousecontainer.targetx = mousecontainer.sizex + (Math.random() * (mousezone - mousecontainer.sizex));
     mousecontainer.targety = mousecontainer.sizey + (Math.random() * (stage.canvas.height - mousecontainer.sizey));
 }
 
 function refreshTargetAbove(mousecontainer, x, y) {
     var rngv = Math.random();
-    mousecontainer.targety = y + (Math.random() * (stage.canvas.width - y));
+    mousecontainer.targety = y + (Math.random() * (stage.canvas.height - mousecontainer.sizey));
     if (rngv <= 0.5) {
-        mousecontainer.targetx = x + (Math.random() * (stage.canvas.width - x));
+        mousecontainer.targetx = x + (Math.random() * (mousezone - mousecontainer.sizex));
     } else {
-        mousecontainer.targetx = x - (Math.random() * (stage.canvas.width - x));
+        mousecontainer.targetx = x - (Math.random() * (mousezone - mousecontainer.sizex));
     }
 }
 
 function refreshTargetBelow(mousecontainer, x, y) {
     var rngv2 = Math.random();
-    mousecontainer.targety = y - (Math.random() * (stage.canvas.width - y));
+    mousecontainer.targety = y - (Math.random() * (stage.canvas.height - mousecontainer.sizey));
     if (rngv2 <= 0.5) {
-        mousecontainer.targetx = x - (Math.random() * (stage.canvas.width - x));
+        mousecontainer.targetx = x - (Math.random() * (mousezone - mousecontainer.sizex));
     } else {
-        mousecontainer.targetx = x + (Math.random() * (stage.canvas.width - x));
+        mousecontainer.targetx = x + (Math.random() * (mousezone - mousecontainer.sizex));
     }
 }
 
@@ -188,14 +190,14 @@ function drawBackground(){
     var line = new createjs.Shape();
     line.graphics.setStrokeStyle(1);
     line.graphics.beginStroke("#201d1b");
-    line.graphics.moveTo(600,0);
-    line.graphics.lineTo(600, 500);
+    line.graphics.moveTo(mousezone,0);
+    line.graphics.lineTo(mousezone, 500);
     line.graphics.endStroke();
     stage.addChild(line);
 
     // Zeichen des Käfighintergrundes
     var cage_bg = new createjs.Bitmap("/data/img/play/cage_bg.png");
-    cage_bg.x = 600;
+    cage_bg.x = mousezone;
     cage_bg.y = 0;
     stage.addChild(cage_bg);
 }
