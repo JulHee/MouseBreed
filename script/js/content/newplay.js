@@ -23,7 +23,7 @@ Mouse.prototype.init = function() {
     // Konvertieren in ein createjs.Bitmap
     this.mouseani = new createjs.Bitmap(this.src);
     // Erstellen des Labels
-    this.mouselabel = new createjs.Text("#" + tmpInfoMouse.id + ":" + tmpInfoMouse.name, "bold 14px Arial", "#314ddf");
+    this.mouselabel = new createjs.Text("#" + tmpInfoMouse.id + ":" + tmpInfoMouse.name, "bold 14px Arial", "#fdfdfc");
     this.mouselabel.textAlign = "center";
     // Positionieren des Labels
     this.mouselabel.y = 35;
@@ -49,11 +49,8 @@ Mouse.prototype.init = function() {
     //hit.graphics.beginFill("#000").drawRect(0, 0, this.mousecontainer.width, this.mousecontainer.height);
     //this.mousecontainer.hitArea = hit;
     // Registrieren der Events
-    // Beim klicken laden der Informationen
-    this.mousecontainer.on("click", function(evt) {
-        clickedMouse(evt.currentTarget.mouseid);
-    });
     this.mousecontainer.on("mouseover", function(elem) {
+        clickedMouse(elem.currentTarget.mouseid);
         elem.currentTarget.ismove = false;
         elem.currentTarget.alpha = 0.5;
         stage.update();
@@ -62,10 +59,9 @@ Mouse.prototype.init = function() {
         elem.currentTarget.ismove = true;
         elem.currentTarget.alpha = 1;
     });
-    /*
+
     // Bei Maustastendruck (Drag-and-Drop). Später für Käfige
-    this.mousecontainer.on("mousedown", function(evt) {
-        console.log(evt.currentTarget);
+    this.mousecontainer.on("pressmove", function(evt) {
         evt.currentTarget.ismove = false;
         evt.currentTarget.isdrag = true;
         evt.currentTarget.x = evt.stageX;
@@ -74,18 +70,20 @@ Mouse.prototype.init = function() {
         stage.update();
     });
     // Beim loslasen der Maustaste
-    this.mousecontainer.on("mouseup", function(evt) {
+    this.mousecontainer.on("pressup", function(evt) {
         // Prüfen ob die Maus über einem der Käfige schwebt
         for (var i = 0; i < arrCage.length; i++) {
             var isCollision = ndgmr.checkRectCollision(evt.currentTarget, arrCage[i].cagecontainer);
             if (isCollision != null) {
-                console.log(i);
+                var mouse_info = getInfo(evt.currentTarget.mouseid);
+                addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
             }
         }
+        // TODO Prüfen ob Maus innerhalb des Käfigbereiches losgelassen wurde aber kein Käfig getroffen wurde => Neue X/Y Koordinaten erstellen
         evt.currentTarget.isdrag = false;
         evt.currentTarget.ismove = true;
     });
-*/
+
     this.mousecontainer.refreshTarget = function(xmin, xmax, ymin, ymax) {
         this.targetx = getRandomInt(xmin, xmax);
         this.targety = getRandomInt(ymin, ymax);
@@ -183,8 +181,12 @@ Cage.prototype.init = function(y) {
     this.cagecontainer.y = y * 62;
     this.cagecontainer.cageid = this.id;
     this.cagecontainer.on("click", function(evt) {
-        console.log(evt);
-        addBen("Käfig #" + evt.currentTarget.cageid, "Es wurde der Käfig gewechselt", "info");
+        var cage_id = evt.currentTarget.cageid;
+        if (selectedCage != cage_id){
+            addBen("Käfig #" + cage_id, "Es wurde der Käfig gewechselt", "info");
+            selectedCage = cage_id;
+            draw();
+    }
     });
 };
 
@@ -228,6 +230,7 @@ function getCages() {
 
 function updateMouseArray(cageid) {
     selectedCage = cageid;
+    arrMouse = [];
     // Auslesen der Elemente aus dem localStorage
     var data = localStorage.getItem("loadedBreed");
     var parsedData = JSON.parse(data);
@@ -243,10 +246,10 @@ function updateMouseArray(cageid) {
 function drawBackground() {
     // Hinzufügen der Linie
     var line = new createjs.Shape();
-    line.graphics.setStrokeStyle(1);
+    line.graphics.setStrokeStyle(2);
     line.graphics.beginStroke("#201d1b");
-    line.graphics.moveTo(mousezone, 0);
-    line.graphics.lineTo(mousezone, 500);
+    line.graphics.moveTo(mousezone-1, 0);
+    line.graphics.lineTo(mousezone-1, 500);
     line.graphics.endStroke();
     stage.addChild(line);
     // Zeichen des Käfighintergrundes
@@ -254,14 +257,21 @@ function drawBackground() {
     cage_bg.x = mousezone;
     cage_bg.y = 0;
     stage.addChild(cage_bg);
+
+    var mouse_bg = new createjs.Bitmap("/data/img/play/background_mice_cage.png");
+    mouse_bg.x = 0;
+    mouse_bg.y = 0;
+    stage.addChild(mouse_bg);
 }
 
-function init() {
-    // Laden des Canvas
-    stage = new createjs.Stage("demoCanvas");
-    stage.enableMouseOver();
-    stage.mouseChildren = true;
-    // Zeichnen des Hintergrundes
+function draw() {
+    // Leeren der Arrays
+    arrCage = [];
+    arrMouse = [];
+    stage.removeAllChildren;
+    stage.removeAllEventListeners;
+    stage.update();
+     // Zeichnen des Hintergrundes
     drawBackground();
     // Laden der Käfiginformationen
     getCages();
@@ -269,12 +279,25 @@ function init() {
     for (i = 0; i < arrCage.length; i++) {
         stage.addChild(arrCage[i].cagecontainer);
     }
+
     // Laden der Käfiginformationen
-    updateMouseArray(1);
+    updateMouseArray(selectedCage);
+
     // Hinzufügen aller Mäuse im Array in das Canvas
     for (i = 0; i < arrMouse.length; i++) {
         stage.addChild(arrMouse[i].mousecontainer);
     }
+}
+
+function init() {
+    // Laden des Canvas
+    stage = new createjs.Stage("demoCanvas");
+    stage.enableMouseOver();
+    stage.mouseChildren = true;
+
+    draw();
+    selectedCage = arrCage[0].id;
+
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
