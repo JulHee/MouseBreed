@@ -81,7 +81,11 @@ Mouse.prototype.init = function() {
         }
         // TODO Prüfen ob Maus innerhalb des Käfigbereiches losgelassen wurde aber kein Käfig getroffen wurde => Neue X/Y Koordinaten erstellen
         evt.currentTarget.isdrag = false;
+        evt.currentTarget.x = 16 + Math.random() * 300;
+        evt.currentTarget.y = 32 + Math.random() * 300;
+        stage.update();
         evt.currentTarget.ismove = true;
+
     });
 
     this.mousecontainer.refreshTarget = function(xmin, xmax, ymin, ymax) {
