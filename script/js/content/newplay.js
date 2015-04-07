@@ -71,18 +71,23 @@ Mouse.prototype.init = function() {
     });
     // Beim loslasen der Maustaste
     this.mousecontainer.on("pressup", function(evt) {
+        var cagehit = false;
         // Prüfen ob die Maus über einem der Käfige schwebt
         for (var i = 0; i < arrCage.length; i++) {
             var isCollision = ndgmr.checkRectCollision(evt.currentTarget, arrCage[i].cagecontainer);
             if (isCollision != null) {
+                cagehit = true;
                 var mouse_info = getInfo(evt.currentTarget.mouseid);
                 addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
             }
         }
+        if (!cagehit && evt.currentTarget.x >= mousezone){
+            evt.currentTarget.x = 16 + Math.random() * 300;
+            evt.currentTarget.y = 32 + Math.random() * 300;
+        }
         // TODO Prüfen ob Maus innerhalb des Käfigbereiches losgelassen wurde aber kein Käfig getroffen wurde => Neue X/Y Koordinaten erstellen
         evt.currentTarget.isdrag = false;
-        evt.currentTarget.x = 16 + Math.random() * 300;
-        evt.currentTarget.y = 32 + Math.random() * 300;
+
         stage.update();
         evt.currentTarget.ismove = true;
 
