@@ -8,15 +8,14 @@ var login = {
 
     check: function () {
         var button = $( this );
-        console.log(button.parent().parent().parent().parent());
         $.ajax({
             type: "POST",
             url: "/script/php/ajax/login.php",
-            data: {password: button.parent().parent().find("#password").val(), username: button.parent().parent().find("#username").val()},
+            data: {password: button.parent().find("#password").val(), username: button.parent().find("#username").val()},
             dataType: "json"
         }).done(function (response) {
             if (response.success == true) {
-                button.parent().parent().parent().parent().parent().submit();
+                button.parent().submit();
             } else {
                 button.parent().notify("Benutzername oder Passwort falsch", {className: "error", elementPosition: 'botttom center'});
             }
