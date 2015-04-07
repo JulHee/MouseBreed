@@ -79,7 +79,7 @@ Mouse.prototype.init = function() {
                 addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
             }
         }
-        // TODO Prüfen ob Maus innerhalb des Käfigbereiches losgelassen wurde aber kein Käfig getroffen wurde => Neue X/Y Koordinaten erstellen
+        // TODO Maus entfernen wenn aus aktuellem Käfig entfernt worden ist
         evt.currentTarget.isdrag = false;
         evt.currentTarget.x = 16 + Math.random() * 300;
         evt.currentTarget.y = 32 + Math.random() * 300;
