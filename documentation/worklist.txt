@@ -41,7 +41,9 @@
 - um das Feld von den Mäusen für das vom user gewählten Geschlecht, Funktion um das zu aktualisieren.
 -- setze currentCage richtig!!!
 
-
+-initial Weight=1 ?
+-initial Image Name ?
+-neuen Namen aus der Liste raussuchen
 (Jörn)
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?

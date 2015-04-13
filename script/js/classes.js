@@ -49,9 +49,7 @@ function Cage(id,maxMouseMass,breed_id){
 	this.maxMouseMass = maxMouseMass;
 	this.breed_id = breed_id;
 
-    function reproduction(femaleMouse,maleMouse){
-        new Mouse()
-    }
+
 }
 function Breed(id,user_id,target,name){
 	this.id = id;

@@ -1,5 +1,4 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
-var numberOfDays= 0;
 
 var engine = {
 
@@ -120,23 +119,42 @@ var clock = {
         checkHomelessMouse(loadedBreed);
     },
 
-    pairing: function (breed) {
+    pairing: function () {
+        var initialWeight = 1;
+        var initialImgName = "default"
+        for(i in loadedBreed["cages"]){
+            menList = [];
+            womenList = [];
+            for(m in loadedBreed["cages"][i]["mice"]){
+                if(m["age"]>69){
+                    if(m["gender"]==1){
+                        menList.push(m)
+                    }else{
+                        womenList.push(m)
+                    }
+                }
+            }
+            if(menList.length > 1){addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error")}
+            for(j in womenList ){
+                var tmpGender = (Math.random()<0.5) ? 0 : 1;
+
+                var tmpName = "hallo";
+
+                engine.newMouse(i,tmpGender,tmpName,engine.mixGenotyp(j,menList[0]),initialWeight,j["id"],menList[0]["id"],0,initialImgName)
+            }
+        }
+
 
     },
 
-    /*increaseDay: function(){
-        var currDate = new Date();
-        var currYear = currDate.getFullYear();
-        var currMonth = currDate.getUTCMonth();
-        var currDay = currDate.getUTCDay();
-        var Date = loadedBreed["time_of_creation"].split("-");
-        if(currYear == Date[0] && currMonth == Date[1]){
-            numberOfDays = currDay - Date[2];
-        }else{
-            if(...)
-        }
-
-    }, */
+   /*increaseNumberOfDay: function(){
+        var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+        var firstDate = new Date();
+        var arrayDate = loadedBreed["time_of_creation"].split("-");
+        var secondDate = new Date(arrayDate[0],arrayDate[1],arrayDate[2]);
+        var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+        numberOfDays = diffDays;
+    },*/
 
     gainWeight: function (breed) {
         /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/
@@ -184,16 +202,21 @@ var clock = {
 
         }
 
-    },
-
-    checkPubescent: function (mouseArray) {
-        for (var i = 0, l = mouseArray.length; i < l; i++) {
-            if (mouseArray[i].age > 69) {
-                mouseArray[i].pubescent = true;
-            } else {
-                mouseArray[i].pubescent = false;
-            }
-        }
     }
+
+    /*checkPubescent: function () {
+        for (i in loadedBreed["cages"]) {
+            for(j in loadedBreed["cages"][i]["mice"]){
+                if(j["age"] > 69){
+                    j.pubescent = true;
+                }else{
+                    j.pubescent = false;
+                }
+
+            }
+
+
+        }
+    } */
 };
 
