@@ -1,4 +1,4 @@
-function User(id,user,password,firstname,lastname,email){
+/*function User(id,user,password,firstname,lastname,email){
 	this.id = id;
 	this.user = user;
 	this.password =password;
@@ -60,3 +60,4 @@ function Breed(id,user_id,target,name){
     this.timeUnit = 0;
     this.mouseArray=[];
 }
+*/
