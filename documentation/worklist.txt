@@ -22,6 +22,8 @@
 
 - timeUnit als Feld in loadedBreed hinzufügen, oder falls nicht vorhanden allg. in der DB hinzufügen.
   Wird für nextDay gebraucht. Mit 0 initialisieren.
+- plate  als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
+- bottle als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
 
 
 (christian)
@@ -53,6 +55,7 @@
 
 (Julian)
 - Historie in Datenbank anlegen
+- Benachrichtigungen klickbar machen.
 
 
 

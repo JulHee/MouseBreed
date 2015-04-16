@@ -108,6 +108,25 @@ var engine = {
                 alert("Fehler");
             }
         });
+    },
+
+    getNewBoyName: function(){
+        reader = new FileReader();
+        reader.readAsText("documentation/boys.txt"); //hier ist der Fehler
+        alert("42");
+
+    },
+
+    feed: function(){
+        for(i in loadedBreed["cages"]){
+            i["plate"] += 10;
+        }
+    },
+
+    giveWaterToDrink: function(){
+        for(i in loadedBreed["cages"]){
+            i["bottle"] += 10;
+        }
     }
 };
 
@@ -117,7 +136,12 @@ var clock = {
         /*loadedBreed[timeUnit] = loadedBreed[timeUnit]+1; */
         clock.gainWeight();
         clock.checkHomelessMouse();
+        alert("bis hier")
+        engine.getNewBoyName();
         clock.pairing();
+        clock.eat();
+        clock.drink();
+
 
     },
 
@@ -138,14 +162,13 @@ var clock = {
             0.04, 0.04, 0.04, 0.04, 0.04, 0.06, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.06, 0.06, 0.06, 0.06, 0.06,
             0.06, 0.04, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.08, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.04];
         for ( i in loadedBreed["cages"]) {
-            for( j in loadedBreed["cages"][i]["mice"]){
-                var tmpMouse = loadedBreed["cages"][i]["mice"][j];
-                if(tmpMouse["age"]>20)
+            for( j in i["mice"]){
+                if(j["age"]>20)
                 {
-                    if (tmpMouse["gender"] == 0) {
-                        tmpMouse["weight"] += addWeightFemale[tmpMouse["age"]-20];
+                    if (j["gender"] == 0) {
+                        j["weight"] += addWeightFemale[j["age"]-20];
                     } else {
-                        tmpMouse["weight"] += addWeightMale[tmpMouse["age"]-20];
+                        j["weight"] += addWeightMale[j["age"]-20];
                     }
                 }
             }
@@ -155,7 +178,7 @@ var clock = {
     checkHomelessMouse: function(){
         var level = 1;
         for(i in loadedBreed["cages"]){
-            for(j in loadedBreed["cages"][i]["mice"]) {
+            for(j in i["mice"]) {
                 if (j["cage_id"] == -1) {
                     if (level == 1) {
                         addBen("Nicht zugeordnete Mäuse", "Es gibt Mäuse die noch keinem Käfig zugeordnet sind !!!", "warn")
@@ -194,7 +217,24 @@ var clock = {
         }
 
 
+    },
+
+    eat: function(){
+        for(i in loadedBreed["cages"]){
+            for(j in i["mice"]){
+                i["plate"] -= j["age"]*0.1 //Annahme Mäuse fressen 1/10 ihres Alters in Gramm
+            }
+        }
+    },
+
+    drink: function(){
+        for(i in loadedBreed["cages"]){
+            for(j in i["mice"]){
+                i["bottle"] -= j["age"]*0.1 //Annahme Mäuse trinken 1/10 ihres Alters in ml
+            }
+        }
     }
+
 
     /*checkPubescent: function () {
         for (i in loadedBreed["cages"]) {
