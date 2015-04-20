@@ -1,8 +1,8 @@
 // Canvas
 var canvas = document.createElement("canvas");
 var container = document.getElementById("canvasContainer");
-canvas.width = 598;
-canvas.height = 598;
+canvas.width = 640;
+canvas.height = 300;
 var ctx = canvas.getContext("2d");
 container.appendChild(canvas);
 
@@ -12,7 +12,7 @@ var bgImage = new Image();
 bgImage.onload = function () {
     bgReady = true;
 };
-bgImage.src = "data/img/play/play_bg.png";
+bgImage.src = "data/img/play/play_bg_cage.png";
 
 // Array for all Mouses
 var mouseArr = [];
@@ -201,28 +201,28 @@ function updateMouseArray(cageid) {
     }
 
     /*
-    for (var i = 0; i <= thisCage[cageid].mice.length - 1; i++) {
+     for (var i = 0; i <= thisCage[cageid].mice.length - 1; i++) {
 
-        // Neues Element
-        var tmp = new AbsMouse();
-        tmp.playMouse.reset();
+     // Neues Element
+     var tmp = new AbsMouse();
+     tmp.playMouse.reset();
 
-        // Bildeigenschaften setzten
-        tmp.mouseImage = new Image();
-        tmp.mouseImage.onload = function () {
-            tmp.mouseReady = true;
-        };
-        tmp.mouseImage.src = "data/img/play/play_mouse_2.png";
+     // Bildeigenschaften setzten
+     tmp.mouseImage = new Image();
+     tmp.mouseImage.onload = function () {
+     tmp.mouseReady = true;
+     };
+     tmp.mouseImage.src = "data/img/play/play_mouse_2.png";
 
 
-        // Realen Mauseigenschaften setzen
-        var aktMice = thisMice[i];
-        tmp.dataMouse = new Mouse(aktMice.id, aktMice.name, aktMice.gender, aktMice.genotyp, 2, aktMice.age, aktMice.weight, aktMice.cage_id, aktMice.breed_id, 11);
+     // Realen Mauseigenschaften setzen
+     var aktMice = thisMice[i];
+     tmp.dataMouse = new Mouse(aktMice.id, aktMice.name, aktMice.gender, aktMice.genotyp, 2, aktMice.age, aktMice.weight, aktMice.cage_id, aktMice.breed_id, 11);
 
-        // Element dem Array hinzufügen
-        mouseArr.push(tmp);
-    }
-    */
+     // Element dem Array hinzufügen
+     mouseArr.push(tmp);
+     }
+     */
 }
 
 var update = function (modifier) {
@@ -352,4 +352,3 @@ var then = Date.now();
 reset();
 updateMouseArray(1);
 main();
-
