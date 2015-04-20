@@ -206,9 +206,6 @@
                     </li>
                     <li <?= echoActiveClassIfRequestMatches("animationTest") ?>><a href="/animationTest"><span
                                 class="glyphicon glyphicon-check" aria-hidden="true"></span> AnimationTest</a>
-                    <li <?= echoActiveClassIfRequestMatches("newplay") ?>><a href="/newplay"><span
-                                class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> New Play</a>
-                    </li>
                 </ul>
             <?php } ?>
         </div>
