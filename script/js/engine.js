@@ -9,9 +9,8 @@ var engine = {
      * @return one possible Genotypes, each one has 25%
      */
     mixGenotyp: function (mouseOne, mouseTwo) {
-
-        var x = mouseOne.genotyp;
-        var y = mouseTwo.genotyp;
+        var x = mouseOne["genotyp"];
+        var y = mouseTwo["genotyp"];
 
         var x1 = x.charAt(0);
         var x2 = x.charAt(1);
@@ -24,7 +23,7 @@ var engine = {
         var res4 = x2 + y2;
 
         var genoarray = [res1, res2, res3, res4];
-        var randNum = Math.floor((Math.random() * 4) + 1);
+        var randNum = Math.floor((Math.random() * 4) + 1)-1;
 
         return genoarray[randNum]
     },
@@ -110,13 +109,6 @@ var engine = {
         });
     },
 
-    getNewBoyName: function(){
-        reader = new FileReader();
-        reader.readAsText("documentation/boys.txt"); //hier ist der Fehler
-        alert("42");
-
-    },
-
     feed: function(){
         for(i in loadedBreed["cages"]){
             i["plate"] += 10;
@@ -136,8 +128,6 @@ var clock = {
         /*loadedBreed[timeUnit] = loadedBreed[timeUnit]+1; */
         clock.gainWeight();
         clock.checkHomelessMouse();
-        alert("bis hier")
-        engine.getNewBoyName();
         clock.pairing();
         clock.eat();
         clock.drink();
@@ -163,6 +153,7 @@ var clock = {
             0.06, 0.04, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.08, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.04];
         for ( i in loadedBreed["cages"]) {
             for( j in i["mice"]){
+                alert("Breakpoint w"+j);
                 if(j["age"]>20)
                 {
                     if (j["gender"] == 0) {
@@ -194,25 +185,26 @@ var clock = {
 
     pairing: function () {
         var initialWeight = 1;
-        var initialImgName = "data\img\defaultMausChB.png"
+        var initialImgName = "data\img\defaultMausChB.png";
         for(i in loadedBreed["cages"]){
             menList = [];
             womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
-                if(m["age"]>1){
-                    if(m["gender"]==1){
-                        menList.push(m)
+                if(loadedBreed["cages"][i]["mice"][m]["age"]>1){
+                    if(loadedBreed["cages"][i]["mice"][m]["gender"]==1){
+                        menList.push(loadedBreed["cages"][i]["mice"][m])
                     }else{
-                        womenList.push(m)
+                        womenList.push(loadedBreed["cages"][i]["mice"][m])
                     }
                 }
             }
+
             if(menList.length > 1){addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error")}
             for(j in womenList ){
                 var tmpGender = (Math.random()<0.5) ? 0 : 1;
-                var tmpName = (tmpGender==0) ? "LadyPenelopeAriellePonyweather" : "RockStrongo";
-
-                engine.newMouse(i,tmpGender,tmpName,engine.mixGenotyp(j,menList[0]),initialWeight,j["id"],menList[0]["id"],0,initialImgName)
+                var tmpName = (tmpGender==0) ? "LadyPenelopeAriellePonyweather" : "RockStrongo"; // hier Namen aus der DB bzw LoadedBreed einfügen
+                alert(i+"<- i")
+                engine.newMouse(i,tmpGender,tmpName,engine.mixGenotyp(womenList[j],menList[0]),initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
             }
         }
 
