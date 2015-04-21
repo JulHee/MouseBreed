@@ -1,355 +1,354 @@
-// Canvas
-var canvas = document.createElement("canvas");
-var container = document.getElementById("canvasContainer");
-canvas.width = 598;
-canvas.height = 598;
-var ctx = canvas.getContext("2d");
-container.appendChild(canvas);
+// Das Canvas
+var stage;
+// Array das alle Mause enthält
+var arrMouse = [];
+// Array das alle Käfige enthält
+var arrCage = [];
+// Der aktuelle Käfig
+var selectedCage = 1;
+//linke Breite des Canvas (Mausbereich)
+var mousezone = 600;
 
-// Background image
-var bgReady = false;
-var bgImage = new Image();
-bgImage.onload = function () {
-    bgReady = true;
-};
-bgImage.src = "data/img/play/play_bg.png";
-
-// Array for all Mouses
-var mouseArr = [];
-
-
-function Target() {
-    this.x = 0;
-    this.y = 0;
+function Mouse(id) {
+    this.src = "/data/img/play/play_mouse_2.png";
+    this.id = id;
+    this.mouseani = null;
+    this.mousecontainer = null;
+    this.mouselabel = null;
 }
+// Initialisieren der Informatioenen
+Mouse.prototype.init = function() {
+    // Holen der Informationen zu der Maus aus dem LocalStorage
+    var tmpInfoMouse = getInfo(this.id);
+    // Konvertieren in ein createjs.Bitmap
+    this.mouseani = new createjs.Bitmap(this.src);
+    // Erstellen des Labels
+    this.mouselabel = new createjs.Text("#" + tmpInfoMouse.id + ":" + tmpInfoMouse.name, "bold 14px Arial", "#fdfdfc");
+    this.mouselabel.textAlign = "center";
+    // Positionieren des Labels
+    this.mouselabel.y = 35;
+    this.mouselabel.x = 20;
+    // Erstellen des Containers der das Label und das Bild beinhaltet
+    this.mousecontainer = new createjs.Container();
+    this.mousecontainer.addChild(this.mouseani, this.mouselabel);
+    this.mousecontainer.mouseid = this.id;
+    this.mousecontainer.direction = 90;
+    this.mousecontainer.ismove = true;
+    this.mousecontainer.isdrag = false;
+    this.mousecontainer.vX = 2;
+    this.mousecontainer.vY = 2;
+    this.mousecontainer.x = 16 + Math.random() * 300;
+    this.mousecontainer.y = 32 + Math.random() * 300;
+    this.mousecontainer.sizex = this.mousecontainer.getBounds().width;
+    this.mousecontainer.sizey = this.mousecontainer.getBounds().height;
+    // Erstellen eines Ziels für die Maus
+    this.mousecontainer.targetx = this.mousecontainer.sizex + (Math.random() * (mousezone - this.mousecontainer.sizex));
+    this.mousecontainer.targety = this.mousecontainer.sizey + (Math.random() * (stage.canvas.height - this.mousecontainer.sizey));
+    // Erstellen der Hitbox. Achtung laut Docs püft hitTest() nicht auf Hitboxen
+    //var hit = new createjs.Shape();
+    //hit.graphics.beginFill("#000").drawRect(0, 0, this.mousecontainer.width, this.mousecontainer.height);
+    //this.mousecontainer.hitArea = hit;
+    // Registrieren der Events
+    this.mousecontainer.on("mouseover", function(elem) {
+        clickedMouse(elem.currentTarget.mouseid);
+        elem.currentTarget.ismove = false;
+        elem.currentTarget.alpha = 0.5;
+        stage.update();
+    });
+    this.mousecontainer.on("mouseout", function(elem) {
+        elem.currentTarget.ismove = true;
+        elem.currentTarget.alpha = 1;
+    });
 
-Target.prototype.newTarget = function () {
-    // Setzten des ersten Ziels für die Maus
-    this.x = (Math.random() * (canvas.width - 55));
-    this.y = (Math.random() * (canvas.height - 55));
-};
+    // Bei Maustastendruck (Drag-and-Drop). Später für Käfige
+    this.mousecontainer.on("pressmove", function(evt) {
+        evt.currentTarget.ismove = false;
+        evt.currentTarget.isdrag = true;
+        evt.currentTarget.x = evt.stageX;
+        evt.currentTarget.y = evt.stageY;
+        // make sure to redraw the stage to show the change:
+        stage.update();
+    });
+    // Beim loslasen der Maustaste
+    this.mousecontainer.on("pressup", function(evt) {
+        var cagehit = false;
+        // Prüfen ob die Maus über einem der Käfige schwebt
+        for (var i = 0; i < arrCage.length; i++) {
+            var isCollision = ndgmr.checkRectCollision(evt.currentTarget, arrCage[i].cagecontainer);
+            if (isCollision != null) {
+                cagehit = true;
+                var mouse_info = getInfo(evt.currentTarget.mouseid);
+                addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
+            }
+        }
+        if (!cagehit && evt.currentTarget.x >= mousezone){
+            evt.currentTarget.x = 16 + Math.random() * 300;
+            evt.currentTarget.y = 32 + Math.random() * 300;
+        }
+        // TODO Maus entfernen wenn aus aktuellem Käfig entfernt worden ist
+        evt.currentTarget.isdrag = false;
+        evt.currentTarget.ismove = true;
+        stage.update();
 
+    });
 
-function PlayMouse() {
-    this.x = 0;
-    this.y = 0;
-    this.speed = 100;
-    this.target = new Target();
-    this.height = 55;
-    this.width = 30;
-}
-PlayMouse.prototype.reset = function () {
-    // Throw the playMouse somewhere on the screen randomly
-    this.x = 32 + (Math.random() * (canvas.width - 64));
-    this.y = 32 + (Math.random() * (canvas.height - 64));
-
-    // Setzten des ersten Ziels für die Maus
-    this.target.newTarget();
-};
-PlayMouse.prototype.movemouse = function (move, direction) {
-    var mouseXmax = this.x + this.width;
-    var mouseYmax = this.y + this.height;
-
-
-    switch (direction) {
-        case 'upleft':
-            if (this.x - move > 0 && this.y - move > 0) {
-                this.x -= move;
-                this.y -= move;
-            }
-            break;
-        case 'upright':
-            if (this.y - move > 0 && mouseXmax + move < canvas.width) {
-                this.x += move;
-                this.y -= move;
-            }
-            break;
-        case 'downleft':
-            if (mouseYmax + move < canvas.height && this.x - move > 0) {
-                this.x -= move;
-                this.y += move;
-            }
-            break;
-        case 'downright':
-            if ((mouseXmax + move) < canvas.width && (mouseYmax + move) < canvas.width) {
-                this.x += move;
-                this.y += move;
-            }
-            break;
-        case 'up':
-            if (this.y - move > 0) {
-                this.y -= move;
-            }
-            break;
-        case 'down':
-            if (mouseYmax + move < canvas.height) {
-                this.y += move;
-            }
-            break;
-        case 'left':
-            if (this.x - move > 0) {
-                this.x -= move;
-            }
-            break;
-        case 'right':
-            if (mouseXmax + move < canvas.weight) {
-                this.x += move;
-            }
-            break;
-        default :
-            $.notify("Fehler", "error");
-            break;
+    this.mousecontainer.refreshTarget = function(xmin, xmax, ymin, ymax) {
+        this.targetx = getRandomInt(xmin, xmax);
+        this.targety = getRandomInt(ymin, ymax);
     }
-};
-
-PlayMouse.prototype.update = function (modifier) {
-    var move = this.speed * modifier;
-    var rnd = Math.random();
-
-    var absx = Math.abs(this.x - this.target.x);
-    var absy = Math.abs(this.y - this.target.y);
-
-    var mouseXmax = this.x + this.width;
-    var mouseYmax = this.y + this.height;
-
-    if (((this.x >= this.target.x && this.y >= this.target.y) && (mouseXmax <= this.target.x && mouseYmax <= this.target.y)) || (absx < move || absy < move)) {
-        this.target.newTarget();
-    } else {
-        if (this.x < this.target.x && this.y < this.target.y) {
-            if (rnd <= 0.3) {
-                this.movemouse(move, "downright");
-            } else if (rnd > 0.3 <= 0.6) {
-                this.movemouse(move, "down");
-            } else {
-                this.movemouse(move, "right");
+    this.mousecontainer.move = function() {
+        // Prüfen auf Collision
+        checkCollision();
+        // Abstand zum Ziel
+        var absx = Math.abs(this.x - this.targetx);
+        var absy = Math.abs(this.y - this.targety);
+        // Neue Koordinaten
+        var zug_p_x = this.x + this.vX + this.sizex;
+        var zug_p_y = this.y + this.vY + this.sizey;
+        var zug_n_x = this.x - this.vX;
+        var zug_n_y = this.y - this.vY;
+        // TODO Besser Testen ob das Ziel getroffen wurde
+        if (absx <= 10 || absy <= 10) {
+            this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+        } else {
+            // Bewegen der Maus in Richtung des Ziels
+            if (this.x < this.targetx && this.y < this.targety) {
+                // Prüfen ob keiner der Ränder mit dem Zug überschritten wird
+                if (zug_p_x <= mousezone && zug_p_y <= stage.canvas.height) {
+                    this.x += this.vX;
+                    this.y += this.vY;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
+            } else if (this.x > this.targetx && this.y < this.targety) {
+                if (zug_n_x > 0 && zug_p_y <= stage.canvas.height) {
+                    this.x -= this.vX;
+                    this.y += this.vY;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
+            } else if (this.x < this.targetx && this.y > this.targety) {
+                if (zug_p_x <= mousezone && zug_n_y > 0) {
+                    this.x += this.vX;
+                    this.y -= this.vY;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
+            } else if (this.x > this.targetx && this.y > this.targety) {
+                if (zug_n_x > 0 && zug_n_x > 0) {
+                    this.x -= this.vX;
+                    this.y -= this.vY;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
+            } else if (this.x == this.targetx && this.y < this.targety) {
+                if (zug_p_y <= stage.canvas.height) {
+                    this.y += this.vY;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
+            } else if (this.x == this.targetx && this.y > this.targety) {
+                if (zug_n_y > 0) {
+                    this.y -= this.vY;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
+            } else if (this.x < this.targetx && this.y == this.targety) {
+                if (zug_p_x <= mousezone) {
+                    this.x += this.vX;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
+            } else if (this.x > this.targetx && this.y == this.targety) {
+                if (zug_n_x > 0) {
+                    this.x -= this.vX;
+                } else {
+                    this.refreshTarget(0, mousezone, 0, stage.canvas.height);
+                }
             }
-        } else if (this.x > this.target.x && this.y < this.target.y) {
-            if (rnd <= 0.3) {
-                this.movemouse(move, "downleft");
-            } else if (rnd > 0.3 <= 0.6) {
-                this.movemouse(move, "down");
-            } else {
-                this.movemouse(move, "left");
-            }
-        } else if (this.x < this.target.x && this.y > this.target.y) {
-            if (rnd <= 0.3) {
-                this.movemouse(move, "upright");
-            } else if (rnd > 0.3 <= 0.6) {
-                this.movemouse(move, "up");
-            } else {
-                this.movemouse(move, "right");
-            }
-        } else if (this.x > this.target.x && this.y > this.target.y) {
-            if (rnd <= 0.3) {
-                this.movemouse(move, "upleft");
-            } else if (rnd > 0.3 <= 0.6) {
-                this.movemouse(move, "up");
-            } else {
-                this.movemouse(move, "left");
-            }
-        } else if (this.x == this.target.x && this.y < this.target.y) {
-            this.movemouse(move, "down");
-        } else if (this.x == this.target.x && this.y > this.target.y) {
-            this.movemouse(move, "up");
-        } else if (this.x < this.target.x && this.y == this.target.y) {
-            this.movemouse(move, "right");
-        } else if (this.x > this.target.x && this.y == this.target.y) {
-            this.movemouse(move, "left");
         }
     }
 };
 
-// Mouse as big Class
-function AbsMouse() {
-    this.mouseImage = new Image();
-    this.mouseReady = false;
-    this.playMouse = new PlayMouse();
-    this.dataMouse = null;
+function Cage(id) {
+    this.id = id;
+    this.src = "/data/img/play/cage_small_with_bg_rounded.png";
+    this.cagecontainer = null;
+    this.cagelabel = null;
+    this.cageani = null;
+}
+Cage.prototype.init = function(y) {
+    this.cageani = new createjs.Bitmap(this.src);
+    this.cagelabel = new createjs.Text("Käfig Nr." + this.id, "20px Arial", "#201d1b");
+    this.cagelabel.textAlign = "center";
+    this.cagelabel.y = 20;
+    this.cagelabel.x = 115;
+    this.cagecontainer = new createjs.Container();
+    this.cagecontainer.addChild(this.cageani, this.cagelabel);
+    this.cagecontainer.x = 600;
+    this.cagecontainer.y = y * 62;
+    this.cagecontainer.cageid = this.id;
+    this.cagecontainer.on("click", function(evt) {
+        var cage_id = evt.currentTarget.cageid;
+        if (selectedCage != cage_id){
+            addBen("Käfig #" + cage_id, "Es wurde der Käfig gewechselt", "info");
+            selectedCage = cage_id;
+            draw();
+        }
+    });
+};
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getInfo(mouseid) {
+    var data = localStorage.getItem("loadedBreed");
+    var parsedData = JSON.parse(data);
+    var thisCage = parsedData.cages;
+    var thisMice = thisCage[selectedCage].mice;
+    return thisMice[mouseid];
+}
+
+function clickedMouse(id) {
+    var info = getInfo(id);
+    $("#mouseinfoName").text(info.name);
+    $("#mouseinfoAge").text(info.age);
+    if (info.gender == 1) {
+        $('#mouseinfoGender').text("Männlich");
+    } else {
+        $('#mouseinfoGender').text("Weiblich");
+    }
+    $("#mouseinfoWeight").text(info.weight);
+}
+
+function getCages() {
+    // Auslesen der Elemente aus dem localStorage
+    var data = localStorage.getItem("loadedBreed");
+    var parsedData = JSON.parse(data);
+    var thisCage = parsedData.cages;
+    var counter = 0;
+    for (var cages in thisCage) {
+        var tmp = new Cage(thisCage[cages].id);
+        tmp.init(counter);
+        arrCage.push(tmp);
+        counter += 1;
+    }
+}
 
 function updateMouseArray(cageid) {
-    mouseArr = [];
+    selectedCage = cageid;
+    arrMouse = [];
     // Auslesen der Elemente aus dem localStorage
     var data = localStorage.getItem("loadedBreed");
     var parsedData = JSON.parse(data);
     var thisCage = parsedData.cages;
     var thisMice = thisCage[cageid].mice;
-    console.log(thisMice);
-
     for (var key in thisMice) {
-
-        // Neues Element
-        var tmp = new AbsMouse();
-        tmp.playMouse.reset();
-
-        // Bildeigenschaften setzten
-        tmp.mouseImage = new Image();
-        tmp.mouseImage.onload = function () {
-            tmp.mouseReady = true;
-        };
-        tmp.mouseImage.src = "data/img/play/play_mouse_2.png";
-
-
-        // Realen Mauseigenschaften setzen
-        var aktMice = thisMice[key];
-        tmp.dataMouse = new Mouse(aktMice.id, aktMice.name, aktMice.gender, aktMice.genotyp, 2, aktMice.age, aktMice.weight, aktMice.cage_id, aktMice.breed_id, 11);
-
-        // Element dem Array hinzufügen
-        mouseArr.push(tmp);
-
-    }
-
-    /*
-    for (var i = 0; i <= thisCage[cageid].mice.length - 1; i++) {
-
-        // Neues Element
-        var tmp = new AbsMouse();
-        tmp.playMouse.reset();
-
-        // Bildeigenschaften setzten
-        tmp.mouseImage = new Image();
-        tmp.mouseImage.onload = function () {
-            tmp.mouseReady = true;
-        };
-        tmp.mouseImage.src = "data/img/play/play_mouse_2.png";
-
-
-        // Realen Mauseigenschaften setzen
-        var aktMice = thisMice[i];
-        tmp.dataMouse = new Mouse(aktMice.id, aktMice.name, aktMice.gender, aktMice.genotyp, 2, aktMice.age, aktMice.weight, aktMice.cage_id, aktMice.breed_id, 11);
-
-        // Element dem Array hinzufügen
-        mouseArr.push(tmp);
-    }
-    */
-}
-
-var update = function (modifier) {
-    for (i = 0; i <= mouseArr.length - 1; i++) {
-        mouseArr[i].playMouse.update(modifier);
-    }
-
-};
-
-var reset = function () {
-    for (i = 0; i <= mouseArr.length - 1; i++) {
-        mouseArr[i].playMouse.reset();
-    }
-};
-
-// Draw everything
-var render = function () {
-    if (bgReady) {
-        ctx.drawImage(bgImage, 0, 0);
-    }
-    for (i = 0; i <= mouseArr.length - 1; i++) {
-        ctx.drawImage(mouseArr[i].mouseImage, mouseArr[i].playMouse.x, mouseArr[i].playMouse.y);
-    }
-};
-
-$(document).ready(function () {
-    $('.mouseCageImg').click(function () {
-        var selectedCage = $(this).attr('data-cage-id');
-        updateMouseArray(selectedCage);
-    });
-    $('#mouseCageNew').click(function () {
-        var cage_id =Math.floor(-1 * (Math.random()*100));
-
-        $('#cageList').append('<div class="col-md-5 cagePadding"><a data-cage-id='+cage_id+'class="mouseCageImg"><img src="/data/img/play/cage.png" class="img-responsive img-rounded imgFix" alt="Responsive image"><span class="center-block">Käfig '+cage_id+'</span></a></div>');
-
-        addBen("Käfig","Es wurde ein neuer Käfig hinzugefügt","info");
-    });
-
-});
-
-var main = function () {
-    var now = Date.now();
-    var delta = now - then;
-    update(delta / 1000);
-
-    render();
-
-    then = now;
-
-    // Request to do this again ASAP
-    requestAnimationFrame(main);
-};
-
-function updateInfo(mouse) {
-    $('#mouseinfoName').text(mouse.name);
-    $('#mouseinfoWeight').text(mouse.weight);
-    if (mouse.gender == 1) {
-        $('#mouseinfoGender').text("Männlich");
-    } else {
-        $('#mouseinfoGender').text("Weiblich");
-    }
-    $('#mouseinfoParents').text('Leer');
-    $('#mouseinfoAge').text(mouse.age);
-
-    var radioValue = $("input[name='grab']:checked").val();
-
-    if (radioValue == 1) {
-        addMouseToSelected(mouse);
+        var tmp = new Mouse(thisMice[key].id);
+        tmp.init();
+        arrMouse.push(tmp);
     }
 }
 
-function addMouseToSelected(mouse) {
+function drawBackground() {
+    // Hinzufügen der Linie
+    var line = new createjs.Shape();
+    line.graphics.setStrokeStyle(2);
+    line.graphics.beginStroke("#201d1b");
+    line.graphics.moveTo(mousezone-1, 0);
+    line.graphics.lineTo(mousezone-1, 500);
+    line.graphics.endStroke();
+    stage.addChild(line);
+    // Zeichen des Käfighintergrundes
+    var cage_bg = new createjs.Bitmap("/data/img/play/cage_bg.png");
+    cage_bg.x = mousezone;
+    cage_bg.y = 0;
+    stage.addChild(cage_bg);
 
-    var intable = false;
-    // Check if already in Table
-    $("#mouseSelected tr").each(function(index) {
-        if (index !== 0) {
+    var mouse_bg = new createjs.Bitmap("/data/img/play/background_mice_cage.png");
+    mouse_bg.x = 0;
+    mouse_bg.y = 0;
+    stage.addChild(mouse_bg);
+}
 
-            $row = $(this);
+function draw() {
+    // Leeren der Arrays
+    arrCage = [];
+    arrMouse = [];
+    stage.removeAllChildren;
+    stage.removeAllEventListeners;
+    stage.update();
+    // Zeichnen des Hintergrundes
+    drawBackground();
+    // Laden der Käfiginformationen
+    getCages();
+    // Hinzufügen der Käfige
+    for (i = 0; i < arrCage.length; i++) {
+        stage.addChild(arrCage[i].cagecontainer);
+    }
 
-            var id = $row.find("td:first").text();
+    // Laden der Käfiginformationen
+    updateMouseArray(selectedCage);
 
-            if (id.indexOf(mouse.id) === 0) {
-                intable = true;
+    // Hinzufügen aller Mäuse im Array in das Canvas
+    for (i = 0; i < arrMouse.length; i++) {
+        stage.addChild(arrMouse[i].mousecontainer);
+    }
+}
+
+function init() {
+    // Laden des Canvas
+    stage = new createjs.Stage("demoCanvas");
+    stage.enableMouseOver();
+    stage.mouseChildren = true;
+
+    draw();
+    selectedCage = arrCage[0].id;
+
+    // Registrieren der Tick-Funktion als Zeitgeber
+    createjs.Ticker.on("tick", tick);
+    createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
+    createjs.Ticker.setFPS(60);
+    stage.update();
+    //  console.log(stage);
+}
+
+function checkCollision() {
+    for (var i = 0; i < arrMouse.length; i++) {
+        for (var k = i + 1; k < arrMouse.length; k++) {
+            var elem1 = arrMouse[i].mousecontainer;
+            var elem2 = arrMouse[k].mousecontainer;
+            if (!(elem1.isdrag || elem2.isdrag)) {
+                var isCollision = ndgmr.checkRectCollision(elem1, elem2);
+                if (isCollision != null) {
+                    // Eine Kollision ist aufgetretten
+                    // Bestimmen werlches das obere Element ist
+                    if (elem1.y > elem1.y) {
+                        elem1.refreshTarget(0, mousezone, elem1.y, stage.canvas.height);
+                        elem2.refreshTarget(0, mousezone, 0, elem2.y);
+                    } else {
+                        elem1.refreshTarget(0, mousezone, 0, elem1.y);
+                        elem2.refreshTarget(0, mousezone, elem2.y, stage.canvas.height);
+                    }
+                }
             }
         }
-    });
-    if (!intable) {
-        var gender = "";
-        if (mouse.gender == 1) {
-            gender = "Männlich";
-        } else {
-            gender = "Weiblich";
-        }
-        $("#mouseSelected").append('<tr><td>' + mouse.id + '</td><td>' + mouse.name + '</td><td>' + gender + '</td><td>' + mouse.genotyp + '</td>+<td>' + mouse.generation + '</td><td>' + mouse.age + '</td><td>' + mouse.weight + '</td><td>' + mouse.cage_id + '</td><td><button id="mouseSelectedRemove" onclick="$(this).parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td></tr>');
     }
 }
 
-// Weiterführende Elemente
-canvas.addEventListener('click', function (e) {  // use event argument
-
-    var rect = canvas.getBoundingClientRect();  // get element's abs. position
-    var x = e.clientX - rect.left;              // get mouse x and adjust for el.
-    var y = e.clientY - rect.top;               // get mouse y and adjust for el.
-
-    for (i = 0; i <= mouseArr.length - 1; i++) {
-
-        var hitbox =15;
-
-        var mousex = mouseArr[i].playMouse.x -hitbox;
-        var mousey = mouseArr[i].playMouse.y -hitbox;
-        var mousexmax = mousex +  mouseArr[i].playMouse.width +hitbox;
-        var mouseymax = mousey + mouseArr[i].playMouse.height +hitbox;
-
-        if (x >= mousex && x <= mousexmax && y <= mouseymax && y >= mousey) {
-            updateInfo(mouseArr[i].dataMouse);
+function tick(event) {
+    for (var i = 0; i < arrMouse.length; i++) {
+        // Aktuelles Element
+        var elem = arrMouse[i].mousecontainer;
+        if (!elem.isdrag && elem.ismove) {
+            elem.move();
         }
     }
+    // Aktualisieren des Canvas
+    stage.update(event);
+};
+$(document).ready(function() {
+    // Aufrufen der Startfunktion
+    init();
 });
-
-
-// Cross-browser support for requestAnimationFrame
-var w = window;
-requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
-// Let's play this game!
-var then = Date.now();
-reset();
-updateMouseArray(1);
-main();
-

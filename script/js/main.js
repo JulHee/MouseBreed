@@ -50,7 +50,7 @@ function addBen(titel, nachricht, art) {
 
     // Anfügen der neuen Benachrichtigung
     $("#benliste_top").prepend('<li class="divider"></li>');
-    $("#benliste_top").prepend('<li class="benMessagetoDelete"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><p class="text-muted"><em>' + dateOutput + '</em></p></div><div class="benMessage">' + nachricht + '</div></a></li>');
+    $("#benliste_top").prepend('<li class="benMessagetoDelete"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><span class="label label-info">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>');
 
     // Setzten des Zählers
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
@@ -168,12 +168,17 @@ $(document).ready(function () {
     $('#chooseGenderMale').click(
         function(){
             $("#ListMouse").find(".active").gender = 0;
-        })
+        });
 
     $('#chooseGenderFemale').click(
         function(){
             $("#ListMouse").find(".active").gender = 1;
-        })
+        });
+
+    $('#myModal').on('show', function () {
+        $('.modal-body',this).css({width:'auto',height:'auto', 'max-height':'100%'});
+    });
+
     });
 
 /*$('#noticetext').value= "";*/

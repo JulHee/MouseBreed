@@ -47,15 +47,13 @@
 -initial Image Name ?
 -neuen Namen aus der Liste raussuchen
 
-(Jörn)
+(Jörn + Julian)
 - Home logged in -- ordentliche Startseite erstellen!
 - Home logged out -- hintergrund per carousel ?
 - Cageme funktionen einbinden/ auslesen daten (need acces to mice)
-
-
-(Julian)
 - Historie in Datenbank anlegen
 - Benachrichtigungen klickbar machen.
+
 
 
 
