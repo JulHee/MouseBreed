@@ -46,6 +46,7 @@
 -initial Weight=1 ?
 -initial Image Name ?
 -neuen Namen aus der Liste raussuchen
+-Ziel als Array/Objekt darstellen: ["Zielklasse(Schwierigkeitsgrade 1,...,n)","zetlich begrenzt","Anz Mäuse","Eig1",...]
 
 (Jörn + Julian)
 - Home logged in -- ordentliche Startseite erstellen!

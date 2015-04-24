@@ -119,7 +119,17 @@ var engine = {
         for(i in loadedBreed["cages"]){
             i["bottle"] += 10;
         }
+    },
+
+    handInMouse: function(thisMouse){
+        /*Auswertung*/
+        engine.deleteFromBreed(thisMouse);
+    },
+
+    deleteFromBreed: function(thisMouse){
+
     }
+
 };
 
 var clock = {
@@ -199,13 +209,17 @@ var clock = {
                 }
             }
 
-            if(menList.length > 1){addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error")}
-            for(j in womenList ){
-                var tmpGender = (Math.random()<0.5) ? 0 : 1;
-                var tmpName = (tmpGender==0) ? "LadyPenelopeAriellePonyweather" : "RockStrongo"; // hier Namen aus der DB bzw LoadedBreed einfügen
-                alert(i+"<- i")
-                engine.newMouse(i,tmpGender,tmpName,engine.mixGenotyp(womenList[j],menList[0]),initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
+            if(menList.length > 1){
+                addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error")
+            }else{
+                for(j in womenList ){
+                    var tmpGender = (Math.random()<0.5) ? 0 : 1;
+                    var tmpName = (tmpGender==0) ? "LadyPenelopeAriellePonyweather" : "RockStrongo"; // hier Namen aus der DB bzw LoadedBreed einfügen
+                    alert(i+"<- i")
+                    engine.newMouse(i,tmpGender,tmpName,engine.mixGenotyp(womenList[j],menList[0]),initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
+                }
             }
+
         }
 
 
