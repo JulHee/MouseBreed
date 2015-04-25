@@ -30,8 +30,9 @@ var GUI = {
         });
 
         GUI.Selectors.cage.on('mouseleave', '.mouse', function() {
-            $(this).removeClass('stopped');
-            GUI.Animation.animateMouse($(this));
+            var mouse = $(this);
+            mouse.removeClass('stopped');
+            setTimeout(function() { GUI.Animation.animateMouse(mouse) }, Math.random() * 5000);
         });
 
         GUI.Selectors.cage.on('click', '.mouse', function() {
@@ -53,34 +54,32 @@ var GUI = {
         GUI.Selectors.mouse = $('.mouse');
 
         GUI.Selectors.mouse.each(function() {
+            var mouse = $(this);
             var rndPos = GUI.Animation.rndPos($(this));
-            $(this).css({ left: rndPos[0] , top: rndPos[1] });
-            GUI.Animation.animateMouse($(this));
+            mouse.css({ left: rndPos[0] , top: rndPos[1] });
+            setTimeout(function() { GUI.Animation.animateMouse(mouse) }, Math.random() * 5000);
         });
 
     },
 
     Animation: {
         animateMouse: function(mouse) {
-            setTimeout(function() {
-                    var rndPos = GUI.Animation.rndPos(mouse);
-                    mouse.animate({
-                            left: rndPos[0],
-                            top: rndPos[1]
-                        }, {
-                            duration: Math.random() * 2000 + 2000,
-                            progress: function() {
-                                if(mouse.hasClass('stopped')) {
-                                    mouse.stop();
-                                }
-                            },
-                            complete: function() {
-                                GUI.Animation.animateMouse(mouse)
-                            }
+            var rndPos = GUI.Animation.rndPos(mouse);
+            mouse.animate({
+                    left: rndPos[0],
+                    top: rndPos[1]
+                }, {
+                    duration: Math.random() * 2000 + 2000,
+                    progress: function() {
+                        if(mouse.hasClass('stopped')) {
+                            mouse.stop(true);
+                        } else {
                         }
-                    );
-                },
-                Math.random() * 5000
+                    },
+                    complete: function() {
+                        setTimeout(function() { GUI.Animation.animateMouse(mouse) },  Math.random() * 5000);
+                    }
+                }
             );
         },
 
@@ -89,9 +88,20 @@ var GUI = {
             var h = GUI.Selectors.cage.height() - mouse.height();
 
             return [Math.floor(Math.random() * w), Math.floor(Math.random() * h)];
-        }
+        },
 
-        /* Kollisionsabfrage (Prototyp)
+        rndPos2: function(mouse) {
+            var max = { x: GUI.Selectors.cage.width() - mouse.width(), y: GUI.Selectors.cage.height() - mouse.height() };
+            var mousePos = { x: mouse.position().left, y: mouse.position().top };
+            var center = { x: mouse.position().left + 15, y: mouse.position().top + 15 };
+
+            var phi = Math.random() * 2 * Math.PI;
+            var aim = { x: 200 * Math.cos(phi) + center.x, y: 200 * Math.sin(phi) + center.y };
+
+            return [Math.min(Math.max(0, aim.x), max.x), Math.min(Math.max(0, aim.y), max.y)];
+        },
+
+        // Kollisionsabfrage (Prototyp)
         collision: function(mouse) {
             var coll = false;
             var c1 = {r: 21, x: mouse.position().left + 15, y: mouse.position().top + 15};
@@ -114,7 +124,6 @@ var GUI = {
 
             return coll;
         }
-        */
     }
 
 };

@@ -1,4 +1,5 @@
 var URL_ROOT = "http://local.mousebreed";
+
 var Logout = {
 
     onReady: function () {
@@ -9,6 +10,7 @@ var Logout = {
         $.ajax({
             url: "/script/php/ajax/logout.php"
         }).done(function () {
+            localStorage.removeItem('loadedBreed');
             location.replace(URL_ROOT);
         });
     }

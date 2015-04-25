@@ -12,18 +12,12 @@
 
 
 (christoph)
-- Login fixen
 - Datenbank Zugriff für:
-    - Profil
     - Erstellen von Zuchten
-- Informationsübergabe (Zucht-ID) beim laden der Zuchten
-- Anzahl und Auswahl der Zuchten abhängig von der Datenbank machen
-- um den Localstorage zu aktualisieren
 
-- timeUnit als Feld in loadedBreed hinzufügen, oder falls nicht vorhanden allg. in der DB hinzufügen.
-  Wird für nextDay gebraucht. Mit 0 initialisieren.
-- plate  als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
-- bottle als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
+- spätere Version:
+    - plate  als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
+    - bottle als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
 
 
 (christian)
@@ -54,32 +48,3 @@
 - Cageme funktionen einbinden/ auslesen daten (need acces to mice)
 - Historie in Datenbank anlegen
 - Benachrichtigungen klickbar machen.
-
-
-
-
-
-
-// Alt aber aktuell?
---------------- To-do ---------------
-
-Datenbank
-
-- Tabellennamen ändern ?
-    - mousebreed_XXX --> XXX
-    - User --> user
-    - Ziel --> aspiration
-
-- Login/Logut
-    - Registrierung
-    - bei Logout auf Startseite
-
--Genotyp -> Phänotyp (enum(?) to declare what a Genotyp does: "Ab" --> blue/yellow mouse)
-
-
-
---------------- Christoph ---------------
-
-- Registrierung
-- bei Logout auf Startseite
-- local.mousebreed
