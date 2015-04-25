@@ -60,19 +60,19 @@ var engine = {
 
     },
 
-    newMouse: function(cage_id, gender, name, genotyp, weight, mother_id, father_id, age, img_name){
+    newMouse: function(cage_id, gender, genotyp, weight, mother_id, father_id, age, img_name){
 
         var response = $.ajax({
             type: "POST",
             url: "/script/php/ajax/newMouse.php",
-            data: { cage_id: cage_id, gender: gender, name: name, genotyp: genotyp, weight: weight, mother_id: mother_id,
+            data: { cage_id: cage_id, gender: gender, genotyp: genotyp, weight: weight, mother_id: mother_id,
                     father_id: father_id, age: age, img_name: img_name },
             async: false
         }).responseText;
         response = JSON.parse(response);
 
         if(response.success == true) {
-            loadedBreed['cages'][cage_id]['mice'][response.id] = { cage_id: cage_id, gender: gender, name: name,
+            loadedBreed['cages'][cage_id]['mice'][response.id] = { cage_id: cage_id, gender: gender, name: response.name,
                 genotyp: genotyp, weight: weight, mother_id: mother_id, father_id: father_id, age: age,
                 img_name: img_name };
 
@@ -214,9 +214,8 @@ var clock = {
             }else{
                 for(j in womenList ){
                     var tmpGender = (Math.random()<0.5) ? 0 : 1;
-                    var tmpName = (tmpGender==0) ? "LadyPenelopeAriellePonyweather" : "RockStrongo"; // hier Namen aus der DB bzw LoadedBreed einfügen
                     alert(i+"<- i")
-                    engine.newMouse(i,tmpGender,tmpName,engine.mixGenotyp(womenList[j],menList[0]),initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
+                    engine.newMouse(i,tmpGender,engine.mixGenotyp(womenList[j],menList[0]),initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
                 }
             }
 

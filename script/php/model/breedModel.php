@@ -72,16 +72,27 @@ class breedModel {
         }
     }
 
-    public function newMouse($cage_id, $breed_id, $user_id, $gender, $name, $genotyp, $weight, $mother_id, $father_id, $age, $img_name) {
-        $stmt =     "INSERT INTO `mouse` ".
-                    "(cage_id, breed_id, user_id, gender, name, genotyp, weight, mother_id, father_id, age, img_name) ".
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public function newMouse($cage_id, $breed_id, $user_id, $gender, $genotyp, $weight, $mother_id, $father_id, $age, $img_name) {
+        $stmt = "SELECT name ".
+                "FROM `".(($gender == 0) ? "nameboys" : "namegirls")."` ".
+                "ORDER BY RAND() ".
+                "LIMIT 1";
+        $stmt = $this->db->prepare($stmt);
+        if($stmt->execute() && $row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $name = $row['name'];
+        } else {
+            return array("id" => -1);
+        }
+
+        $stmt = "INSERT INTO `mouse` ".
+                "(cage_id, breed_id, user_id, gender, name, genotyp, weight, mother_id, father_id, age, img_name) ".
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($stmt);
 
         if($stmt->execute(array($cage_id, $breed_id, $user_id, $gender, $name, $genotyp, $weight, $mother_id, $father_id, $age, $img_name))) {
-            return $this->db->lastInsertId('id');
+            return array("id" => $this->db->lastInsertId('id'), "name" => $name);
         } else {
-            return -1;
+            return array("id" => -1);
         }
     }
 
