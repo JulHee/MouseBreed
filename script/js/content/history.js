@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    $("#organisation").orgChart({container: $("#main"), interactive: true, fade: true, speed: 'slow'});
     getData();
     treeData = createJson();
     loadData(treeData);
