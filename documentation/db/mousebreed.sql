@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 30. Apr 2015 um 15:14
+-- Erstellungszeit: 30. Apr 2015 um 15:33
 -- Server Version: 5.6.20
 -- PHP-Version: 5.5.15
 
@@ -1199,7 +1199,7 @@ ALTER TABLE `aspiration`
 -- Indexes for table `breed`
 --
 ALTER TABLE `breed`
- ADD PRIMARY KEY (`id`), ADD KEY `id` (`id`), ADD KEY `id_2` (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cage`
@@ -1211,7 +1211,7 @@ ALTER TABLE `cage`
 -- Indexes for table `mating`
 --
 ALTER TABLE `mating`
- ADD PRIMARY KEY (`id`), ADD KEY `breed_id` (`breed_id`,`mother_id`,`father_id`), ADD KEY `mother_id` (`mother_id`), ADD KEY `breed_id_2` (`breed_id`), ADD KEY `mother_id_2` (`mother_id`), ADD KEY `father_id` (`father_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `mother_id` (`mother_id`), ADD KEY `father_id` (`father_id`), ADD KEY `breed_id` (`breed_id`);
 
 --
 -- Indexes for table `mouse`
