@@ -126,7 +126,8 @@ var engine = {
         engine.deleteFromBreed(thisMouse);
     },
 
-    deleteFromBreed: function(thisMouse){
+    burry: function(cageID,mouseID){
+        /*TODO Maus begraben Funktion*/
 
     }
 
@@ -136,6 +137,7 @@ var clock = {
 
     nextDay: function () {
         /*loadedBreed[timeUnit] = loadedBreed[timeUnit]+1; */
+        clock.checkDeadMouse();
         clock.gainWeight();
         clock.checkHomelessMouse();
         clock.pairing();
@@ -143,6 +145,14 @@ var clock = {
         clock.drink();
 
 
+    },
+
+    checkDeadMouse: function () {
+        for(i in loadedBreed["cages"]){
+            for(j in loadedBreed["cages"][i]["mice"]){
+                //if(!loadedBreed["cages"][i]["mice"][j]["alive"]){engine.burry(i,j)}
+            }
+        }
     },
 
     gainWeight: function () {
