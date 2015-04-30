@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Apr 2015 um 01:02
+-- Erstellungszeit: 27. Apr 2015 um 19:30
 -- Server Version: 5.6.21
 -- PHP-Version: 5.6.3
 
@@ -101,8 +101,8 @@ CREATE TABLE IF NOT EXISTS `mouse` (
 --
 
 INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `name`, `genotyp`, `weight`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
-(1, 1, 1, 10, 0, 'Karl', 'AB', 200, 4, 4, 10, ''),
-(2, 1, 1, 10, 0, 'Paul', 'BA', 100, 2, 2, 5, ''),
+(1, 1, 1, 10, 0, 'Karl', 'AB', 200, 0, 0, 10, ''),
+(2, 1, 1, 10, 0, 'Paul', 'BA', 100, 0, 0, 5, ''),
 (3, 1, 1, 10, 1, 'Frauke', 'BB', 500, 2, 2, 5, ''),
 (4, 1, 1, 10, 1, 'Klara', 'AA', 1200, 2, 2, 80, ''),
 (5, 1, 1, 10, 0, 'Hans', 'AB', 500, 4, 4, 4, ''),

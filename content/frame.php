@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/style/bootstrap.min.css">
     <link rel="stylesheet" href="/style/mainBootstrap.css">
     <link rel="stylesheet" href="/style/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="/style/jquery.orgchart.css">
     <link rel="stylesheet" href="/style/main.css">
     <?php if (file_exists('style/' . $page . '.css')) echo "<link rel=\"stylesheet\" href=\"/style/$page.css\"/>\n"; ?>
 </head>
@@ -176,6 +177,9 @@
                     <li <?= echoActiveClassIfRequestMatches("play") ?>><a href="/play"><span
                                 class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Play</a>
                     </li>
+                    <li <?= echoActiveClassIfRequestMatches("history") ?>><a href="/history"><span
+                                class="glyphicon glyphicon-book" aria-hidden="true"></span> History</a>
+                    </li>
                     <?php } ?>
                     <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
                                 class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
@@ -220,6 +224,7 @@
 <script src="/script/js/boot/bootstrap.min.js"></script>
 <script src="/script/js/boot/jasny-bootstrap.min.js"></script>
 <script src="/script/js/ext/holder.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="/script/js/main.js"></script>
 <script src="/script/js/classes.js"></script>
 <script src="/script/js/engine.js"></script>
