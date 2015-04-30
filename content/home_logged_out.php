@@ -45,6 +45,27 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sie haben schon einen Account ?</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form id="login_form_top"action="/home" method="post">
+                                <div class="form-group">
+                                    <input type="text" id="username" name="username" placeholder="Benutzername" class="form-control"
+                                           required
+                                           autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" id="password" name="password" placeholder="Passwort" class="form-control"
+                                           required>
+                                </div>
+                                <a id="login_button_top" class="btn btn-success">Anmelden</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h3 class="panel-title">Registieren</h3>
@@ -73,27 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Sie haben schon einen Account ?</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form id="login_form_top"action="/home" method="post">
-                                <div class="form-group">
-                                    <input type="text" id="username" name="username" placeholder="Benutzername" class="form-control"
-                                           required
-                                           autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" id="password" name="password" placeholder="Passwort" class="form-control"
-                                           required>
-                                </div>
-                                <a id="login_button_top" class="btn btn-success">Anmelden</a>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
