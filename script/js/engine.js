@@ -46,7 +46,7 @@ var engine = {
         response = JSON.parse(response);
 
         if(response.success == true) {
-            loadedBreed["cages"][response.id] = {breed_id: loadedBreed.id, id: response.id, max_number_of_mice: maxNumberMice, mice: {}};
+            loadedBreed["cages"][response.id] = { id: response.id, breed_id: loadedBreed.id, id: response.id, max_number_of_mice: maxNumberMice, mice: {}};
 
             // erfolgreich erstellt
 
@@ -72,7 +72,7 @@ var engine = {
         response = JSON.parse(response);
 
         if(response.success == true) {
-            loadedBreed['cages'][cage_id]['mice'][response.id] = { cage_id: cage_id, gender: gender, name: response.name,
+            loadedBreed['cages'][cage_id]['mice'][response.id] = { id: response.id, cage_id: cage_id, gender: gender, name: response.name,
                 genotyp: genotyp, weight: weight, mother_id: mother_id, father_id: father_id, age: age,
                 img_name: img_name };
 
