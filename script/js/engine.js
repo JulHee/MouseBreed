@@ -129,11 +129,13 @@ var engine = {
     burry: function(cageID,mouseID){
         /*TODO Maus begraben Funktion*/
 
-    },
+    }
 
+    /*
     saveChanges: function() {
         localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
     }
+    */
 
 };
 
@@ -278,5 +280,3 @@ var clock = {
      numberOfDays = diffDays;
      },*/
 };
-
-$( window ).on('beforeunload', engine.saveChanges );
