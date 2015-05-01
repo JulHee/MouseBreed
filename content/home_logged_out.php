@@ -75,20 +75,25 @@
                                 <form id="register_form" action="/login">
                                     <div class="form-group">
                                         <label for="registerInputEmail">Benutzername</label>
-                                        <input type="text" class="form-control" id="registerInputUsername" placeholder="Benutzername"
+                                        <input type="text" class="form-control" id="registerUsername" placeholder="Benutzername"
                                                required>
                                     </div>
                                     <div class="form-group">
                                         <label for="registerInputUsername">Email</label>
-                                        <input type="email" class="form-control" id="registerInputEmail"
+                                        <input type="email" class="form-control" id="registerEmail"
                                                placeholder="Vorname.Nachname@example.de" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="registerInputPassword">Passwort</label>
-                                        <input type="password" class="form-control" id="registerInputPassword" placeholder="Passwort"
+                                        <input type="password" class="form-control" id="registerPassword" placeholder="Passwort"
                                                required>
                                     </div>
-                                    <a id="register_button" class="btn btn-primary">Registrieren</a>
+                                    <div class="form-group">
+                                        <label for="registerInputPassword">Passwort wiederholen</label>
+                                        <input type="password" class="form-control" id="registerPassword2" placeholder="Passwort wiederholen"
+                                               required>
+                                    </div>
+                                    <a id="registerButton" class="btn btn-primary">Registrieren</a>
                                 </form>
                             </div>
                         </div>

@@ -231,8 +231,9 @@
 <script src="/script/js/content/login.js"></script>
 <script src="/script/js/ext/easeljs-0.8.0.min.js"></script>
 <script src="/script/js/ext/ndgmr.Collision.js"></script>
-
 <?php if (file_exists('script/js/content/' . $page . '.js')) echo "<script src=\"/script/js/content/$page.js\"></script>\n"; ?>
+<?php if (!(isset($_SESSION['login']) && $_SESSION['login'])) echo "<script src=\"/script/js/register.js\"></script>\n"; ?>
+
 <?php
 
 function echoActiveClassIfRequestMatches($requestUri)
