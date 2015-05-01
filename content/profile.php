@@ -129,16 +129,16 @@
                                         Passwort</label>
 
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="eingabefeldPasswort1"
+                                        <input type="password" class="form-control" id="oldPassword"
                                                placeholder="Altes Passwort">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="eingabefeldPasswort2" class="col-sm-2 control-label">Neues
-                                        Passwort</label>
+                                        Neues Passwort</label>
 
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="eingabefeldPasswort2"
+                                        <input type="password" class="form-control" id="newPassword1"
                                                placeholder="Neues Passwort">
                                     </div>
                                 </div>
@@ -147,12 +147,12 @@
                                            class="col-sm-2 control-label">Wiederholen</label>
 
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="eingabefeldPasswort3"
+                                        <input type="password" class="form-control" id="newPassword2"
                                                placeholder="Wiederholen">
                                     </div>
                                 </div>
                             </form>
-                            <a id="save_button_password" class="btn btn-default save_button_password" style="float: right;">Speichern</a>
+                            <a id="changePasswordButton" class="btn btn-default save_button_password" style="float: right;">Speichern</a>
                         </div>
                     </div>
 
@@ -181,9 +181,13 @@
                 </div>
                 <div role="tabpanel" class="tab-pane fade in" id="deleteProfile">
                     <div class="alert alert-danger" role="alert">
-                        <p>Sind sie sich sicher das Sie ihren Account löschen wollen ?</p>
+                        <p>Sind sie sich sicher, dass Sie ihr Benutzerkonto löschen wollen? Alle damit verbundenen Informationen gehen verloren.</p>
                         <br>
-                        <button type="button" class="btn btn-danger">Löschen</button>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="deleteAccountPassword" placeholder="Passwort">
+                        </div>
+                        <br>
+                        <button id="deleteAccount" type="button" class="btn btn-danger">Löschen</button>
                     </div>
                 </div>
             </div>

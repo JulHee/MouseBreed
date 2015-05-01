@@ -24,7 +24,7 @@ class userModel {
     }
 
     public function getData($username) {
-        $stmt =     "SELECT * ".
+        $stmt =     "SELECT id, username, firstname, lastname, email ".
                     "FROM `user` ".
                     "WHERE username = ?";
         $stmt = $this->db->prepare($stmt);
@@ -43,9 +43,8 @@ class userModel {
                     "WHERE username = ?";
         $stmt = $this->db->prepare($stmt);
         $stmt->bindParam(1, $username);
-        $stmt->execute();;
 
-        if($stmt->fetchColumn()  >= 1) {
+        if($stmt->execute() && $stmt->fetchColumn()  >= 1) {
             return true;
         } else {
             return false;
@@ -62,7 +61,7 @@ class userModel {
                     "VALUES (?, ?, ?, ?, ?)";
             $stmt =  $this->db->prepare($stmt);
 
-            if($stmt->execute(array($username, $passwordCrypt, $firstename, $lastname, $email))) return true;
+            return $stmt->execute(array($username, $passwordCrypt, $firstename, $lastname, $email));
         }
         return false;
     }
@@ -83,6 +82,30 @@ class userModel {
         $stmt =  $this->db->prepare($stmt);
         if($stmt->execute($values)) return true;
 
+        return false;
+    }
+
+    public function deleteAccount($id) {
+        $stmt = "DELETE FROM user ".
+                "WHERE id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $id);
+
+        return $stmt->execute();
+    }
+
+    public function changePassword($id, $newPassword) {
+        if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
+            $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
+            $passwordCrypt = crypt($newPassword, $salt);
+
+            $stmt = "UPDATE `user` ".
+                    "SET password = ? ".
+                    "WHERE id = ?";
+            $stmt =  $this->db->prepare($stmt);
+
+            return $stmt->execute(array($passwordCrypt, $id));
+        }
         return false;
     }
 
