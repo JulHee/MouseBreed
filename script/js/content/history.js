@@ -1,63 +1,11 @@
 $(document).ready(function () {
     getData();
-    treeData = createJson();
-    loadData(treeData);
-    console.log(JSON.parse(treeData));
-
+    $("#selectedMice").click(function(){
+        selectedMiceclick();
+    });
 });
-var mice = [];
-var treeData;
 
-function getData(){
-    // Auslesen alle Mäuse aus dem localStorage
-    var data = localStorage.getItem("loadedBreed");
-    var parsedData = JSON.parse(data);
-    var thisCage = parsedData.cages;
-    var counter = 0;
-    for (var cages in thisCage) {
-        var cage_id = thisCage[cages].id;
-        var thisMice = thisCage[cage_id].mice;
-        for (var key in thisMice) {
-            var tmp = thisMice[key];
-            mice.push(tmp);
-        }
-    }
-}
-
-
-function createJson(){
-    var rootNode = {};
-    rootNode.name = "Breed";
-    rootNode.children = [];
-    for (i=0;i < mice.length;i++){
-        if (mice[i].father_id == 0){
-            var node = findChildren(mice[i]);
-            rootNode.children.push(node);
-        }
-
-    }
-    console.log(JSON.stringify(rootNode));
-   return JSON.stringify(rootNode);
-}
-
-function findChildren(mouse){
-    var node = {};
-    node.name = mouse.name+"["+mouse.id+","+mouse.genotyp+"]";
-    var childs = [];
-    for (var m in mice) {
-        if (mouse.id == mice[m].father_id){
-            //console.log(findChildren(mice[m]));
-            childs.push(findChildren(mice[m]));
-        }
-    }
-    if (childs == 0){
-        node.size = Math.floor(Math.random()*1000000);
-    } else {
-        node.children = childs;
-    }
-    return node;
-}
-
+// Baum
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
@@ -78,7 +26,68 @@ var svg = d3.select("#tree").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//d3.json("/data/data2.json", function(error, flare) {
+d3.select(self.frameElement).style("height", "800px");
+
+var mice = [];
+var treeData;
+
+function getData(){
+    // Auslesen alle Mäuse aus dem localStorage
+    var data = localStorage.getItem("loadedBreed");
+    var parsedData = JSON.parse(data);
+    var thisCage = parsedData.cages;
+    var counter = 0;
+    for (var cages in thisCage) {
+        var cage_id = thisCage[cages].id;
+        var thisMice = thisCage[cage_id].mice;
+        for (var key in thisMice) {
+            var tmp = thisMice[key];
+            addDatatoList(cage_id,tmp,counter);
+            mice.push(tmp);
+            counter +=1;
+        }
+    }
+}
+
+function addDatatoList(cageid,mouse,index){
+  var elem = $("#micelist");
+    elem.append($('<option>', {
+        value: index,
+        text: 'Käfig: '+cageid+' / Maus: #'+mouse.id+' '+mouse.name
+    }));
+}
+
+function selectedMiceclick(){
+    var selectedElementValue = $("#micelist").val();
+    treeData = findParents(selectedElementValue);
+
+    if (treeData.children != null){
+        loadData(JSON.stringify(treeData));
+    } else{
+        addBen("Historie","Es konnten keine Eltern gefunden werden","error");
+    }
+}
+
+function findParents(mouseindex){
+    var node = {};
+    node.name = mice[mouseindex].name+"["+mice[mouseindex].id+","+mice[mouseindex].genotyp+"]";
+    var childs = [];
+    for (var m in mice) {
+        if (mice[mouseindex].id == mice[m].father_id && mice[mouseindex].father_id != 0 ){
+            childs.push(findParents(m));
+        }
+        if (mice[mouseindex].id == mice[m].mother_id && mice[mouseindex].mother_id != 0 ){
+            childs.push(findParents(m));
+        }
+    }
+    if (childs < 2){
+        node.size = Math.floor(Math.random()*1000000);
+    } else {
+        node.children = childs;
+    }
+    return node;
+}
+
 function loadData(source){
     root = JSON.parse(source);
     root.x0 = height / 2;
@@ -94,9 +103,7 @@ function loadData(source){
     root.children.forEach(collapse);
     console.log(root);
     update(root);
-};
-
-d3.select(self.frameElement).style("height", "800px");
+}
 
 function update(source) {
 
