@@ -183,11 +183,17 @@
                     <div class="alert alert-danger" role="alert">
                         <p>Sind sie sich sicher, dass Sie ihr Benutzerkonto löschen wollen? Alle damit verbundenen Informationen gehen verloren.</p>
                         <br>
-                        <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="deleteAccountPassword" placeholder="Passwort">
+                            <span class="input-group-btn">
+                                <button id="deleteAccount" type="button" class="btn btn-danger">Löschen</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    <!--<div class="col-sm-10">
                             <input type="password" class="form-control" id="deleteAccountPassword" placeholder="Passwort">
                         </div>
                         <br>
-                        <button id="deleteAccount" type="button" class="btn btn-danger">Löschen</button>
+                        <button id="deleteAccount" type="button" class="btn btn-danger">Löschen</button>-->
                     </div>
                 </div>
             </div>
