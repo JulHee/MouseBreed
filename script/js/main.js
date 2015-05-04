@@ -1,4 +1,4 @@
-var URL_ROOT = "http://local.mousebreed";
+var URL_ROOT = "http://local.mousebreed/";
 
 var Logout = {
 

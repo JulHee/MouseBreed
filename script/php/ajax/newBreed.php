@@ -7,15 +7,15 @@ if(isset($_SESSION['login']) && $_SESSION['login']) {
 
     $breedModel = new \model\breedModel($db);
 
-    $newBreed = $breedModel->newBreed($_SESSION['userdata']['id'], $_POST['targetId'], $_POST['name']);
+    $newBreed = $breedModel->newBreed($_SESSION['userdata']['id'], $_POST['target'], $_POST['name']);
 
-    if($newBreed > 0) {
+    if($newBreed['id'] > 0) {
 
         $_SESSION['breeds'] = $breedModel->getGeneralData($_SESSION['userdata']['id']);
 
-        echo json_encode(array('success' => true, 'id' => $newBreed));
+        echo json_encode(array('success' => true));
     } else {
-        echo json_encode(array('success' => false, 'msg' => 'Fehler'));
+        echo json_encode(array('success' => false, 'msg' => $newBreed['msg']));
     }
 } else {
 }

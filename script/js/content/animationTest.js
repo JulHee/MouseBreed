@@ -4,7 +4,7 @@ var breed = JSON.parse(localStorage.getItem("loadedBreed"));
 var Game = {
 
     state: {
-        selectedCage: 1
+        selectedCage: Object.keys(breed.cages)[0]
     },
 
     onReady: function() {
@@ -25,17 +25,17 @@ var GUI = {
     onReady: function() {
         GUI.inital();
 
-        GUI.Selectors.cage.on('mouseover', '.mouse', function() {
+        GUI.Selectors.cage.on('mouseover', '.mouse_container', function() {
             $(this).addClass('stopped');
         });
 
-        GUI.Selectors.cage.on('mouseleave', '.mouse', function() {
+        GUI.Selectors.cage.on('mouseleave', '.mouse_container', function() {
             var mouse = $(this);
             mouse.removeClass('stopped');
             setTimeout(function() { GUI.Animation.animateMouse(mouse) }, Math.random() * 5000);
         });
 
-        GUI.Selectors.cage.on('click', '.mouse', function() {
+        GUI.Selectors.cage.on('click', '.mouse_container', function() {
             if($(this).hasClass('stopped')) {
                 $('#clickedMouse').text($(this).attr('id'));
             }
@@ -48,10 +48,15 @@ var GUI = {
 
     fillCage: function() {
         for (var key in breed.cages[Game.state.selectedCage].mice) {
-            GUI.Selectors.cage.append("<div id=\"" + key + "\" class=\"mouse\"></div>");
+            var newMouse =  "<div id=\"" + key + "\" class=\"mouse_container\">"+
+                                "<div class=\"mouse_img\"></div>" +
+                                "<p>#" + key + " " + breed.cages[Game.state.selectedCage].mice[key].name + "</p>"+
+                            "</div>";
+
+            GUI.Selectors.cage.append(newMouse);
         }
 
-        GUI.Selectors.mouse = $('.mouse');
+        GUI.Selectors.mouse = $('.mouse_container');
 
         GUI.Selectors.mouse.each(function() {
             var mouse = $(this);
@@ -73,7 +78,6 @@ var GUI = {
                     progress: function() {
                         if(mouse.hasClass('stopped')) {
                             mouse.stop(true);
-                        } else {
                         }
                     },
                     complete: function() {

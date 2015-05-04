@@ -2,8 +2,6 @@ var Newbreed = {
 
     difficulty: "",
     scenarioVisibly: false,
-    scenario: 1,
-
 
     onReady: function() {
         $( 'input[name=difficulty]:radio' ).change(Newbreed.changeDifficulty);
@@ -11,37 +9,36 @@ var Newbreed = {
     },
 
     changeDifficulty:  function() {
+        var selected = $(this);
+
         if(!Newbreed.scenarioVisibly) {
             $( '.scenario_head' ).removeClass("hidden");
             Newbreed.scenarioVisibly = true;
         }
-		var sender = document.querySelector('input[name="difficulty"]:checked').value;
-		difficulty = sender;
-		
-        var anchor = $( '#' + sender );
-		
-		var scenarios = $('.scenario_difficulty');
-		
-		for (var i = 0;i < scenarios.length; i++){
-			if (scenarios.get(i).id == sender) {
-				$('#'+scenarios.get(i).id).removeClass("hidden");	
-			} else {
-				$('#'+scenarios.get(i).id).addClass("hidden");	
-			}	
-		}
+
+        if (Newbreed.difficulty != "") {
+            $( '#' + Newbreed.difficulty ).addClass("hidden");
+            Newbreed.difficulty = selected.val();
+            $( '#' + Newbreed.difficulty ).removeClass("hidden");
+        } else {
+            Newbreed.difficulty = selected.val();
+            $( '#' + Newbreed.difficulty ).removeClass("hidden");
+        }
+
     },
 
     start: function() {
+        var scenario = $( '#' + Newbreed.difficulty).find( '.tab-content').find( '.active').attr('id');
+
         $.ajax({
             type: "POST",
             url: "/script/php/ajax/newBreed.php",
-            data: { targetId: 1, name:  $( '#breedname').val() },
-            dataType: "json"
+            data: { target: scenario, name: $( '#breedname' ).val() },
+            dataType: "json",
+            async: false
         }).done(function(response) {
             if(response.success == true) {
-                var form = $( '#newbreed_form');
-                form.attr('action', '/breed/' + response.id);
-                form.submit();
+                location.replace(URL_ROOT + "overview");
             } else {
                 $.notify(response.msg,"error");
             }
@@ -49,9 +46,5 @@ var Newbreed = {
 	}
 };
 
- function tab_funktion  (e) {
-  e.preventDefault();
-  $(this).tab('show');
-};
 
 $( document ).ready( Newbreed.onReady );
