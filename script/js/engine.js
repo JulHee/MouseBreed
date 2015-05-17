@@ -23,9 +23,9 @@ var engine = {
         var res4 = x2 + y2;
 
         var genoarray = [res1, res2, res3, res4];
-        var randNum = Math.floor((Math.random() * 4) + 1)-1;
+        /*var randNum = Math.floor((Math.random() * 4) + 1)-1;  */
 
-        return genoarray[randNum]
+        return genoarray
     },
 
     changeCage: function(mouse_ID,old_cage_ID,new_cage_ID){
@@ -216,8 +216,8 @@ var clock = {
             menList = [];
             womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
-                if(loadedBreed["cages"][i]["mice"][m]["age"]>1){
-                    if(loadedBreed["cages"][i]["mice"][m]["gender"]==1){
+                if(loadedBreed["cages"][i]["mice"][m]["age"]>69){
+                    if(loadedBreed["cages"][i]["mice"][m]["gender"]==0){
                         menList.push(loadedBreed["cages"][i]["mice"][m])
                     }else{
                         womenList.push(loadedBreed["cages"][i]["mice"][m])
@@ -230,8 +230,11 @@ var clock = {
             }else{
                 for(j in womenList ){
                     var tmpGender = (Math.random()<0.5) ? 0 : 1;
-                    alert(i+"<- i")
-                    engine.newMouse(i,tmpGender,engine.mixGenotyp(womenList[j],menList[0]),initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
+                    var genotypArray = engine.mixGenotyp(womenList[j],menList[0])
+                    for(k=1;k<=6;k++){
+                        engine.newMouse(i,tmpGender,genotypArray[(k%4)-1],initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
+                    }
+
                 }
             }
 

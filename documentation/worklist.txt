@@ -32,6 +32,15 @@
                                 Ein Männchen zu ein bzw. mehreren Weibchen(1:N).
                                 Nach der Paarung Männchen NUR möglich bei Weibchen bleiben , oder einzel Käfig
 
+-Daten der Maus (Schwierigkeitsstufe leicht)
+ 1.	Tragzeit: 20 Tage
+ 2.	Wurfgröße: 6
+ 3.	Geschlechterverteilung: 1:1
+ 4.	Absatzalter: 20 Tage (von Mutter trennen)
+ 5.	Zuchtreife: 10 Wochen (70 Tage)
+ ---Gewicht ca 0-20 Tage ist 1-8,5 g
+
+
 - Steckbrief
 --- Gewicht ab 20 Tage sichtbar
 - um das Feld von den Mäusen für das vom user gewählten Geschlecht, Funktion um das zu aktualisieren.
