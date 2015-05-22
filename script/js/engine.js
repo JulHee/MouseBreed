@@ -232,6 +232,7 @@ var clock = {
                     var tmpGender = (Math.random()<0.5) ? 0 : 1;
                     var genotypArray = engine.mixGenotyp(womenList[j],menList[0])
                     for(k=1;k<=6;k++){
+                        alert(k)
                         engine.newMouse(i,tmpGender,genotypArray[(k%4)-1],initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
                     }
 

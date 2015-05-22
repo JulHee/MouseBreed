@@ -119,16 +119,7 @@ CREATE TABLE IF NOT EXISTS `mouse` (
 
 INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `name`, `genotyp`, `weight`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
 (5, 1, 1, 10, 0, 'Hans', 'AB', 35, -1, -1, 71, ''),
-(17, 1, 1, 10, 1, 'Jazmin', 'BB', 35, -1, -1, 70, ''),
-(19, 1, 1, 10, 1, 'Katelynn', 'BA', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(20, 1, 1, 10, 1, 'Mallory', 'BB', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(21, 1, 1, 10, 1, 'Amaya', 'BA', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(22, 1, 1, 10, 1, 'Shannon', 'BA', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(23, 1, 1, 10, 1, 'Laura', 'BB', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(24, 1, 1, 10, 1, 'Lola', 'BA', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(25, 1, 1, 10, 0, 'Ezra', 'BA', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(26, 1, 1, 10, 0, 'Jaydon', 'BB', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
-(27, 1, 1, 10, 0, 'Arthur', 'BA', 1, 17, 5, 0, 'dataimgdefaultMausChB.png');
+(17, 1, 1, 10, 1, 'Jazmin', 'BB', 35, -1, -1, 70, '');
 
 -- --------------------------------------------------------
 
