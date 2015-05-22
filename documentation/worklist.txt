@@ -1,5 +1,8 @@
 //TODO - LIST !! (immer ergänzen!)
 
+------------ Mäuse sollen fertig werden ----------
+- Funktion zum errechnen und setzen der Generation
+
 ------------ TO DO -------------
 (allgemein)
 - mainBootstrap.css .sidebar Verhalten für mobile verbessern
