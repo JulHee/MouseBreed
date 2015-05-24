@@ -55,8 +55,5 @@
 -Ziel als Array/Objekt darstellen: ["Zielklasse(Schwierigkeitsgrade 1,...,n)","zetlich begrenzt","Anz Mäuse","Eig1",...]
 
 (Jörn + Julian)
-- Home logged in -- ordentliche Startseite erstellen!
-- Home logged out -- hintergrund per carousel ?
-- Cageme funktionen einbinden/ auslesen daten (need acces to mice)
 - Historie in Datenbank anlegen
 - Benachrichtigungen klickbar machen.
