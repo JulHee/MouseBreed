@@ -2,6 +2,7 @@
 
 ------------ Mäuse sollen fertig werden ----------
 - Funktion zum errechnen und setzen der Generation
+-setze currentCage in loadedBreed
 
 ------------ TO DO -------------
 (allgemein)
@@ -24,7 +25,7 @@
 
 
 (christian)
-- erstes Scenario funktionen. ! (add to worklist whats needed)
+
 --- Mäuse ohne mitochondriales Transportprotein:
     Ziel = 20 weibliche mit fehlendem Transportprotein (Gentyp(-/-); schnellst möglich; 6 Wochen  alt
     Start= 3 männliche (+/+) zuchtreif; 3 weibliche (-/-) zuchtreif
@@ -47,11 +48,9 @@
 - Steckbrief
 --- Gewicht ab 20 Tage sichtbar
 - um das Feld von den Mäusen für das vom user gewählten Geschlecht, Funktion um das zu aktualisieren.
--- setze currentCage richtig!!!
+
 
 -initial Weight=1 ?
--initial Image Name ?
--neuen Namen aus der Liste raussuchen
 -Ziel als Array/Objekt darstellen: ["Zielklasse(Schwierigkeitsgrade 1,...,n)","zetlich begrenzt","Anz Mäuse","Eig1",...]
 
 (Jörn + Julian)

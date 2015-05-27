@@ -37,7 +37,6 @@ var engine = {
     },
 
     newCage: function(maxNumberMice){
-
         var response = $.ajax({
             type: "POST",
             url: "/script/php/ajax/newCage.php",
@@ -108,28 +107,6 @@ var engine = {
                 alert("Fehler");
             }
         });
-    },
-
-    feed: function(){
-        for(i in loadedBreed["cages"]){
-            i["plate"] += 10;
-        }
-    },
-
-    giveWaterToDrink: function(){
-        for(i in loadedBreed["cages"]){
-            i["bottle"] += 10;
-        }
-    },
-
-    handInMouse: function(thisMouse){
-        /*Auswertung*/
-        engine.deleteFromBreed(thisMouse);
-    },
-
-    burry: function(cageID,mouseID){
-        /*TODO Maus begraben Funktion*/
-
     }
 
     /*
@@ -144,23 +121,16 @@ var clock = {
 
     nextDay: function () {
         /*loadedBreed[timeUnit] = loadedBreed[timeUnit]+1; */
-        clock.checkDeadMouse();
         clock.gainWeight();
         clock.checkHomelessMouse();
         clock.pairing();
-        clock.eat();
-        clock.drink();
+        alert("bp")
+        engine.save();
 
 
     },
 
-    checkDeadMouse: function () {
-        for(i in loadedBreed["cages"]){
-            for(j in loadedBreed["cages"][i]["mice"]){
-                //if(!loadedBreed["cages"][i]["mice"][j]["alive"]){engine.burry(i,j)}
-            }
-        }
-    },
+
 
     gainWeight: function () {
         /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/
@@ -242,8 +212,38 @@ var clock = {
         }
 
 
-    },
+    }
 
+
+    /*
+    engine
+
+     ,
+
+     feed: function(){
+     for(i in loadedBreed["cages"]){
+     i["plate"] += 10;
+     }
+     },
+
+     giveWaterToDrink: function(){
+     for(i in loadedBreed["cages"]){
+     i["bottle"] += 10;
+     }
+     },
+
+     handInMouse: function(thisMouse){
+
+    engine.deleteFromBreed(thisMouse);
+},
+
+burry: function(cageID,mouseID){
+
+
+}
+
+    ------------------------------------------------------------------------------------------------------
+    clock
     eat: function(){
         for(i in loadedBreed["cages"]){
             for(j in i["mice"]){
@@ -259,7 +259,7 @@ var clock = {
             }
         }
     }
-
+    */
 
     /*checkPubescent: function () {
         for (i in loadedBreed["cages"]) {
@@ -274,7 +274,17 @@ var clock = {
 
 
         }
-    } */
+    }
+
+     checkDeadMouse: function () {
+     for(i in loadedBreed["cages"]){
+     for(j in loadedBreed["cages"][i]["mice"]){
+     //if(!loadedBreed["cages"][i]["mice"][j]["alive"]){engine.burry(i,j)}
+     }
+     }
+     },
+
+    */
     /*increaseNumberOfDay: function(){
      var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
      var firstDate = new Date();
