@@ -51,7 +51,7 @@
 
 
 -initial Weight=1 ?
--Ziel als Array/Objekt darstellen: ["Zielklasse(Schwierigkeitsgrade 1,...,n)","zetlich begrenzt","Anz Mäuse","Eig1",...]
+-Ziel als Objekt darstellen: ["Zielklasse(Schwierigkeitsgrade 1,...,n)","zetlich begrenzt","Anz Mäuse","Eig1",...]
 
 (Jörn + Julian)
 - Historie in Datenbank anlegen

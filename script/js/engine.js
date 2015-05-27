@@ -1,13 +1,21 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
 
-
 var engine = {
+    /*Target is an object that represents the properties of one target for one level
+    * @param level integer ; Number of the level
+    * @param strictTime integer; If 0 there is no restriction, else x is the number of days
+    * @param numberOfMice integer; the total number of mice needed
+    * @param gender integer; 0 = male,1=female
+    * @param genotyp string; 2 characters
+    * @param age integer; the minimal age
+    * */
+    Target: function (level,strictTime,numberOfMice,gender,genotyp,age){},
 
     /*
      * genotyp mix with length of 2(ex: Ab,AA,...)
      * @param geno1 string with 2 Chars
      * @param geno2 string with 2 Chars
-     * @return one possible Genotypes, each one has 25%
+     * @return Array of Genotypes
      */
     mixGenotyp: function (mouseOne, mouseTwo) {
         var x = mouseOne["genotyp"];
@@ -116,6 +124,8 @@ var engine = {
     */
 
 };
+/*Anlegen des Ziel-Arrays*/
+var target=[new engine.Target(1,0,20,1,"--",42)];
 
 var clock = {
 
@@ -125,7 +135,7 @@ var clock = {
         clock.checkHomelessMouse();
         clock.pairing();
         alert("bp")
-        engine.save();
+
 
 
     },
@@ -212,6 +222,10 @@ var clock = {
         }
 
 
+    },
+
+    checkTarget : function (){
+        var currentLvl = loadedBreed["target"];
     }
 
 
