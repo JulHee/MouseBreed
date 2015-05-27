@@ -125,7 +125,7 @@ var engine = {
 
 };
 /*Anlegen des Ziel-Arrays*/
-var target=[new engine.Target(1,0,20,1,"--",42)];
+var target=[new engine.Target(1,0,20,1,"--",42),new engine.Target(2,0,0,0,"",0)];
 
 var clock = {
 
@@ -225,7 +225,9 @@ var clock = {
     },
 
     checkTarget : function (){
-        var currentLvl = loadedBreed["target"];
+        var tmp;
+        tmp = target[loadedBreed["currentLvl"] - 1];
+
     }
 
 
