@@ -224,9 +224,8 @@ function clickedMouse(id) {
 
 function getCages() {
     // Auslesen der Elemente aus dem localStorage
-    var data = localStorage.getItem("loadedBreed");
-    var parsedData = JSON.parse(data);
-    var thisCage = parsedData.cages;
+    var data = loadedBreed;
+    var thisCage = data.cages;
     var counter = 0;
     for (var cages in thisCage) {
         var tmp = new Cage(thisCage[cages].id);
@@ -240,9 +239,8 @@ function updateMouseArray(cageid) {
     selectedCage = cageid;
     arrMouse = [];
     // Auslesen der Elemente aus dem localStorage
-    var data = localStorage.getItem("loadedBreed");
-    var parsedData = JSON.parse(data);
-    var thisCage = parsedData.cages;
+    var data = loadedBreed;
+    var thisCage = data.cages;
     var thisMice = thisCage[cageid].mice;
     for (var key in thisMice) {
         var tmp = new Mouse(thisMice[key].id);
@@ -313,6 +311,7 @@ function init() {
     stage.update();
     //  console.log(stage);
 }
+console.log(loadedBreed);
 
 function checkCollision() {
     for (var i = 0; i < arrMouse.length; i++) {
