@@ -193,6 +193,7 @@ Cage.prototype.init = function(y) {
         if (selectedCage != cage_id){
             addBen("Käfig #" + cage_id, "Es wurde der Käfig gewechselt", "info");
             selectedCage = cage_id;
+            updateMouseArray(selectedCage);
             draw();
         }
     });
@@ -311,7 +312,6 @@ function init() {
     stage.update();
     //  console.log(stage);
 }
-console.log(loadedBreed);
 
 function checkCollision() {
     for (var i = 0; i < arrMouse.length; i++) {
