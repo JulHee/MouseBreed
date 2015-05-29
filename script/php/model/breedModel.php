@@ -59,59 +59,59 @@ class breedModel {
 
             if ($target == "easy_1") {
 
-                // Käfige erzeugen
+                // KÃ¤fige erzeugen
                 $newCageId_1 = $this->newCage(20, $newBreedId);
                 $newCageId_2 = $this->newCage(20, $newBreedId);
                 if ($newCageId_1 < 0 || $newCageId_2 < 0) {
                     $this->deleteBreed($newBreedId);
-                    return Array('id' => -1, 'msg' => "Käfige konnten nicht erstellt werden.");
+                    return Array('id' => -1, 'msg' => "K?fige konnten nicht erstellt werden.");
                 }
 
-                // Mäuse erzeugen
+                // MÃ¤use erzeugen
                 // weiblich
                 $newMouseId_f_1 = $this->newMouse($newCageId_1, $newBreedId, $user_id, 1, "AA", 200, NULL, NULL, 21, "-")['id'];
                 $newMouseId_f_2 = $this->newMouse($newCageId_1, $newBreedId, $user_id, 1, "AA", 200, NULL, NULL, 21, "-")['id'];
                 $newMouseId_f_3 = $this->newMouse($newCageId_1, $newBreedId, $user_id, 1, "AA", 200, NULL, NULL, 21, "-")['id'];
                 if ($newMouseId_f_1 < 0 || $newMouseId_f_2 < 0 || $newMouseId_f_3 < 0) {
                     $this->deleteBreed($newBreedId);
-                    return Array('id' => -1, 'msg' => "Mäuse konnten nicht erstellt werden.");
+                    return Array('id' => -1, 'msg' => "M?use konnten nicht erstellt werden.");
                 }
 
-                // männlich
+                // mÃ¤nnlich
                 $newMouseId_m_1 = $this->newMouse($newCageId_2, $newBreedId, $user_id, 0, "BB", 200, NULL, NULL, 21, "-")['id'];
                 $newMouseId_m_2 = $this->newMouse($newCageId_2, $newBreedId, $user_id, 0, "BB", 200, NULL, NULL, 21, "-")['id'];
                 $newMouseId_m_3 = $this->newMouse($newCageId_2, $newBreedId, $user_id, 0, "BB", 200, NULL, NULL, 21, "-")['id'];
                 if ($newMouseId_m_1 < 0 || $newMouseId_m_2 < 0 || $newMouseId_m_3 < 0) {
                     $this->deleteBreed($newBreedId);
-                    return Array('id' => -1, 'msg' => "Mäuse konnten nicht erstellt werden.");
+                    return Array('id' => -1, 'msg' => "M?use konnten nicht erstellt werden.");
                 }
 
             } elseif ($target == "easy_2") {
 
-                // Käfige erzeugen
+                // KÃ¤fige erzeugen
                 $newCageId_1 = $this->newCage(20, $newBreedId);
                 $newCageId_2 = $this->newCage(20, $newBreedId);
                 if ($newCageId_1 < 0 || $newCageId_2 < 0) {
                     $this->deleteBreed($newBreedId);
-                    return Array('id' => -1, 'msg' => "Käfige konnten nicht erstellt werden.");
+                    return Array('id' => -1, 'msg' => "K?fige konnten nicht erstellt werden.");
                 }
 
-                // Mäuse erzeugen
+                // MÃ¤use erzeugen
                 // weiblich
                 $newMouseId_f_1 = $this->newMouse($newCageId_1, $newBreedId, $user_id, 1, "AB", 200, NULL, NULL, 21, "-")['id'];
                 $newMouseId_f_2 = $this->newMouse($newCageId_1, $newBreedId, $user_id, 1, "AB", 200, NULL, NULL, 21, "-")['id'];
                 if ($newMouseId_f_1 < 0 || $newMouseId_f_2 < 0) {
                     $this->deleteBreed($newBreedId);
-                    return Array('id' => -1, 'msg' => "Mäuse konnten nicht erstellt werden.");
+                    return Array('id' => -1, 'msg' => "M?use konnten nicht erstellt werden.");
                 }
 
-                // männlich
+                // mÃ¤nnlich
                 $newMouseId_m_1 = $this->newMouse($newCageId_2, $newBreedId, $user_id, 0, "AA", 200, NULL, NULL, 21, "-")['id'];
                 $newMouseId_m_2 = $this->newMouse($newCageId_2, $newBreedId, $user_id, 0, "AA", 200, NULL, NULL, 21, "-")['id'];
                 $newMouseId_m_3 = $this->newMouse($newCageId_2, $newBreedId, $user_id, 0, "AA", 200, NULL, NULL, 21, "-")['id'];
                 if ($newMouseId_m_1 < 0 || $newMouseId_m_2 < 0 || $newMouseId_m_3 < 0) {
                     $this->deleteBreed($newBreedId);
-                    return Array('id' => -1, 'msg' => "Mäuse konnten nicht erstellt werden.");
+                    return Array('id' => -1, 'msg' => "M?use konnten nicht erstellt werden.");
                 }
 
             } else {
