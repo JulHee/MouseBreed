@@ -110,6 +110,7 @@ var NextDay = {
     }
 };
 
+
 $(document).ready(function () {
     Logout.onReady();
     NextDay.onReady();

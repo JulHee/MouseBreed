@@ -2,7 +2,8 @@
 
 ------------ Mäuse sollen fertig werden ----------
 - Funktion zum errechnen und setzen der Generation
--setze currentCage in loadedBreed
+- setze currentCage in loadedBreed
+- schwangere Mäuse realisieren
 
 ------------ TO DO -------------
 (allgemein)

@@ -11,6 +11,11 @@ var engine = {
     * */
     Target: function (level,strictTime,numberOfMice,gender,genotyp,age){},
 
+
+    updateLoadedBreed: function(){
+    var data = localStorage.getItem("loadedBreed");
+    loadedBreed = JSON.parse(data);
+    },
     /*
      * genotyp mix with length of 2(ex: Ab,AA,...)
      * @param geno1 string with 2 Chars
