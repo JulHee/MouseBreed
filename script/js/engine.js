@@ -122,12 +122,6 @@ var engine = {
         });
     }
 
-    /*
-    saveChanges: function() {
-        localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
-    }
-    */
-
 };
 /*Anlegen des Ziel-Arrays*/
 var target=[new engine.Target(1,0,20,1,"--",42),new engine.Target(2,0,0,0,"",0)];

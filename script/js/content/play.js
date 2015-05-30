@@ -193,6 +193,7 @@ Cage.prototype.init = function(y) {
         if (selectedCage != cage_id){
             addBen("Käfig #" + cage_id, "Es wurde der Käfig gewechselt", "info");
             selectedCage = cage_id;
+            updateMouseArray(selectedCage);
             draw();
         }
     });
@@ -224,9 +225,8 @@ function clickedMouse(id) {
 
 function getCages() {
     // Auslesen der Elemente aus dem localStorage
-    var data = localStorage.getItem("loadedBreed");
-    var parsedData = JSON.parse(data);
-    var thisCage = parsedData.cages;
+    var data = loadedBreed;
+    var thisCage = data.cages;
     var counter = 0;
     for (var cages in thisCage) {
         var tmp = new Cage(thisCage[cages].id);
@@ -240,9 +240,8 @@ function updateMouseArray(cageid) {
     selectedCage = cageid;
     arrMouse = [];
     // Auslesen der Elemente aus dem localStorage
-    var data = localStorage.getItem("loadedBreed");
-    var parsedData = JSON.parse(data);
-    var thisCage = parsedData.cages;
+    var data = loadedBreed;
+    var thisCage = data.cages;
     var thisMice = thisCage[cageid].mice;
     for (var key in thisMice) {
         var tmp = new Mouse(thisMice[key].id);
@@ -348,7 +347,16 @@ function tick(event) {
     // Aktualisieren des Canvas
     stage.update(event);
 };
+
 $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
 });
+
+
+
+function saveChanges() {
+    localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
+}
+
+$( window ).on('beforeunload', saveChanges);
