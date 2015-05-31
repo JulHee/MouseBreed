@@ -115,6 +115,10 @@ Mouse.prototype.init = function() {
             if (this.x < this.targetx && this.y < this.targety) {
                 // Prüfen ob keiner der Ränder mit dem Zug überschritten wird
                 if (zug_p_x <= mousezone && zug_p_y <= stage.canvas.height) {
+                    // move rechts also bild skalieren
+                    this.scaleX = -1;
+                    this.getChildAt(1).scaleX = -1;
+
                     this.x += this.vX;
                     this.y += this.vY;
                 } else {
@@ -122,6 +126,10 @@ Mouse.prototype.init = function() {
                 }
             } else if (this.x > this.targetx && this.y < this.targety) {
                 if (zug_n_x > 0 && zug_p_y <= stage.canvas.height) {
+                    // move rechts also bild skalieren
+                    this.scaleX = 1;
+                    this.getChildAt(1).scaleX = 1;
+
                     this.x -= this.vX;
                     this.y += this.vY;
                 } else {
@@ -129,6 +137,10 @@ Mouse.prototype.init = function() {
                 }
             } else if (this.x < this.targetx && this.y > this.targety) {
                 if (zug_p_x <= mousezone && zug_n_y > 0) {
+                    // move rechts also bild skalieren
+                    this.scaleX = -1;
+                    this.getChildAt(1).scaleX = -1;
+
                     this.x += this.vX;
                     this.y -= this.vY;
                 } else {
@@ -136,6 +148,10 @@ Mouse.prototype.init = function() {
                 }
             } else if (this.x > this.targetx && this.y > this.targety) {
                 if (zug_n_x > 0 && zug_n_x > 0) {
+                    // move rechts also bild skalieren
+                    this.scaleX = 1;
+                    this.getChildAt(1).scaleX = 1;
+
                     this.x -= this.vX;
                     this.y -= this.vY;
                 } else {
@@ -155,12 +171,20 @@ Mouse.prototype.init = function() {
                 }
             } else if (this.x < this.targetx && this.y == this.targety) {
                 if (zug_p_x <= mousezone) {
+                    // move rechts also bild skalieren
+                    this.scaleX = -1;
+                    this.getChildAt(1).scaleX = -1;
+
                     this.x += this.vX;
                 } else {
                     this.refreshTarget(0, mousezone, 0, stage.canvas.height);
                 }
             } else if (this.x > this.targetx && this.y == this.targety) {
                 if (zug_n_x > 0) {
+                    // move rechts also bild skalieren
+                    this.scaleX = 1;
+                    this.getChildAt(1).scaleX = 1;
+
                     this.x -= this.vX;
                 } else {
                     this.refreshTarget(0, mousezone, 0, stage.canvas.height);

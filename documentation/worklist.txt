@@ -55,5 +55,7 @@
 -Ziel als Objekt darstellen: ["Zielklasse(Schwierigkeitsgrade 1,...,n)","zetlich begrenzt","Anz Mäuse","Eig1",...]
 
 (Jörn + Julian)
+- regX/Y im mousecontainer richtig setzen, zentral für collision
+
 - Historie in Datenbank anlegen
 - Benachrichtigungen klickbar machen.
