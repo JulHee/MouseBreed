@@ -193,8 +193,8 @@ var clock = {
         var initialWeight = 1;
         var initialImgName = "data\img\defaultMausChB.png";
         for(i in loadedBreed["cages"]){
-            menList = [];
-            womenList = [];
+            var menList = [];
+            var womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
                 if(loadedBreed["cages"][i]["mice"][m]["age"]>69){
                     if(loadedBreed["cages"][i]["mice"][m]["gender"]==0){
@@ -227,6 +227,23 @@ var clock = {
         var tmp;
         tmp = target[loadedBreed["currentLvl"] - 1];
 
+    },
+
+    checkGenderProblem : function(){
+        var problem = false;
+        for(i in loadedBreed["cages"]){
+            var menList = [];
+            for(j in loadedBreed["cages"][i]["mice"]){
+                if(loadedBreed["cages"][i]["mice"][j]["gender"]==0 && loadedBreed["cages"][i]["mice"][j]["age"]>69){
+                    menList.push(loadedBreed["cages"][i]["mice"][m])
+                }
+            }
+            if(menList.length > 1){
+                problem = true;
+                addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error");
+            };
+        }
+        return problem;
     }
 
 
