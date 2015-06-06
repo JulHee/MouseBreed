@@ -2,7 +2,8 @@
     var breed = JSON.parse(localStorage.getItem('loadedBreed'));
 </script>
 
-<h1 class="page-header"><?php echo $_SESSION['loadedBreed']['name']; ?>
+<h1 class="page-header">
+    <span id="BreedTitle" ></span>
     <button type="button" id="sidebarNextDay"
             class="pull-right btn btn-info"><span class="glyphicon glyphicon-time"
                                                   aria-hidden="true"></span> Nächter Tag
@@ -20,12 +21,7 @@
                             Käfig
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <?php if (!empty($_SESSION['loadedBreed']['cages'])) {
-                                foreach ($_SESSION['loadedBreed']['cages'] as $cage) { ?>
-                                    <li><a href="/breed/<?php echo $_SESSION['loadedBreed']['id']."/".$cage['id']; ?>">Käfig <?php echo $cage['id']; ?></a></li>
-                                <?php }
-                            } ?>
+                        <ul id="dropdownCages" class="dropdown-menu" role="menu">
                         </ul>
                     </div>
                 </div>
@@ -36,33 +32,31 @@
                     <div class="col-md-6">
                         <div class="form-horizontal pull-left">
                             <div class="form-group">
+                                <label class="col-sm-10 control-label">Käfig</label>
+
+                                <div class="col-sm-2">
+                                    <p id="selectedCageID" class="form-control-static">Kein Käfig ausgewählt</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-10 control-label">Größe</label>
 
                                 <div class="col-sm-2">
-                                    <p class="form-control-static">30x40x50cm</p>
+                                    <p id="cageDimensions" class="form-control-static">30x40x50cm</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-10 control-label">max. Mausmasse</label>
 
                                 <div class="col-sm-2">
-                                    <p class="form-control-static">
-                                        <?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mice'])) {
-                                            echo $_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['max_number_of_mice'];
-                                        } else {
-                                            echo "0";
-                                        } ?></p>
+                                    <p id="maxNumberofMice" class="form-control-static"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-10 control-label">Anzahl an Mäusen</label>
 
                                 <div class="col-sm-2">
-                                    <p class="form-control-static"><?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice'])) {
-                                            echo count($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice']);
-                                        } else {
-                                            echo "0";
-                                        } ?></p>
+                                    <p id="numberofMice" class="form-control-static"></p>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +75,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-hover">
+                        <table id="tableMouse" class="table table-hover">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -92,25 +86,6 @@
                                 <th>Gewicht</th>
                             </tr>
                             </thead>
-                            <?php if (!empty($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice'])) {
-                                foreach ($_SESSION['loadedBreed']['cages'][$_SESSION['selectedCage']]['mice'] as $mouse) { ?>
-                                    <tr>
-                                        <td><?php echo $mouse['name']; ?></td>
-                                        <td><?php
-                                            if ($mouse['gender'] == "0") {
-                                            echo "Männlich";
-                                            } else {
-                                            echo "Weiblich";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td><?php echo $mouse['genotyp']; ?></td>
-                                        <td>0 (Fehlt)</td>
-                                        <td><?php echo $mouse['age']; ?> Tage</td>
-                                        <td><?php echo $mouse['weight']; ?>g</td>
-                                    </tr>
-                                <?php }
-                            } ?>
                         </table>
                     </div>
                 </div>
