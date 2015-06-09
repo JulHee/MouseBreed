@@ -52,7 +52,7 @@ function addDatatoList(cageid,mouse,index){
   var elem = $("#micelist");
     elem.append($('<option>', {
         value: index,
-        text: 'Käfig: '+cageid+' / Maus: #'+mouse.id+' '+mouse.name
+        text: mouse.name+' (Käfig: '+cageid+' / ID: #'+mouse.id+')'
     }));
 }
 
