@@ -33,9 +33,8 @@ var treeData;
 
 function getData(){
     // Auslesen alle Mäuse aus dem localStorage
-    var data = localStorage.getItem("loadedBreed");
-    var parsedData = JSON.parse(data);
-    var thisCage = parsedData.cages;
+    var data = loadedBreed;
+    var thisCage = data.cages;
     var counter = 0;
     for (var cages in thisCage) {
         var cage_id = thisCage[cages].id;
