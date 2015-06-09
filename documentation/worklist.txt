@@ -4,6 +4,7 @@
 - Funktion zum errechnen und setzen der Generation
 - setze currentCage in loadedBreed
 - schwangere Mäuse realisieren
+- Notizen sollen beim Mousebreed internen Seitenwechsel erhalten bleiben
 
 ------------ TO DO -------------
 (allgemein)
@@ -12,7 +13,6 @@
 - Einstellungsmöglichkeiten überlegen/einfügen
 - FAQ erstellen (ausfüllen)
 - Schwierigkeitsgrade Mittel und Schwer ausfüllen
-- Notizen: Fenster Verschwindet, wenn irgendwo anderes geklickt wird (bis jetzt nur wenn nochmal auf das Notizenfeld geklickt wird.)
 - Steckbrief mit informationen Füllen
 
 
@@ -20,19 +20,7 @@
 - Datenbank Zugriff für:
     - Erstellen von Zuchten
 
-- spätere Version:
-    - plate  als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
-    - bottle als Feld für jeden Käfig. Mit 50 initialisieren (bsp Wert).
-
-
 (christian)
-
---- Mäuse ohne mitochondriales Transportprotein:
-    Ziel = 20 weibliche mit fehlendem Transportprotein (Gentyp(-/-); schnellst möglich; 6 Wochen  alt
-    Start= 3 männliche (+/+) zuchtreif; 3 weibliche (-/-) zuchtreif
-
-    Mix-Funktion mit +/-
-    Maus wirft -> in neuen leeren Käfig
     soziale Unverträglichkeit = gleich geschlechtlich NUR aus einem Wurf gut.
                                 Ein Männchen zu ein bzw. mehreren Weibchen(1:N).
                                 Nach der Paarung Männchen NUR möglich bei Weibchen bleiben , oder einzel Käfig
@@ -59,3 +47,9 @@
 
 - Historie in Datenbank anlegen
 - Benachrichtigungen klickbar machen.
+
+Level
+-1
+   Ziel = 20 weibliche mit fehlendem Transportprotein (Gentyp(-/-); schnellst möglich; 6 Wochen  alt
+    Start= 3 männliche (+/+) zuchtreif; 3 weibliche (-/-) zuchtreif
+

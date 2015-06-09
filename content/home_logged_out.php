@@ -15,7 +15,7 @@
         <a href="/register" class="btn btn-primary">Registrieren</a>
     </form>
 </div>-->
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-body text-center">
             <h1>Willkommen bei Mousebreed</h1>
