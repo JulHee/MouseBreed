@@ -35,23 +35,21 @@ function getData(){
     // Auslesen alle Mäuse aus dem localStorage
     var data = loadedBreed;
     var thisCage = data.cages;
-    var counter = 0;
     for (var cages in thisCage) {
         var cage_id = thisCage[cages].id;
         var thisMice = thisCage[cage_id].mice;
         for (var key in thisMice) {
             var tmp = thisMice[key];
-            addDatatoList(cage_id,tmp,counter);
+            addDatatoList(cage_id,tmp);
             mice.push(tmp);
-            counter +=1;
         }
     }
 }
 
-function addDatatoList(cageid,mouse,index){
+function addDatatoList(cageid,mouse){
   var elem = $("#micelist");
     elem.append($('<option>', {
-        value: index,
+        value: mouse.id,
         text: mouse.name+' (Käfig: '+cageid+' / ID: #'+mouse.id+')'
     }));
 }
@@ -59,7 +57,6 @@ function addDatatoList(cageid,mouse,index){
 function selectedMiceclick(){
     var selectedElementValue = $("#micelist").val();
     treeData = findParents(selectedElementValue);
-
     if (treeData.children != null){
         loadData(JSON.stringify(treeData));
     } else{
@@ -67,18 +64,32 @@ function selectedMiceclick(){
     }
 }
 
-function findParents(mouseindex){
-    var node = {};
-    node.name = mice[mouseindex].name+"["+mice[mouseindex].id+","+mice[mouseindex].genotyp+"]";
-    var childs = [];
-    for (var m in mice) {
-        if (mice[mouseindex].id == mice[m].father_id && mice[mouseindex].father_id != 0 ){
-            childs.push(findParents(m));
-        }
-        if (mice[mouseindex].id == mice[m].mother_id && mice[mouseindex].mother_id != 0 ){
-            childs.push(findParents(m));
+function findParents(mouse_id){
+    var index = -1;
+    // Find Index of Mouse in Array
+    for (i = 0; i < mice.length; i++) {
+        if (mice[i].id == mouse_id){
+           index = i;
         }
     }
+    var thisMice = mice[index];
+
+    // Naming the Node
+    var node = {};
+    node.name = thisMice.name+"["+thisMice.id+","+thisMice.genotyp+"]";
+
+    // Finding Mice Parents
+    var childs = [];
+    for (var m in mice) {
+        if (thisMice.father_id == mice[m].id){ // && mice[index].father_id != 0
+            childs.push(findParents(mice[m].id));
+        }
+        if (thisMice.mother_id == mice[m].id){ // && mice[index].mother_id != 0
+            childs.push(findParents(mice[m].id));
+        }
+    }
+
+    // If no Parents
     if (childs < 2){
         node.size = Math.floor(Math.random()*1000000);
     } else {
@@ -88,6 +99,8 @@ function findParents(mouseindex){
 }
 
 function loadData(source){
+    // TODO Seite muss neugeladen weren um Infos neu anzuzeigen
+
     root = JSON.parse(source);
     root.x0 = height / 2;
     root.y0 = 0;
