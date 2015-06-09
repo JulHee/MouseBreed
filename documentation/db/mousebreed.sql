@@ -2,8 +2,8 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Erstellungszeit: 30. Apr 2015 um 15:33
+-- Host: 127.0.0.1
+-- Erstellungszeit: 09. Jun 2015 um 12:02
 -- Server Version: 5.6.20
 -- PHP-Version: 5.5.15
 
@@ -111,19 +111,19 @@ CREATE TABLE IF NOT EXISTS `mouse` (
   `father_id` int(11) NOT NULL,
   `age` int(11) NOT NULL,
   `img_name` varchar(200) COLLATE utf8_general_mysql500_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=559 ;
 
 --
 -- Daten für Tabelle `mouse`
 --
 
 INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `name`, `genotyp`, `weight`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
-(1, 1, 1, 10, 0, 'Karl', 'AB', 200, 0, 0, 10, ''),
-(2, 1, 1, 10, 0, 'Paul', 'BA', 100, 0, 0, 5, ''),
-(3, 1, 1, 10, 1, 'Frauke', 'BB', 500, 2, 2, 5, ''),
-(4, 1, 1, 10, 1, 'Klara', 'AA', 1200, 2, 2, 80, ''),
-(5, 1, 1, 10, 0, 'Hans', 'AB', 500, 4, 4, 4, ''),
-(6, 1, 1, 10, 1, 'Berta', 'BB', 4000, 3, 3, 50, '');
+(5, 1, 1, 10, 0, 'Hans', 'AB', 35, -1, -1, 71, ''),
+(17, 1, 1, 10, 1, 'Jazmin', 'BB', 35, -1, -1, 70, ''),
+(116, 2, 1, 10, 1, 'Alice', 'BA', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
+(125, 2, 1, 10, 0, 'Roy', 'BB', 1, 17, 5, 0, 'dataimgdefaultMausChB.png'),
+(552, 2, 1, 10, 0, 'Hector', 'BB', 1, 116, 125, 0, 'dataimgdefaultMausChB.png'),
+(558, 2, 1, 10, 0, 'Philip', 'BB', 1, 116, 125, 0, 'dataimgdefaultMausChB.png');
 
 -- --------------------------------------------------------
 
@@ -1253,7 +1253,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `mouse`
 --
 ALTER TABLE `mouse`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=559;
 --
 -- AUTO_INCREMENT for table `user`
 --
