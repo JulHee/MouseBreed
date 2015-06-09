@@ -1,5 +1,5 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
-
+var tmp;
 var engine = {
     /*Target is an object that represents the properties of one target for one level
     * @param level integer ; Number of the level
@@ -129,18 +129,24 @@ var target=[new engine.Target(1,0,20,1,"--",42),new engine.Target(2,0,0,0,"",0)]
 var clock = {
 
     nextDay: function () {
-        /*loadedBreed[timeUnit] = loadedBreed[timeUnit]+1; */
+        clock.increaseAge();
         clock.gainWeight();
         clock.checkHomelessMouse();
         clock.pairing();
-        alert("bp")
 
 
 
     },
 
 
+    increaseAge: function(){
+        for(i in loadedBreed["cages"]){
+            for(j in loadedBreed["cages"][i]["mice"]){
+                loadedBreed["cages"][i]["mice"][j]["age"] =parseInt(loadedBreed["cages"][i]["mice"][j]["age"]) + 1;
+            }
+        }
 
+    },
     gainWeight: function () {
         /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/
         var addWeightMale = [0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.84, 0.53, 0.53, 0.53, 0.53,

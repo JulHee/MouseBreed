@@ -33,6 +33,9 @@
  5.	Zuchtreife: 10 Wochen (70 Tage)
  ---Gewicht ca 0-20 Tage ist 1-8,5 g
 
+ Geschlecht radnom in for-schleife ziehen.
+ CageID richtig gesetzt?   Test: CageID wird nicht richtig in der DB geändert bei changeCage.
+
 
 - Steckbrief
 --- Gewicht ab 20 Tage sichtbar
