@@ -4,7 +4,7 @@ var breed = JSON.parse(localStorage.getItem("loadedBreed"));
 var Game = {
 
     state: {
-        selectedCage: Object.keys(breed.cages)[0]
+        selectedCage: (breed != null ? Object.keys(breed.cages)[0] : null)
     },
 
     onReady: function() {
@@ -135,7 +135,9 @@ var GUI = {
 
 $(document).ready(function(){
 
-    Game.onReady();
-    GUI.onReady();
+    if(breed != null) {
+        Game.onReady();
+        GUI.onReady();
+    }
 
 });

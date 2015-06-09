@@ -41,3 +41,5 @@
 <div id="cage"></div>
 
 <p>Maus: <span id="clickedMouse"></span></p>
+
+<a id="button">Test</a>

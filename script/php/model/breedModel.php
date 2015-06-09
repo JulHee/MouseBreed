@@ -306,7 +306,7 @@ class breedModel {
 
     public function incrementMatings($breedId) {
         $stmt = "UPDATE mating ".
-                "SET age = age + 1".
+                "SET age = age + 1 ".
                 "WHERE breed_id = ? AND age < 22";
         $stmt = $this->db->prepare($stmt);
         $stmt->bindParam(1, $breedId);
@@ -324,25 +324,21 @@ class breedModel {
         if($stmt->execute() &&  $mating = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
             $broods = Array();
 
+            $stmt =     "SELECT * ".
+                        "FROM `mouse` ".
+                        "WHERE mating_id = ?";
+            $stmt = $this->db->prepare($stmt);
+
             foreach($mating as $m) {
-                $stmt =     "SELECT * ".
-                            "FROM `mouse` ".
-                            "WHERE mating_id = ?";
-                $stmt = $this->db->prepare($stmt);
-                $stmt->bindParam(1, $m['id']);
+                if(!$stmt->execute(Array($m['id']))) return Array();
+                $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $brood = Array();
+                $brood['id'] = $m['id'];
+                $brood['mother'] = $this->getMouse($m['mother_id']);
+                $brood['father'] = $this->getMouse($m['father_id']);
+                $brood['mice'] = $mice;
 
-                if($stmt->execute() &&  $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
-
-                    $brood = Array();
-                    $brood['id'] = $m['id'];
-                    $brood['mother'] = $this->getMouse($m['mother_id']);
-                    $brood['father'] = $this->getMouse($m['father_id']);
-                    $brood['mice'] = $mice;
-
-                    $broods[$brood['id']] = $brood;
-                } else {
-                    return Array();
-                }
+                $broods[$brood['id']] = $brood;
             }
 
             return $broods;
