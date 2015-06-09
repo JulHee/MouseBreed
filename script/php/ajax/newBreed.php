@@ -7,7 +7,7 @@ if(isset($_SESSION['login']) && $_SESSION['login']) {
 
     $breedModel = new \model\breedModel($db);
 
-    $newBreed = $breedModel->newBreed($_SESSION['userdata']['id'], $_POST['target'], $_POST['name']);
+    $newBreed = $breedModel->newBreed($_SESSION['userdata']['id'], $_POST['scenario'], $_POST['name']);
 
     if($newBreed['id'] > 0) {
 

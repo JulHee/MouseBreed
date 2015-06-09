@@ -33,7 +33,7 @@ var Newbreed = {
         $.ajax({
             type: "POST",
             url: "/script/php/ajax/newBreed.php",
-            data: { target: scenario, name: $( '#breedname' ).val() },
+            data: { scenario: scenario, name: $( '#breedname' ).val() },
             dataType: "json",
             async: false
         }).done(function(response) {

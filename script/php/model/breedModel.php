@@ -10,7 +10,7 @@ class breedModel {
     }
 
     public function getGeneralData($userId) {
-        $stmt =     "SELECT id, name, time_of_creation, target ".
+        $stmt =     "SELECT id, name, time_of_creation, scenario ".
                     "FROM `breed` ".
                     "WHERE user_id = ?";
         $stmt = $this->db->prepare($stmt);
@@ -46,18 +46,18 @@ class breedModel {
         }
     }
 
-    public function newBreed($user_id, $target, $name) {
+    public function newBreed($user_id, $scenario, $name) {
         $stmt =     "INSERT INTO `breed` ".
-                    "(user_id, target, name) ".
+                    "(user_id, scenario, name) ".
                     "VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($stmt);
 
-        if(!$stmt->execute(array($user_id, $target, $name))) {
+        if(!$stmt->execute(array($user_id, $scenario, $name))) {
             return Array('id' => -1);
         } else {
             $newBreedId = $this->db->lastInsertId('id');
 
-            if ($target == "easy_1") {
+            if ($scenario == "easy_1") {
 
                 // Käfige erzeugen
                 $newCageId_1 = $this->newCage(20, $newBreedId);
@@ -86,7 +86,7 @@ class breedModel {
                     return Array('id' => -1, 'msg' => "M?use konnten nicht erstellt werden.");
                 }
 
-            } elseif ($target == "easy_2") {
+            } elseif ($scenario == "easy_2") {
 
                 // Käfige erzeugen
                 $newCageId_1 = $this->newCage(20, $newBreedId);
@@ -136,7 +136,7 @@ class breedModel {
         }
     }
 
-    public function newMouse($cage_id, $breed_id, $user_id, $gender, $genotyp, $weight, $mother_id, $father_id, $age, $img_name) {
+    public function newMouse($cage_id, $breed_id, $user_id, $gender, $genotyp, $weight, $mating_id, $mother_id, $father_id, $age, $img_name) {
         $stmt = "SELECT name ".
                 "FROM `".(($gender == 0) ? "nameboys" : "namegirls")."` ".
                 "ORDER BY RAND() ".
@@ -149,11 +149,11 @@ class breedModel {
         }
 
         $stmt = "INSERT INTO `mouse` ".
-                "(cage_id, breed_id, user_id, gender, name, genotyp, weight, mother_id, father_id, age, img_name) ".
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "(cage_id, breed_id, user_id, gender, name, genotyp, weight, mating_id, mother_id, father_id, age, img_name) ".
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($stmt);
 
-        if($stmt->execute(array($cage_id, $breed_id, $user_id, $gender, $name, $genotyp, $weight, $mother_id, $father_id, $age, $img_name))) {
+        if($stmt->execute(array($cage_id, $breed_id, $user_id, $gender, $name, $genotyp, $weight, $mating_id, $mother_id, $father_id, $age, $img_name))) {
             return array("id" => $this->db->lastInsertId('id'), "name" => $name);
         } else {
             return array("id" => -1);
@@ -175,6 +175,20 @@ class breedModel {
             }
 
             return $miceReturn;
+        } else {
+            return Array();
+        }
+    }
+
+    public function getMouse($mouseId) {
+        $stmt =     "SELECT * ".
+                    "FROM `mouse` ".
+                    "WHERE id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $mouseId);
+
+        if($stmt->execute() && $mouse = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
+            return $mouse;
         } else {
             return Array();
         }
@@ -275,6 +289,66 @@ class breedModel {
         $stmt->bindParam(1, $id);
 
         return $stmt->execute();
+    }
+
+    public function newMating($breed_id, $mother_id, $father_id) {
+        $stmt =     "INSERT INTO `mating` ".
+                    "(breed_id, mother_id, father_id) ".
+                    "VALUES (?, ?, ?)";
+        $stmt = $this->db->prepare($stmt);
+
+        if($stmt->execute(array($breed_id, $mother_id, $father_id))) {
+            return $this->db->lastInsertId('id');
+        } else {
+            return -1;
+        }
+    }
+
+    public function incrementMatings($breedId) {
+        $stmt = "UPDATE mating ".
+                "SET age = age + 1".
+                "WHERE breed_id = ? AND age < 22";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $breedId);
+
+        return $stmt->execute();
+    }
+
+    public function getBroods($breedId) {
+        $stmt =     "SELECT * ".
+                    "FROM `mating` ".
+                    "WHERE breed_id = ? AND age = 21";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $breedId);
+
+        if($stmt->execute() &&  $mating = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
+            $broods = Array();
+
+            foreach($mating as $m) {
+                $stmt =     "SELECT * ".
+                            "FROM `mouse` ".
+                            "WHERE mating_id = ?";
+                $stmt = $this->db->prepare($stmt);
+                $stmt->bindParam(1, $m['id']);
+
+                if($stmt->execute() &&  $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
+
+                    $brood = Array();
+                    $brood['id'] = $m['id'];
+                    $brood['mother'] = $this->getMouse($m['mother_id']);
+                    $brood['father'] = $this->getMouse($m['father_id']);
+                    $brood['mice'] = $mice;
+
+                    $broods[$brood['id']] = $brood;
+                } else {
+                    return Array();
+                }
+            }
+
+            return $broods;
+        } else {
+            return Array();
+        }
     }
 
 }

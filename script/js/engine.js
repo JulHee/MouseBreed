@@ -73,13 +73,78 @@ var engine = {
 
     },
 
-    newMouse: function(cage_id, gender, genotyp, weight, mother_id, father_id, age, img_name){
+    // Legt eine neue Verpaarung an und gibt die ID zurück
+    newMating: function(mother_id, father_id){
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/newMating.php",
+            data: {mother_id: mother_id, father_id: father_id},
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if(response.success == true) {
+
+            // erfolgreich erstellt
+
+            return response.id;
+        } else {
+
+            // nicht erstellt
+            // Rückgabe?
+        }
+
+    },
+
+    // Erhöt das Alter aller Würfe/Verpaarungen mit einem Alter < 22 um 1
+    incrementMatings: function(){
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/incrementMatings.php",
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if(response.success == true) {
+
+            // erfolgreich
+
+        } else {
+
+            // nicht erfolgreich
+        }
+
+    },
+
+    // Gibt die Würfe/Verpaarungen mit dem Alter von 21 Tagen zurück
+    getBroods: function(){
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/getBroods.php",
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if(response.success == true) {
+
+            // erfolgreich erstellt
+
+            return response.broods;
+        } else {
+
+            // nicht erstellt
+            // Rückgabe?
+        }
+
+    },
+
+    newMouse: function(cage_id, gender, genotyp, weight, mating_id, mother_id, father_id, age, img_name){
 
         var response = $.ajax({
             type: "POST",
             url: "/script/php/ajax/newMouse.php",
-            data: { cage_id: cage_id, gender: gender, genotyp: genotyp, weight: weight, mother_id: mother_id,
-                    father_id: father_id, age: age, img_name: img_name },
+            data: { cage_id: cage_id, gender: gender, genotyp: genotyp, weight: weight, mating_id: mating_id,
+                    mother_id: mother_id, father_id: father_id, age: age, img_name: img_name },
             async: false
         }).responseText;
         response = JSON.parse(response);

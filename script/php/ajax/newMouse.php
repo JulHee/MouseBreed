@@ -8,7 +8,7 @@ if(isset($_SESSION['login']) && $_SESSION['login']) {
     $breedModel = new \model\breedModel($db);
 
     $newMouse = $breedModel->newMouse($_POST['cage_id'], $_SESSION['loadedBreed']['id'], $_SESSION['userdata']['id'], $_POST['gender'],
-        $_POST['genotyp'], $_POST['weight'], $_POST['mother_id'], $_POST['father_id'], $_POST['age'],
+        $_POST['genotyp'], $_POST['weight'], $_POST['mating_id'], $_POST['mother_id'], $_POST['father_id'], $_POST['age'],
         $_POST['img_name']);
 
     if($newMouse['id'] > 0) {
