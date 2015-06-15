@@ -8,6 +8,8 @@ var arrCage = [];
 var selectedCage = -1;
 //linke Breite des Canvas (Mausbereich)
 var mousezone = 600;
+//FPS Label
+var fpsText;
 
 
 function Mouse(id) {
@@ -254,8 +256,6 @@ Cage.prototype.init = function(y) {
             selectedCage = cage_id;
             updateMouseArray(selectedCage);
             draw();
-            //TODO entferne mich DEV mode
-            createjs.Ticker.paused = true;
         }
     });
 };
@@ -348,7 +348,6 @@ function draw() {
     }
 
     // Laden der Käfiginformationen
-    console.log("SelectedCage= "+selectedCage+", arrCage[0].id = "+arrCage[0].id);
     if (arrCage.length > 0){
         if (selectedCage == -1){
             selectedCage = arrCage[0].id;
@@ -373,6 +372,12 @@ function init() {
 
     draw();
     selectedCage = arrCage[0].id;
+
+    // current FPS
+    fpsText = new createjs.Text("-- fps", "10px Arial", "#FFF");
+    fpsText.x = 10;
+    fpsText.y = 10;
+    stage.addChild(fpsText);
 
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
@@ -417,6 +422,8 @@ function tick(event) {
                 elem.move();
             }
         }
+        //FPS Label Update
+        fpsText.text = Math.round(createjs.Ticker.getMeasuredFPS()) + " FPS";
         // Aktualisieren des Canvas
         stage.update(event);
     }
