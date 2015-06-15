@@ -389,6 +389,10 @@ function tick(event) {
 $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
+    $("#sidebarNewCage").click(function(){
+        engine.newCage(42);
+        draw();
+    });
 });
 
 
