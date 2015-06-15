@@ -381,8 +381,7 @@ function init() {
 
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
-    createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
-    createjs.Ticker.setFPS(60);
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
     stage.update();
     //  console.log(stage);
 }
