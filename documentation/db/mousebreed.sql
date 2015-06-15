@@ -123,10 +123,10 @@ CREATE TABLE IF NOT EXISTS `mouse` (
 INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `user_gender`, `name`, `genotyp`, `weight`, `mating_id`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
 (1, 1, 1, 10, 0, 0, 'Karl', 'AB', 200, NULL, 0, 0, 10, ''),
 (2, 1, 1, 10, 0, 0, 'Paul', 'BA', 100, NULL, 0, 0, 5, ''),
-(3, 1, 1, 10, 1, 0, 'Frauke', 'BB', 500, NULL, 2, 2, 5, ''),
-(4, 1, 1, 10, 1, 0, 'Klara', 'AA', 1200, NULL, 2, 2, 80, ''),
-(5, 1, 1, 10, 0, 0, 'Hans', 'AB', 500, NULL, 4, 4, 4, ''),
-(6, 1, 1, 10, 1, 0, 'Berta', 'BB', 4000, NULL, 3, 3, 50, '');
+(3, 1, 1, 10, 1, 0, 'Frauke', 'BB', 500, NULL, 2, 1, 5, ''),
+(4, 1, 1, 10, 1, 0, 'Klara', 'AA', 1200, NULL, 2, 1, 80, ''),
+(5, 1, 1, 10, 0, 0, 'Hans', 'AB', 500, NULL, 4, 3, 4, ''),
+(6, 1, 1, 10, 1, 0, 'Berta', 'BB', 4000, NULL, 4, 3, 50, '');
 
 -- --------------------------------------------------------
 
