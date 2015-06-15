@@ -9,38 +9,73 @@ var selectedCage = 1;
 //linke Breite des Canvas (Mausbereich)
 var mousezone = 600;
 
+
 function Mouse(id) {
+    //55x30
     this.src = "/data/img/play/play_mouse_2.png";
     this.id = id;
     this.mouseani = null;
     this.mousecontainer = null;
     this.mouselabel = null;
-}
+    this.mouseGen = loadedBreed["cages"][selectedCage]["mice"][this.id]["gender"];
+    this.mousePreg = null;
+};
+
+
 // Initialisieren der Informatioenen
 Mouse.prototype.init = function() {
     // Holen der Informationen zu der Maus aus dem LocalStorage
     var tmpInfoMouse = getInfo(this.id);
     // Konvertieren in ein createjs.Bitmap
     this.mouseani = new createjs.Bitmap(this.src);
+
+    //gender? (normalerweise noUgen als Default!)
+    if (this.mouseGen > 0){
+        this.mouseUgen = new createjs.Bitmap("data/img/play/female icon.png");
+    } else {
+        this.mouseUgen = new createjs.Bitmap("data/img/play/male icon.png");
+    }
+    //TODO pregnant und user gender FEHLEN!
+    var preg = false;
+    if(preg){
+
+    } else {
+        this.mousePreg = new createjs.Bitmap("/data/img/play/PregFalse.png");
+    }
+
+    //setzen der Positionen innerhalb des Containers
+    this.mouseani.x = 15+27;
+    this.mouseani.y = 0+15;
+    this.mouseani.regX = 27;
+    this.mouseani.regY = 15;
+    this.mouseUgen.x = 0;
+    this.mouseUgen.y = 0;
+    this.mousePreg.x = 0;
+    this.mousePreg.y = 15;
+
+
+
     // Erstellen des Labels
-    this.mouselabel = new createjs.Text("#" + tmpInfoMouse.id + ":" + tmpInfoMouse.name, "bold 14px Arial", "#fdfdfc");
+    this.mouselabel = new createjs.Text("" + tmpInfoMouse.name, "bold 14px Arial", "#fdfdfc");
     this.mouselabel.textAlign = "center";
     // Positionieren des Labels
     this.mouselabel.y = 35;
-    this.mouselabel.x = 20;
+    this.mouselabel.x = 35;
+
     // Erstellen des Containers der das Label und das Bild beinhaltet
     this.mousecontainer = new createjs.Container();
-    this.mousecontainer.addChild(this.mouseani, this.mouselabel);
+    this.mousecontainer.addChild(this.mouseani, this.mouselabel, this.mouseUgen, this.mousePreg);
     this.mousecontainer.mouseid = this.id;
-    this.mousecontainer.direction = 90;
+    //this.mousecontainer.direction = 90;
     this.mousecontainer.ismove = true;
     this.mousecontainer.isdrag = false;
     this.mousecontainer.vX = 2;
     this.mousecontainer.vY = 2;
     this.mousecontainer.x = 16 + Math.random() * 300;
     this.mousecontainer.y = 32 + Math.random() * 300;
-    this.mousecontainer.sizex = this.mousecontainer.getBounds().width;
-    this.mousecontainer.sizey = this.mousecontainer.getBounds().height;
+    //frei gesetzt
+    this.mousecontainer.sizex = 70;
+    this.mousecontainer.sizey = 45;
     // Erstellen eines Ziels für die Maus
     this.mousecontainer.targetx = this.mousecontainer.sizex + (Math.random() * (mousezone - this.mousecontainer.sizex));
     this.mousecontainer.targety = this.mousecontainer.sizey + (Math.random() * (stage.canvas.height - this.mousecontainer.sizey));
@@ -116,8 +151,7 @@ Mouse.prototype.init = function() {
                 // Prüfen ob keiner der Ränder mit dem Zug überschritten wird
                 if (zug_p_x <= mousezone && zug_p_y <= stage.canvas.height) {
                     // move rechts also bild skalieren
-                    this.scaleX = -1;
-                    this.getChildAt(1).scaleX = -1;
+                    this.getChildAt(0).scaleX = -1;
 
                     this.x += this.vX;
                     this.y += this.vY;
@@ -127,8 +161,7 @@ Mouse.prototype.init = function() {
             } else if (this.x > this.targetx && this.y < this.targety) {
                 if (zug_n_x > 0 && zug_p_y <= stage.canvas.height) {
                     // move rechts also bild skalieren
-                    this.scaleX = 1;
-                    this.getChildAt(1).scaleX = 1;
+                    this.getChildAt(0).scaleX = 1;
 
                     this.x -= this.vX;
                     this.y += this.vY;
@@ -138,8 +171,7 @@ Mouse.prototype.init = function() {
             } else if (this.x < this.targetx && this.y > this.targety) {
                 if (zug_p_x <= mousezone && zug_n_y > 0) {
                     // move rechts also bild skalieren
-                    this.scaleX = -1;
-                    this.getChildAt(1).scaleX = -1;
+                    this.getChildAt(0).scaleX = -1;
 
                     this.x += this.vX;
                     this.y -= this.vY;
@@ -149,8 +181,7 @@ Mouse.prototype.init = function() {
             } else if (this.x > this.targetx && this.y > this.targety) {
                 if (zug_n_x > 0 && zug_n_x > 0) {
                     // move rechts also bild skalieren
-                    this.scaleX = 1;
-                    this.getChildAt(1).scaleX = 1;
+                    this.getChildAt(0).scaleX = 1;
 
                     this.x -= this.vX;
                     this.y -= this.vY;
@@ -172,8 +203,7 @@ Mouse.prototype.init = function() {
             } else if (this.x < this.targetx && this.y == this.targety) {
                 if (zug_p_x <= mousezone) {
                     // move rechts also bild skalieren
-                    this.scaleX = -1;
-                    this.getChildAt(1).scaleX = -1;
+                    this.getChildAt(0).scaleX = -1;
 
                     this.x += this.vX;
                 } else {
@@ -182,8 +212,7 @@ Mouse.prototype.init = function() {
             } else if (this.x > this.targetx && this.y == this.targety) {
                 if (zug_n_x > 0) {
                     // move rechts also bild skalieren
-                    this.scaleX = 1;
-                    this.getChildAt(1).scaleX = 1;
+                    this.getChildAt(0).scaleX = 1;
 
                     this.x -= this.vX;
                 } else {
@@ -219,6 +248,8 @@ Cage.prototype.init = function(y) {
             selectedCage = cage_id;
             updateMouseArray(selectedCage);
             draw();
+            //TODO entferne mich DEV mode
+            createjs.Ticker.paused = true;
         }
     });
 };
@@ -361,15 +392,20 @@ function checkCollision() {
 }
 
 function tick(event) {
-    for (var i = 0; i < arrMouse.length; i++) {
-        // Aktuelles Element
-        var elem = arrMouse[i].mousecontainer;
-        if (!elem.isdrag && elem.ismove) {
-            elem.move();
+    // TODO Dev Mode entfernen
+    if (createjs.Ticker.paused){
+
+    } else {
+        for (var i = 0; i < arrMouse.length; i++) {
+            // Aktuelles Element
+            var elem = arrMouse[i].mousecontainer;
+            if (!elem.isdrag && elem.ismove) {
+                elem.move();
+            }
         }
+        // Aktualisieren des Canvas
+        stage.update(event);
     }
-    // Aktualisieren des Canvas
-    stage.update(event);
 };
 
 $(document).ready(function() {
