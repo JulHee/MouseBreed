@@ -127,11 +127,11 @@ Mouse.prototype.init = function() {
             evt.currentTarget.x = 16 + Math.random() * 300;
             evt.currentTarget.y = 32 + Math.random() * 300;
         }
-        /*
+
         // TODO Maus entfernen wenn aus aktuellem Käfig entfernt worden ist
         evt.currentTarget.isdrag = false;
         evt.currentTarget.ismove = true;
-        stage.update();*/
+       // stage.update();
 
     });
 
