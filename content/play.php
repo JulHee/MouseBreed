@@ -61,9 +61,9 @@
                                      class="img-rounded img-responsive center-block">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary pull-left">Männlich
+                                <button type="button" id="malesetbtn" class="btn btn-primary pull-left">Männlich
                                 </button>
-                                <button type="button" class="btn btn-primary">Weiblich</button>
+                                <button type="button" id="femalesetbtn" class="btn btn-primary">Weiblich</button>
                             </div>
                         </div>
                     </div>

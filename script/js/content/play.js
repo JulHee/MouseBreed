@@ -6,6 +6,8 @@ var arrMouse = [];
 var arrCage = [];
 // Der aktuelle Käfig
 var selectedCage = -1;
+//aktuelle maus
+var selectedMouse;
 //linke Breite des Canvas (Mausbereich)
 var mousezone = 600;
 //FPS Label
@@ -20,9 +22,11 @@ function Mouse(id) {
     this.mousecontainer = null;
     this.mouselabel = null;
     this.mouseGen = loadedBreed["cages"][selectedCage]["mice"][this.id]["gender"];
-    this.mousePreg = null;
+    this.mouseUgen = loadedBreed["cages"][selectedCage]["mice"][this.id]["user_gender"];
+    this.mouseUgenImg = null;
+    this.mousePreg = loadedBreed["cages"][selectedCage]["mice"][this.id]["mating_id"];
+    this.mousePregImg = null;
 };
-
 
 // Initialisieren der Informatioenen
 Mouse.prototype.init = function() {
@@ -30,30 +34,21 @@ Mouse.prototype.init = function() {
     var tmpInfoMouse = getInfo(this.id);
     // Konvertieren in ein createjs.Bitmap
     this.mouseani = new createjs.Bitmap(this.src);
+    //gender?
+    this.setUgen();
+    //pregnancy
+    this.setPreg();
 
-    //gender? (normalerweise noUgen als Default!)
-    if (this.mouseGen > 0){
-        this.mouseUgen = new createjs.Bitmap("data/img/play/female icon.png");
-    } else {
-        this.mouseUgen = new createjs.Bitmap("data/img/play/male icon.png");
-    }
-    //TODO pregnant und user gender FEHLEN!
-    var preg = false;
-    if(preg){
-
-    } else {
-        this.mousePreg = new createjs.Bitmap("/data/img/play/PregFalse.png");
-    }
 
     //setzen der Positionen innerhalb des Containers
     this.mouseani.x = 15+27;
     this.mouseani.y = 0+15;
     this.mouseani.regX = 27;
     this.mouseani.regY = 15;
-    this.mouseUgen.x = 0;
-    this.mouseUgen.y = 0;
-    this.mousePreg.x = 0;
-    this.mousePreg.y = 15;
+    this.mouseUgenImg.x = 0;
+    this.mouseUgenImg.y = 0;
+    this.mousePregImg.x = 0;
+    this.mousePregImg.y = 15;
 
 
 
@@ -66,7 +61,7 @@ Mouse.prototype.init = function() {
 
     // Erstellen des Containers der das Label und das Bild beinhaltet
     this.mousecontainer = new createjs.Container();
-    this.mousecontainer.addChild(this.mouseani, this.mouselabel, this.mouseUgen, this.mousePreg);
+    this.mousecontainer.addChild(this.mouseani, this.mouselabel, this.mouseUgenImg, this.mousePregImg);
     this.mousecontainer.mouseid = this.id;
     //this.mousecontainer.direction = 90;
     this.mousecontainer.ismove = true;
@@ -232,6 +227,27 @@ Mouse.prototype.init = function() {
     }
 };
 
+//gendersettings
+Mouse.prototype.setUgen = function () {
+    if (this.mouseUgen == -1){
+        this.mouseUgenImg = new createjs.Bitmap("data/img/play/noUgen.png");
+    } else if (this.mouseUgen == 0) {
+        this.mouseUgenImg = new createjs.Bitmap("data/img/play/male icon.png");
+    } else if (this.mouseUgen == 1){
+        this.mouseUgenImg = new createjs.Bitmap("data/img/play/female icon.png");
+    } else {
+        console.log("Your Usergender is stupid!");
+    }
+};
+//Matingsettings
+Mouse.prototype.setPreg = function () {
+    if (this.mousePreg != null){
+        this.mousePregImg = new createjs.Bitmap("data/img/play/PregTrue.png");
+    } else {
+        this.mousePregImg = new createjs.Bitmap("data/img/play/PregFalse.png");
+    }
+};
+
 function Cage(id) {
     this.id = id;
     this.src = "/data/img/play/cage_small_with_bg_rounded.png";
@@ -274,6 +290,7 @@ function getInfo(mouseid) {
 
 function clickedMouse(id) {
     var info = getInfo(id);
+    selectedMouse = info;
     $("#mouseinfoName").text(info.name);
     $("#mouseinfoAge").text(info.age);
     if (info.gender == 1) {
@@ -435,6 +452,29 @@ $(document).ready(function() {
     init();
     $("#sidebarNewCage").click(function(){
         engine.newCage(42);
+        draw();
+    });
+    //TODO USERGENDER SETZEN
+    $("#malesetbtn").click(function () {
+        var tGen = loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["gender"];
+        if(tGen == 0){
+            console.log("UGender is correkt")
+        } else {
+            console.log("UGender is wrong")
+        }
+        loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "0";
+        $("#chooseGender").modal("hide");
+        draw();
+    });
+    $("#femalesetbtn").click(function () {
+        var tGen = loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["gender"];
+        if(tGen == 1){
+            console.log("UGender is correkt")
+        } else {
+            console.log("UGender is wrong")
+        }
+        loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "1";
+        $("#chooseGender").modal("hide");
         draw();
     });
 });

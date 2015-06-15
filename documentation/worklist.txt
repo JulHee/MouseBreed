@@ -9,8 +9,7 @@
 
 ----------- akute PROBLEME -----------
 - function setOwnGender (engine zeile 170) fehlerhaft
-- "Usergender" fehlt in Datenbank
-- "Schwanger" fehlt in Datenbank
+- Schwanger sinnfrei definiert ----> "Wenn (mating_id == "null") dann nicht teil einer Schwangerschaft !?
 
 ------------ TO DO -------------
 
