@@ -90,7 +90,7 @@ Mouse.prototype.init = function() {
         clickedMouse(elem.currentTarget.mouseid);
         elem.currentTarget.ismove = false;
         elem.currentTarget.alpha = 0.5;
-        stage.update();
+
     });
     this.mousecontainer.on("mouseout", function(elem) {
         elem.currentTarget.ismove = true;
@@ -101,10 +101,9 @@ Mouse.prototype.init = function() {
     this.mousecontainer.on("pressmove", function(evt) {
         evt.currentTarget.ismove = false;
         evt.currentTarget.isdrag = true;
-        evt.currentTarget.x = evt.stageX;
-        evt.currentTarget.y = evt.stageY;
-        // make sure to redraw the stage to show the change:
-        stage.update();
+        evt.currentTarget.x = evt.stageX - (this.sizex/2);
+        evt.currentTarget.y = evt.stageY - (this.sizey/2);
+
     });
     // Beim loslasen der Maustaste
     this.mousecontainer.on("pressup", function(evt) {
@@ -130,10 +129,10 @@ Mouse.prototype.init = function() {
             evt.currentTarget.y = 32 + Math.random() * 300;
         }
 
-        // TODO Maus entfernen wenn aus aktuellem Käfig entfernt worden ist
+
         evt.currentTarget.isdrag = false;
         evt.currentTarget.ismove = true;
-       // stage.update();
+
 
     });
 
