@@ -111,16 +111,18 @@ Mouse.prototype.init = function() {
         var cagehit = false;
         // Prüfen ob die Maus über einem der Käfige schwebt
         for (var i = 0; i < arrCage.length; i++) {
-            var isCollision = ndgmr.checkRectCollision(evt.currentTarget, arrCage[i].cagecontainer);
-            if (isCollision != null) {
-                cagehit = true;
-                var mouse_info = getInfo(evt.currentTarget.mouseid);
-                addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
+            if (selectedCage != arrCage[i].id) {
+                var isCollision = ndgmr.checkRectCollision(evt.currentTarget, arrCage[i].cagecontainer);
+                if (isCollision != null) {
+                    cagehit = true;
+                    var mouse_info = getInfo(evt.currentTarget.mouseid);
+                    addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
 
-                // Verschieben der Maus
-                engine.changeCage(mouse_info.id,selectedCage,arrCage[i].id);
-                draw();
+                    // Verschieben der Maus
+                    engine.changeCage(mouse_info.id,selectedCage,arrCage[i].id);
+                    draw();
 
+                }
             }
         }
         if (cagehit == false && evt.currentTarget.x >= mousezone){
