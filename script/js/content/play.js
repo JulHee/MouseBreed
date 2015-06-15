@@ -5,7 +5,7 @@ var arrMouse = [];
 // Array das alle Käfige enthält
 var arrCage = [];
 // Der aktuelle Käfig
-var selectedCage = 1;
+var selectedCage = -1;
 //linke Breite des Canvas (Mausbereich)
 var mousezone = 600;
 
@@ -114,16 +114,22 @@ Mouse.prototype.init = function() {
                 cagehit = true;
                 var mouse_info = getInfo(evt.currentTarget.mouseid);
                 addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
+
+                // Verschieben der Maus
+                engine.changeCage(mouse_info.id,selectedCage,arrCage[i].id);
+                draw();
+
             }
         }
-        if (!cagehit && evt.currentTarget.x >= mousezone){
+        if (cagehit == false && evt.currentTarget.x >= mousezone){
             evt.currentTarget.x = 16 + Math.random() * 300;
             evt.currentTarget.y = 32 + Math.random() * 300;
         }
+        /*
         // TODO Maus entfernen wenn aus aktuellem Käfig entfernt worden ist
         evt.currentTarget.isdrag = false;
         evt.currentTarget.ismove = true;
-        stage.update();
+        stage.update();*/
 
     });
 
@@ -259,9 +265,8 @@ function getRandomInt(min, max) {
 }
 
 function getInfo(mouseid) {
-    var data = localStorage.getItem("loadedBreed");
-    var parsedData = JSON.parse(data);
-    var thisCage = parsedData.cages;
+    var data = loadedBreed;
+    var thisCage = data.cages;
     var thisMice = thisCage[selectedCage].mice;
     return thisMice[mouseid];
 }
@@ -343,7 +348,16 @@ function draw() {
     }
 
     // Laden der Käfiginformationen
-    updateMouseArray(selectedCage);
+    console.log("SelectedCage= "+selectedCage+", arrCage[0].id = "+arrCage[0].id);
+    if (arrCage.length > 0){
+        if (selectedCage == -1){
+            selectedCage = arrCage[0].id;
+        }
+        updateMouseArray(selectedCage);
+    } else {
+        console.log("Fehler 010: Keine Käfige");
+    }
+
 
     // Hinzufügen aller Mäuse im Array in das Canvas
     for (i = 0; i < arrMouse.length; i++) {
@@ -411,6 +425,10 @@ function tick(event) {
 $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
+    $("#sidebarNewCage").click(function(){
+        engine.newCage(42);
+        draw();
+    });
 });
 
 

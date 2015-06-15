@@ -1,9 +1,17 @@
-<h1 class="page-header">New Play
-    <button type="button" id="sidebarNextDay"
-            class="pull-right btn btn-info"><span class="glyphicon glyphicon-time"
-                                                  aria-hidden="true"></span> Nächter Tag
+<h1 class="page-header">New Play</h1>
+<div class="row">
+<div class="col-md-12">
+    <button type="button" id="sidebarNewCage" class="btn btn-warning">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Neuer Käfig
     </button>
-</h1>
+    <button type="button" id="sidebarNextDay" class="pull-right btn btn-info">
+        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+        Nächter Tag
+    </button>
+</div>
+</div>
+<br style="margin: 2px 0">
 <div class="row">
     <div class="col-md-2">
         <ul class="list-group">
