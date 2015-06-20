@@ -282,6 +282,15 @@ class breedModel {
         return true;
     }
 
+    private function setPregnant($mouse_id, $v) {
+        $stmt = "UPDATE mouse ".
+                "SET pregnant = ? ".
+                "WHERE id = ? ";
+        $stmt = $this->db->prepare($stmt);
+
+        return $stmt->execute(Array($v, $mouse_id));
+    }
+
     public function deleteBreed($id) {
         $stmt = "DELETE FROM breed ".
                 "WHERE id = ?";
@@ -297,7 +306,7 @@ class breedModel {
                     "VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($stmt);
 
-        if($stmt->execute(array($breed_id, $mother_id, $father_id))) {
+        if($this->setPregnant($mother_id, 1) && $stmt->execute(array($breed_id, $mother_id, $father_id))) {
             return $this->db->lastInsertId('id');
         } else {
             return -1;
@@ -339,6 +348,7 @@ class breedModel {
                 $brood['mice'] = $mice;
 
                 $broods[$brood['id']] = $brood;
+                $this->setPregnant($brood['mother'], 0);
             }
 
             return $broods;

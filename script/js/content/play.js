@@ -74,8 +74,8 @@ Mouse.prototype.init = function() {
     //this.mousecontainer.direction = 90;
     this.mousecontainer.ismove = true;
     this.mousecontainer.isdrag = false;
-    this.mousecontainer.vX = 2;
-    this.mousecontainer.vY = 2;
+    this.mousecontainer.vX = 1;
+    this.mousecontainer.vY = 1;
     this.mousecontainer.x = 16 + Math.random() * 300;
     this.mousecontainer.y = 32 + Math.random() * 300;
     //frei gesetzt

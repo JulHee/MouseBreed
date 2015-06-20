@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Jun 2015 um 18:08
+-- Erstellungszeit: 20. Jun 2015 um 15:35
 -- Server Version: 5.6.11
 -- PHP-Version: 5.5.3
 
@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `mouse` (
   `mother_id` int(11) DEFAULT NULL,
   `father_id` int(11) DEFAULT NULL,
   `age` int(11) NOT NULL,
+  `pregnant` tinyint(4) NOT NULL DEFAULT '0',
   `img_name` varchar(200) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cage_id` (`cage_id`),
@@ -120,13 +121,13 @@ CREATE TABLE IF NOT EXISTS `mouse` (
 -- Daten für Tabelle `mouse`
 --
 
-INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `user_gender`, `name`, `genotyp`, `weight`, `mating_id`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
-(1, 1, 1, 10, 0, 0, 'Karl', 'AB', 200, NULL, 0, 0, 10, ''),
-(2, 1, 1, 10, 0, 0, 'Paul', 'BA', 100, NULL, 0, 0, 5, ''),
-(3, 1, 1, 10, 1, 0, 'Frauke', 'BB', 500, NULL, 2, 1, 5, ''),
-(4, 1, 1, 10, 1, 0, 'Klara', 'AA', 1200, NULL, 2, 1, 80, ''),
-(5, 1, 1, 10, 0, 0, 'Hans', 'AB', 500, NULL, 4, 3, 4, ''),
-(6, 1, 1, 10, 1, 0, 'Berta', 'BB', 4000, NULL, 4, 3, 50, '');
+INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `user_gender`, `name`, `genotyp`, `weight`, `mating_id`, `mother_id`, `father_id`, `age`, `pregnant`, `img_name`) VALUES
+(1, 1, 1, 10, 0, NULL, 'Karl', 'AB', 200, NULL, 0, 0, 10, 0, ''),
+(2, 1, 1, 10, 0, NULL, 'Paul', 'BA', 100, NULL, 0, 0, 5, 0, ''),
+(3, 1, 1, 10, 1, NULL, 'Frauke', 'BB', 500, NULL, 2, 1, 5, 0, ''),
+(4, 1, 1, 10, 1, NULL, 'Klara', 'AA', 1200, NULL, 2, 1, 80, 0, ''),
+(5, 1, 1, 10, 0, NULL, 'Hans', 'AB', 500, NULL, 4, 3, 4, 0, ''),
+(6, 1, 1, 10, 1, NULL, 'Berta', 'BB', 4000, NULL, 4, 3, 50, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1218,10 +1219,10 @@ ALTER TABLE `mating`
 -- Constraints der Tabelle `mouse`
 --
 ALTER TABLE `mouse`
-  ADD CONSTRAINT `mouse_ibfk_4` FOREIGN KEY (`mating_id`) REFERENCES `mating` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `mouse_ibfk_1` FOREIGN KEY (`cage_id`) REFERENCES `cage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `mouse_ibfk_2` FOREIGN KEY (`breed_id`) REFERENCES `breed` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `mouse_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `mouse_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mouse_ibfk_4` FOREIGN KEY (`mating_id`) REFERENCES `mating` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
