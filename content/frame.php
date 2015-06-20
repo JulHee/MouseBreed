@@ -154,8 +154,8 @@
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                     <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
                     <ul class="nav nav-sidebar">
-                        <li <?= echoActiveClassIfRequestMatches("breed\\" + $_SESSION['loadedBreed']['id']) ?>>
-                        <a href="/breed/<?php echo $_SESSION['loadedBreed']['id']; ?>">
+                        <li <?= echoActiveClassIfRequestMatches("breed") ?>>
+                        <a href="/breed">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             <?php echo $_SESSION['loadedBreed']['name']; ?>
                         </a>
