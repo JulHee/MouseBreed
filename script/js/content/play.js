@@ -483,6 +483,10 @@ $(document).ready(function() {
         }
         loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "0";
         $("#chooseGender").modal("hide");
+
+        // Nicht getestet
+        clickedMouse(selectedMouse.id);
+
         draw();
     });
     $("#femalesetbtn").click(function () {
@@ -494,6 +498,10 @@ $(document).ready(function() {
         }
         loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "1";
         $("#chooseGender").modal("hide");
+
+        // Nicht getestet
+        clickedMouse(selectedMouse.id);
+
         draw();
     });
 });
