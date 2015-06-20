@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 17. Mai 2015 um 21:57
--- Server Version: 5.6.20
--- PHP-Version: 5.5.15
+-- Host: localhost
+-- Erstellungszeit: 20. Jun 2015 um 13:14
+-- Server Version: 5.6.21
+-- PHP-Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -25,38 +25,24 @@ USE `mousebreed`;
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `aspiration`
---
-
-CREATE TABLE IF NOT EXISTS `aspiration` (
-`id` int(11) NOT NULL,
-  `number_of_mouse` int(11) NOT NULL,
-  `end_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Tabellenstruktur für Tabelle `breed`
 --
 
 CREATE TABLE IF NOT EXISTS `breed` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `time_of_creation` date NOT NULL,
-  `target` int(11) NOT NULL,
-  `name` text COLLATE utf8_general_mysql500_ci NOT NULL,
+  `time_of_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `scenario` varchar(20) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_general_mysql500_ci NOT NULL,
   `age` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
 --
 -- Daten für Tabelle `breed`
 --
 
-INSERT INTO `breed` (`id`, `user_id`, `time_of_creation`, `target`, `name`, `age`) VALUES
-(1, 10, '2015-03-05', 4, 'Mousehattan', 0),
-(2, 10, '2015-03-03', 3, 'Mousetown', 0),
-(3, 10, '2015-03-20', 5, 'Wild Mouse West', 0);
+INSERT INTO `breed` (`id`, `user_id`, `time_of_creation`, `scenario`, `name`, `age`) VALUES
+(1, 10, '2015-03-04 23:00:00', '4', 'Mousehattan', 0);
 
 -- --------------------------------------------------------
 
@@ -66,15 +52,15 @@ INSERT INTO `breed` (`id`, `user_id`, `time_of_creation`, `target`, `name`, `age
 
 CREATE TABLE IF NOT EXISTS `cage` (
 `id` int(11) NOT NULL,
-  `max_number_of_mouses` int(11) NOT NULL,
+  `max_number_of_mice` int(11) NOT NULL,
   `breed_id` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
 --
 -- Daten für Tabelle `cage`
 --
 
-INSERT INTO `cage` (`id`, `max_number_of_mouses`, `breed_id`) VALUES
+INSERT INTO `cage` (`id`, `max_number_of_mice`, `breed_id`) VALUES
 (1, 20, 1),
 (2, 10, 1);
 
@@ -90,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `mating` (
   `mother_id` int(11) NOT NULL,
   `father_id` int(11) NOT NULL,
   `age` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
 -- --------------------------------------------------------
 
@@ -103,23 +89,29 @@ CREATE TABLE IF NOT EXISTS `mouse` (
   `cage_id` int(11) NOT NULL,
   `breed_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `gender` int(11) NOT NULL,
-  `name` varchar(100) COLLATE utf8_general_mysql500_ci NOT NULL,
-  `genotyp` varchar(50) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `gender` tinyint(1) NOT NULL,
+  `user_gender` tinyint(1) DEFAULT NULL,
+  `name` varchar(30) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `genotyp` varchar(20) COLLATE utf8_general_mysql500_ci NOT NULL,
   `weight` double NOT NULL,
-  `mother_id` int(11) NOT NULL,
-  `father_id` int(11) NOT NULL,
+  `mating_id` int(11) DEFAULT NULL,
+  `mother_id` int(11) DEFAULT NULL,
+  `father_id` int(11) DEFAULT NULL,
   `age` int(11) NOT NULL,
   `img_name` varchar(200) COLLATE utf8_general_mysql500_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
 --
 -- Daten für Tabelle `mouse`
 --
 
-INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `name`, `genotyp`, `weight`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
-(5, 1, 1, 10, 0, 'Hans', 'AB', 35, -1, -1, 71, ''),
-(17, 1, 1, 10, 1, 'Jazmin', 'BB', 35, -1, -1, 70, '');
+INSERT INTO `mouse` (`id`, `cage_id`, `breed_id`, `user_id`, `gender`, `user_gender`, `name`, `genotyp`, `weight`, `mating_id`, `mother_id`, `father_id`, `age`, `img_name`) VALUES
+(1, 1, 1, 10, 0, NULL, 'Karl', 'AB', 200, NULL, 0, 0, 10, ''),
+(2, 1, 1, 10, 0, NULL, 'Paul', 'BA', 100, NULL, 0, 0, 5, ''),
+(3, 1, 1, 10, 1, NULL, 'Frauke', 'BB', 500, NULL, 2, 1, 5, ''),
+(4, 1, 1, 10, 1, NULL, 'Klara', 'AA', 1200, NULL, 2, 1, 80, ''),
+(5, 1, 1, 10, 0, NULL, 'Hans', 'AB', 500, NULL, 4, 3, 4, ''),
+(6, 1, 1, 10, 1, NULL, 'Berta', 'BB', 4000, NULL, 4, 3, 50, '');
 
 -- --------------------------------------------------------
 
@@ -1172,86 +1164,75 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstname` varchar(30) COLLATE utf8_general_mysql500_ci NOT NULL,
   `lastname` varchar(30) COLLATE utf8_general_mysql500_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_general_mysql500_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
 --
 -- Daten für Tabelle `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `email`) VALUES
-(10, 'MaxMuster', '$2y$11$95e06cac380d734b80c30OfCFLXB4PAax6/iv36jvDjoyx.RuyNb2', 'Max', 'Mustermann', 'Max.Muster@email.de');
+(10, 'MaxMuster', '$2y$11$764f3aca29c1dd7aff9bae3a.utKlR7t2OcFx3Z.81KKm51.SWuoy', 'Max', 'Mustermann', 'Max.Muster@email.de');
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `aspiration`
---
-ALTER TABLE `aspiration`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `breed`
+-- Indizes für die Tabelle `breed`
 --
 ALTER TABLE `breed`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `cage`
+-- Indizes für die Tabelle `cage`
 --
 ALTER TABLE `cage`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `breed_id` (`breed_id`);
 
 --
--- Indexes for table `mating`
+-- Indizes für die Tabelle `mating`
 --
 ALTER TABLE `mating`
  ADD PRIMARY KEY (`id`), ADD KEY `mother_id` (`mother_id`), ADD KEY `father_id` (`father_id`), ADD KEY `breed_id` (`breed_id`);
 
 --
--- Indexes for table `mouse`
+-- Indizes für die Tabelle `mouse`
 --
 ALTER TABLE `mouse`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `cage_id` (`cage_id`), ADD KEY `breed_id` (`breed_id`), ADD KEY `user_id` (`user_id`), ADD KEY `mother_id` (`mother_id`), ADD KEY `father_id` (`father_id`), ADD KEY `mating_id` (`mating_id`);
 
 --
--- Indexes for table `user`
+-- Indizes für die Tabelle `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`id`), ADD KEY `id` (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `aspiration`
---
-ALTER TABLE `aspiration`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `breed`
+-- AUTO_INCREMENT für Tabelle `breed`
 --
 ALTER TABLE `breed`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `cage`
+-- AUTO_INCREMENT für Tabelle `cage`
 --
 ALTER TABLE `cage`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table `mating`
+-- AUTO_INCREMENT für Tabelle `mating`
 --
 ALTER TABLE `mating`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mouse`
+-- AUTO_INCREMENT für Tabelle `mouse`
 --
 ALTER TABLE `mouse`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
@@ -1260,12 +1241,33 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 
 --
+-- Constraints der Tabelle `breed`
+--
+ALTER TABLE `breed`
+ADD CONSTRAINT `breed_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints der Tabelle `cage`
+--
+ALTER TABLE `cage`
+ADD CONSTRAINT `cage_ibfk_1` FOREIGN KEY (`breed_id`) REFERENCES `breed` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints der Tabelle `mating`
 --
 ALTER TABLE `mating`
 ADD CONSTRAINT `mating_ibfk_1` FOREIGN KEY (`breed_id`) REFERENCES `breed` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `mating_ibfk_2` FOREIGN KEY (`mother_id`) REFERENCES `mouse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `mating_ibfk_3` FOREIGN KEY (`father_id`) REFERENCES `mouse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints der Tabelle `mouse`
+--
+ALTER TABLE `mouse`
+ADD CONSTRAINT `mouse_ibfk_1` FOREIGN KEY (`cage_id`) REFERENCES `cage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `mouse_ibfk_2` FOREIGN KEY (`breed_id`) REFERENCES `breed` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `mouse_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `mouse_ibfk_4` FOREIGN KEY (`mating_id`) REFERENCES `mating` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
