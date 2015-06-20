@@ -301,7 +301,7 @@ function clickedMouse(id) {
     // Wenn der Benutzer die Maus bestimmt hat, wir der richtige Name angegeben,
     // wenn nicht Fragezeichen um nicht das Geschlecht am Namen zu erkennen
 
-    if (info.user_gender == -1){
+    if (!info.user_gender){
         $("#mouseinfoName").text("????");
         $('#mouseinfoGender').text("Unbestimmt");
     } else {
