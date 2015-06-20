@@ -10,13 +10,12 @@
 ----------- akute PROBLEME -----------
 - function setOwnGender (engine zeile 170) fehlerhaft
 - Schwanger sinnfrei definiert ----> "Wenn (mating_id == "null") dann nicht teil einer Schwangerschaft !?
+- Navigation oben: Elemente oben links manchmal weiß
 
 ------------ TO DO -------------
 
 
 (christoph)
-- Datenbank Zugriff für:
-    - Erstellen von Zuchten
 
 (christian)
     soziale Unverträglichkeit = gleich geschlechtlich NUR aus einem Wurf gut.

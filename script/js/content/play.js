@@ -229,7 +229,7 @@ Mouse.prototype.init = function() {
 
 //gendersettings
 Mouse.prototype.setUgen = function () {
-    if (this.mouseUgen == -1){
+    if (!this.mouseUgen){
         this.mouseUgenImg = new createjs.Bitmap("data/img/play/noUgen.png");
     } else if (this.mouseUgen == 0) {
         this.mouseUgenImg = new createjs.Bitmap("data/img/play/male icon.png");
