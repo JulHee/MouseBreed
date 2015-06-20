@@ -310,7 +310,7 @@ function clickedMouse(id) {
         $('#mouseinfoGender').text("Unbestimmt");
     } else {
         $("#mouseinfoName").text(info.name);
-        if (info.user_gender == 1) {
+        if (info.user_gender == 0) {
             $('#mouseinfoGender').text("Männlich");
         } else {
             $('#mouseinfoGender').text("Weiblich");
