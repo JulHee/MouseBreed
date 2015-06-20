@@ -56,7 +56,7 @@ Mouse.prototype.init = function() {
     // Wenn der Benutzer die Maus bestimmt hat, wir der richtige Name angegeben,
     // wenn nicht Fragezeichen um nicht das Geschlecht am Namen zu erkennen
 
-    if (this.mouseUgen == -1){
+    if (!this.mouseUgen){
         this.mouselabel = new createjs.Text("????", "bold 14px Arial", "#fdfdfc");
     } else {
         this.mouselabel = new createjs.Text("" + tmpInfoMouse.name, "bold 14px Arial", "#fdfdfc");
@@ -312,11 +312,7 @@ function clickedMouse(id) {
             $('#mouseinfoGender').text("Weiblich");
         }
     }
-
-
-
     $("#mouseinfoAge").text(info.age);
-
     $("#mouseinfoWeight").text(info.weight);
 }
 
