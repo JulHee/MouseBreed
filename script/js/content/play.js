@@ -298,6 +298,10 @@ function getInfo(mouseid) {
 
 function clickedMouse(id) {
     var info = getInfo(id);
+
+    // Speichern der ausgewählten Maus zur Geschlechterbestimmung
+    selectedMouse = info;
+    console.log(info);
     // Wenn der Benutzer die Maus bestimmt hat, wir der richtige Name angegeben,
     // wenn nicht Fragezeichen um nicht das Geschlecht am Namen zu erkennen
 
