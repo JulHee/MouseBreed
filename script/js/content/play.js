@@ -28,7 +28,7 @@ function Mouse(id) {
     this.mousePregImg = null;
 };
 
-// Initialisieren der Informatioenen
+// Initialisieren der Informationen
 Mouse.prototype.init = function() {
     // Holen der Informationen zu der Maus aus dem LocalStorage
     var tmpInfoMouse = getInfo(this.id);
@@ -53,7 +53,15 @@ Mouse.prototype.init = function() {
 
 
     // Erstellen des Labels
-    this.mouselabel = new createjs.Text("" + tmpInfoMouse.name, "bold 14px Arial", "#fdfdfc");
+    // Wenn der Benutzer die Maus bestimmt hat, wir der richtige Name angegeben,
+    // wenn nicht Fragezeichen um nicht das Geschlecht am Namen zu erkennen
+
+    if (this.mouseUgen == -1){
+        this.mouselabel = new createjs.Text("????", "bold 14px Arial", "#fdfdfc");
+    } else {
+        this.mouselabel = new createjs.Text("" + tmpInfoMouse.name, "bold 14px Arial", "#fdfdfc");
+    }
+
     this.mouselabel.textAlign = "center";
     // Positionieren des Labels
     this.mouselabel.y = 35;
@@ -290,14 +298,25 @@ function getInfo(mouseid) {
 
 function clickedMouse(id) {
     var info = getInfo(id);
-    selectedMouse = info;
-    $("#mouseinfoName").text(info.name);
-    $("#mouseinfoAge").text(info.age);
-    if (info.gender == 1) {
-        $('#mouseinfoGender').text("Männlich");
+    // Wenn der Benutzer die Maus bestimmt hat, wir der richtige Name angegeben,
+    // wenn nicht Fragezeichen um nicht das Geschlecht am Namen zu erkennen
+
+    if (info.user_gender == -1){
+        $("#mouseinfoName").text("????");
+        $('#mouseinfoGender').text("Unbestimmt");
     } else {
-        $('#mouseinfoGender').text("Weiblich");
+        $("#mouseinfoName").text(info.name);
+        if (info.user_gender == 1) {
+            $('#mouseinfoGender').text("Männlich");
+        } else {
+            $('#mouseinfoGender').text("Weiblich");
+        }
     }
+
+
+
+    $("#mouseinfoAge").text(info.age);
+
     $("#mouseinfoWeight").text(info.weight);
 }
 
