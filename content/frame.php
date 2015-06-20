@@ -143,51 +143,42 @@
                 <h3 class="text-center">Mäusezucht</h3>
             </div>
             <br>
-            <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
-                <ul class="nav nav-sidebar">
-                    <li <?= echoActiveClassIfRequestMatches("home") ?>>
-                        <a href="/home">
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            Home
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
-                    <li <?= echoActiveClassIfRequestMatches("breed") ?>>
-                    <a href="/breed/<?php echo $_SESSION['loadedBreed']['id']; ?>">
-                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                        <?php echo $_SESSION['loadedBreed']['name']; ?>
+            <ul class="nav nav-sidebar">
+                <li <?= echoActiveClassIfRequestMatches("home"); echoActiveClassIfRequestMatches(""); ?>>
+                    <a href="/home">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        Home
                     </a>
-                    </li>
-                   <?php } ?>
-                    <li <?= echoActiveClassIfRequestMatches("overview") ?>>
-                        <a href="/overview">
-                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                            Zucht laden
-                        </a>
-                    </li>
-                </ul>
-
-                <ul id="navSidebarZuchten" class="nav nav-sidebar">
+                </li>
+            </ul>
+            <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                     <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
-                    <li <?= echoActiveClassIfRequestMatches("play") ?>><a href="/play"><span
-                                class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Play</a>
-                    </li>
-                    <li <?= echoActiveClassIfRequestMatches("history") ?>><a href="/history"><span
-                                class="glyphicon glyphicon-book" aria-hidden="true"></span> History</a>
-                    </li>
-                    <?php } ?>
-                    <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
-                                class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
-                    </li>
-                </ul>
-            <?php } else { ?>
-                <ul class="nav nav-sidebar">
-                    <li <?= echoActiveClassIfRequestMatches("home") ?>><a href="/home"><span
-                                class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            Home<span class="sr-only">(current)</span></a></li>
-                </ul>
+                    <ul class="nav nav-sidebar">
+                        <li <?= echoActiveClassIfRequestMatches("breed\\" + $_SESSION['loadedBreed']['id']) ?>>
+                        <a href="/breed/<?php echo $_SESSION['loadedBreed']['id']; ?>">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            <?php echo $_SESSION['loadedBreed']['name']; ?>
+                        </a>
+                        </li>
+                        <li <?= echoActiveClassIfRequestMatches("play") ?>><a href="/play"><span
+                                    class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Play</a>
+                        </li>
+                        <li <?= echoActiveClassIfRequestMatches("history") ?>><a href="/history"><span
+                                    class="glyphicon glyphicon-book" aria-hidden="true"></span> History</a>
+                        </li>
+                    </ul>
+                   <?php } ?>
+                    <ul class="nav nav-sidebar">
+                        <li <?= echoActiveClassIfRequestMatches("overview") ?>>
+                            <a href="/overview">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                                Zucht laden
+                            </a>
+                        </li>
+                        <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
+                                    class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                        </li>
+                    </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
                 <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
