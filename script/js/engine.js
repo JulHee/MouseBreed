@@ -96,7 +96,7 @@ var engine = {
 
     },
 
-    // Erhöt das Alter aller Würfe/Verpaarungen mit einem Alter < 22 um 1
+    // Erhöt das Alter aller Würfe/Verpaarungen mit einem Alter < 22 um 1, Berechnung im php-Skript
     incrementMatings: function(){
         var response = $.ajax({
             type: "POST",
@@ -116,7 +116,7 @@ var engine = {
 
     },
 
-    // Gibt die Würfe/Verpaarungen mit dem Alter von 21 Tagen zurück
+    // Gibt die Würfe/Verpaarungen mit dem Alter von 21 Tagen zurück, Berechnung im php-Skript
     getBroods: function(){
         var response = $.ajax({
             type: "POST",
@@ -210,6 +210,7 @@ var clock = {
                 loadedBreed["cages"][i]["mice"][j]["age"] =parseInt(loadedBreed["cages"][i]["mice"][j]["age"]) + 1;
             }
         }
+        engine.incrementMatings(); // Die Alter der noch ungeborenen wird erhöht
 
     },
     gainWeight: function () {
@@ -261,9 +262,10 @@ var clock = {
     },
 
     pairing: function () {
+
         var initialWeight = 1;
         var initialImgName = "data\img\defaultMausChB.png";
-        for(i in loadedBreed["cages"]){
+        for(i in loadedBreed["cages"]){ // pro Käfig wird je eine men/-women-Liste angelegt
             var menList = [];
             var womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
@@ -271,19 +273,24 @@ var clock = {
                     if(loadedBreed["cages"][i]["mice"][m]["gender"]==0){
                         menList.push(loadedBreed["cages"][i]["mice"][m])
                     }else{
-                        womenList.push(loadedBreed["cages"][i]["mice"][m])
+                        if(){
+                            womenList.push(loadedBreed["cages"][i]["mice"][m])
+                        }
+
                     }
                 }
             }
 
             if(menList.length > 1){
-                addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error")
+                addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen " +
+                    "im Käfig "+i+" !!!","Error")
             }else{
                 for(j in womenList ){
                     var tmpGender = (Math.random()<0.5) ? 0 : 1;
                     var genotypArray = engine.mixGenotyp(womenList[j],menList[0])
                     for(k=0;k<=5;k++){
-                        engine.newMouse(i,tmpGender,genotypArray[k%4],initialWeight,womenList[j]["id"],menList[0]["id"],0,initialImgName)
+                        engine.newMouse(i,tmpGender,genotypArray[k%4],initialWeight,womenList[j]["id"],menList[0]["id"],
+                            0,initialImgName)
                     }
 
                 }
@@ -319,8 +326,9 @@ var clock = {
 
 
     /*
-    engine
-
+    --------------------------------------------------------------------------------------------------------------------
+    engine|
+    ------
      ,
 
      feed: function(){
@@ -346,7 +354,8 @@ burry: function(cageID,mouseID){
 }
 
     ------------------------------------------------------------------------------------------------------
-    clock
+    clock|
+    -----
     eat: function(){
         for(i in loadedBreed["cages"]){
             for(j in i["mice"]){
