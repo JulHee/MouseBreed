@@ -1,5 +1,5 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
-var tmp;
+
 var engine = {
     /*Target is an object that represents the properties of one target for one level
     * @param level integer ; Number of the level
@@ -165,11 +165,59 @@ var engine = {
         }
 
     },
+    birth : function(){
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/birth.php",
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+        if(response.success == true) {
+            var initial_weight = 1;
+            var initial_img_name = "data\img\defaultMausChB.png";
+            for(i in response["ready_matings"]){
+                var curr_mating = i;
+                var father_id = response["ready_matings"][i]["father_id"]
+                var mother_id = response["ready_matings"][i]["mother_id"]
+                var tmp_cage_id = engine.find_cage(mother_id);
+                var genotypArray = engine.mixGenotyp(engine.find_mouse(mother_id),engine.find_mouse(father_id))
+                var tmp_gender = (Math.random()<0.5) ? 0 : 1;
+                for(k=0;k<=5;k++){
+                    engine.newMouse(tmp_cage_id,tmp_gender,genotypArray[k%4],initial_weight,response["ready_matings"][curr_mating]["id"],mother_id,father_id,0,initial_img_name)
+                }
+            }
+            // erfolgreich erstellt
+            return response;
 
+        } else {
 
-    setOwnGender : function(mouse_ID,userGender){
-        loadedBreed["currentCage"]["mice"][mouse_ID]["userGender"] = userGender;
+            // nicht erstellt
+            // Rückgabe?
+        }
+
     },
+
+    find_cage : function(mouse_id){
+        var erg;
+        for(i in loadedBreed["cages"]){
+            for(j in loadedBreed["cages"][i]["mice"]){
+                if(loadedBreed["cages"][i]["mice"][j]["id"] == mouse_id){erg = i}
+            }
+        }
+        return erg;
+
+    },
+    find_mouse : function(mouse_id){
+        var erg;
+        for(i in loadedBreed["cages"]){
+            for(j in loadedBreed["cages"][i]["mice"]){
+                if(loadedBreed["cages"][i]["mice"][j]["id"] == mouse_id){erg = loadedBreed["cages"][i]["mice"][j] }
+            }
+        }
+        return erg;
+
+    },
+
 
     save: function() {
 
@@ -198,6 +246,7 @@ var clock = {
         clock.gainWeight();
         clock.checkHomelessMouse();
         clock.pairing();
+        engine.birth();
 
 
 
@@ -207,7 +256,7 @@ var clock = {
     increaseAge: function(){
         for(i in loadedBreed["cages"]){
             for(j in loadedBreed["cages"][i]["mice"]){
-                loadedBreed["cages"][i]["mice"][j]["age"] =parseInt(loadedBreed["cages"][i]["mice"][j]["age"]) + 1;
+                loadedBreed["cages"][i]["mice"][j]["age"] = parseInt(loadedBreed["cages"][i]["mice"][j]["age"]) + 1;
             }
         }
         engine.incrementMatings(); // Die Alter der noch ungeborenen wird erhöht
@@ -262,9 +311,6 @@ var clock = {
     },
 
     pairing: function () {
-
-        var initialWeight = 1;
-        var initialImgName = "data\img\defaultMausChB.png";
         for(i in loadedBreed["cages"]){ // pro Käfig wird je eine men/-women-Liste angelegt
             var menList = [];
             var womenList = [];
@@ -273,31 +319,22 @@ var clock = {
                     if(loadedBreed["cages"][i]["mice"][m]["gender"]==0){
                         menList.push(loadedBreed["cages"][i]["mice"][m])
                     }else{
-                        if(){
-                            womenList.push(loadedBreed["cages"][i]["mice"][m])
-                        }
-
+                        //if(loadedBreed["cages"][i]["mice"][m]["pregnant"]==0){
+                            womenList.push(loadedBreed["cages"][i]["mice"][m]);
+                        //}
                     }
                 }
             }
-
             if(menList.length > 1){
                 addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen " +
-                    "im Käfig "+i+" !!!","Error")
+                    "im Käfig "+i+" !!!","warn")
             }else{
                 for(j in womenList ){
-                    var tmpGender = (Math.random()<0.5) ? 0 : 1;
-                    var genotypArray = engine.mixGenotyp(womenList[j],menList[0])
-                    for(k=0;k<=5;k++){
-                        engine.newMouse(i,tmpGender,genotypArray[k%4],initialWeight,womenList[j]["id"],menList[0]["id"],
-                            0,initialImgName)
-                    }
-
+                   engine.newMating(womenList[j]["id"],menList[0]["id"]);
                 }
             }
 
         }
-
 
     },
 
@@ -352,6 +389,10 @@ burry: function(cageID,mouseID){
 
 
 }
+
+setOwnGender : function(mouse_ID,userGender){
+     loadedBreed["currentCage"]["mice"][mouse_ID]["userGender"] = userGender;
+     },
 
     ------------------------------------------------------------------------------------------------------
     clock|

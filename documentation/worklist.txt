@@ -5,6 +5,8 @@
 - setze currentCage in loadedBreed
 - schwangere Mäuse realisieren
 - Notizen sollen beim Mousebreed internen Seitenwechsel erhalten bleiben
+- user-Gender wird noch mit 0 ini
+- attribut pregnant
 
 
 ----------- akute PROBLEME -----------

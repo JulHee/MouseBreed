@@ -14,6 +14,7 @@ var mousezone = 600;
 var fpsText;
 
 
+
 function Mouse(id) {
     //55x30
     this.src = "/data/img/play/play_mouse_2.png";
@@ -118,7 +119,7 @@ Mouse.prototype.init = function() {
                 if (isCollision != null) {
                     cagehit = true;
                     var mouse_info = getInfo(evt.currentTarget.mouseid);
-                    addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
+                    addBen("Nr. "+mouse_info.id + " wurde verschoben","Nr. "+mouse_info.id + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
 
                     // Verschieben der Maus
                     engine.changeCage(mouse_info.id,selectedCage,arrCage[i].id);
