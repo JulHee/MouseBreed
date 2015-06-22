@@ -269,17 +269,27 @@ function Cage(id) {
     this.id = id;
     this.src = "/data/img/play/cage_small_with_bg_rounded.png";
     this.cagecontainer = null;
-    this.cagelabel = null;
+    this.cagelabel1 = null;
+    this.cagelabel2 = null;
     this.cageani = null;
+    this.micenum = 0;
+    this.maxmicenum = -1;
 }
 Cage.prototype.init = function(y) {
+
+    this.maxmicenum = loadedBreed["cages"][this.id]["max_number_of_mice"];
+
     this.cageani = new createjs.Bitmap(this.src);
-    this.cagelabel = new createjs.Text("Käfig Nr." + this.id, "20px Arial", "#201d1b");
-    this.cagelabel.textAlign = "center";
-    this.cagelabel.y = 20;
-    this.cagelabel.x = 115;
+    this.cagelabel1 = new createjs.Text("Käfig Nr." + this.id, "Bold 15px Arial", "#201d1b");
+    this.cagelabel1.textAlign = "center";
+    this.cagelabel1.y = 10;
+    this.cagelabel1.x = 140;
+    this.cagelabel2 = new createjs.Text("Belegung " + this.micenum +"/"+this.maxmicenum, "12px Arial", "#201d1b");
+    this.cagelabel2.textAlign = "center";
+    this.cagelabel2.y = 30;
+    this.cagelabel2.x = 140;
     this.cagecontainer = new createjs.Container();
-    this.cagecontainer.addChild(this.cageani, this.cagelabel);
+    this.cagecontainer.addChild(this.cageani, this.cagelabel1, this.cagelabel2);
     this.cagecontainer.x = 600;
     this.cagecontainer.y = y * 62;
     this.cagecontainer.cageid = this.id;
@@ -292,6 +302,11 @@ Cage.prototype.init = function(y) {
         }
     });
 };
+Cage.prototype.cUpdate = function(){
+    var mices = loadedBreed["cages"][this.id]["mice"];
+    this.micenum =  Object.keys(mices).length;
+    this.cagelabel2.text = "Belegung " + this.micenum +"/"+this.maxmicenum;
+}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -394,6 +409,7 @@ function draw() {
     getCages();
     // Hinzufügen der Käfige
     for (i = 0; i < arrCage.length; i++) {
+        arrCage[i].cUpdate();
         stage.addChild(arrCage[i].cagecontainer);
     }
 
