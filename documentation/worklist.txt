@@ -8,6 +8,11 @@
 
 
 ----------- akute PROBLEME -----------
+@CHRISTIAN --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden.
+ Hier sollen automatisch nur maximal 6 Mäuse (> 20 Tage) zusammengesetzt werden können,
+ egal welchen Geschlechtes und welchen Alters (> 20). Wenn eine Maus wirft, soll sie mit ihrem Wurf automatisch
+ in einen neuen, leeren Käfig verschoben werden.
+
 - function setOwnGender (engine zeile 170) fehlerhaft
 - Schwanger sinnfrei definiert ----> "Wenn (mating_id == "null") dann nicht teil einer Schwangerschaft !?
 - Navigation oben: Elemente oben links manchmal weiß
