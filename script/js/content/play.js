@@ -292,7 +292,8 @@ Cage.prototype.init = function(y) {
     this.cagecontainer = new createjs.Container();
     this.cagecontainer.addChild(this.cageani, this.cagelabel1, this.cagelabel2);
     this.cagecontainer.x = 600;
-    this.cagecontainer.y = y * 62;
+    this.cagecontainer.y = (y * 72)+40;
+    console.log("ID: "+this.id + " y = "+this.cagecontainer.y);
     this.cagecontainer.cageid = this.id;
     this.cagecontainer.on("click", function(evt) {
         var cage_id = evt.currentTarget.cageid;
@@ -389,6 +390,41 @@ function drawBackground() {
     mouse_bg.x = 0;
     mouse_bg.y = 0;
     stage.addChild(mouse_bg);
+
+    // Zeichnen der Pfeile
+    //
+    // TODO Schönere Bilder
+    var arrowUP = new createjs.Bitmap("/data/img/play/ArrowUP.png");
+    arrowUP.x = 600;
+    arrowUP.y = 0;
+
+    arrowUP.on("click", function(evt) {
+        for (var i = 0; i < arrCage.length; i++) {
+            arrCage[i].cagecontainer.y -= 72;
+            if (arrCage[i].cagecontainer.y >= 40 && arrCage[i].cagecontainer.y <= 400 ){
+                arrCage[i].cagecontainer.visible = true;
+            } else {
+                arrCage[i].cagecontainer.visible = false;
+            }
+        };
+    });
+    stage.addChild(arrowUP);
+
+    var arrowDown = new createjs.Bitmap("/data/img/play/ArrowDown.png");
+    arrowDown.x = 600;
+    arrowDown.y = 485;
+
+    arrowDown.on("click", function(evt) {
+        for (var i = 0; i < arrCage.length; i++) {
+            arrCage[i].cagecontainer.y += 72;
+            if (arrCage[i].cagecontainer.y >= 40 && arrCage[i].cagecontainer.y <= 400){
+                arrCage[i].cagecontainer.visible = true;
+            } else {
+                arrCage[i].cagecontainer.visible = false;
+            }
+        };
+    });
+    stage.addChild(arrowDown);
 
     // current FPS
     fpsText = new createjs.Text("-- fps", "10px Arial", "#FFF");
