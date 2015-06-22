@@ -25,7 +25,7 @@ function Mouse(id) {
     this.mouseGen = loadedBreed["cages"][selectedCage]["mice"][this.id]["gender"];
     this.mouseUgen = loadedBreed["cages"][selectedCage]["mice"][this.id]["user_gender"];
     this.mouseUgenImg = null;
-    this.mousePreg = loadedBreed["cages"][selectedCage]["mice"][this.id]["mating_id"];
+    this.mousePreg = loadedBreed["cages"][selectedCage]["mice"][this.id]["pregnant"];
     this.mousePregImg = null;
 };
 
@@ -94,7 +94,6 @@ Mouse.prototype.init = function() {
         clickedMouse(elem.currentTarget.mouseid);
         elem.currentTarget.ismove = false;
         elem.currentTarget.alpha = 0.5;
-
     });
     this.mousecontainer.on("mouseout", function(elem) {
         elem.currentTarget.ismove = true;
@@ -119,8 +118,11 @@ Mouse.prototype.init = function() {
                 if (isCollision != null) {
                     cagehit = true;
                     var mouse_info = getInfo(evt.currentTarget.mouseid);
-                    addBen("Nr. "+mouse_info.id + " wurde verschoben","Nr. "+mouse_info.id + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
-
+                    if (!mouse_info.user_gender){
+                        addBen("???? wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
+                    } else {
+                        addBen(mouse_info.name + " wurde verschoben",mouse_info.name + " # " + mouse_info.id + " wurde in Käfig: #"+i+" verschoben","info");
+                    }
                     // Verschieben der Maus
                     engine.changeCage(mouse_info.id,selectedCage,arrCage[i].id);
                     draw();
@@ -145,8 +147,11 @@ Mouse.prototype.init = function() {
         this.targety = getRandomInt(ymin, ymax);
     }
     this.mousecontainer.move = function() {
+        /* Collisoncheck aufgrund der Kosten entfernt,
+         * Mäuse laufen nun einfach wild durcheinander
+         */
         // Prüfen auf Collision
-        checkCollision();
+        //  checkCollision();
         // Abstand zum Ziel
         var absx = Math.abs(this.x - this.targetx);
         var absy = Math.abs(this.y - this.targety);
@@ -250,28 +255,42 @@ Mouse.prototype.setUgen = function () {
 };
 //Matingsettings
 Mouse.prototype.setPreg = function () {
-    if (this.mousePreg != null){
-        this.mousePregImg = new createjs.Bitmap("data/img/play/PregTrue.png");
-    } else {
+   if (this.mouseGen == 0 || !this.mouseUgen){
         this.mousePregImg = new createjs.Bitmap("data/img/play/PregFalse.png");
-    }
+   } else {
+        if (this.mousePreg == 1){
+            this.mousePregImg = new createjs.Bitmap("data/img/play/PregTrue.png");
+        } else {
+            this.mousePregImg = new createjs.Bitmap("data/img/play/PregFalse.png");
+        }
+   }
 };
 
 function Cage(id) {
     this.id = id;
     this.src = "/data/img/play/cage_small_with_bg_rounded.png";
     this.cagecontainer = null;
-    this.cagelabel = null;
+    this.cagelabel1 = null;
+    this.cagelabel2 = null;
     this.cageani = null;
+    this.micenum = 0;
+    this.maxmicenum = -1;
 }
 Cage.prototype.init = function(y) {
+
+    this.maxmicenum = loadedBreed["cages"][this.id]["max_number_of_mice"];
+
     this.cageani = new createjs.Bitmap(this.src);
-    this.cagelabel = new createjs.Text("Käfig Nr." + this.id, "20px Arial", "#201d1b");
-    this.cagelabel.textAlign = "center";
-    this.cagelabel.y = 20;
-    this.cagelabel.x = 115;
+    this.cagelabel1 = new createjs.Text("Käfig Nr." + this.id, "Bold 15px Arial", "#201d1b");
+    this.cagelabel1.textAlign = "center";
+    this.cagelabel1.y = 10;
+    this.cagelabel1.x = 140;
+    this.cagelabel2 = new createjs.Text("Belegung " + this.micenum +"/"+this.maxmicenum, "12px Arial", "#201d1b");
+    this.cagelabel2.textAlign = "center";
+    this.cagelabel2.y = 30;
+    this.cagelabel2.x = 140;
     this.cagecontainer = new createjs.Container();
-    this.cagecontainer.addChild(this.cageani, this.cagelabel);
+    this.cagecontainer.addChild(this.cageani, this.cagelabel1, this.cagelabel2);
     this.cagecontainer.x = 600;
     this.cagecontainer.y = y * 62;
     this.cagecontainer.cageid = this.id;
@@ -280,11 +299,15 @@ Cage.prototype.init = function(y) {
         if (selectedCage != cage_id){
             addBen("Käfig #" + cage_id, "Es wurde der Käfig gewechselt", "info");
             selectedCage = cage_id;
-            updateMouseArray(selectedCage);
             draw();
         }
     });
 };
+Cage.prototype.cUpdate = function(){
+    var mices = loadedBreed["cages"][this.id]["mice"];
+    this.micenum =  Object.keys(mices).length;
+    this.cagelabel2.text = "Belegung " + this.micenum +"/"+this.maxmicenum;
+}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -299,10 +322,9 @@ function getInfo(mouseid) {
 
 function clickedMouse(id) {
     var info = getInfo(id);
-
     // Speichern der ausgewählten Maus zur Geschlechterbestimmung
     selectedMouse = info;
-    console.log(info);
+
     // Wenn der Benutzer die Maus bestimmt hat, wir der richtige Name angegeben,
     // wenn nicht Fragezeichen um nicht das Geschlecht am Namen zu erkennen
 
@@ -367,14 +389,20 @@ function drawBackground() {
     mouse_bg.x = 0;
     mouse_bg.y = 0;
     stage.addChild(mouse_bg);
+
+    // current FPS
+    fpsText = new createjs.Text("-- fps", "10px Arial", "#FFF");
+    fpsText.x = 10;
+    fpsText.y = 10;
+    stage.addChild(fpsText);
 }
 
 function draw() {
     // Leeren der Arrays
     arrCage = [];
     arrMouse = [];
-    stage.removeAllChildren;
-    stage.removeAllEventListeners;
+    stage.removeAllChildren();
+    stage.removeAllEventListeners();
     stage.update();
     // Zeichnen des Hintergrundes
     drawBackground();
@@ -382,6 +410,7 @@ function draw() {
     getCages();
     // Hinzufügen der Käfige
     for (i = 0; i < arrCage.length; i++) {
+        arrCage[i].cUpdate();
         stage.addChild(arrCage[i].cagecontainer);
     }
 
@@ -411,16 +440,11 @@ function init() {
     draw();
     selectedCage = arrCage[0].id;
 
-    // current FPS
-    fpsText = new createjs.Text("-- fps", "10px Arial", "#FFF");
-    fpsText.x = 10;
-    fpsText.y = 10;
-    stage.addChild(fpsText);
 
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    //createjs.Ticker.setFPS(30);
+    createjs.Ticker.setFPS(60);
     stage.update();
     //  console.log(stage);
 }
@@ -467,43 +491,76 @@ function tick(event) {
     }
 };
 
+function refereshNumberOfDays (argument) {
+    var day = ""+loadedBreed.age+" .Tag";
+    $("#numberOfDays").text(day);
+    $("#topDays").text(day);
+}
+
 $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
+    $("#sidebarNextDay").click(function(){
+        //---------- Test ---------------------
+        // Hier bitte die Funktion NextDay einfügen !!
+        // NextDay.run
+        loadedBreed.age = parseInt(loadedBreed.age) +1;
+        //---------- Test --------------------
+
+        // Als letztes wird die Anzeige aktualliesiert
+        refereshNumberOfDays();
+    })
+
     $("#sidebarNewCage").click(function(){
         engine.newCage(42);
         draw();
     });
+    $("#mouseGenderSet").click(function(){
+        var mouse = getInfo(selectedMouse.id);
+        var gender = mouse.gender;
+        var grnd = "/data/img/bildkarten/";
+        var img = null;
+        var rnd = getRandomInt(1,3);
+        if (gender == 0){
+            img = "m_"+rnd;
+        } else {
+            img = "w_"+rnd;
+        }
+
+        $('#mouseinfoGenderPic').attr('src',grnd+img+'.png');
+    });
+
+
     //TODO USERGENDER SETZEN
     $("#malesetbtn").click(function () {
         var tGen = loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["gender"];
         if(tGen == 0){
-            console.log("UGender is correkt")
+            loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "0";
+            $("#chooseGender").modal("hide");
+
+            // Nicht getestet
+            clickedMouse(selectedMouse.id);
+
+            draw();
+            addBen("Geschlecht richtig bestimmt","Das Geschlecht der Maus wurde richtig bestimmt","success")
         } else {
-            console.log("UGender is wrong")
+            addBen("Geschlecht falsch bestimmt","Das Geschlecht der Maus wurde falsch bestimmt","error")
         }
-        loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "0";
-        $("#chooseGender").modal("hide");
-
-        // Nicht getestet
-        clickedMouse(selectedMouse.id);
-
-        draw();
     });
     $("#femalesetbtn").click(function () {
         var tGen = loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["gender"];
         if(tGen == 1){
-            console.log("UGender is correkt")
+            loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "1";
+            $("#chooseGender").modal("hide");
+
+            // Nicht getestet
+            clickedMouse(selectedMouse.id);
+
+            draw();
+            addBen("Geschlecht richtig bestimmt","Das Geschlecht der Maus wurde richtig bestimmt","success")
         } else {
-            console.log("UGender is wrong")
+            addBen("Geschlecht falsch bestimmt","Das Geschlecht der Maus wurde falsch bestimmt","error")
         }
-        loadedBreed["cages"][selectedCage]["mice"][selectedMouse.id]["user_gender"] = "1";
-        $("#chooseGender").modal("hide");
-
-        // Nicht getestet
-        clickedMouse(selectedMouse.id);
-
-        draw();
     });
 });
 

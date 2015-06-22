@@ -10,6 +10,11 @@
 
 
 ----------- akute PROBLEME -----------
+@CHRISTIAN --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden.
+ Hier sollen automatisch nur maximal 6 Mäuse (> 20 Tage) zusammengesetzt werden können,
+ egal welchen Geschlechtes und welchen Alters (> 20). Wenn eine Maus wirft, soll sie mit ihrem Wurf automatisch
+ in einen neuen, leeren Käfig verschoben werden.
+
 - function setOwnGender (engine zeile 170) fehlerhaft
 - Schwanger sinnfrei definiert ----> "Wenn (mating_id == "null") dann nicht teil einer Schwangerschaft !?
 - Navigation oben: Elemente oben links manchmal weiß
@@ -18,11 +23,15 @@
 
 
 (christoph)
+-   Hab die Datenbankabfrage noch die Variable age der Breed geholt damit man eine Zeiteinheit hat
+    Bitte noch sichern.
 
 (christian)
     soziale Unverträglichkeit = gleich geschlechtlich NUR aus einem Wurf gut.
                                 Ein Männchen zu ein bzw. mehreren Weibchen(1:N).
                                 Nach der Paarung Männchen NUR möglich bei Weibchen bleiben , oder einzel Käfig
+
+-Bitte die Funktion NextDay aus der main.js in die play.js verlegen (zumindest das Binding zu dem Namen)
 
 -Daten der Maus (Schwierigkeitsstufe leicht)
  1.	Tragzeit: 20 Tage

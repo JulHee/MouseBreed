@@ -81,3 +81,7 @@ table .btn{
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+
+.popover{
+    min-width: 250px;
+}

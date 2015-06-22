@@ -247,9 +247,7 @@ var clock = {
         clock.checkHomelessMouse();
         clock.pairing();
         engine.birth();
-
-
-
+        loadedBreed.age = loadedBreed.age +1;
     },
 
 

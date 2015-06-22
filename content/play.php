@@ -1,4 +1,4 @@
-<h1 class="page-header">New Play</h1>
+<h1 class="page-header">New Play <span id="numberOfDays" class="label label-info pull-right">0 .Tag</span></h1>
 <div class="row">
 <div class="col-md-12">
     <button type="button" id="sidebarNewCage" class="btn btn-warning">
@@ -40,7 +40,7 @@
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">Geschlecht</h4>
-                <button type="button" class="btn btn-info" data-toggle="modal"
+                <button id="mouseGenderSet" type="button" class="btn btn-info" data-toggle="modal"
                         data-target="#chooseGender">
                     Bestimmen
                 </button>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="modal-body">
                                 <img id="mouseinfoGenderPic"
-                                     src="/data/img/bildkarten/Maennchen_2846.png"
+                                     src=""
                                      class="img-rounded img-responsive center-block">
                             </div>
                             <div class="modal-footer">
