@@ -9,7 +9,5 @@ if (!isset($_GET['page']) || $_GET['page'] == "home") {
     $page = $_GET['page'];
 }
 
-//TODO-Christoph: kommentieren
-
 include_once('content/frame.php');
 ?>

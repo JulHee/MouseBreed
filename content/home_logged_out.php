@@ -60,7 +60,7 @@
                                     <input type="password" id="password" name="password" placeholder="Passwort" class="form-control"
                                            required>
                                 </div>
-                                <a id="login_button_top" class="btn btn-success">Anmelden</a>
+                                <a id="login_button" class="btn btn-success">Anmelden</a>
                             </form>
                         </div>
                     </div>
