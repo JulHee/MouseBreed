@@ -357,6 +357,40 @@ class breedModel {
         }
     }
 
+    public function birth($breedId) {
+        $stmt =     "SELECT * ".
+            "FROM `mating` ".
+            "WHERE breed_id = ? AND age = 21";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $breedId);
+
+        if($stmt->execute() &&  $mating = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
+            $ready_matings = $mating;
+
+            //$stmt =     "SELECT * ".
+            //    "FROM `mouse` ".
+            //    "WHERE mating_id = ?";
+            //$stmt = $this->db->prepare($stmt);
+
+            //foreach($mating as $m) {
+            //    if(!$stmt->execute(Array($m['id']))) return Array();
+            //    $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            //    $brood = Array();
+            //    $brood['id'] = $m['id'];
+            //    $brood['mother'] = $this->getMouse($m['mother_id']);
+            //    $brood['father'] = $this->getMouse($m['father_id']);
+            //    $brood['mice'] = $mice;
+
+            //    $broods[$brood['id']] = $brood;
+            //    $this->setPregnant($brood['mother'], 0);
+            //}
+
+            return $ready_matings;
+        } else {
+            return Array();
+        }
+    }
+
 }
 
 ?>

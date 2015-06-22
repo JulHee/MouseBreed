@@ -14,6 +14,7 @@ var mousezone = 600;
 var fpsText;
 
 
+
 function Mouse(id) {
     //55x30
     this.src = "/data/img/play/play_mouse_2.png";
