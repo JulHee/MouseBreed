@@ -313,7 +313,21 @@ class breedModel {
         }
     }
 
-    public function incrementMatings($breedId) {
+    public function nextDay($breed_id) {
+        return $this->incrementBreedAge($breed_id) && $this->incrementMatingsAge($breed_id);
+    }
+
+    public function incrementBreedAge($breedId) {
+        $stmt = "UPDATE breed ".
+                "SET age = age + 1 ".
+                "WHERE id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $breedId);
+
+        return $stmt->execute();
+    }
+
+    public function incrementMatingsAge($breedId) {
         $stmt = "UPDATE mating ".
                 "SET age = age + 1 ".
                 "WHERE breed_id = ? AND age < 22";
@@ -357,35 +371,15 @@ class breedModel {
         }
     }
 
-    public function birth($breedId) {
+    public function getBirths($breedId) {
         $stmt =     "SELECT * ".
-            "FROM `mating` ".
-            "WHERE breed_id = ? AND age = 21";
+                    "FROM `mating` ".
+                    "WHERE breed_id = ? AND age = 21";
         $stmt = $this->db->prepare($stmt);
         $stmt->bindParam(1, $breedId);
 
         if($stmt->execute() &&  $mating = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
-            $ready_matings = $mating;
-
-            //$stmt =     "SELECT * ".
-            //    "FROM `mouse` ".
-            //    "WHERE mating_id = ?";
-            //$stmt = $this->db->prepare($stmt);
-
-            //foreach($mating as $m) {
-            //    if(!$stmt->execute(Array($m['id']))) return Array();
-            //    $mice = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            //    $brood = Array();
-            //    $brood['id'] = $m['id'];
-            //    $brood['mother'] = $this->getMouse($m['mother_id']);
-            //    $brood['father'] = $this->getMouse($m['father_id']);
-            //    $brood['mice'] = $mice;
-
-            //    $broods[$brood['id']] = $brood;
-            //    $this->setPregnant($brood['mother'], 0);
-            //}
-
-            return $ready_matings;
+            return $mating;
         } else {
             return Array();
         }

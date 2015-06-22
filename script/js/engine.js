@@ -96,11 +96,11 @@ var engine = {
 
     },
 
-    // Erhöt das Alter aller Würfe/Verpaarungen mit einem Alter < 22 um 1, Berechnung im php-Skript
-    incrementMatings: function(){
+    // Erhöt das Alter der Zucht sowie aller Würfe/Verpaarungen mit einem Alter < 22 um 1, Berechnung im php-Skript
+    incrementAge: function(){
         var response = $.ajax({
             type: "POST",
-            url: "/script/php/ajax/incrementMatings.php",
+            url: "/script/php/ajax/nextDay.php",
             async: false
         }).responseText;
         response = JSON.parse(response);

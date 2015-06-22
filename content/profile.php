@@ -172,7 +172,7 @@
                             <tr>
                                 <td><?php echo $breed['name']; ?></td>
                                 <td><?php echo $breed['time_of_creation']; ?></td>
-                                <td><?php echo $breed['target']; ?></td>
+                                <td><?php echo $breed['scenario']; ?></td>
                                 <td><?php echo $breed['numberOfMice']; ?></td>
                                 <td><?php echo $breed['numberOfCages']; ?></td>
                             </tr>
