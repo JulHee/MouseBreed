@@ -58,43 +58,47 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Ziel
+                    <li>
+                        <a id="targetInfo" href="#">
+                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                            Ziel
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu dropdown-max-width" role="menu" aria-labelledby="ProfileDropDown">
-                            <li class="list-group-item">
-                                <h4 class="list-group-item-heading">Ziel</h4>
+                        <div id="targetContent" style="display: none">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="list-group-item-heading">Ziel</h4>
 
-                                <p class="list-group-item-text">Wie weit sie gekommen sind</p>
-                            </li>
-                            <li class="list-group-item">
-                                <h4 class="list-group-item-heading">Verbleibende Tage</h4>
+                                    <p class="list-group-item-text">Wie weit sie gekommen sind</p>
+                                </li>
+                                <br>
+                                <li>
+                                    <h4 class="list-group-item-heading">Verbleibende Tage</h4>
 
-                                <div class="progress">
-                                    <div id="targetDayProgress"
-                                         class="progress-bar progress-bar-danger progress-bar-striped active"
-                                         role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                         aria-valuemax="100" style="width: 40%">
-                                        <span class="sr-only">40%</span>
+                                    <div class="progress">
+                                        <div id="targetDayProgress"
+                                             class="progress-bar progress-bar-danger progress-bar-striped active"
+                                             role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                                             aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40%</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <span id="topDays">0. Tag</span>
-                            </li>
-                            <li class="list-group-item ">
-                                <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
+                                    <h6> Es ist der <span id="topDays">0. Tag</span></h6>
+                                </li>
+                                <li>
+                                    <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
 
-                                <div class="progress">
-                                    <div id="targetFinishProgress"
-                                         class="progress-bar progress-bar-success progress-bar-striped active"
-                                         role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                         aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20% Complete (success)</span>
+                                    <div class="progress">
+                                        <div id="targetFinishProgress"
+                                             class="progress-bar progress-bar-success progress-bar-striped active"
+                                             role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                             aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete (success)</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        <div>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

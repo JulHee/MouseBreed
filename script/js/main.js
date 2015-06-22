@@ -85,6 +85,14 @@ $(document).ready(function () {
     Logout.onReady();
     NextDay.onReady();
 
+    $("#targetInfo").popover({
+        html : true,
+        content: function() {
+          return $('#targetContent').html();
+        },
+        placement: "bottom"
+    });
+
     $("#mybutton").click(
         function () {
             addBen($("#title").val(), $("#name").val(), document.querySelector('input[name="inlineRadioOptionen"]:checked').value);
