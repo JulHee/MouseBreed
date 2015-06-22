@@ -90,7 +90,6 @@ Mouse.prototype.init = function() {
     //this.mousecontainer.hitArea = hit;
     // Registrieren der Events
     this.mousecontainer.on("mouseover", function(elem) {
-        console.log(elem.currentTarget);
         clickedMouse(elem.currentTarget.mouseid);
         elem.currentTarget.ismove = false;
         elem.currentTarget.alpha = 0.5;
@@ -147,8 +146,11 @@ Mouse.prototype.init = function() {
         this.targety = getRandomInt(ymin, ymax);
     }
     this.mousecontainer.move = function() {
+        /* Collisoncheck aufgrund der Kosten entfernt,
+         * Mäuse laufen nun einfach wild durcheinander
+         */
         // Prüfen auf Collision
-        checkCollision();
+        //  checkCollision();
         // Abstand zum Ziel
         var absx = Math.abs(this.x - this.targetx);
         var absy = Math.abs(this.y - this.targety);
@@ -286,7 +288,6 @@ Cage.prototype.init = function(y) {
         if (selectedCage != cage_id){
             addBen("Käfig #" + cage_id, "Es wurde der Käfig gewechselt", "info");
             selectedCage = cage_id;
-            updateMouseArray(selectedCage);
             draw();
         }
     });
@@ -305,10 +306,10 @@ function getInfo(mouseid) {
 
 function clickedMouse(id) {
     var info = getInfo(id);
-
+    console.log(info);
     // Speichern der ausgewählten Maus zur Geschlechterbestimmung
     selectedMouse = info;
-    console.log(info);
+
     // Wenn der Benutzer die Maus bestimmt hat, wir der richtige Name angegeben,
     // wenn nicht Fragezeichen um nicht das Geschlecht am Namen zu erkennen
 
@@ -379,8 +380,8 @@ function draw() {
     // Leeren der Arrays
     arrCage = [];
     arrMouse = [];
-    stage.removeAllChildren;
-    stage.removeAllEventListeners;
+    stage.removeAllChildren();
+    stage.removeAllEventListeners();
     stage.update();
     // Zeichnen des Hintergrundes
     drawBackground();
@@ -426,7 +427,7 @@ function init() {
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    //createjs.Ticker.setFPS(30);
+    createjs.Ticker.setFPS(60);
     stage.update();
     //  console.log(stage);
 }
