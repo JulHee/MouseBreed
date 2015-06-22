@@ -306,7 +306,6 @@ function getInfo(mouseid) {
 
 function clickedMouse(id) {
     var info = getInfo(id);
-    console.log(info);
     // Speichern der ausgewählten Maus zur Geschlechterbestimmung
     selectedMouse = info;
 
@@ -374,6 +373,12 @@ function drawBackground() {
     mouse_bg.x = 0;
     mouse_bg.y = 0;
     stage.addChild(mouse_bg);
+
+    // current FPS
+    fpsText = new createjs.Text("-- fps", "10px Arial", "#FFF");
+    fpsText.x = 10;
+    fpsText.y = 10;
+    stage.addChild(fpsText);
 }
 
 function draw() {
@@ -418,11 +423,6 @@ function init() {
     draw();
     selectedCage = arrCage[0].id;
 
-    // current FPS
-    fpsText = new createjs.Text("-- fps", "10px Arial", "#FFF");
-    fpsText.x = 10;
-    fpsText.y = 10;
-    stage.addChild(fpsText);
 
     // Registrieren der Tick-Funktion als Zeitgeber
     createjs.Ticker.on("tick", tick);
