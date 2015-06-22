@@ -473,9 +473,26 @@ function tick(event) {
     }
 };
 
+function refereshNumberOfDays (argument) {
+    var day = ""+loadedBreed.age+" .Tag";
+    $("#numberOfDays").text(day);
+    $("#topDays").text(day);
+}
+
 $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
+    $("#sidebarNextDay").click(function(){
+        //---------- Test ---------------------
+        // Hier bitte die Funktion NextDay einfügen !!
+        // NextDay.run
+        loadedBreed.age = parseInt(loadedBreed.age) +1;
+        //---------- Test --------------------
+
+        // Als letztes wird die Anzeige aktualliesiert
+        refereshNumberOfDays();
+    })
+
     $("#sidebarNewCage").click(function(){
         engine.newCage(42);
         draw();

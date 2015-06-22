@@ -80,7 +80,7 @@
                                         <span class="sr-only">40%</span>
                                     </div>
                                 </div>
-                                Tag: <span id="topDays">5</span>
+                                <span id="topDays">0. Tag</span>
                             </li>
                             <li class="list-group-item ">
                                 <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>

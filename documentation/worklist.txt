@@ -16,11 +16,15 @@
 
 
 (christoph)
+-   Hab die Datenbankabfrage noch die Variable age der Breed geholt damit man eine Zeiteinheit hat
+    Bitte noch sichern.
 
 (christian)
     soziale Unverträglichkeit = gleich geschlechtlich NUR aus einem Wurf gut.
                                 Ein Männchen zu ein bzw. mehreren Weibchen(1:N).
                                 Nach der Paarung Männchen NUR möglich bei Weibchen bleiben , oder einzel Käfig
+
+-Bitte die Funktion NextDay aus der main.js in die play.js verlegen (zumindest das Binding zu dem Namen)
 
 -Daten der Maus (Schwierigkeitsstufe leicht)
  1.	Tragzeit: 20 Tage

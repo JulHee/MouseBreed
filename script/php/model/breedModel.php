@@ -10,7 +10,7 @@ class breedModel {
     }
 
     public function getGeneralData($userId) {
-        $stmt =     "SELECT id, name, time_of_creation, scenario ".
+        $stmt =     "SELECT id, name, time_of_creation, scenario, age ".
                     "FROM `breed` ".
                     "WHERE user_id = ?";
         $stmt = $this->db->prepare($stmt);

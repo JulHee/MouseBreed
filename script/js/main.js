@@ -67,41 +67,11 @@ function supports_html5_storage() {
     }
 }
 
-/*
- Man setzt zwei Elementidentifikatoren als Standart z.b.:
- i.      mouse
- ii.     name
- iii.    info
- */
-
-function loadGameState() {
-    if (!supports_html5_storage()) {
-        alert("Der Browser unterstützt das Feature 'LocalStorage' nicht");
-    }
-
-    var name_of_mouse = parseInt(localStorage.getItem("mousebreed.gamestate.mouse_number"));
-    var array_of_mouse_info = new Array(name_of_mouse);
-    for (i = 0; i < name_of_mouse; i++) {
-        array_of_mouse_info[i] = JSON.parse(localStorage.getItem("mousebreed.gamestate.mouse." + i));
-    }
-    return array_of_mouse_info;
-}
-
-function saveGameState(array_of_mouses) {
-    if (!supports_html5_storage()) {
-        alert("Der Browser unterstützt das Feature 'LocalStorage' nicht");
-    }
-    // Set the number of Mouses to save in localStorage
-    localStorage.setItem("mousebreed.gamestate.mouse_number", array_of_mouses.length);
-    for (var i = 0; i < array_of_mouses.length; i++) {
-        localStorage.setItem(["mousebreed.gamestate.mouse." + i], JSON.stringify(array_of_mouses[i]));
-    }
-
-}
 var NextDay = {
+    // Bitte in play.js verlegen wo es hingehört
 
     onReady: function () {
-        $("#sidebarNextDay").click(NextDay.run);
+       // $("#sidebarNextDay").click(NextDay.run);
     },
 
     run: function () {

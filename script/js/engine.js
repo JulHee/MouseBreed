@@ -198,7 +198,7 @@ var clock = {
         clock.gainWeight();
         clock.checkHomelessMouse();
         clock.pairing();
-
+        loadedBreed.age = loadedBreed.age +1;
 
 
     },
