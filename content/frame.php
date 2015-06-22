@@ -216,7 +216,6 @@
 <script src="/script/js/ext/holder.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="/script/js/main.js"></script>
-<script src="/script/js/classes.js"></script>
 <script src="/script/js/engine.js"></script>
 <script src="/script/js/ext/easeljs-0.8.0.min.js"></script>
 <script src="/script/js/ext/ndgmr.Collision.js"></script>
