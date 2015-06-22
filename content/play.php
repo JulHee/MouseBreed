@@ -40,7 +40,7 @@
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">Geschlecht</h4>
-                <button type="button" class="btn btn-info" data-toggle="modal"
+                <button id="mouseGenderSet" type="button" class="btn btn-info" data-toggle="modal"
                         data-target="#chooseGender">
                     Bestimmen
                 </button>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="modal-body">
                                 <img id="mouseinfoGenderPic"
-                                     src="/data/img/bildkarten/Maennchen_2846.png"
+                                     src=""
                                      class="img-rounded img-responsive center-block">
                             </div>
                             <div class="modal-footer">
