@@ -281,7 +281,11 @@ Cage.prototype.init = function(y) {
     this.maxmicenum = loadedBreed["cages"][this.id]["max_number_of_mice"];
 
     this.cageani = new createjs.Bitmap(this.src);
-    this.cagelabel1 = new createjs.Text("Käfig Nr." + this.id, "Bold 15px Arial", "#201d1b");
+    if (this.id == loadedBreed['finished_cage']) {
+        this.cagelabel1 = new createjs.Text("Ziel-Käfig", "Bold 15px Arial", "#201d1b");
+    } else {
+        this.cagelabel1 = new createjs.Text("Käfig Nr." + this.id, "Bold 15px Arial", "#201d1b");
+    }
     this.cagelabel1.textAlign = "center";
     this.cagelabel1.y = 10;
     this.cagelabel1.x = 140;
