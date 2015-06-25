@@ -7,7 +7,7 @@ if(isset($_SESSION['login']) && $_SESSION['login']) {
 
     $breedModel = new \model\breedModel($db);
 
-    $ready_matings = $breedModel->birth($_SESSION['loadedBreed']['id']);
+    $ready_matings = $breedModel->getBirths($_SESSION['loadedBreed']['id']);
 
     echo json_encode(array('success' => true, 'ready_matings' => $ready_matings), JSON_FORCE_OBJECT);
 } else {
