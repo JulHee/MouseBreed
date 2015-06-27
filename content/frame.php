@@ -21,7 +21,7 @@
     <?php if (file_exists('style/' . $page . '.css')) echo "<link rel=\"stylesheet\" href=\"/style/$page.css\"/>\n"; ?>
 </head>
 <body>
-<div class="navbar-xs">
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-primary">
         <nav class="navbar navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand visible-xs" href="/home">Mäusezucht</a>
+                <a class="navbar-brand" href="/home">Mäusezucht</a>
             </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
@@ -47,7 +47,18 @@
 
                         <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
                             <ul id="notizenT" class="list-group">
-
+                                <li class="notMessage list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            Hier können Sie ihre Gedanken festhalten
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                             <li class="divider"></li>
                             <li class="input-group">
@@ -59,7 +70,7 @@
                     </li>
 
                     <li>
-                        <a id="targetInfo" href="#">
+                        <a data-trigger="focus" id="targetInfo" href="#">
                             <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
                             Ziel
                             <span class="caret"></span>
@@ -67,9 +78,7 @@
                         <div id="targetContent" style="display: none">
                             <ul class="list-unstyled">
                                 <li>
-                                    <h4 class="list-group-item-heading">Ziel</h4>
-
-                                    <p class="list-group-item-text">Wie weit sie gekommen sind</p>
+                                    <h3 class="list-group-item-heading">Ziel <span id="topDays" class="label label-info pull-right">0. Tag</span></h3>
                                 </li>
                                 <br>
                                 <li>
@@ -83,7 +92,6 @@
                                             <span class="sr-only">40%</span>
                                         </div>
                                     </div>
-                                    <h6> Es ist der <span id="topDays">0. Tag</span></h6>
                                 </li>
                                 <li>
                                     <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
@@ -116,12 +124,13 @@
                     <li class="dropdown" style="margin-right: 10px">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <strong><?php echo $_SESSION['userdata']['username']; ?></strong>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="ProfileDropDown">
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="/profile">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    <?php echo $_SESSION['userdata']['username']; ?></a>
+                                    Profil</a>
                             </li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">
                                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -138,13 +147,11 @@
         </div>
     </div>
 </div>
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-2 col-md-1 sidebar">
             <div class="mycenter">
                 <img src="/data/img/mouse_bk.png">
-                <h3 class="text-center">Mäusezucht</h3>
             </div>
             <br>
             <ul class="nav nav-sidebar">
@@ -203,7 +210,7 @@
                 </ul>
             <?php } ?>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
             <?php include_once "$page.php"; ?>
         </div>
     </div>

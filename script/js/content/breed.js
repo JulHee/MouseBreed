@@ -1,105 +1,86 @@
 var BasicFunctions = {
-
-
-    onReady :  function () {
-
-        $("#save").click(function(){
+    onReady: function() {
+        $("#save").click(function() {
             engine.save();
         });
-
         //Wechsel der ausgewähltn Maus
-        $("#ListMouse a").on("click", function(){
+        $("#ListMouse a").on("click", function() {
             var activeMouse = $('#ListMouse').find(".active");
             activeMouse.removeClass("active");
             $(this).addClass("active");
             updateMouseInfo(activeMouse);
             updateListMouse();
-
         });
     },
+    updateMouseInfo: function(mouse) {
+            $('#mouseinfoWeight').innerHTML = mouse.weight;
+            $('#mouseinfoGender').innerHTML = mouse.gender;
+            $('#mouseinfoAge').innerHTML = mouse.age;
+            $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
+        }
+        /* SyntaxError
+        updateListMouse : function (){
+            var allMice = $_SESSION['loadedListMouse']['mice'];
+            var activeBool = false;
+            $.each(allMice,function(){
+                if(!activeBool) {
+                    activeBool = true;
+                    $.('#ListMouse').append("\<a href=\" #\" class=\"list-group-item active\">"+this.name+"(#"+ this.id +") \</a>");
+                }else{
+                    $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>");
+                }
+            });
 
-    updateMouseInfo : function (mouse){
-        $('#mouseinfoWeight').innerHTML = mouse.weight;
-        $('#mouseinfoGender').innerHTML = mouse.gender;
-        $('#mouseinfoAge').innerHTML    = mouse.age;
-        $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
-    }
-
-    /* SyntaxError
-    updateListMouse : function (){
-        var allMice = $_SESSION['loadedListMouse']['mice'];
-        var activeBool = false;
-        $.each(allMice,function(){
-            if(!activeBool) {
-                activeBool = true;
-                $.('#ListMouse').append("\<a href=\" #\" class=\"list-group-item active\">"+this.name+"(#"+ this.id +") \</a>");
-            }else{
-                $.('ListMouse').append("\<a href=\" #\" class=\"list-group-item\">"+this.name+"(#"+ this.id +") \</a>");
-            }
-        });
-
-    }*/
-
+        }*/
 };
-
 var LoadInformations = {
-    onReady :  function () {
-
+    onReady: function() {
         //Setzen des Titels
         $("#BreedTitle").html(loadedBreed.name);
-
         // Setzten der Käfige
         var cages = loadedBreed.cages;
-
-        for (var i in cages){
+        for (var i in cages) {
             var elem = cages[i];
-            $("#dropdownCages").append('<li><a onclick=LoadInformations.specificCageInfo($(this)) data-cage-id='+elem.id+'>Käfig '+i+'</a></li>');
+            $("#dropdownCages").append('<li><a onclick=LoadInformations.specificCageInfo($(this)) data-cage-id=' + elem.id + '>Käfig ' + i + '</a></li>');
         }
     },
-
     specificCageInfo: function(cage_a) {
         var cage = loadedBreed.cages[cage_a[0].getAttribute("data-cage-id")];
-        console.log(cage);
         $("#selectedCageID").html(cage.id);
-
         var MaxNumberofMice = 0;
-        if(cage.max_number_of_mouses){
-            MaxNumberofMice = cage.max_number_of_mouses;
+        if (cage.max_number_of_mice) {
+            MaxNumberofMice = cage.max_number_of_mice;
         }
         $("#maxNumberofMice").html(MaxNumberofMice);
-
         var NumberofMice = 0;
-        if(cage.mice.length){
-            MaxNumberofMice = cage.mice.length;
+        var i;
+
+        for (i in cage.mice) {
+            if (cage.mice.hasOwnProperty(i)) {
+                NumberofMice++;
+            }
         }
         $("#numberofMice").html(NumberofMice);
-
         LoadInformations.printMouses(cage.id);
     },
-
-    printMouses : function(cage_id){
+    printMouses: function(cage_id) {
         // Leeren der Tabelle
         $("#tableMouse tbody").remove();
-
         var mouses = loadedBreed.cages[cage_id].mice;
-        if (mouses){
-            for (var i in mouses){
+        if (mouses) {
+            for (var i in mouses) {
                 var mouse = mouses[i];
-                $("#tableMouse").append('<tr><td>'+mouse.name+'</td><td>'+mouse.gender+'</td><td>'+mouse.genotyp+'</td><td>0 (Fehlt)</td><td>'+mouse.age+'</td><td>'+mouse.weight+'</td></tr>');
+                $("#tableMouse").append('<tr><td>' + mouse.name + '</td><td>' + mouse.gender + '</td><td>' + mouse.genotyp + '</td><td>0 (Fehlt)</td><td>' + mouse.age + '</td><td>' + mouse.weight + '</td></tr>');
             }
         }
     }
-
 };
-
-
-$(document).ready(function () {
+$(document).ready(function() {
     BasicFunctions.onReady;
     LoadInformations.onReady();
     console.log(loadedBreed);
-  /*  $("#ListCage a").on("click", function(){
-        $("#ListCage").find(".active").removeClass("active");
-        $(this).addClass("active");
-    });*/
-
+    /*  $("#ListCage a").on("click", function(){
+          $("#ListCage").find(".active").removeClass("active");
+          $(this).addClass("active");
+      });*/
 });
