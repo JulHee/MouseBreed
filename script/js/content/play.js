@@ -541,11 +541,8 @@ $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
     $("#sidebarNextDay").click(function(){
-        //---------- Test ---------------------
-        // Hier bitte die Funktion NextDay einfügen !!
-        // NextDay.run
-        loadedBreed.age = parseInt(loadedBreed.age) +1;
-        //---------- Test --------------------
+        // Aufruf der Nextday Funktion aus eingine.js - clock
+        clock.nextDay();
 
         // Als letztes wird die Anzeige aktualliesiert
         refereshNumberOfDays();

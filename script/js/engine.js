@@ -197,21 +197,21 @@ var engine = {
 
     },
 
-    find_cage : function(mouse_id){
+    find_cage : function(mouseId){
         var erg;
         for(i in loadedBreed["cages"]){
             for(j in loadedBreed["cages"][i]["mice"]){
-                if(loadedBreed["cages"][i]["mice"][j]["id"] == mouse_id){erg = i}
+                if(loadedBreed["cages"][i]["mice"][j]["id"] == mouseId){erg = i}
             }
         }
         return erg;
 
     },
-    find_mouse : function(mouse_id){
+    find_mouse : function(mouseId){
         var erg;
         for(i in loadedBreed["cages"]){
             for(j in loadedBreed["cages"][i]["mice"]){
-                if(loadedBreed["cages"][i]["mice"][j]["id"] == mouse_id){erg = loadedBreed["cages"][i]["mice"][j] }
+                if(loadedBreed["cages"][i]["mice"][j]["id"] == mouseId){erg = loadedBreed["cages"][i]["mice"][j] }
             }
         }
         return erg;
@@ -233,6 +233,27 @@ var engine = {
                 alert("Fehler");
             }
         });
+    },
+
+    ready2GoOn : function(){
+        for(i in loadedBreed["cages"]){
+            var menProblem = false;
+            for(j in loadedBreed["cages"][i]["mice"]) {
+                if (loadedBreed["cages"][i]["mice"][j]["gender"] == 0) {
+                    if (loadedBreed["cages"][i]["mice"][j]["age"] > 69) {
+                        if (menProblem) {                                                           //Männer-Konflikt Abfragen
+                            addBen("Männchen Konflikt", "Es gibt zum Zeitpunkt der Paarung " +
+                            "mehrer Geschlechtsreife Männchen im Käfig " + i + " !!!", "warn");
+                            return false
+                        } else {
+                            menProblem = true
+                        }
+                    }
+                }
+
+            }
+        }
+        return true
     }
 
 };
@@ -242,12 +263,16 @@ var target=[new engine.Target(1,0,20,1,"--",42),new engine.Target(2,0,0,0,"",0)]
 var clock = {
 
     nextDay: function () {
-        clock.increaseAge();
-        clock.gainWeight();
-        clock.checkHomelessMouse();
-        clock.pairing();
-        engine.birth();
-        loadedBreed.age = loadedBreed.age +1;
+        if(engine.ready2GoOn()) {
+            clock.increaseAge();
+            clock.gainWeight();
+            clock.checkHomelessMouse();
+            clock.pairing();
+            engine.birth();
+            loadedBreed.age = parseInt(loadedBreed.age) + 1;
+        }else{
+            addBen("Tag wurde NICHT gewechselt","warn")
+        }
     },
 
 
@@ -257,7 +282,7 @@ var clock = {
                 loadedBreed["cages"][i]["mice"][j]["age"] = parseInt(loadedBreed["cages"][i]["mice"][j]["age"]) + 1;
             }
         }
-        engine.incrementMatings(); // Die Alter der noch ungeborenen wird erhöht
+        engine.incrementAge(); // Die Alter der noch ungeborenen wird erhöht
 
     },
     gainWeight: function () {
@@ -277,14 +302,13 @@ var clock = {
             0.04, 0.04, 0.04, 0.04, 0.04, 0.06, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.06, 0.06, 0.06, 0.06, 0.06,
             0.06, 0.04, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.08, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.04];
         for ( i in loadedBreed["cages"]) {
-            for( j in i["mice"]){
-                alert("Breakpoint w"+j);
-                if(j["age"]>20)
+            for( j in loadedBreed["cages"][i]["mice"]){
+                if(loadedBreed["cages"][i]["mice"][j]["age"]>20)
                 {
-                    if (j["gender"] == 0) {
-                        j["weight"] += addWeightFemale[j["age"]-20];
+                    if (loadedBreed["cages"][i]["mice"][j]["gender"] == 0) {
+                        loadedBreed["cages"][i]["mice"][j]["weight"] = parseInt(loadedBreed["cages"][i]["mice"][j]["weight"]) + addWeightFemale[loadedBreed["cages"][i]["mice"][j]["age"]-20];
                     } else {
-                        j["weight"] += addWeightMale[j["age"]-20];
+                        loadedBreed["cages"][i]["mice"][j]["weight"] = parseInt(loadedBreed["cages"][i]["mice"][j]["weight"]) + addWeightMale[loadedBreed["cages"][i]["mice"][j]["age"]-20];
                     }
                 }
             }
@@ -313,24 +337,24 @@ var clock = {
             var menList = [];
             var womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
-                if(loadedBreed["cages"][i]["mice"][m]["age"]>69){
-                    if(loadedBreed["cages"][i]["mice"][m]["gender"]==0){
+                if(loadedBreed["cages"][i]["mice"][m]["age"]>69) {
+                    if (loadedBreed["cages"][i]["mice"][m]["gender"] == 0) {
                         menList.push(loadedBreed["cages"][i]["mice"][m])
-                    }else{
-                        //if(loadedBreed["cages"][i]["mice"][m]["pregnant"]==0){
+                    } else {
+                        if (parseInt(loadedBreed["cages"][i]["mice"][m]["pregnant"]) == 0) {
                             womenList.push(loadedBreed["cages"][i]["mice"][m]);
-                        //}
+                            loadedBreed["cages"][i]["mice"][m]["pregnant"] = 1;
+                        }
                     }
                 }
             }
-            if(menList.length > 1){
-                addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen " +
-                    "im Käfig "+i+" !!!","warn")
-            }else{
-                for(j in womenList ){
-                   engine.newMating(womenList[j]["id"],menList[0]["id"]);
+            for(j in womenList ){
+                if(!menList.isEmpty()) {
+                    engine.newMating(womenList[j]["id"], menList[0]["id"]);
+                    addBen("Neue Schwangerschaft", "Die Maus mit der ID " + womenList[j]["id"] + " ist jetzt Schwanger", "info");
                 }
             }
+
 
         }
 
