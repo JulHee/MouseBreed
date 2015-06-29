@@ -1,15 +1,14 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
 
 var engine = {
-    /*Target is an object that represents the properties of one target for one level
-    * @param level integer ; Number of the level
+    /*Target is an object that represents the properties of one target for one scenario
     * @param strictTime integer; If 0 there is no restriction, else x is the number of days
     * @param numberOfMice integer; the total number of mice needed
     * @param gender integer; 0 = male,1=female
     * @param genotyp string; 2 characters
     * @param age integer; the minimal age
     * */
-    Target: function (level,strictTime,numberOfMice,gender,genotyp,age){},
+    Target: function (strictTime,numberOfMice,gender,genotyp,age){},
 
 
     updateLoadedBreed: function(){
@@ -205,8 +204,8 @@ var engine = {
             }
         }
         return erg;
-
     },
+
     find_mouse : function(mouseId){
         var erg;
         for(i in loadedBreed["cages"]){
@@ -217,7 +216,6 @@ var engine = {
         return erg;
 
     },
-
 
     save: function() {
 
@@ -254,10 +252,47 @@ var engine = {
             }
         }
         return true
-    }
+    },
+
+    getGenderOfReadyMice : function (){
+        var flag = true;
+        var selectedGender = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][0]["gender"];
+        for(i in loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"]){
+            flag = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][i]["gender"] == selectedGender;
+        }
+        if(flag){
+            return parseInt(selectedGender);
+        }else{
+            addBen("Verschiedene Geschlechter im Zielkäfig","Es befinden sich Mäuse mit unterschiedlichen Geschlechtern im Zielkäfig","warn");
+        }
+    },
+
+    getGenotypeOfReadyMice : function(){
+        var flag = true;
+        var selectedGenotype = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][0]["genotype"];
+        for(i in loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"]){
+            flag = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][i]["genotyp"] == selectedGenotype;
+        }
+        if(flag){
+            return selectedGenotype;
+        }else{
+            addBen("Verschiedene Genotypen im Zielkäfig","Es befinden sich Mäuse mit unterschiedlichen Genotypen im Zielkäfig","warn");
+        }
+    },
+
+    checkMinimalAge : function(minAge){
+        for(i in loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"]){
+           if(loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][i]["age"] < minAge ){
+               return false
+           }
+        }
+
+
+}
 
 };
-/*Anlegen des Ziel-Arrays*/
+
+/*Creating an Array which contains every possible scenario*/
 var target=[new engine.Target(1,0,20,1,"--",42),new engine.Target(2,0,0,0,"",0)];
 
 var clock = {
@@ -270,11 +305,11 @@ var clock = {
             clock.pairing();
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
+            if(clock.checkTarget()){alert("Ende")};
         }else{
             addBen("Tag wurde NICHT gewechselt","warn")
         }
     },
-
 
     increaseAge: function(){
         for(i in loadedBreed["cages"]){
@@ -285,6 +320,7 @@ var clock = {
         engine.incrementAge(); // Die Alter der noch ungeborenen wird erhöht
 
     },
+
     gainWeight: function () {
         /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/
         var addWeightMale = [0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.84, 0.53, 0.53, 0.53, 0.53,
@@ -362,110 +398,115 @@ var clock = {
 
     checkTarget : function (){
         var tmp;
-        tmp = target[loadedBreed["currentLvl"] - 1];
-
-    },
-
-    checkGenderProblem : function(){
-        var problem = false;
-        for(i in loadedBreed["cages"]){
-            var menList = [];
-            for(j in loadedBreed["cages"][i]["mice"]){
-                if(loadedBreed["cages"][i]["mice"][j]["gender"]==0 && loadedBreed["cages"][i]["mice"][j]["age"]>69){
-                    menList.push(loadedBreed["cages"][i]["mice"][m])
-                }
-            }
-            if(menList.length > 1){
-                problem = true;
-                addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error");
-            };
-        }
-        return problem;
+        var rtn = true;
+        tmp = target[parseInt(loadedBreed["scenario"]) - 1];
+        rtn = rtn && tmp["strictTime"] >= loadedBreed["age"]; // check strictTime
+        rtn = rtn && tmp["numberOfMice"] <= loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"].length; // check Number of Mice
+        rtn = rtn && parseInt(tmp["gender"]) == engine.getGenderOfReadyMice;
+        rtn = rtn && parseInt(tmp["genotype"]) == engine.getGenotypeOfReadyMice();
+        rtn = rtn && engine.checkMinimalAge();
+        return rtn;
     }
-
-
-    /*
-    --------------------------------------------------------------------------------------------------------------------
-    engine|
-    ------
-     ,
-
-     feed: function(){
-     for(i in loadedBreed["cages"]){
-     i["plate"] += 10;
-     }
-     },
-
-     giveWaterToDrink: function(){
-     for(i in loadedBreed["cages"]){
-     i["bottle"] += 10;
-     }
-     },
-
-     handInMouse: function(thisMouse){
-
-    engine.deleteFromBreed(thisMouse);
-},
-
-burry: function(cageID,mouseID){
-
-
-}
-
-setOwnGender : function(mouse_ID,userGender){
-     loadedBreed["currentCage"]["mice"][mouse_ID]["userGender"] = userGender;
-     },
-
-    ------------------------------------------------------------------------------------------------------
-    clock|
-    -----
-    eat: function(){
-        for(i in loadedBreed["cages"]){
-            for(j in i["mice"]){
-                i["plate"] -= j["age"]*0.1 //Annahme Mäuse fressen 1/10 ihres Alters in Gramm
-            }
-        }
-    },
-
-    drink: function(){
-        for(i in loadedBreed["cages"]){
-            for(j in i["mice"]){
-                i["bottle"] -= j["age"]*0.1 //Annahme Mäuse trinken 1/10 ihres Alters in ml
-            }
-        }
-    }
-    */
-
-    /*checkPubescent: function () {
-        for (i in loadedBreed["cages"]) {
-            for(j in loadedBreed["cages"][i]["mice"]){
-                if(j["age"] > 69){
-                    j.pubescent = true;
-                }else{
-                    j.pubescent = false;
-                }
-
-            }
-
-
-        }
-    }
-
-     checkDeadMouse: function () {
-     for(i in loadedBreed["cages"]){
-     for(j in loadedBreed["cages"][i]["mice"]){
-     //if(!loadedBreed["cages"][i]["mice"][j]["alive"]){engine.burry(i,j)}
-     }
-     }
-     },
-
-    */
-    /*increaseNumberOfDay: function(){
-     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-     var firstDate = new Date();
-     var arrayDate = loadedBreed["time_of_creation"].split("-");
-     var secondDate = new Date(arrayDate[0],arrayDate[1],arrayDate[2]);
-     var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
-     numberOfDays = diffDays;
-     },*/
 };
+
+/*
+ --------------------------------------------------------------------------------------------------------------------
+ engine|
+ ------
+ ,
+
+ feed: function(){
+ for(i in loadedBreed["cages"]){
+ i["plate"] += 10;
+ }
+ },
+
+ giveWaterToDrink: function(){
+ for(i in loadedBreed["cages"]){
+ i["bottle"] += 10;
+ }
+ },
+
+ handInMouse: function(thisMouse){
+
+ engine.deleteFromBreed(thisMouse);
+ },
+
+ burry: function(cageID,mouseID){
+
+
+ }
+
+ setOwnGender : function(mouse_ID,userGender){
+ loadedBreed["currentCage"]["mice"][mouse_ID]["userGender"] = userGender;
+ },
+
+ ------------------------------------------------------------------------------------------------------
+ clock|
+ -----
+ checkGenderProblem : function(){
+ var problem = false;
+ for(i in loadedBreed["cages"]){
+ var menList = [];
+ for(j in loadedBreed["cages"][i]["mice"]){
+ if(loadedBreed["cages"][i]["mice"][j]["gender"]==0 && loadedBreed["cages"][i]["mice"][j]["age"]>69){
+ menList.push(loadedBreed["cages"][i]["mice"][m])
+ }
+ }
+ if(menList.length > 1){
+ problem = true;
+ addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error");
+ };
+ }
+ return problem;
+ }
+
+ eat: function(){
+ for(i in loadedBreed["cages"]){
+ for(j in i["mice"]){
+ i["plate"] -= j["age"]*0.1 //Annahme Mäuse fressen 1/10 ihres Alters in Gramm
+ }
+ }
+ },
+
+ drink: function(){
+ for(i in loadedBreed["cages"]){
+ for(j in i["mice"]){
+ i["bottle"] -= j["age"]*0.1 //Annahme Mäuse trinken 1/10 ihres Alters in ml
+ }
+ }
+ }
+ */
+
+/*checkPubescent: function () {
+ for (i in loadedBreed["cages"]) {
+ for(j in loadedBreed["cages"][i]["mice"]){
+ if(j["age"] > 69){
+ j.pubescent = true;
+ }else{
+ j.pubescent = false;
+ }
+
+ }
+
+
+ }
+ }
+
+ checkDeadMouse: function () {
+ for(i in loadedBreed["cages"]){
+ for(j in loadedBreed["cages"][i]["mice"]){
+ //if(!loadedBreed["cages"][i]["mice"][j]["alive"]){engine.burry(i,j)}
+ }
+ }
+ },
+
+ */
+/*increaseNumberOfDay: function(){
+ var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+ var firstDate = new Date();
+ var arrayDate = loadedBreed["time_of_creation"].split("-");
+ var secondDate = new Date(arrayDate[0],arrayDate[1],arrayDate[2]);
+ var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+ numberOfDays = diffDays;
+ },*/

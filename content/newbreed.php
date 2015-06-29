@@ -11,7 +11,7 @@
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-success">Einfach</li>
                             <li class="list-group-item">Tragzeit: 20 Tage</li>
-                            <li class="list-group-item">Wurfgröße: 6 oder 8 Junge</li>
+                            <li class="list-group-item">Wurfgröße: 6 Junge</li>
                             <li class="list-group-item">Geschlechterverteilung: 1:1</li>
                             <li class="list-group-item">Absatzalter: 20 Tage</li>
                             <li class="list-group-item">Zuchtreife: 10 Wochen (70 Tage)</li>
@@ -108,7 +108,7 @@
                                 Keine zeitliche Beschränkung.</br>
                                 </br>
                                 <h3>Einstellungen:</h3>
-                                Wurfgröße: 8 Tiere
+                                Wurfgröße: 6 Tiere
                                 </p>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="easy_2">
