@@ -604,6 +604,7 @@ $(document).ready(function() {
 
 
 function saveChanges() {
+    engine.save();
     localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
 }
 
