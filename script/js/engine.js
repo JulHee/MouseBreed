@@ -230,19 +230,19 @@ var engine = {
     },
 
     save: function() {
-
-        $.ajax({
+        var response = $.ajax({
             type: "POST",
             url: "/script/php/ajax/saveBreed.php",
             data: { breed: JSON.stringify(loadedBreed) },
-            dataType: "json"
-        }).done(function (response) {
-            if (response.success == true) {
-                alert("Gespeichert");
-            } else {
-                alert("Fehler");
-            }
-        });
+            dataType: "json",
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+        if (response.success == true) {
+            // Erfolgreich gespeichert
+        } else {
+            // Fehler beim Speichern
+        }
     },
 
     ready2GoOn : function(){
