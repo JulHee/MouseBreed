@@ -1,4 +1,5 @@
 var loadedBreed= JSON.parse(localStorage.getItem("loadedBreed"));
+var target;
 
 var engine = {
     /*Target is an object that represents the properties of one target for one scenario
@@ -8,8 +9,19 @@ var engine = {
     * @param genotyp string; 2 characters
     * @param age integer; the minimal age
     * */
-    Target: function (strictTime,numberOfMice,gender,genotyp,age){},
+    Target: function (strictTime,numberOfMice,gender,genotyp,age){
+        _strictTime = strictTime;
+        _numberOfMice = numberOfMice;
+        _gender = gender;
+        _genpotyp = genotyp;
+        _age = age;
+    },
 
+    /*Creating an Array which contains every possible scenario
+    * target = [Target,Target,...]*/
+    setTarget : function(){
+        target=[{strictTime:0,numberOfMice:20,gender:1,genotyp:"--",age:42},{strictTime:0,numberOfMice:0,gender:0,genotype:"",age:0}];
+    },
 
     updateLoadedBreed: function(){
     var data = localStorage.getItem("loadedBreed");
@@ -256,9 +268,9 @@ var engine = {
 
     getGenderOfReadyMice : function (){
         var flag = true;
-        var selectedGender = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][0]["gender"];
-        for(i in loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"]){
-            flag = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][i]["gender"] == selectedGender;
+        var selectedGender = loadedBreed["finished_cage"]["mice"][0]["gender"];
+        for(i in loadedBreed["finished_cage"]["mice"]){
+            flag = loadedBreed["finished_cage"]["mice"][i]["gender"] == selectedGender;
         }
         if(flag){
             return parseInt(selectedGender);
@@ -269,9 +281,9 @@ var engine = {
 
     getGenotypeOfReadyMice : function(){
         var flag = true;
-        var selectedGenotype = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][0]["genotype"];
-        for(i in loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"]){
-            flag = loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][i]["genotyp"] == selectedGenotype;
+        var selectedGenotype = loadedBreed["finished_cage"]["mice"][0]["genotype"];
+        for(i in loadedBreed["finished_cage"]["mice"]){
+            flag = loadedBreed["finished_cage"]["mice"][i]["genotyp"] == selectedGenotype;
         }
         if(flag){
             return selectedGenotype;
@@ -281,8 +293,8 @@ var engine = {
     },
 
     checkMinimalAge : function(minAge){
-        for(i in loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"]){
-           if(loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"][i]["age"] < minAge ){
+        for(i in loadedBreed["finished_cage"]["mice"]){
+           if(loadedBreed["finished_cage"]["mice"][i]["age"] < minAge ){
                return false
            }
         }
@@ -291,9 +303,6 @@ var engine = {
 }
 
 };
-
-/*Creating an Array which contains every possible scenario*/
-var target=[new engine.Target(1,0,20,1,"--",42),new engine.Target(2,0,0,0,"",0)];
 
 var clock = {
 
@@ -397,13 +406,13 @@ var clock = {
     },
 
     checkTarget : function (){
-        var tmp;
+        engine.setTarget();
         var rtn = true;
-        tmp = target[parseInt(loadedBreed["scenario"]) - 1];
-        rtn = rtn && tmp["strictTime"] >= loadedBreed["age"]; // check strictTime
-        rtn = rtn && tmp["numberOfMice"] <= loadedBreed["cages"]["hier-Zielkäfig-einfügen"]["mice"].length; // check Number of Mice
-        rtn = rtn && parseInt(tmp["gender"]) == engine.getGenderOfReadyMice;
-        rtn = rtn && parseInt(tmp["genotype"]) == engine.getGenotypeOfReadyMice();
+        var tmp = target[parseInt(loadedBreed["scenario"]) - 1];
+        rtn = rtn && (tmp["strictTime"] >= loadedBreed["age"]); // check strictTime
+        rtn = rtn && (tmp["numberOfMice"] <= loadedBreed["finished_cage"]["mice"].length); // check Number of Mice
+        rtn = rtn && (parseInt(tmp["gender"]) == engine.getGenderOfReadyMice);
+        rtn = rtn && (parseInt(tmp["genotype"]) == engine.getGenotypeOfReadyMice());
         rtn = rtn && engine.checkMinimalAge();
         return rtn;
     }
