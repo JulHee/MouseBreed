@@ -378,8 +378,8 @@ var clock = {
     },
 
     pairing: function () {
-        for(i in loadedBreed["cages"]){ // pro Käfig wird je eine men/-women-Liste angelegt
-            var menList = [];
+        for(i in loadedBreed["cages"]){
+            var menList = [];           // pro Käfig wird je eine men/-women-Liste angelegt
             var womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
                 if(loadedBreed["cages"][i]["mice"][m]["age"]>69) {
