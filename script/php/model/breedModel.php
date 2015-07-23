@@ -279,11 +279,11 @@ class breedModel {
         foreach($breed['cages'] as $cage) {
             foreach($cage['mice'] as $mouse) {
                 $stmt =     "UPDATE mouse ".
-                            "SET cage_id = ?, weight = ?, age = ?, user_gender = ? ".
+                            "SET cage_id = ?, weight = ?, age = ?, user_gender = ?, pregnant=?, mating_id=? ".
                             "WHERE id = ?";
                 $stmt = $this->db->prepare($stmt);
 
-                if(!$stmt->execute(array($mouse['cage_id'], $mouse['weight'], $mouse['age'], $mouse['user_gender'], $mouse['id']))) {
+                if(!$stmt->execute(array($mouse['cage_id'], $mouse['weight'], $mouse['age'], $mouse['user_gender'], $mouse['pregnant'], $mouse['mating_id'], $mouse['id']))) {
                     return false;
                 }
             }

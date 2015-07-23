@@ -176,6 +176,7 @@ var engine = {
         }
 
     },
+
     birth : function(){
         var response = $.ajax({
             type: "POST",
@@ -318,6 +319,7 @@ var clock = {
         }else{
             addBen("Tag wurde NICHT gewechselt","warn")
         }
+        //engine.save();
     },
 
     increaseAge: function(){
@@ -379,12 +381,12 @@ var clock = {
 
     pairing: function () {
         for(i in loadedBreed["cages"]){
-            var menList = [];           // pro Käfig wird je eine men/-women-Liste angelegt
+            var theMan = null;           // pro Käfig wird je eine theMan und eine womenList angelegt
             var womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
                 if(loadedBreed["cages"][i]["mice"][m]["age"]>69) {
                     if (loadedBreed["cages"][i]["mice"][m]["gender"] == 0) {
-                        menList.push(loadedBreed["cages"][i]["mice"][m])
+                        theMan = loadedBreed["cages"][i]["mice"][m];
                     } else {
                         if (parseInt(loadedBreed["cages"][i]["mice"][m]["pregnant"]) == 0) {
                             womenList.push(loadedBreed["cages"][i]["mice"][m]);
@@ -394,8 +396,8 @@ var clock = {
                 }
             }
             for(j in womenList ){
-                if(!menList.isEmpty()) {
-                    engine.newMating(womenList[j]["id"], menList[0]["id"]);
+                if(!(theMan == null)) {
+                    engine.newMating(womenList[j]["id"], theMan["id"]);
                     addBen("Neue Schwangerschaft", "Die Maus mit der ID " + womenList[j]["id"] + " ist jetzt Schwanger", "info");
                 }
             }
