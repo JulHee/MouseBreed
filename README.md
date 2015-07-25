@@ -26,14 +26,15 @@ Das Projekt simuliert eine Mauszucht.
 - Steckbrief, Gewicht ab 20 Tage sichtbar
 
 ### Akute Probleme
-- **@CHRISTIAN** --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden. Hier sollen automatisch nur maximal 6 Mäuse (> 20 Tage) zusammengesetzt werden können, egal welchen Geschlechtes und welchen Alters (> 20). Wenn eine Maus wirft, soll sie mit ihrem Wurf automatisch in einen neuen, leeren Käfig verschoben werden.
+- **@CHRISTIAN** --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden. 
+ Hier sollen automatisch nur maximal 6 Mäuse (> 20 Tage) zusammengesetzt werden können,egal welchen Geschlechtes und welchen Alters (> 20). 
+ Wenn eine Maus wirft, soll sie mit ihrem Wurf automatisch in einen neuen, leeren Käfig verschoben werden.
 - Navigation oben: Elemente oben links manchmal weiß
 
 ### Christoph
 
 ### Christian
-- setInitialWeight = random zwischen 1  und 8,5 g
-- Mutter mit frischem Wurf in eignen Käfig
+- gelegentliches setzten einer Schwangerschaft ohne neues Mating ...? Besonders zu Beginn !!!
 - Käfig Anzahl <= 6 überprüfen
 - Spielende testen 
 

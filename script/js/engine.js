@@ -185,18 +185,22 @@ var engine = {
         }).responseText;
         response = JSON.parse(response);
         if(response.success == true) {
-            var initial_weight = 1;
             var initial_img_name = "data\img\defaultMausChB.png";
             for(i in response["ready_matings"]){
+                var tmpMaxNumberOFMice = 6;                         //create new cage for mother and her newborn
+                engine.newCage(tmpMaxNumberOFMice);
                 var curr_mating = i;
                 var father_id = response["ready_matings"][i]["father_id"]
                 var mother_id = response["ready_matings"][i]["mother_id"]
-                var tmp_cage_id = engine.find_cage(mother_id);
+                var tmp_cage_id = engine.find_newest_cage();
                 var genotypArray = engine.mixGenotyp(engine.find_mouse(mother_id),engine.find_mouse(father_id))
-                var tmp_gender = (Math.random()<0.5) ? 0 : 1;
                 for(k=0;k<=5;k++){
+                    var tmp_gender = (Math.random()<0.5) ? 0 : 1;                           //each new Mouse gets its (random) Gender
+                    var initial_weight = 1 + Math.round(Math.random() * 7.5 * 100)/100;     //each new Mouse gets its (random) Weight
                     engine.newMouse(tmp_cage_id,tmp_gender,genotypArray[k%4],initial_weight,response["ready_matings"][curr_mating]["id"],mother_id,father_id,0,initial_img_name)
                 }
+                engine.changeCage(mother_id,engine.find_cage(mother_id),engine.find_newest_cage()); // move the mother into the new cage
+                addBen("Der Wurf ist da","Der Wurf von der Mutter "+mother_id+" ist nun auf der Welt und in Käfig "+tmp_cage_id+" machen die Kleinen ihre ersten Schritte","info");
             }
             // erfolgreich erstellt
             return response;
@@ -207,6 +211,14 @@ var engine = {
             // Rückgabe?
         }
 
+    },
+
+    find_newest_cage : function(){
+        var maxNum = 0;
+        for(i in loadedBreed["cages"]){
+            if(parseInt(loadedBreed["cages"][i]["id"]) > maxNum){ maxNum = loadedBreed["cages"][i]["id"]}
+        }
+        return maxNum;
     },
 
     find_cage : function(mouseId){
@@ -381,10 +393,10 @@ var clock = {
 
     pairing: function () {
         for(i in loadedBreed["cages"]){
-            var theMan = null;           // pro Käfig wird je eine theMan und eine womenList angelegt
+            var theMan = null;           // each cage gets the variable theMan and an array womenList
             var womenList = [];
             for(m in loadedBreed["cages"][i]["mice"]){
-                if(loadedBreed["cages"][i]["mice"][m]["age"]>69) {
+                if(parseInt(loadedBreed["cages"][i]["mice"][m]["age"]) > 69) {
                     if (loadedBreed["cages"][i]["mice"][m]["gender"] == 0) {
                         theMan = loadedBreed["cages"][i]["mice"][m];
                     } else {
