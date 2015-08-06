@@ -312,8 +312,16 @@ var engine = {
            }
         }
 
+    },
 
-}
+    find_Male : function(index){
+            for(m in loadedBreed["cages"][index]["mice"]){
+                if(parseInt(loadedBreed["cages"][index]["mice"][m]["gender"]) == 0 && parseInt(loadedBreed["cages"][index]["mice"][m]["age"])>69){
+                    return loadedBreed["cages"][index]["mice"][m]["id"];
+                }
+            }
+            return -1;
+    }
 
 };
 
@@ -393,30 +401,22 @@ var clock = {
 
     pairing: function () {
         for(i in loadedBreed["cages"]){
-            var theMan = null;           // each cage gets the variable theMan and an array womenList
-            var womenList = [];
-            for(m in loadedBreed["cages"][i]["mice"]){
-                if(parseInt(loadedBreed["cages"][i]["mice"][m]["age"]) > 69) {
-                    if (loadedBreed["cages"][i]["mice"][m]["gender"] == 0) {
-                        theMan = loadedBreed["cages"][i]["mice"][m];
-                    } else {
-                        if (parseInt(loadedBreed["cages"][i]["mice"][m]["pregnant"]) == 0) {
-                            womenList.push(loadedBreed["cages"][i]["mice"][m]);
-                            loadedBreed["cages"][i]["mice"][m]["pregnant"] = 1;
+            theManId = engine.find_Male(i);
+            if(theManId > 0 ) {
+                for (m in loadedBreed["cages"][i]["mice"]) {
+                    if (parseInt(loadedBreed["cages"][i]["mice"][m]["age"]) > 69) {
+                        if (parseInt(loadedBreed["cages"][i]["mice"][m]["gender"]) == 1) {
+                            if (parseInt(loadedBreed["cages"][i]["mice"][m]["pregnant"]) == 0) {
+                                alert("Die Pairingfunktion wird ausgefühert und setzt Pregnant auf 1");
+                                loadedBreed["cages"][i]["mice"][m]["pregnant"] = 1;
+                                engine.newMating(loadedBreed["cages"][i]["mice"][m]["id"], theManId);
+                                addBen("Neue Schwangerschaft", "Die Maus mit der ID " + womenList[j]["id"] + " ist jetzt Schwanger", "info");
+                            }
                         }
                     }
                 }
             }
-            for(j in womenList ){
-                if(!(theMan == null)) {
-                    engine.newMating(womenList[j]["id"], theMan["id"]);
-                    addBen("Neue Schwangerschaft", "Die Maus mit der ID " + womenList[j]["id"] + " ist jetzt Schwanger", "info");
-                }
-            }
-
-
         }
-
     },
 
     checkTarget : function (){
