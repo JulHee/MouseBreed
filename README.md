@@ -34,7 +34,6 @@ Das Projekt simuliert eine Mauszucht.
 ### Christoph
 
 ### Christian
-- gelegentliches setzten einer Schwangerschaft ohne neues Mating ...? Besonders zu Beginn !!!
 - Käfig Anzahl <= 6 überprüfen
 - Spielende testen 
 
