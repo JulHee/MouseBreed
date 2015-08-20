@@ -24,12 +24,16 @@ Das Projekt simuliert eine Mauszucht.
 - setze currentCage in loadedBreed
 - Notizen sollen beim Mousebreed internen Seitenwechsel erhalten bleiben
 - Steckbrief, Gewicht ab 20 Tage sichtbar
+- Anlegen neuer Zucht
+- Ziel Anzeige
+- Bei der Käfigubersicht Geschlecht in Worten anzeigen
 
 ### Akute Probleme
 - **@CHRISTIAN** --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden. 
  Hier sollen automatisch nur maximal 6 Mäuse (> 20 Tage) zusammengesetzt werden können,egal welchen Geschlechtes und welchen Alters (> 20). 
  Wenn eine Maus wirft, soll sie mit ihrem Wurf automatisch in einen neuen, leeren Käfig verschoben werden.
 - Navigation oben: Elemente oben links manchmal weiß
+- Testen des Spielendes
 
 ### Christoph
 
