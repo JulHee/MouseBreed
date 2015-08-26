@@ -175,7 +175,7 @@ $(document).ready(function () {
     //func to get "old" notes from local storage
     function getLocalNotes(){
         if (JSON.parse(localStorage.getItem("Notes")) !== null){
-            noticearr = JSON.parse(localStorage.getItem("Notes"));
+            noticearr = JSON.parse(localStorage.getItem("Notes")).reverse();
             for(var i = 0; i < noticearr.length; i++){
                 var inText = noticearr[i];
                 $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
