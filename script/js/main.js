@@ -110,6 +110,19 @@ function refereshNumberOfDays() {
         $("#topDays").text(day);
     }
 }
+function refreshProgressbar(){
+    var indexOfFinischedCage =  loadedBreed.finished_cage;
+    var currNumberOfMice = loadedBreed["cage"][indexOfFinischedCage]["mice"].length;
+    var tmp = engine.getTargetNumberOfMice();
+    tmp = ""+currNumberOfMice/tmp +"%";
+    $("targetFinishProgress").css(" width ",tmp);
+
+    var currTimePrgogress = 1;
+    tmp = engine.getTargetStrictTime();
+    if(tmp > 0){currTimePrgogress = loadBreed.age/tmp}
+    $("#targetDayProgress").css ( " width " , currTimePrgogress);
+
+}
 
 
 $(document).ready(function () {

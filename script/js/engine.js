@@ -20,14 +20,12 @@ var engine = {
     /*Creating an Array which contains every possible scenario
      * target = [Target,Target,...]*/
     setTarget: function () {
-        target = [{strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "--", age: 42}, {
-            strictTime: 0,
-            numberOfMice: 0,
-            gender: 0,
-            genotype: "",
-            age: 0
-        }];
+        target = [
+            {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "--", age: 42},
+            {strictTime: 0, numberOfMice: 0,  gender: 0, genotype: "", age: 0}];
     },
+    getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
+    getTargetNumberOfMice : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].numberOfMice},
 
     convertScenario2Index: function (s) {      // get the Index for the Target-Arrayout of the scenarioname
         switch (s) {
@@ -103,7 +101,7 @@ var engine = {
             };
 
             // erfolgreich erstellt
-
+            addBen("Käfig erstellt", "Der Käfig wurde erstellt", "Es ist ein neuer Käfig angelegt worden");
             // Rückgabe?
         } else {
 
@@ -381,6 +379,7 @@ var clock = {
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
             refereshNumberOfDays();
+            refreshProgressbar();
             if (selectedMouse) {                                // refresh the information of the choosen mouse
                 clickedMouse(selectedMouse.id);
             }

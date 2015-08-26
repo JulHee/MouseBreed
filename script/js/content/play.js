@@ -404,7 +404,7 @@ function drawBackground() {
 
     arrowUP.on("click", function(evt) {
         for (var i = 0; i < arrCage.length; i++) {
-            arrCage[i].cagecontainer.y -= 72;
+            arrCage[i].cagecontainer.y += 72;
             if (arrCage[i].cagecontainer.y >= 40 && arrCage[i].cagecontainer.y <= 400 ){
                 arrCage[i].cagecontainer.visible = true;
             } else {
@@ -420,7 +420,7 @@ function drawBackground() {
 
     arrowDown.on("click", function(evt) {
         for (var i = 0; i < arrCage.length; i++) {
-            arrCage[i].cagecontainer.y += 72;
+            arrCage[i].cagecontainer.y -= 72;
             if (arrCage[i].cagecontainer.y >= 40 && arrCage[i].cagecontainer.y <= 400){
                 arrCage[i].cagecontainer.visible = true;
             } else {
@@ -451,6 +451,11 @@ function draw() {
     // Hinzufügen der Käfige
     for (i = 0; i < arrCage.length; i++) {
         arrCage[i].cUpdate();
+        if (arrCage[i].cagecontainer.y >= 40 && arrCage[i].cagecontainer.y <= 400){
+            arrCage[i].cagecontainer.visible = true;
+        } else {
+            arrCage[i].cagecontainer.visible = false;
+        }
         stage.addChild(arrCage[i].cagecontainer);
     }
 
