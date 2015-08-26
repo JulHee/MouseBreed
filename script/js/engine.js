@@ -103,7 +103,7 @@ var engine = {
             };
 
             // erfolgreich erstellt
-
+            addBen("Käfig erstellt", "Der Käfig wurde erstellt", "Es ist ein neuer Käfig angelegt worden");
             // Rückgabe?
         } else {
 
