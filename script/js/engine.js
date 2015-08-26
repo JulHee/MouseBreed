@@ -23,6 +23,17 @@ var engine = {
         target=[{strictTime:0,numberOfMice:20,gender:1,genotyp:"--",age:42},{strictTime:0,numberOfMice:0,gender:0,genotype:"",age:0}];
     },
 
+    convertScenario2Index : function(s){      // get the Index for the Target-Arrayout of the scenarioname
+        switch (s){
+            case "easy_1" : return 1
+                break;
+            case "easy_2" : return 2
+                break;
+            default : return -1
+        }
+
+    },
+
     updateLoadedBreed: function(){
     var data = localStorage.getItem("loadedBreed");
     loadedBreed = JSON.parse(data);
@@ -329,7 +340,6 @@ var clock = {
 
     nextDay: function () {
 
-        if(parseInt(loadedBreed["age"])==0){engine.setTarget()}; // Create the Target-Array, wich contains the information about the endconditions
         if(engine.ready2GoOn()) {
             clock.increaseAge();
             clock.gainWeight();
@@ -421,9 +431,9 @@ var clock = {
     },
 
     checkTarget : function (){
-        engine.setTarget();
+        engine.setTarget();                                          // Create the Target-Array, wich contains the information about the endconditions
         var rtn = true;
-        var tmp = target[parseInt(loadedBreed["scenario"]) - 1];
+        var tmp = target[engine.convertScenario2Index(loadedBreed["scenario"]) - 1];
         rtn = rtn && (tmp["strictTime"] >= loadedBreed["age"]); // check strictTime
         rtn = rtn && (tmp["numberOfMice"] <= loadedBreed["finished_cage"]["mice"].length); // check Number of Mice
         rtn = rtn && (parseInt(tmp["gender"]) == engine.getGenderOfReadyMice);
