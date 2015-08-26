@@ -92,7 +92,6 @@ Mouse.prototype.init = function() {
     // Registrieren der Events
     this.mousecontainer.on("mouseover", function(elem) {
         clickedMouse(elem.currentTarget.mouseid);
-        hoverMouse = this;
         elem.currentTarget.ismove = false;
         elem.currentTarget.alpha = 0.5;
     });
