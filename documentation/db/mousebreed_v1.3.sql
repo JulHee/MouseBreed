@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `mousebreed`
 --
-
+CREATE DATABASE IF NOT EXISTS `mousebreed` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci;
+USE `mousebreed`;
 -- --------------------------------------------------------
 
 --
