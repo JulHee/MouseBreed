@@ -47,18 +47,7 @@
 
                         <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
                             <ul id="notizenT" class="list-group">
-                                <li class="notMessage list-group-item">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            Hier können Sie ihre Gedanken festhalten
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
+
                             </ul>
                             <li class="divider"></li>
                             <li class="input-group">
