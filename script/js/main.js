@@ -64,19 +64,19 @@ function addBen(titel, nachricht, art) {
     // TODO: Die Nachricht muss unterhalb der Oberen leiste angezeigt werden
     switch (art) {
         case "success":
-            $.notify(titel,{className:'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
             break;
         case "warn":
-            $.notify(titel,{className:'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
             break;
         case "info":
-            $.notify(titel,{className:'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
             break;
         case "error":
-            $.notify(titel,{className:'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
             break;
         default:
-            $.notify(titel,{className:'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
             break;
     }
 
@@ -85,10 +85,16 @@ function addBen(titel, nachricht, art) {
     var dateHours = date.getHours();
     var dateMinutes = date.getMinutes();
     var dateSeconds = date.getSeconds();
-    if(dateHours < 10){dateHours = '0'+dateHours;}
-    if(dateMinutes < 10){dateMinutes = '0'+dateMinutes;}
-    if(dateSeconds < 10){dateSeconds = '0'+dateSeconds;}
-    var dateOutput = dateHours+":"+dateMinutes+":"+dateSeconds;
+    if (dateHours < 10) {
+        dateHours = '0' + dateHours;
+    }
+    if (dateMinutes < 10) {
+        dateMinutes = '0' + dateMinutes;
+    }
+    if (dateSeconds < 10) {
+        dateSeconds = '0' + dateSeconds;
+    }
+    var dateOutput = dateHours + ":" + dateMinutes + ":" + dateSeconds;
 
     // Anfügen der neuen Benachrichtigung
     $("#benliste_top").prepend('<li class="divider"></li>');
@@ -97,15 +103,21 @@ function addBen(titel, nachricht, art) {
     // Setzten des Zählers
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 }
+function refereshNumberOfDays() {
+    var day = "" + loadedBreed.age + " .Tag";
+    $("#numberOfDays").text(day);
+    $("#topDays").text(day);
+}
 
 
 $(document).ready(function () {
     Logout.onReady();
+    refereshNumberOfDays();
     //NextDay.onReady();
 
     $("#targetInfo").popover({
-        html : true,
-        content: function() {
+        html: true,
+        content: function () {
             return $('#targetContent').html();
         },
         placement: "bottom"
@@ -138,7 +150,7 @@ $(document).ready(function () {
         }
     );
 
-    $("#navSidebarZuchten a").on("click", function(){
+    $("#navSidebarZuchten a").on("click", function () {
         $(".nav").find(".active").removeClass("active");
         $(this).parent().addClass("active");
     });
@@ -161,7 +173,7 @@ $(document).ready(function () {
     //array for local notes
     var noticearr = [];
     $('#addbtn').click(
-        function() {
+        function () {
             var inText = $('#noticetext').val();
             $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
             //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
@@ -169,24 +181,24 @@ $(document).ready(function () {
 
         });
     //func to get "old" notes from local storage
-    function getLocalNotes(){
-        if (JSON.parse(localStorage.getItem("Notes")) !== null){
+    function getLocalNotes() {
+        if (JSON.parse(localStorage.getItem("Notes")) !== null) {
             noticearr = JSON.parse(localStorage.getItem("Notes")).reverse();
-            for(var i = 0; i < noticearr.length; i++){
+            for (var i = 0; i < noticearr.length; i++) {
                 var inText = noticearr[i];
                 $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
             }
         } else {
-            localStorage.setItem("Notes" , JSON.stringify(noticearr));
+            localStorage.setItem("Notes", JSON.stringify(noticearr));
         }
     };
     //on reload set localStorage
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
         noticearr = [];
-        $.each($('.notmsg'), function() {
+        $.each($('.notmsg'), function () {
             noticearr.push($(this).text());
         });
-        localStorage.setItem("Notes" , JSON.stringify(noticearr));
+        localStorage.setItem("Notes", JSON.stringify(noticearr));
     }
 
 });

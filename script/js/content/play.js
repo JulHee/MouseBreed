@@ -531,12 +531,6 @@ function tick(event) {
     }
 };
 
-function refereshNumberOfDays (argument) {
-    var day = ""+loadedBreed.age+" .Tag";
-    $("#numberOfDays").text(day);
-    $("#topDays").text(day);
-}
-
 $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
