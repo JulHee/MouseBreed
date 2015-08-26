@@ -109,9 +109,11 @@ function refereshNumberOfDays() {
     $("#topDays").text(day);
 }
 function refreshProgressbar(){
-    var currNumberOfMice = loadedBreed["finished_cage"]["mice"].length;
+    var indexOfFinischedCage =  loadedBreed.finished_cage;
+    var currNumberOfMice = loadedBreed["cage"][indexOfFinischedCage]["mice"].length;
     var tmp = engine.getTargetNumberOfMice();
-    $("targetFinishProgress").css(" width " , currTimePrgogress/tmp)
+    tmp = ""+currNumberOfMice/tmp +"%";
+    $("targetFinishProgress").css(" width ",tmp);
 
     var currTimePrgogress = 1;
     tmp = engine.getTargetStrictTime();
