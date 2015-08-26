@@ -25,9 +25,9 @@ var engine = {
 
     convertScenario2Index : function(s){      // get the Index for the Target-Arrayout of the scenarioname
         switch (s){
-            case "easy_1" : return 1
+            case "easy_1" : return 0
                 break;
-            case "easy_2" : return 2
+            case "easy_2" : return 1
                 break;
             default : return -1
         }
@@ -436,8 +436,8 @@ var clock = {
     checkTarget : function (){
         engine.setTarget();                                          // Create the Target-Array, wich contains the information about the endconditions
         var rtn = true;
-        var tmp = target[engine.convertScenario2Index(loadedBreed["scenario"]) - 1];
-        rtn = rtn && (tmp["strictTime"] >= loadedBreed["age"]); // check strictTime
+        var tmp = target[engine.convertScenario2Index(loadedBreed["scenario"])];
+        rtn = rtn && (tmp.strictTime >= loadedBreed["age"]); // check strictTime
         rtn = rtn && (tmp["numberOfMice"] <= loadedBreed["finished_cage"]["mice"].length); // check Number of Mice
         rtn = rtn && (parseInt(tmp["gender"]) == engine.getGenderOfReadyMice);
         rtn = rtn && (parseInt(tmp["genotype"]) == engine.getGenotypeOfReadyMice());

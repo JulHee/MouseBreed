@@ -20,14 +20,18 @@ Das Projekt simuliert eine Mauszucht.
 ## TODO
 
 ### Allgemein
-- Funktion zum errechnen und setzen der Generation
-- setze currentCage in loadedBreed
-- Notizen sollen beim Mousebreed internen Seitenwechsel erhalten bleiben
-- Steckbrief, Gewicht ab 20 Tage sichtbar
-- Anlegen neuer Zucht
+- Funktion zum errechnen und setzen der Generation ?
+- setze currentCage in loadedBreed ?
+- Steckbrief, Gewicht ab 20 Tage sichtbar 
 - Ziel Anzeige
 - Bei der Käfigubersicht Geschlecht in Worten anzeigen
--Neue Zucht
+- trash käfig 
+- Play scroll Button
+- Play Genotyp anzeigen
+- Ziel Info richtig machen
+- Käfige auf nextDay aktualisieren
+- Wechsel von Play , Zuchtkarte oerdentlch machen
+- Benachrichtigung 
 
 ### Akute Probleme
 - **@CHRISTIAN** --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden. 
