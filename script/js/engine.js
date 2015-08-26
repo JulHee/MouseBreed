@@ -340,7 +340,9 @@ var clock = {
 
             // Aktuallisieren des Steckbriefes der ausgewählten Maus
             // --Anfang--
-            clickedMouse(selectedMouse.id);
+            if (selectedMouse){
+                clickedMouse(selectedMouse.id);
+            }
             // --ENDE--
 
             if(clock.checkTarget()){alert("Ende")};
