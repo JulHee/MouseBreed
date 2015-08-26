@@ -328,6 +328,8 @@ var engine = {
 var clock = {
 
     nextDay: function () {
+
+        if(parseInt(loadedBreed["age"])==0){engine.setTarget()}; // Create the Target-Array, wich contains the information about the endconditions
         if(engine.ready2GoOn()) {
             clock.increaseAge();
             clock.gainWeight();
