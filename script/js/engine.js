@@ -348,18 +348,13 @@ var clock = {
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
 
-            // Aktuallisieren des Steckbriefes der ausgewählten Maus
-            // --Anfang--
-            if (selectedMouse){
+            if (selectedMouse){                                // Aktuallisieren des Steckbriefes der ausgewählten Maus
                 clickedMouse(selectedMouse.id);
             }
-            // --ENDE--
-
-            if(clock.checkTarget()){alert("Ende")};
-        }else{
+            if(clock.checkTarget()){alert("Ende")};}
+        else{
             addBen("Tag wurde NICHT gewechselt","warn")
         }
-        //engine.save();
     },
 
     increaseAge: function(){
