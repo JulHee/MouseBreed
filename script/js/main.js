@@ -166,11 +166,7 @@ $(document).ready(function () {
             $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
             //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
             $('#noticetext').val("");
-            noticearr = [];
-            $.each($('.notmsg'), function() {
-                noticearr.push($(this).text());
-            });
-            localStorage.setItem("Notes" , JSON.stringify(noticearr));
+
         });
     //func to get "old" notes from local storage
     function getLocalNotes(){
@@ -184,5 +180,13 @@ $(document).ready(function () {
             localStorage.setItem("Notes" , JSON.stringify(noticearr));
         }
     };
-    
+    //on reload set localStorage
+    window.onbeforeunload = function() {
+        noticearr = [];
+        $.each($('.notmsg'), function() {
+            noticearr.push($(this).text());
+        });
+        localStorage.setItem("Notes" , JSON.stringify(noticearr));
+    }
+
 });
