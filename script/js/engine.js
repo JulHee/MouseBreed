@@ -361,6 +361,10 @@ var engine = {
             }
         }
         return -1;
+    },
+
+    move2Trash: function (mouseId,cageId) {
+        engine.changeCage(mouseId,cageId,loadedBreed["trash_cage"])
     }
 
 };
@@ -372,7 +376,6 @@ var clock = {
         if (engine.ready2GoOn()) {
             clock.increaseAge();
             clock.gainWeight();
-            clock.checkHomelessMouse();
             clock.pairing();
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
@@ -429,22 +432,7 @@ var clock = {
         }
     },
 
-    checkHomelessMouse: function () {
-        var level = 1;
-        for (i in loadedBreed["cages"]) {
-            for (j in i["mice"]) {
-                if (j["cage_id"] == -1) {
-                    if (level == 1) {
-                        addBen("Nicht zugeordnete Mäuse", "Es gibt Mäuse die noch keinem Käfig zugeordnet sind !!!", "warn")
-                    } else {
-                        addBen("†", "Die freilauende Maus wurde von der Katze gefressen", "error")
-                    }
-                }
-            }
 
-        }
-
-    },
 
     pairing: function () {
         for (i in loadedBreed["cages"]) {
