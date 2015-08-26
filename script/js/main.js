@@ -163,10 +163,13 @@ $(document).ready(function () {
     $('#addbtn').click(
         function() {
             var inText = $('#noticetext').val();
-            $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
+            $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
             //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
             $('#noticetext').val("");
-            noticearr.push(inText);
+            noticearr = [];
+            $.each($('.notmsg'), function() {
+                noticearr.push($(this).text());
+            });
             localStorage.setItem("Notes" , JSON.stringify(noticearr));
         });
     //func to get "old" notes from local storage
@@ -175,26 +178,11 @@ $(document).ready(function () {
             noticearr = JSON.parse(localStorage.getItem("Notes"));
             for(var i = 0; i < noticearr.length; i++){
                 var inText = noticearr[i];
-                $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
+                $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
             }
         } else {
             localStorage.setItem("Notes" , JSON.stringify(noticearr));
         }
     };
-
-
-    /*
-     <li class="notMessage list-group-item">
-     <div class="row">
-     <div class="col-md-10">
-     Hier können Sie ihre Gedanken festhalten
-     </div>
-     <div class="col-md-2">
-     <button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-     </button>
-     </div>
-     </div>
-     </li>
-     */
+    
 });

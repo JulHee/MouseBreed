@@ -35,105 +35,105 @@
                 </button>
                 <a class="navbar-brand" href="/home">Mäusezucht</a>
             </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
-                <ul class="nav navbar-nav navbar-right">
+            <div id="navbar" class="navbar-collapse collapse">
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
+                    <ul class="nav navbar-nav navbar-right">
 
-                    <li class="dropdown">
-                        <a id="noticeid" href="#" class="dropdown-toggle" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notizen
-                            <span class="caret"></span>
-                        </a>
+                        <li class="dropdown">
+                            <a id="noticeid" href="#" class="dropdown-toggle" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notizen
+                                <span class="caret"></span>
+                            </a>
 
-                        <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
-                            <ul id="notizenT" class="list-group">
+                            <ul id="notizliste_top" class="dropdown-menu dropdown-max-width" role="menu">
+                                <ul id="notizenT" class="list-group">
+
+                                </ul>
+                                <li class="divider"></li>
+                                <li class="input-group">
+                                    <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
+                                           aria-describedby="basic-addon2">
+                                    <span class="input-group-addon" id="addbtn">Hinzufügen</span>
 
                             </ul>
-                            <li class="divider"></li>
-                            <li class="input-group">
-                                <input id="noticetext" type="text" class="form-control" placeholder="Insert notice here"
-                                       aria-describedby="basic-addon2">
-                                <span class="input-group-addon" id="addbtn">Hinzufügen</span>
+                        </li>
 
-                        </ul>
-                    </li>
+                        <li>
+                            <a data-trigger="focus" id="targetInfo" href="#">
+                                <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                                Ziel
+                                <span class="caret"></span>
+                            </a>
+                            <div id="targetContent" style="display: none">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h3 class="list-group-item-heading">Ziel <span id="topDays" class="label label-info pull-right">0. Tag</span></h3>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <h4 class="list-group-item-heading">Verbleibende Tage</h4>
 
-                    <li>
-                        <a data-trigger="focus" id="targetInfo" href="#">
-                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-                            Ziel
-                            <span class="caret"></span>
-                        </a>
-                        <div id="targetContent" style="display: none">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <h3 class="list-group-item-heading">Ziel <span id="topDays" class="label label-info pull-right">0. Tag</span></h3>
-                                </li>
-                                <br>
-                                <li>
-                                    <h4 class="list-group-item-heading">Verbleibende Tage</h4>
-
-                                    <div class="progress">
-                                        <div id="targetDayProgress"
-                                             class="progress-bar progress-bar-danger progress-bar-striped active"
-                                             role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40%</span>
+                                        <div class="progress">
+                                            <div id="targetDayProgress"
+                                                 class="progress-bar progress-bar-danger progress-bar-striped active"
+                                                 role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                                                 aria-valuemax="100" style="width: 40%">
+                                                <span class="sr-only">40%</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
+                                    </li>
+                                    <li>
+                                        <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
 
-                                    <div class="progress">
-                                        <div id="targetFinishProgress"
-                                             class="progress-bar progress-bar-success progress-bar-striped active"
-                                             role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete (success)</span>
+                                        <div class="progress">
+                                            <div id="targetFinishProgress"
+                                                 class="progress-bar progress-bar-success progress-bar-striped active"
+                                                 role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                 aria-valuemax="100" style="width: 20%">
+                                                <span class="sr-only">20% Complete (success)</span>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </li>
+                                </ul>
+                                <div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
+                                <span id="NumBen" class="badge">0</span>
+                                <span class="caret"></span>
+                            </a>
+                            <!--Dropdown muss maximale breite haben-->
+                            <ul id="benliste_top" class="dropdown-menu dropdown-max-width" role="menu">
+                                <li id="benLast">
+                                    <button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button>
                                 </li>
                             </ul>
-                        <div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
-                            <span id="NumBen" class="badge">0</span>
-                            <span class="caret"></span>
-                        </a>
-                        <!--Dropdown muss maximale breite haben-->
-                        <ul id="benliste_top" class="dropdown-menu dropdown-max-width" role="menu">
-                            <li id="benLast">
-                                <button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" style="margin-right: 10px">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            <strong><?php echo $_SESSION['userdata']['username']; ?></strong>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="ProfileDropDown">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/profile">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    Profil</a>
-                            </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                    Einstellungen</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="/home">
-                                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                                    Logout</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            <?php } ?>
-        </div>
+                        </li>
+                        <li class="dropdown" style="margin-right: 10px">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                <strong><?php echo $_SESSION['userdata']['username']; ?></strong>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="ProfileDropDown">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/profile">
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                        Profil</a>
+                                </li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">
+                                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                        Einstellungen</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="/home">
+                                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                                        Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                <?php } ?>
+            </div>
     </div>
 </div>
 <div class="container-fluid">
@@ -152,13 +152,13 @@
                 </li>
             </ul>
             <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
-                    <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
+                <?php if (!empty($_SESSION['loadedBreed']['name'])) { ?>
                     <ul class="nav nav-sidebar">
                         <li <?= echoActiveClassIfRequestMatches("breed") ?>>
-                        <a href="/breed">
-                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                            <?php echo $_SESSION['loadedBreed']['name']; ?>
-                        </a>
+                            <a href="/breed">
+                                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                <?php echo $_SESSION['loadedBreed']['name']; ?>
+                            </a>
                         </li>
                         <li <?= echoActiveClassIfRequestMatches("play") ?>><a href="/play"><span
                                     class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Play</a>
@@ -167,18 +167,18 @@
                                     class="glyphicon glyphicon-book" aria-hidden="true"></span> History</a>
                         </li>
                     </ul>
-                   <?php } ?>
-                    <ul class="nav nav-sidebar">
-                        <li <?= echoActiveClassIfRequestMatches("overview") ?>>
-                            <a href="/overview">
-                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                                Zucht laden
-                            </a>
-                        </li>
-                        <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
-                                    class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
-                        </li>
-                    </ul>
+                <?php } ?>
+                <ul class="nav nav-sidebar">
+                    <li <?= echoActiveClassIfRequestMatches("overview") ?>>
+                        <a href="/overview">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                            Zucht laden
+                        </a>
+                    </li>
+                    <li <?= echoActiveClassIfRequestMatches("newbreed") ?>><a href="/newbreed"><span
+                                class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Zucht</a>
+                    </li>
+                </ul>
             <?php } ?>
             <ul class="nav nav-sidebar">
                 <li <?= echoActiveClassIfRequestMatches("help") ?>><a href="/help"><span
