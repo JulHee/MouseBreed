@@ -105,7 +105,9 @@ $(document).ready(function () {
 
     $('#noticeid').on('click', function (event) {
         $(this).parent().toggleClass('open');
-        getLocalNotes();
+        if (noticearr.length < 1) {
+            getLocalNotes();
+        }
     });
 
     $('body').on('click', function (e) {
