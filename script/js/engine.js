@@ -379,7 +379,7 @@ var clock = {
             clock.pairing();
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
-
+            refereshNumberOfDays();
             if (selectedMouse) {                                // refresh the information of the choosen mouse
                 clickedMouse(selectedMouse.id);
             }
