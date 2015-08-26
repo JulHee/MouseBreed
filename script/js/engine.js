@@ -348,7 +348,7 @@ var clock = {
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
 
-            if (selectedMouse){                                // Aktuallisieren des Steckbriefes der ausgewählten Maus
+            if (selectedMouse){                                // refresh the information of the choosen mouse
                 clickedMouse(selectedMouse.id);
             }
             if(clock.checkTarget()){alert("Ende")};}
@@ -363,7 +363,7 @@ var clock = {
                 loadedBreed["cages"][i]["mice"][j]["age"] = parseInt(loadedBreed["cages"][i]["mice"][j]["age"]) + 1;
             }
         }
-        engine.incrementAge(); // Die Alter der noch ungeborenen wird erhöht
+        engine.incrementAge(); // increment the age of the unborn mice (via php)
 
     },
 
