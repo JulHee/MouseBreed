@@ -32,18 +32,14 @@ Das Projekt simuliert eine Mauszucht.
 - Käfige auf nextDay aktualisieren
 - Wechsel von Play , Zuchtkarte oerdentlch machen
 - Benachrichtigung 
+- Käfig Anzahl <= 6 ( m > 20) überprüfen, Gewicht nicht prüfen
+- Testen des Spielendes
 
 ### Akute Probleme
-- **@CHRISTIAN** --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden. 
- Hier sollen automatisch nur maximal 6 Mäuse (> 20 Tage) zusammengesetzt werden können,egal welchen Geschlechtes und welchen Alters (> 20). 
- Wenn eine Maus wirft, soll sie mit ihrem Wurf automatisch in einen neuen, leeren Käfig verschoben werden.
-- Navigation oben: Elemente oben links manchmal weiß
-- Testen des Spielendes
 
 ### Christoph
 
 ### Christian
-- Käfig Anzahl <= 6 überprüfen
 - Spielende testen 
 
 ### Jörn
