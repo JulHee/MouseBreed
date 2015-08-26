@@ -104,23 +104,38 @@ function addBen(titel, nachricht, art) {
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 }
 function refereshNumberOfDays() {
+    var day;
     if (loadedBreed){
-        var day = ""+ loadedBreed.age + " .Tag";
-        $("#numberOfDays").text(day);
-        $("#topDays").text(day);
+        day = ""+ loadedBreed.age + " .Tag";
+    } else {
+        day = "0.Tag"
     }
+    $("#numberOfDays").text(day);
+    $("#topDays").text(day);
 }
 function refreshProgressbar(){
     var indexOfFinischedCage =  loadedBreed.finished_cage;
-    var currNumberOfMice = loadedBreed["cage"][indexOfFinischedCage]["mice"].length;
-    var tmp = engine.getTargetNumberOfMice();
-    tmp = ""+currNumberOfMice/tmp +"%";
-    $("targetFinishProgress").css(" width ",tmp);
+    var currNumberOfMice = loadedBreed.cages[indexOfFinischedCage].mice.length;
+    if (!currNumberOfMice){
+        // Der Zielkäfig ist leer
+        currNumberOfMice = 1;
+    }
+    var tmp = 20; // engine.getTargetNumberOfMice();
+
+    // Berechnen der Prozentzahlen für den Fortschrittsbalken
+    var perc = Math.ceil((currNumberOfMice/tmp)*100);
+    console.log("Mäuse:"+perc);
+    $("targetFinishProgress").width(perc+"%");
+    $("targetFinishProgress").text(perc+"%");
 
     var currTimePrgogress = 1;
-    tmp = engine.getTargetStrictTime();
-    if(tmp > 0){currTimePrgogress = loadBreed.age/tmp}
-    $("#targetDayProgress").css ( " width " , currTimePrgogress);
+    tmp = 200; // engine.getTargetStrictTime();
+    if(tmp > 0){
+        currTimePrgogress = Math.ceil((loadedBreed.age/tmp)*100);
+        console.log("Zeit:"+currTimePrgogress);
+    }
+    $("#targetDayProgress").width(currTimePrgogress+"%");
+    $("#targetDayProgress").text(currTimePrgogress+"%");
 
 }
 

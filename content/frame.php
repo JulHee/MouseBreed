@@ -77,8 +77,8 @@
                                             <div id="targetDayProgress"
                                                  class="progress-bar progress-bar-danger progress-bar-striped active"
                                                  role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                                 aria-valuemax="100" style="width: 40%">
-                                                <span class="sr-only">40%</span>
+                                                 aria-valuemax="100" style="width: 40%;min-width: 2em;">
+                                                 20%
                                             </div>
                                         </div>
                                     </li>
@@ -89,8 +89,8 @@
                                             <div id="targetFinishProgress"
                                                  class="progress-bar progress-bar-success progress-bar-striped active"
                                                  role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                                 aria-valuemax="100" style="width: 20%">
-                                                <span class="sr-only">20% Complete (success)</span>
+                                                 aria-valuemax="100" style="width: 20%;min-width: 2em;">
+                                                20%
                                             </div>
                                         </div>
                                     </li>
