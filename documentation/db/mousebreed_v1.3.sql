@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `breed` (
 --
 
 INSERT INTO `breed` (`id`, `user_id`, `time_of_creation`, `scenario`, `name`, `age`, `finished_cage`, `trash_cage`) VALUES
-(1, 10, '2015-03-04 23:00:00', '1', 'Mousehattan', 0, 0, 0);
+(1, 10, '2015-03-04 23:00:00', 'easy_1', 'Mousehattan', 0, 0, 0);
 
 -- --------------------------------------------------------
 
