@@ -64,16 +64,16 @@ function addBen(titel, nachricht, art) {
     // TODO: Die Nachricht muss unterhalb der Oberen leiste angezeigt werden
     switch (art) {
         case "success":
-            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'success', globalPosition: 'bottom right'});
             break;
         case "warn":
-            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'warn', globalPosition: 'bottom right'});
             break;
         case "info":
             $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
             break;
         case "error":
-            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'error', globalPosition: 'bottom right'});
             break;
         default:
             $.notify(titel, {className: 'info', globalPosition: 'bottom right'});

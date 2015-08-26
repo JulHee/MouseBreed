@@ -101,7 +101,7 @@ var engine = {
             };
 
             // erfolgreich erstellt
-
+            addBen("Käfig erstellt", "Der Käfig wurde erstellt", "Es ist ein neuer Käfig angelegt worden");
             // Rückgabe?
         } else {
 
@@ -233,6 +233,7 @@ var engine = {
                 }
                 engine.changeCage(mother_id, engine.find_cage(mother_id), engine.find_newest_cage()); // move the mother into the new cage
                 addBen("Der Wurf ist da", "Der Wurf von der Mutter " + mother_id + " ist nun auf der Welt und in Käfig " + tmp_cage_id + " machen die Kleinen ihre ersten Schritte", "info");
+                draw();
             }
             // erfolgreich erstellt
             return response;
