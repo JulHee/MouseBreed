@@ -108,6 +108,17 @@ function refereshNumberOfDays() {
     $("#numberOfDays").text(day);
     $("#topDays").text(day);
 }
+function refreshProgressbar(){
+    var currNumberOfMice = loadedBreed["finished_cage"]["mice"].length;
+    var tmp = engine.getTargetNumberOfMice();
+    $("targetFinishProgress").css(" width " , currTimePrgogress/tmp)
+
+    var currTimePrgogress = 1;
+    tmp = engine.getTargetStrictTime();
+    if(tmp > 0){currTimePrgogress = loadBreed.age/tmp}
+    $("#targetDayProgress").css ( " width " , currTimePrgogress);
+
+}
 
 
 $(document).ready(function () {
