@@ -297,7 +297,7 @@ Cage.prototype.init = function(y) {
     this.cagecontainer.addChild(this.cageani, this.cagelabel1, this.cagelabel2);
     this.cagecontainer.x = 600;
     this.cagecontainer.y = (y * 72)+40;
-    console.log("ID: "+this.id + " y = "+this.cagecontainer.y);
+    //console.log("ID: "+this.id + " y = "+this.cagecontainer.y);
     this.cagecontainer.cageid = this.id;
     this.cagecontainer.on("click", function(evt) {
         var cage_id = evt.currentTarget.cageid;

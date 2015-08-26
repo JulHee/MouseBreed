@@ -347,6 +347,14 @@ var clock = {
             clock.pairing();
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
+
+            // Aktuallisieren des Steckbriefes der ausgewählten Maus
+            // --Anfang--
+            if (selectedMouse){
+                clickedMouse(selectedMouse.id);
+            }
+            // --ENDE--
+
             if(clock.checkTarget()){alert("Ende")};
         }else{
             addBen("Tag wurde NICHT gewechselt","warn")
