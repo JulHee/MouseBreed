@@ -104,9 +104,11 @@ function addBen(titel, nachricht, art) {
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 }
 function refereshNumberOfDays() {
-    var day = "" + loadedBreed.age + " .Tag";
-    $("#numberOfDays").text(day);
-    $("#topDays").text(day);
+    if (loadedBreed){
+        var day = ""+ loadedBreed.age + " .Tag";
+        $("#numberOfDays").text(day);
+        $("#topDays").text(day);
+    }
 }
 
 
