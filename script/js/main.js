@@ -58,37 +58,15 @@ function addBen(titel, nachricht, art) {
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 }
 
-// Checken ob der Browser LocalStorage unterstützt
-function supports_html5_storage() {
-    try {
-        return 'localStorage' in window && window['localStorage'] !== null;
-    } catch (e) {
-        return false;
-    }
-}
-
-var NextDay = {
-    // Bitte in play.js verlegen wo es hingehört
-
-    onReady: function () {
-       // $("#sidebarNextDay").click(NextDay.run);
-    },
-
-    run: function () {
-        clock.nextDay();
-
-    }
-};
-
 
 $(document).ready(function () {
     Logout.onReady();
-    NextDay.onReady();
+    //NextDay.onReady();
 
     $("#targetInfo").popover({
         html : true,
         content: function() {
-          return $('#targetContent').html();
+            return $('#targetContent').html();
         },
         placement: "bottom"
     });
@@ -127,6 +105,9 @@ $(document).ready(function () {
 
     $('#noticeid').on('click', function (event) {
         $(this).parent().toggleClass('open');
+        if (noticearr.length < 1) {
+            getLocalNotes();
+        }
     });
 
     $('body').on('click', function (e) {
@@ -137,30 +118,28 @@ $(document).ready(function () {
             $('#noticeid').removeClass('open');
         }
     });
-
-
+    //array for local notes
+    var noticearr = [];
     $('#addbtn').click(
         function() {
             var inText = $('#noticetext').val();
             $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
-           //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
+            //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
             $('#noticetext').val("");
+            noticearr.push(inText);
+            localStorage.setItem("Notes" , JSON.stringify(noticearr));
         });
+    //func to get "old" notes from local storage
+    function getLocalNotes(){
+        if (JSON.parse(localStorage.getItem("Notes")) !== null){
+            noticearr = JSON.parse(localStorage.getItem("Notes"));
+            for(var i = 0; i < noticearr.length; i++){
+                var inText = noticearr[i];
+                $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
+            }
+        } else {
+            localStorage.setItem("Notes" , JSON.stringify(noticearr));
+        }
+    }
 
-    $('#chooseGenderMale').click(
-        function(){
-            $("#ListMouse").find(".active").gender = 0;
-        });
-
-    $('#chooseGenderFemale').click(
-        function(){
-            $("#ListMouse").find(".active").gender = 1;
-        });
-
-    $('#myModal').on('show', function () {
-        $('.modal-body',this).css({width:'auto',height:'auto', 'max-height':'100%'});
-    });
-
-    });
-
-/*$('#noticetext').value= "";*/
+});
