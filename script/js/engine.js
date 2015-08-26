@@ -407,10 +407,9 @@ var clock = {
                     if (parseInt(loadedBreed["cages"][i]["mice"][m]["age"]) > 69) {
                         if (parseInt(loadedBreed["cages"][i]["mice"][m]["gender"]) == 1) {
                             if (parseInt(loadedBreed["cages"][i]["mice"][m]["pregnant"]) == 0) {
-                                alert("Die Pairingfunktion wird ausgefühert und setzt Pregnant auf 1");
-                                loadedBreed["cages"][i]["mice"][m]["pregnant"] = 1;
+                               loadedBreed["cages"][i]["mice"][m]["pregnant"] = 1;
                                 engine.newMating(loadedBreed["cages"][i]["mice"][m]["id"], theManId);
-                                addBen("Neue Schwangerschaft", "Die Maus mit der ID " + womenList[j]["id"] + " ist jetzt Schwanger", "info");
+                                addBen("Neue Schwangerschaft", "Die Maus mit der ID " + loadedBreed["cages"][i]["mice"][m]["id"] + " ist jetzt Schwanger", "info");
                             }
                         }
                     }

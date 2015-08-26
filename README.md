@@ -27,6 +27,7 @@ Das Projekt simuliert eine Mauszucht.
 - Anlegen neuer Zucht
 - Ziel Anzeige
 - Bei der Käfigubersicht Geschlecht in Worten anzeigen
+-Neue Zucht
 
 ### Akute Probleme
 - **@CHRISTIAN** --> Beachte: Im Schwierigkeitsgrad „leicht“ soll der Gewichtsfaktor allerdings vernachlässigt werden. 
