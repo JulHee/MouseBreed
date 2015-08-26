@@ -540,6 +540,7 @@ $(document).ready(function() {
 
         // Als letztes wird die Anzeige aktualliesiert
         refereshNumberOfDays();
+
     })
 
     $("#sidebarNewCage").click(function(){
