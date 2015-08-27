@@ -43,6 +43,7 @@ Das Projekt simuliert eine Mauszucht.
 - Spielende testen 
 
 ### Jörn
-
+- Beim zweiten Mal löschen der Benachrichtigungen funktioniert der Button nicht
 
 ### Julian
+- Beim zweiten Mal löschen der Benachrichtigungen funktioniert der Button nicht

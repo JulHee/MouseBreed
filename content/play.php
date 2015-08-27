@@ -1,4 +1,4 @@
-<h1 class="page-header">New Play <span id="numberOfDays" class="label label-info pull-right">0 .Tag</span></h1>
+<h1 class="page-header">New Play</h1>
 <div class="row">
 <div class="col-md-12">
     <button type="button" id="sidebarNewCage" class="btn btn-warning">

@@ -64,19 +64,19 @@ function addBen(titel, nachricht, art) {
     // TODO: Die Nachricht muss unterhalb der Oberen leiste angezeigt werden
     switch (art) {
         case "success":
-            $.notify(titel, {className: 'success', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'success', globalPosition: 'bottom left'});
             break;
         case "warn":
-            $.notify(titel, {className: 'warn', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'warn', globalPosition: 'bottom left'});
             break;
         case "info":
-            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom left'});
             break;
         case "error":
-            $.notify(titel, {className: 'error', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'error', globalPosition: 'bottom left'});
             break;
         default:
-            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom left'});
             break;
     }
 
@@ -97,8 +97,7 @@ function addBen(titel, nachricht, art) {
     var dateOutput = dateHours + ":" + dateMinutes + ":" + dateSeconds;
 
     // Anfügen der neuen Benachrichtigung
-    $("#benliste_top").prepend('<li class="divider"></li>');
-    $("#benliste_top").prepend('<li class="benMessagetoDelete"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><span class="label label-info">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>');
+    $("#benliste_top").prepend('<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><span class="label label-info">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>');
 
     // Setzten des Zählers
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
@@ -161,7 +160,7 @@ $(document).ready(function () {
         function () {
             $("#benliste_top").empty();
             // $("#benliste_top").prepend('<li class="divider"></li>');
-            $("#benliste_top").prepend('<li id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
+            $("#benliste_top").prepend('<li class="list-group-item" id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
             $("#NumBen").html(0);
         }
     );
@@ -173,7 +172,7 @@ $(document).ready(function () {
 
                     $("#benliste_top").empty();
                     // $("#benliste_top").prepend('<li class="divider"></li>');
-                    $("#benliste_top").prepend('<li id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
+                    $("#benliste_top").prepend('<li class="list-group-item" id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
                     $("#NumBen").html(0);
                 }
             );
