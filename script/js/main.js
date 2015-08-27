@@ -138,10 +138,24 @@ function refreshProgressbar(){
 
 }
 
+function setMaxheight(){
+    var winHeight = $(window).height();
+    $( ".panel-max-height" ).each(function( index ) {
+
+        // Abziehen des oberhalb belegten Platzes
+        winHeight -= 380;
+
+        $(this).css({
+            'max-height' : winHeight + "px"
+        });
+    });
+}
+
 
 $(document).ready(function () {
     Logout.onReady();
     refereshNumberOfDays();
+    setMaxheight();
     //NextDay.onReady();
 
     $("#targetInfo").popover({
@@ -159,17 +173,16 @@ $(document).ready(function () {
     $('#deleteall').click(
         function () {
             $("#benliste_top").empty();
-            // $("#benliste_top").prepend('<li class="divider"></li>');
-            $("#benliste_top").prepend('<li class="list-group-item" id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
             $("#NumBen").html(0);
+
+            // Wird nicht mehr gebraucht
+            //$("#benliste_top").prepend('<li class="list-group-item" id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
         }
     );
-    $('#benachrichtigung').click(
+   /* $('#benachrichtigung').click(
         function () {
             $('#deleteall').click(
                 function () {
-                    // TODO Sehr unsabuer :)
-
                     $("#benliste_top").empty();
                     // $("#benliste_top").prepend('<li class="divider"></li>');
                     $("#benliste_top").prepend('<li class="list-group-item" id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
@@ -177,7 +190,7 @@ $(document).ready(function () {
                 }
             );
         }
-    );
+    );*/
 
     $("#navSidebarZuchten a").on("click", function () {
         $(".nav").find(".active").removeClass("active");
@@ -229,5 +242,8 @@ $(document).ready(function () {
         });
         localStorage.setItem("Notes", JSON.stringify(noticearr));
     }
+    $(window).resize(function(){
+        setMaxheight();
+    });
 
 });

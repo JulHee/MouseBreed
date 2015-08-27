@@ -83,3 +83,7 @@ table .btn{
 .popover{
     min-width: 250px;
 }
+
+.panel-max-height{
+    overflow-y: scroll;
+}
