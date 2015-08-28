@@ -44,7 +44,8 @@ var engine = {
     updateLoadedBreed: function () {
         var data = localStorage.getItem("loadedBreed");
         loadedBreed = JSON.parse(data);
-    },
+    },              // benötigt ???
+
     /*
      * genotyp mix with length of 2(ex: Ab,AA,...)
      * @param geno1 string with 2 Chars
@@ -298,24 +299,34 @@ var engine = {
     },
 
     ready2GoOn: function () {
+        var menProblem;
+        var flag;
+        var tooMuchMice;
+        var count;
+        var globalBool = true;
         for (i in loadedBreed["cages"]) {
-            var menProblem = false;
+            menProblem = false;
+            flag = false;
+            tooMuchMice = false;
+            count = 0;
             for (j in loadedBreed["cages"][i]["mice"]) {
-                if (loadedBreed["cages"][i]["mice"][j]["gender"] == 0) {
-                    if (loadedBreed["cages"][i]["mice"][j]["age"] > 69) {
-                        if (menProblem) {                                                           //Männer-Konflikt Abfragen
+                if (loadedBreed["cages"][i]["mice"][j]["age"] > 69) {
+                    count = count + 1;
+                    if (loadedBreed["cages"][i]["mice"][j]["gender"] == 0) {
+                        if (flag) {                                                           //Männer-Konflikt Abfragen
                             addBen("Männchen Konflikt", "Es gibt zum Zeitpunkt der Paarung " +
                                 "mehrer Geschlechtsreife Männchen im Käfig " + i + " !!!", "warn");
-                            return false
+                            menProblem = true;
                         } else {
-                            menProblem = true
+                            flag = true
                         }
                     }
                 }
-
+                tooMuchMice = count > 6;
+                globalBool = globalBool && ((menProblem  && tooMuchMice) == false) ;
             }
         }
-        return true
+        return globalBool ;
     },
 
     getGenderOfReadyMice: function () {
@@ -364,7 +375,8 @@ var engine = {
 
     move2Trash: function (mouseId,cageId) {
         engine.changeCage(mouseId,cageId,loadedBreed["trash_cage"])
-    }
+    },
+
 
 };
 
@@ -432,8 +444,6 @@ var clock = {
         }
     },
 
-
-
     pairing: function () {
         for (i in loadedBreed["cages"]) {
             theManId = engine.find_Male(i);
@@ -462,6 +472,10 @@ var clock = {
         rtn = rtn && (parseInt(tmp["genotype"]) == engine.getGenotypeOfReadyMice());
         rtn = rtn && engine.checkMinimalAge();
         return rtn;
+    },
+
+    checkPop : function(){
+
     }
 };
 
