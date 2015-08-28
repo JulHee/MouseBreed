@@ -147,8 +147,8 @@
                                     <div id="targetDayProgress"
                                          class="progress-bar progress-bar-danger progress-bar-striped active"
                                          role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                         aria-valuemax="100" style="width: 40%;min-width: 2em;">
-                                        20%
+                                         aria-valuemax="100" style="width: 0%;min-width: 2em;">
+                                        0%
                                     </div>
                                 </div>
                             </li>
@@ -159,8 +159,8 @@
                                     <div id="targetFinishProgress"
                                          class="progress-bar progress-bar-success progress-bar-striped active"
                                          role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                         aria-valuemax="100" style="width: 20%;min-width: 2em;">
-                                        20%
+                                         aria-valuemax="100" style="width: 0%;min-width: 2em;">
+                                        0%
                                     </div>
                                 </div>
                             </li>
@@ -183,9 +183,9 @@
                     </li>
                 </ul>
                 <!-- Tab panes -->
-                <div class="tab-content">
+                <div class="tab-content panel-max-height">
                     <div role="tabpanel" class="tab-pane active" id="sideBen">
-                        <div class="panel panel-default panel-max-height">
+                        <div class="panel panel-default ">
                                 <!--Dropdown muss maximale breite haben-->
                                 <ul id="benliste_top" class="list-group">
                                 </ul>
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="sideNotizen">
-                        <div class="panel panel-default panel-max-height">
+                        <div class="panel panel-default">
                                 <ul id="notizenT" class="list-group" id="notizliste_top" style="list-style: none;">
                                 </ul>
                             <div class="panel-footer">

@@ -140,10 +140,11 @@ function refreshProgressbar(){
 
 function setMaxheight(){
     var winHeight = $(window).height();
-    $( ".panel-max-height" ).each(function( index ) {
+    $(".panel-max-height").each(function( index ) {
+        console.log($(this));
 
         // Abziehen des oberhalb belegten Platzes
-        winHeight -= 380;
+        winHeight -= 370;
 
         $(this).css({
             'max-height' : winHeight + "px"
