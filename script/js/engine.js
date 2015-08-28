@@ -25,10 +25,7 @@ var engine = {
             {strictTime: 0, numberOfMice: 0,  gender: 0, genotype: "", age: 0}];
     },
     getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
-    getTargetNumberOfMice : function(){
-        //TODO Target existiert nicht !
-        console.log(target);
-        return target[engine.convertScenario2Index(loadedBreed.scenario)].numberOfMice},
+    getTargetNumberOfMice : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].numberOfMice},
 
     convertScenario2Index: function (s) {      // get the Index for the Target-Arrayout of the scenarioname
         switch (s) {
@@ -457,7 +454,6 @@ var clock = {
     },
 
     checkTarget: function () {
-        engine.setTarget();                                          // Create the Target-Array, wich contains the information about the endconditions
         var rtn = true;
         var tmp = target[engine.convertScenario2Index(loadedBreed["scenario"])];
         rtn = rtn && (tmp.strictTime >= loadedBreed["age"]); // check strictTime
