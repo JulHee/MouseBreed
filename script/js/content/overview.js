@@ -16,6 +16,7 @@ var loadBreed = {
             dataType: "json"
         }).done(function (response) {
             if (response.success == true) {
+                refereshNumberOfDays();
                 if(typeof(Storage) !== "undefined") {
                     localStorage.setItem("loadedBreed", JSON.stringify(response.loadedBreed));
                     window.location.replace('http://local.mousebreed/breed');
