@@ -143,7 +143,7 @@ function refreshProgressbar(){
 $(document).ready(function () {
     Logout.onReady();
     refereshNumberOfDays();
-    engine.setTarget();                                          // Create the Target-Array, wich contains the information about the endconditions
+    engine.setTarget();                // Create the Target-Array, wich contains the information about the endconditions
     //NextDay.onReady();
 
     $("#targetInfo").popover({

@@ -9,16 +9,16 @@ var engine = {
      * @param genotyp string; 2 characters
      * @param age integer; the minimal age
      * */
-    Target: function (strictTime, numberOfMice, gender, genotyp, age) {
+    /*Target: function (strictTime, numberOfMice, gender, genotyp, age) {
         _strictTime = strictTime;
         _numberOfMice = numberOfMice;
         _gender = gender;
         _genpotyp = genotyp;
         _age = age;
-    },
+    },*/
 
     /*Creating an Array which contains every possible scenario
-     * target = [Target,Target,...]*/
+     * target = [scenario1,scenario2,...]*/
     setTarget: function () {
         target = [
             {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "--", age: 42},
@@ -27,7 +27,7 @@ var engine = {
     getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
     getTargetNumberOfMice : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].numberOfMice},
 
-    convertScenario2Index: function (s) {      // get the Index for the Target-Arrayout of the scenarioname
+    convertScenario2Index: function (s) {      // get the Index for the Target-Array out of the scenarioname
         switch (s) {
             case "easy_1" :
                 return 0
@@ -73,14 +73,10 @@ var engine = {
     },
 
     changeCage: function (mouse_ID, old_cage_ID, new_cage_ID) {
-        var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];
-        /*gewünschte Maus heraussuchen*/
-        choosenMouse["cage_id"] = new_cage_ID;
-        /*die neue cage_ID wird gesetzt*/
-        loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse;
-        /*choosenMouse wird in den neuen Käfig angefügt*/
-        delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];
-        /*choosenMouse aus dem Alten Käfig-Objekt löschen*/
+        var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];  /*get choosen mouse*/
+        choosenMouse["cage_id"] = new_cage_ID;                             /*set new cage ID*/
+        loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse;/*add choosenMouse to new cage*/
+        delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];        /*delete choosenMouse from old cage*/
     },
 
     newCage: function (maxNumberMice) {
