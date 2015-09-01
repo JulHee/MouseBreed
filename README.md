@@ -33,6 +33,7 @@ Das Projekt simuliert eine Mauszucht.
 - Wechsel von Play , Zuchtkarte oerdentlch machen
 - Benachrichtigung 
 - Käfig Anzahl <= 6 ( m > 20) überprüfen, Gewicht nicht prüfen
+- einen finished cage für alle Spieler, alle Szenarien?
 - Testen des Spielendes
 
 ### Akute Probleme
