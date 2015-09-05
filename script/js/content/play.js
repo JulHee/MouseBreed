@@ -283,6 +283,8 @@ Cage.prototype.init = function(y) {
     this.cageani = new createjs.Bitmap(this.src);
     if (this.id == loadedBreed['finished_cage']) {
         this.cagelabel1 = new createjs.Text("Ziel-Käfig", "Bold 15px Arial", "#201d1b");
+    } else if (this.id == loadedBreed['trash_cage']) {
+        this.cagelabel1 = new createjs.Text("Trash-Käfig", "Bold 15px Arial", "#201d1b");
     } else {
         this.cagelabel1 = new createjs.Text("Käfig Nr." + this.id, "Bold 15px Arial", "#201d1b");
     }

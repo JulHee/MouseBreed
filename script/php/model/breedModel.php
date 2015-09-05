@@ -67,6 +67,16 @@ class breedModel {
             $stmt = $this->db->prepare($stmt);
             if (!$stmt->execute(Array($newFinishedCageId, $newBreedId))) return Array('id' => -1, 'msg' => "Ziel-Käfig konnten nicht gesetzt werden.");
 
+            // Trash-Käfig erstellen
+            $newTrashCageId = $this->newCage(20, $newBreedId);
+            if ($newTrashCageId < 0) return Array('id' => -1, 'msg' => "Trash-Käfig konnten nicht erstellt werden.");
+
+            $stmt = "UPDATE breed ".
+                    "SET trash_cage = ? ".
+                    "WHERE id = ? ";
+            $stmt = $this->db->prepare($stmt);
+            if (!$stmt->execute(Array($newTrashCageId, $newBreedId))) return Array('id' => -1, 'msg' => "Trash-Käfig konnten nicht gesetzt werden.");
+
             if ($scenario == "easy_1") {
 
                 // Käfige erzeugen
