@@ -389,13 +389,13 @@ var engine = {
     * @param cage_id*/
     move2Trash: function (mouse_id,cage_id) {
         engine.changeCage(mouse_id,cage_id,loadedBreed["trash_cage"])
-    },
-
+    }
 
 };
 
 var clock = {
-    /**/
+    /*each day change runs this function
+    **/
     nextDay: function () {
 
         if (engine.ready2GoOn()) {
@@ -419,16 +419,18 @@ var clock = {
         }
     },
 
+    /*Mice get older*/
     increaseAge: function () {
         for (i in loadedBreed["cages"]) {
             for (j in loadedBreed["cages"][i]["mice"]) {
                 loadedBreed["cages"][i]["mice"][j]["age"] = parseInt(loadedBreed["cages"][i]["mice"][j]["age"]) + 1;
             }
         }
-        engine.incrementAge(); // increment the age of the unborn mice (via php)
+        engine.incrementAge();                                     // increment the age of the unborn mice (via php)
 
     },
 
+    /*Mice get weight*/
     gainWeight: function () {
         /*addWeight- Arrays zählen für die jeweiligen Mäuse ab 20 age*/
         var addWeightMale = [0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.86, 0.84, 0.53, 0.53, 0.53, 0.53,
@@ -458,6 +460,7 @@ var clock = {
         }
     },
 
+    /*One male and one female create one mating together*/
     pairing: function () {
         for (i in loadedBreed["cages"]) {
             theManId = engine.find_Male(i);
@@ -477,6 +480,8 @@ var clock = {
         }
     },
 
+    /*check all conditions wich are important for the end
+    * @return rtn Booolean if true the game is over, if false at least one condition is false and the game goes on*/
     checkTarget: function () {
         var rtn = true;
         var tmp = target[engine.convertScenario2Index(loadedBreed["scenario"])];
@@ -488,9 +493,6 @@ var clock = {
         return rtn;
     },
 
-    checkPop : function(){
-
-    }
 };
 
 /*
