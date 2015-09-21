@@ -24,17 +24,14 @@ Das Projekt simuliert eine Mauszucht.
 - setze currentCage in loadedBreed ?
 - Steckbrief, Gewicht ab 20 Tage sichtbar 
 - Ziel Anzeige
-- Bei der Käfigubersicht Geschlecht in Worten anzeigen
-- trash käfig 
+- Bei der Käfigubersicht Geschlecht in Worten anzeigen 
 - Play scroll Button
 - Play Genotyp anzeigen
 - Ziel Info richtig machen
 - Käfige auf nextDay aktualisieren
-- Wechsel von Play , Zuchtkarte oerdentlch machen
-- Benachrichtigung 
-- Käfig Anzahl <= 6 ( m > 20) überprüfen, Gewicht nicht prüfen
-- einen finished cage für alle Spieler, alle Szenarien?
-- Testen des Spielendes
+- Wechsel von Play , Zuchtkarte ordentlch machen
+- Benachrichtigung
+- Button zum Verschieben der Maus in den Trash-Cage 
 
 ### Akute Probleme
 
