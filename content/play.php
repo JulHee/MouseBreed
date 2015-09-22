@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        <button id="mouseGenderSet" type="button" class="btn btn-info pull-right" data-toggle="modal"
+                        <button id="mouseGenderSet" type="button" class="btn btn-info btn-block pull-right" data-toggle="modal"
                                 data-target="#chooseGender">
                             Geschlecht bestimmen
                         </button>
@@ -71,6 +71,13 @@
                                 </div>
                             </div>
                         </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <button id="mouseMoveToTrash" type="button" class="btn btn-danger btn-block pull-right">
+                            Löschen
+                        </button>
                     </th>
                 </tr>
                 </tbody>
