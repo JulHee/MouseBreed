@@ -157,6 +157,7 @@ $(document).ready(function () {
     Logout.onReady();
     refereshNumberOfDays();
     setMaxheight();
+    getLocalNotes();
     //NextDay.onReady();
 
     $("#targetInfo").popover({
@@ -198,13 +199,6 @@ $(document).ready(function () {
         $(this).parent().addClass("active");
     });
 
-    $('#noticeid').on('click', function (event) {
-        $(this).parent().toggleClass('open');
-        if (noticearr.length < 1) {
-            getLocalNotes();
-        }
-    });
-
     $('body').on('click', function (e) {
         if (!$('#noticeid').is(e.target)
             && $('#noticeid').has(e.target).length === 0
@@ -221,7 +215,6 @@ $(document).ready(function () {
             $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
             //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
             $('#noticetext').val("");
-
         });
     //func to get "old" notes from local storage
     function getLocalNotes() {
