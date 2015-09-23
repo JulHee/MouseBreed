@@ -30,8 +30,7 @@ Das Projekt simuliert eine Mauszucht.
 - Ziel Info richtig machen
 - Käfige auf nextDay aktualisieren
 - Wechsel von Play , Zuchtkarte ordentlch machen
-- Benachrichtigung
-- Button zum Verschieben der Maus in den Trash-Cage 
+- Benachrichtigung 
 
 ### Akute Probleme
 

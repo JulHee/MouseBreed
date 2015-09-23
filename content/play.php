@@ -76,7 +76,7 @@
                 <tr>
                     <th colspan="2">
                         <button id="mouseMoveToTrash" type="button" class="btn btn-danger btn-block">
-                            Löschen
+                            Aussortieren
                         </button>
                     </th>
                 </tr>
