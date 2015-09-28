@@ -30,10 +30,14 @@ Das Projekt simuliert eine Mauszucht.
 - Ziel Info richtig machen
 - Käfige auf nextDay aktualisieren
 - Wechsel von Play , Zuchtkarte ordentlch machen
-- Benachrichtigung 
+- Benachrichtigung
+- Gewicht auf 2 Nachkommatsellen runden
 
 ### Akute Probleme
-
+Spieländerung wird nicht gesichert. Habe eine neue Zucht angelegt, dann in Play alle Geschlechter bestimmt, dann einmal 
+zur Übersicht gewechselt um den Genotyp zu erfahren. Dann meine Mäuse in Käfigen angeordnet und Paaren-Werfen lassen. 
+Als ich dann auf die Übersicht gewechselt bin um den Genotyp der Kinder zu sehen, gab es die neu angelegten Käfige und Mäuse nicht.
+Auch nachdem ich wieder auf Play bin blieben sie weg.
 ### Christoph
 
 ### Christian
