@@ -34,7 +34,7 @@ var engine = {
     },
 
 
-    //                           functions to create mice
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<functions to create mice>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
     /*
@@ -158,7 +158,7 @@ var engine = {
     },
 
 
-    //                                       functions working with mice
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<functions working with mice>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
     /*increase the age of the breed and of all pairings < 22  , computed with php
@@ -210,7 +210,7 @@ var engine = {
     },
 
 
-    //                                       functions working with cages
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<functions working with cages>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
     changeCage: function (mouse_ID, old_cage_ID, new_cage_ID) {
@@ -277,7 +277,7 @@ var engine = {
     },
 
 
-    //                                     SAVE AND CHECK CONDITIONS
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<save and check conditions>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
     /*save the breed to database*/
@@ -298,7 +298,7 @@ var engine = {
     },
 
     /* This function checks the conditions -> only one male adult in each cage  -> max. 6 adult mice in each cage
-    *@return globalBool wich signals if every condition for changeing to next day is true
+    *@return globalBool which signals if every condition for changing to next day is true
     * */
     ready2GoOn: function () {
         var menProblem;
@@ -332,7 +332,7 @@ var engine = {
     },
 
 
-    //                                   GAME OVER functions
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<GAME OVER functions>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
     /*Target is an object that represents the properties of one target for one scenario
@@ -435,6 +435,10 @@ var engine = {
 };
 
 var clock = {
+
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<nextDay>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
     /*each day change runs this function
     **/
     nextDay: function () {
@@ -521,12 +525,16 @@ var clock = {
         }
     },
 
+
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<daily Game Over check>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
     /*check all conditions wich are important for the end
     * @return rtn Booolean if true the game is over, if false at least one condition is false and the game goes on*/
     checkTarget: function () {
         var rtn = true;
         rtn = rtn && engine.checkStrictTime(); // check strictTime
-        rtn = rtn && (engine.getTargetNumberOfMice() <= loadedBreed.cage[loadedBreed["finished_cage"]]["mice"].length); // check number of Mice
+        rtn = rtn && engine.checkNumberOfReadyMice(); // check number of Mice
         rtn = rtn && (engine.getTargetGender == engine.getGenderOfReadyMice);                         // check gender
         rtn = rtn && (engine.getTargetGenotyp() == engine.getGenotypeOfReadyMice());                  // check genotyp
         rtn = rtn && engine.checkAge();                                                               // check age
@@ -536,6 +544,7 @@ var clock = {
 };
 
 /*
+Ideen für weitere Funktionen
  --------------------------------------------------------------------------------------------------------------------
  engine|
  ------
@@ -553,40 +562,11 @@ var clock = {
  }
  },
 
- handInMouse: function(thisMouse){
-
- engine.deleteFromBreed(thisMouse);
- },
-
- burry: function(cageID,mouseID){
-
-
- }
-
- setOwnGender : function(mouse_ID,userGender){
- loadedBreed["currentCage"]["mice"][mouse_ID]["userGender"] = userGender;
- },
+ handInMouse: function(thisMouse){engine.deleteFromBreed(thisMouse);},
 
  ------------------------------------------------------------------------------------------------------
  clock|
  -----
- checkGenderProblem : function(){
- var problem = false;
- for(i in loadedBreed["cages"]){
- var menList = [];
- for(j in loadedBreed["cages"][i]["mice"]){
- if(loadedBreed["cages"][i]["mice"][j]["gender"]==0 && loadedBreed["cages"][i]["mice"][j]["age"]>69){
- menList.push(loadedBreed["cages"][i]["mice"][m])
- }
- }
- if(menList.length > 1){
- problem = true;
- addBen("Männchen Konflikt","Es gibt zum Zeitpunkt der Paarung mehrer Geschlechtsreife Männchen im Käfig "+i+" !!!","Error");
- };
- }
- return problem;
- }
-
  eat: function(){
  for(i in loadedBreed["cages"]){
  for(j in i["mice"]){
@@ -602,29 +582,4 @@ var clock = {
  }
  }
  }
- */
-
-/*checkPubescent: function () {
- for (i in loadedBreed["cages"]) {
- for(j in loadedBreed["cages"][i]["mice"]){
- if(j["age"] > 69){
- j.pubescent = true;
- }else{
- j.pubescent = false;
- }
-
- }
-
-
- }
- }
-
- checkDeadMouse: function () {
- for(i in loadedBreed["cages"]){
- for(j in loadedBreed["cages"][i]["mice"]){
- //if(!loadedBreed["cages"][i]["mice"][j]["alive"]){engine.burry(i,j)}
- }
- }
- },
-
  */

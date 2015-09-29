@@ -21,20 +21,15 @@ Das Projekt simuliert eine Mauszucht.
 
 ### Allgemein
 - Funktion zum errechnen und setzen der Generation ?
-- setze currentCage in loadedBreed ?
 - Steckbrief, Gewicht ab 20 Tage sichtbar 
-- Ziel Anzeige
+- Ziel Anzeige / Ziel Info richtig machen
 - Bei der Käfigubersicht Geschlecht in Worten anzeigen 
 - Play scroll Button
-- Play Genotyp anzeigen
-- Ziel Info richtig machen
-- Käfige auf nextDay aktualisieren
 - Wechsel von Play , Zuchtkarte ordentlch machen
-- Benachrichtigung
-- Gewicht auf 2 Nachkommatsellen runden
 - Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern
-- Die Scrollbar der Käfige springt manchmal nach oben
+- Gewicht auf 2 Stellen runden bitte beim Anzeigen realisieren
+
 
 ### Akute Probleme
 Spieländerung wird nicht gesichert. Habe eine neue Zucht angelegt, dann in Play alle Geschlechter bestimmt, dann einmal 
