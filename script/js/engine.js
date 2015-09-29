@@ -2,49 +2,40 @@ var loadedBreed = JSON.parse(localStorage.getItem("loadedBreed"));
 var target;
 
 var engine = {
-    /*Target is an object that represents the properties of one target for one scenario
-     * @param strictTime integer; If 0 there is no restriction, else x is the number of days
-     * @param numberOfMice integer; the total number of mice needed
-     * @param gender integer; 0 = male,1=female
-     * @param genotyp string; 2 characters
-     * @param age integer; the minimal age
-     * */
-    /*Target: function (strictTime, numberOfMice, gender, genotyp, age) {
-        _strictTime = strictTime;
-        _numberOfMice = numberOfMice;
-        _gender = gender;
-        _genpotyp = genotyp;
-        _age = age;
-    },*/
-
-    /*Creating an Array which contains every possible scenario
-     * target = [scenario1,scenario2,...]*/
-    setTarget: function () {
-        target = [
-            {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "--", age: 42},
-            {strictTime: 0, numberOfMice: 0,  gender: 0, genotype: "", age: 0}];
-    },
-    getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
-    getTargetNumberOfMice : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].numberOfMice},
-
-    convertScenario2Index: function (s) {      // get the Index for the Target-Array out of the scenarioname
-        switch (s) {
-            case "easy_1" :
-                return 0
-                break;
-            case "easy_2" :
-                return 1
-                break;
-            default :
-                return -1
-        }
-
-    },
+    //                           benötigt ???
 
     updateLoadedBreed: function () {
         var data = localStorage.getItem("loadedBreed");
         loadedBreed = JSON.parse(data);
-    },              // benötigt ???
+    },
+
+    /*compute with php
+     *@return all pairings with an age 21
+     **/
+    getBroods: function () {
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/getBroods.php",
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if (response.success == true) {
+
+            // erfolgreich erstellt
+
+            return response.broods;
+        } else {
+
+            // nicht erstellt
+            // Rückgabe?
+        }
+
+    },
+
+
+    //                           functions to create mice
+
 
     /*
      * genotyp mix with length of 2(ex: Ab,AA,...)
@@ -72,40 +63,10 @@ var engine = {
         return genoarray
     },
 
-    changeCage: function (mouse_ID, old_cage_ID, new_cage_ID) {
-        var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];  /*get choosen mouse*/
-        choosenMouse["cage_id"] = new_cage_ID;                             /*set new cage ID*/
-        loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse;/*add choosenMouse to new cage*/
-        delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];        /*delete choosenMouse from old cage*/
-    },
-
-    newCage: function (maxNumberMice) {
-        var response = $.ajax({                                // request to database
-            type: "POST",
-            url: "/script/php/ajax/newCage.php",
-            data: {max_number_of_mice: maxNumberMice},
-            async: false
-        }).responseText;
-        response = JSON.parse(response);
-
-        if (response.success == true) {                      // create new cage in loadedBreed
-            loadedBreed["cages"][response.id] = {
-                id: response.id,
-                breed_id: loadedBreed.id,
-                id: response.id,
-                max_number_of_mice: maxNumberMice,
-                mice: {}
-            };
-            addBen("Käfig erstellt", "Der Käfig wurde erstellt", "Es ist ein neuer Käfig angelegt worden");
-        } else {
-             addBen("Käfig nicht erstellt", "Der Käfig wurde nicht erstellt, Fehler beim Datenbankzugriff", "Warn");
-            }
-    },
-
     /* create new pairing
-    * @param mother_id
-    * @param father_id
-    * @retrun the id of the new pairing*/
+     * @param mother_id
+     * @param father_id
+     * @retrun the id of the new pairing*/
     newMating: function (mother_id, father_id) {
         var response = $.ajax({
             type: "POST",
@@ -126,62 +87,17 @@ var engine = {
 
     },
 
-    /*increase the age of the breed and of all pairings < 22  , computed with php
-     **/
-    incrementAge: function () {
-        var response = $.ajax({
-            type: "POST",
-            url: "/script/php/ajax/nextDay.php",
-            async: false
-        }).responseText;
-        response = JSON.parse(response);
-
-        if (response.success == true) {
-
-            // successful
-
-        } else {
-
-            // not successful
-        }
-
-    },
-
-    /*compute with php
-    *@return all pairings with an age 21
-    **/
-    getBroods: function () {
-        var response = $.ajax({
-            type: "POST",
-            url: "/script/php/ajax/getBroods.php",
-            async: false
-        }).responseText;
-        response = JSON.parse(response);
-
-        if (response.success == true) {
-
-            // erfolgreich erstellt
-
-            return response.broods;
-        } else {
-
-            // nicht erstellt
-            // Rückgabe?
-        }
-
-    },
-
     /*
-    * @param cage_id
-    * @param gender
-    * @param genotyp
-    * @param weight
-    * @param mating_id
-    * @param mother_id
-    * @param father_id
-    * @param age
-    * @param img_name
-    * */
+     * @param cage_id
+     * @param gender
+     * @param genotyp
+     * @param weight
+     * @param mating_id
+     * @param mother_id
+     * @param father_id
+     * @param age
+     * @param img_name
+     * */
     newMouse: function (cage_id, gender, genotyp, weight, mating_id, mother_id, father_id, age, img_name) {
 
         var response = $.ajax({
@@ -241,35 +157,34 @@ var engine = {
 
     },
 
-    /*@return the highest cage id*/
-    find_newest_cage: function () {
-        var maxNum = 0;
-        for (i in loadedBreed["cages"]) {
-            if (parseInt(loadedBreed["cages"][i]["id"]) > maxNum) {
-                maxNum = loadedBreed["cages"][i]["id"]
-            }
+
+    //                                       functions working with mice
+
+
+    /*increase the age of the breed and of all pairings < 22  , computed with php
+     **/
+    incrementAge: function () {
+        var response = $.ajax({
+            type: "POST",
+            url: "/script/php/ajax/nextDay.php",
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if (response.success == true) {
+
+            // successful
+
+        } else {
+
+            // not successful
         }
-        return maxNum;
+
     },
 
     /*
-    * @param mouse_id
-    * @return i the cage wich contains this mouse, if no cage was found -1*/
-    find_cage: function (mouse_id) {
-        var erg;
-        for (i in loadedBreed["cages"]) {
-            for (j in loadedBreed["cages"][i]["mice"]) {
-                if (loadedBreed["cages"][i]["mice"][j]["id"] == mouse_id) {
-                    return i
-                }
-            }
-        }
-        return -1;
-    },
-
-    /*
-    * @param mouse_id
-    * @return the mouse with the given ID, if no mouse was found -1*/
+     * @param mouse_id
+     * @return the mouse with the given ID, if no mouse was found -1*/
     find_mouse: function (mouse_id) {
         var erg;
         for (i in loadedBreed["cages"]) {
@@ -282,6 +197,88 @@ var engine = {
         return -1;
 
     },
+
+    /*@param index the index of the cage
+     *@return the ID of the male mouse from cage with the ID == index */
+    find_Male: function (index) {
+        for (m in loadedBreed["cages"][index]["mice"]) {
+            if (parseInt(loadedBreed["cages"][index]["mice"][m]["gender"]) == 0 && parseInt(loadedBreed["cages"][index]["mice"][m]["age"]) > 69) {
+                return loadedBreed["cages"][index]["mice"][m]["id"];
+            }
+        }
+        return -1;
+    },
+
+
+    //                                       functions working with cages
+
+
+    changeCage: function (mouse_ID, old_cage_ID, new_cage_ID) {
+        var choosenMouse = loadedBreed.cages[old_cage_ID].mice[mouse_ID];  /*get choosen mouse*/
+        choosenMouse["cage_id"] = new_cage_ID;                             /*set new cage ID*/
+        loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse;/*add choosenMouse to new cage*/
+        delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];        /*delete choosenMouse from old cage*/
+    },
+
+    /*Delete mouse, move to trash_cage, for the mice aspecially the male mouse wich does not fit the target and are not useful anymore
+     * @param mouse_id
+     * @param cage_id*/
+    move2Trash: function (mouse_id,cage_id) {
+        engine.changeCage(mouse_id,cage_id,loadedBreed["trash_cage"])
+    },
+
+    newCage: function (maxNumberMice) {
+        var response = $.ajax({                                // request to database
+            type: "POST",
+            url: "/script/php/ajax/newCage.php",
+            data: {max_number_of_mice: maxNumberMice},
+            async: false
+        }).responseText;
+        response = JSON.parse(response);
+
+        if (response.success == true) {                      // create new cage in loadedBreed
+            loadedBreed["cages"][response.id] = {
+                id: response.id,
+                breed_id: loadedBreed.id,
+                id: response.id,
+                max_number_of_mice: maxNumberMice,
+                mice: {}
+            };
+            addBen("Käfig erstellt", "Der Käfig wurde erstellt", "Es ist ein neuer Käfig angelegt worden");
+        } else {
+             addBen("Käfig nicht erstellt", "Der Käfig wurde nicht erstellt, Fehler beim Datenbankzugriff", "Warn");
+            }
+    },
+
+    /*
+     * @param mouse_id
+     * @return i the cage wich contains this mouse, if no cage was found -1*/
+    find_cage: function (mouse_id) {
+        var erg;
+        for (i in loadedBreed["cages"]) {
+            for (j in loadedBreed["cages"][i]["mice"]) {
+                if (loadedBreed["cages"][i]["mice"][j]["id"] == mouse_id) {
+                    return i
+                }
+            }
+        }
+        return -1;
+    },
+
+    /*@return the highest cage id*/
+    find_newest_cage: function () {
+        var maxNum = 0;
+        for (i in loadedBreed["cages"]) {
+            if (parseInt(loadedBreed["cages"][i]["id"]) > maxNum) {
+                maxNum = loadedBreed["cages"][i]["id"]
+            }
+        }
+        return maxNum;
+    },
+
+
+    //                                     SAVE AND CHECK CONDITIONS
+
 
     /*save the breed to database*/
     save: function () {
@@ -334,11 +331,62 @@ var engine = {
         return globalBool ;
     },
 
-    /*Game-Over function
-    * @return */
+
+    //                                   GAME OVER functions
+
+
+    /*Target is an object that represents the properties of one target for one scenario
+     * @param strictTime integer; If 0 there is no restriction, else x is the number of days
+     * @param numberOfMice integer; the total number of mice needed
+     * @param gender integer; 0 = male,1=female
+     * @param genotyp string; 2 characters
+     * @param age integer; the minimal age the mice should have, 6 daysrange so the maximal age is age + 6
+     * */
+
+    /*Creating an Array which contains every possible scenario
+     * target = [scenario1,scenario2,...]*/
+    setTarget: function () {
+        target = [
+            {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "--", age: 21},
+            {strictTime: 0, numberOfMice: 0,  gender: 0, genotype: "", age: 0}];
+    },
+
+    getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
+
+    getTargetNumberOfMice : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].numberOfMice},
+
+    getTargetGender : function() {return parseInt(target[engine.convertScenario2Index(loadedBreed.scenario)].gender)},
+
+    getTargetGenotyp : function() {return parseInt(target[engine.convertScenario2Index(loadedBreed.scenario)].genotyp)},
+
+    getTargetAge : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].age},
+
+    convertScenario2Index: function (s) {      // get the Index for the Target-Array out of the scenarioname
+        switch (s) {
+            case "easy_1" :
+                return 0
+                break;
+            case "easy_2" :
+                return 1
+                break;
+            default :
+                return -1
+        }
+
+    },
+
+    /*@return */
+    checkStrictTime : function(){
+        if(engine.getTargetStrictTime()==0){return true}
+         else{
+            if(engine.getTargetStrictTime()>= loadedBreed.age){return true}
+             else{return false}
+         }
+    },
+    /*@return selectedGEnder the gender of the ready mice */
     getGenderOfReadyMice: function () {
         var flag = true;
-        var selectedGender = loadedBreed["finished_cage"]["mice"][0]["gender"];              // !!! einen finished cage für alle Spieler?
+        var selectedGender = loadedBreed["finished_cage"]["mice"][0]["gender"];
         for (i in loadedBreed["finished_cage"]["mice"]) {
             flag = loadedBreed["finished_cage"]["mice"][i]["gender"] == selectedGender;
         }
@@ -349,8 +397,7 @@ var engine = {
         }
     },
 
-    /*Game-Over function
-    * @return*/
+    /*@return selectedGenotyp the genotype of the ready mice*/
     getGenotypeOfReadyMice: function () {
         var flag = true;
         var selectedGenotype = loadedBreed["finished_cage"]["mice"][0]["genotype"];
@@ -363,33 +410,17 @@ var engine = {
             addBen("Verschiedene Genotypen im Zielkäfig", "Es befinden sich Mäuse mit unterschiedlichen Genotypen im Zielkäfig", "warn");
         }
     },
-    /*Game-Over function
-    * @return*/
-    checkMinimalAge: function (minAge) {
+
+    /*@return bool value wheather the ready mice have the right age or not*/
+    checkAge: function () {
         for (i in loadedBreed["finished_cage"]["mice"]) {
-            if (loadedBreed["finished_cage"]["mice"][i]["age"] < minAge) {
+            if (loadedBreed["finished_cage"]["mice"][i]["age"] >= engine.getTargetAge() &&
+                loadedBreed["finished_cage"]["mice"][i]["age"] < engine.getTargetAge() + 6) {
                 return false
             }
         }
 
     },
-
-    /*@param index the index of the cage
-     *@return the ID of the male mouse from cage with the ID == index */
-    find_Male: function (index) {
-        for (m in loadedBreed["cages"][index]["mice"]) {
-            if (parseInt(loadedBreed["cages"][index]["mice"][m]["gender"]) == 0 && parseInt(loadedBreed["cages"][index]["mice"][m]["age"]) > 69) {
-                return loadedBreed["cages"][index]["mice"][m]["id"];
-            }
-        }
-        return -1;
-    },
-    /*Delete mouse, move to trash_cage, for the mice aspecially the male mouse wich does not fit the target and are not useful anymore
-    * @param mouse_id
-    * @param cage_id*/
-    move2Trash: function (mouse_id,cage_id) {
-        engine.changeCage(mouse_id,cage_id,loadedBreed["trash_cage"])
-    }
 
 };
 
@@ -484,12 +515,11 @@ var clock = {
     * @return rtn Booolean if true the game is over, if false at least one condition is false and the game goes on*/
     checkTarget: function () {
         var rtn = true;
-        var tmp = target[engine.convertScenario2Index(loadedBreed["scenario"])];
-        rtn = rtn && (tmp.strictTime >= loadedBreed["age"]); // check strictTime
-        rtn = rtn && (tmp["numberOfMice"] <= loadedBreed["finished_cage"]["mice"].length); // check Number of Mice
-        rtn = rtn && (parseInt(tmp["gender"]) == engine.getGenderOfReadyMice);
-        rtn = rtn && (parseInt(tmp["genotype"]) == engine.getGenotypeOfReadyMice());
-        rtn = rtn && engine.checkMinimalAge();
+        rtn = rtn && engine.checkStrictTime(); // check strictTime
+        rtn = rtn && (engine.getTargetNumberOfMice() <= loadedBreed["finished_cage"]["mice"].length); // check number of Mice
+        rtn = rtn && (engine.getTargetGender == engine.getGenderOfReadyMice);                         // check gender
+        rtn = rtn && (engine.getTargetGenotyp() == engine.getGenotypeOfReadyMice());                  // check genotyp
+        rtn = rtn && engine.checkAge();                                                               // check age
         return rtn;
     },
 
@@ -588,11 +618,3 @@ var clock = {
  },
 
  */
-/*increaseNumberOfDay: function(){
- var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
- var firstDate = new Date();
- var arrayDate = loadedBreed["time_of_creation"].split("-");
- var secondDate = new Date(arrayDate[0],arrayDate[1],arrayDate[2]);
- var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
- numberOfDays = diffDays;
- },*/
