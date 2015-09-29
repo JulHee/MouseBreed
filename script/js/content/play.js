@@ -551,7 +551,7 @@ $(document).ready(function() {
     })
 
     $("#sidebarNewCage").click(function(){
-        engine.newCage(42);
+        engine.newCage(6);
         draw();
     });
     $("#mouseGenderSet").click(function(){

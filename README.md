@@ -32,6 +32,9 @@ Das Projekt simuliert eine Mauszucht.
 - Wechsel von Play , Zuchtkarte ordentlch machen
 - Benachrichtigung
 - Gewicht auf 2 Nachkommatsellen runden
+- Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)
+- Mauszeiger über "Zucht Starten Button" zur Hand ändern
+- Die Scrollbar der Käfige springt manchmal nach oben
 
 ### Akute Probleme
 Spieländerung wird nicht gesichert. Habe eine neue Zucht angelegt, dann in Play alle Geschlechter bestimmt, dann einmal 

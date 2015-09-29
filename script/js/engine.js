@@ -136,6 +136,7 @@ var engine = {
                 var curr_mating = i;
                 var father_id = response["ready_matings"][i]["father_id"]
                 var mother_id = response["ready_matings"][i]["mother_id"]
+                engine.newCage(6);
                 var tmp_cage_id = engine.find_newest_cage();
                 var genotypArray = engine.mixGenotyp(engine.find_mouse(mother_id), engine.find_mouse(father_id))
                 for (k = 0; k <= 5; k++) {
@@ -143,8 +144,7 @@ var engine = {
                     var initial_weight = 1 + Math.round(Math.random() * 7.5 * 100) / 100;     //each new Mouse gets its (random) Weight
                     engine.newMouse(tmp_cage_id, tmp_gender, genotypArray[k % 4], initial_weight, response["ready_matings"][curr_mating]["id"], mother_id, father_id, 0, initial_img_name)
                 }
-                engine.newCage(6);
-                engine.changeCage(mother_id, engine.find_cage(mother_id), engine.find_newest_cage()); // move the mother into the new cage
+                engine.changeCage(mother_id, engine.find_cage(mother_id), tmp_cage_id); // move the mother into the new cage
                 addBen("Der Wurf ist da", "Der Wurf von der Mutter " + mother_id + " ist nun auf der Welt und in Käfig " + tmp_cage_id + " machen die Kleinen ihre ersten Schritte", "info");
                 draw();
             }
@@ -340,15 +340,15 @@ var engine = {
      * @param numberOfMice integer; the total number of mice needed
      * @param gender integer; 0 = male,1=female
      * @param genotyp string; 2 characters
-     * @param age integer; the minimal age the mice should have, 6 daysrange so the maximal age is age + 6
+     * @param age integer; the minimal age the mice should have, 6 days range so the maximal age is age + 6
      * */
 
     /*Creating an Array which contains every possible scenario
      * target = [scenario1,scenario2,...]*/
     setTarget: function () {
         target = [
-            {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "--", age: 21},
-            {strictTime: 0, numberOfMice: 0,  gender: 0, genotype: "", age: 0}];
+            {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "BB", age: 42},
+            {strictTime: 0, numberOfMice: 10,  gender: 1, genotype: "BB", age: 28}];
     },
 
     getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
@@ -383,6 +383,16 @@ var engine = {
              else{return false}
          }
     },
+
+    /*@return bool value, weather the amount of mice is as recomended*/
+    checkNumberOfReadyMice :function(){
+        var cnt = 0;
+        for(i in loadedBreed["cages"][parseInt(loadedBreed["finished_cage"])]){
+            cnt = cnt + 1;
+        };
+        return (cnt == engine.getTargetNumberOfMice());
+    },
+
     /*@return selectedGEnder the gender of the ready mice */
     getGenderOfReadyMice: function () {
         var flag = true;
@@ -516,7 +526,7 @@ var clock = {
     checkTarget: function () {
         var rtn = true;
         rtn = rtn && engine.checkStrictTime(); // check strictTime
-        rtn = rtn && (engine.getTargetNumberOfMice() <= loadedBreed["finished_cage"]["mice"].length); // check number of Mice
+        rtn = rtn && (engine.getTargetNumberOfMice() <= loadedBreed.cage[loadedBreed["finished_cage"]]["mice"].length); // check number of Mice
         rtn = rtn && (engine.getTargetGender == engine.getGenderOfReadyMice);                         // check gender
         rtn = rtn && (engine.getTargetGenotyp() == engine.getGenotypeOfReadyMice());                  // check genotyp
         rtn = rtn && engine.checkAge();                                                               // check age
