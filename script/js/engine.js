@@ -276,6 +276,31 @@ var engine = {
         return maxNum;
     },
 
+    /*@param id the id of the selected cage to get the number of mice*/
+    countMice : function(id){
+        var cnt = 0;
+        for(i in loadedBreed["cages"][id]){
+            cnt = cnt + 1;
+        };
+        return cnt
+    },
+
+    /*@param id the id of the choosen cage*/
+    deleteCage : function(id){
+        if(engine.countMice(id) == 0 && id != loadedBreed["finished_cage"] && id != loadedBreed["trash_cage"]){
+            $.ajax({                                // request to database
+                type: "POST",
+                url: "/script/php/ajax/deleteCage.php",
+                data: {id: id},
+                async: false
+            })
+        }else{
+             addBen("Halt","Der Käfig "+id+" ist nicht leer und kann folglich nicht gelöscht werden","warn");
+        }
+
+
+    },
+
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<save and check conditions>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -386,11 +411,7 @@ var engine = {
 
     /*@return bool value, weather the amount of mice is as recomended*/
     checkNumberOfReadyMice :function(){
-        var cnt = 0;
-        for(i in loadedBreed["cages"][parseInt(loadedBreed["finished_cage"])]){
-            cnt = cnt + 1;
-        };
-        return (cnt == engine.getTargetNumberOfMice());
+        return engine.countMice(parseInt(loadedBreed["finished_cage"])) == engine.getTargetNumberOfMice();
     },
 
     /*@return selectedGEnder the gender of the ready mice */

@@ -405,6 +405,15 @@ class breedModel {
         }
     }
 
+    public function deleteCage($id,$breedId) {
+        $stmt = "DELETE *".
+                "FROM 'cages'".
+                "WHERE breed_id = ? AND cage_id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1,$breedId,$id); // Syntax richtig???
+        return $stmt->execute();
+    }
+
 }
 
 ?>

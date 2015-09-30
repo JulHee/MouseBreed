@@ -20,13 +20,14 @@ Das Projekt simuliert eine Mauszucht.
 ## TODO
 
 ### Allgemein
-- Funktion zum errechnen und setzen der Generation ?
+- Funktion zum errechnen und setzen der Generation <- benötigt?
 - Steckbrief, Gewicht ab 20 Tage sichtbar 
 - Ziel Anzeige / Ziel Info richtig machen
 - Bei der Käfigubersicht Geschlecht in Worten anzeigen 
 - Play scroll Button
 - Wechsel von Play , Zuchtkarte ordentlch machen
 - Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)
+- Käfig löschen testen
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern
 - Gewicht auf 2 Stellen runden bitte beim Anzeigen realisieren
 
