@@ -125,7 +125,7 @@
                                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                                         Einstellungen</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="/home">
+                                <li role="presentation"><a id="logout" role="menuitem" tabindex="-1">
                                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                                         Logout</a>
                                 </li>
