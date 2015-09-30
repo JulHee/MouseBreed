@@ -30,6 +30,7 @@ Das Projekt simuliert eine Mauszucht.
 - Käfig löschen testen
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern
 - Gewicht auf 2 Stellen runden bitte beim Anzeigen realisieren
+- Knopf zum löschen eines Käfigs
 
 
 ### Akute Probleme

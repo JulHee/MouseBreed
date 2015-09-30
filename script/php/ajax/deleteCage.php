@@ -7,10 +7,10 @@ if(isset($_SESSION['login']) && $_SESSION['login'] && isset($_SESSION['loadedBre
 
     $breedModel = new \model\breedModel($db);
 
-    $Id = $breedModel->deleteCage($_POST['id'],$_SESSION['loadedBreed']['id']);
+    $res = $breedModel->deleteCage($_POST['id'],$_SESSION['loadedBreed']['id']);
 
-    if($Id > 0) {
-        echo json_encode(array('success' => true, 'id' => $Id));
+    if($res > 0) {
+        echo json_encode(array('success' => true, 'id' => $res));
     } else {
         echo json_encode(array('success' => false, 'msg' => 'Fehler'));
     }

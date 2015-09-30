@@ -410,7 +410,8 @@ class breedModel {
                 "FROM 'cages'".
                 "WHERE breed_id = ? AND cage_id = ?";
         $stmt = $this->db->prepare($stmt);
-        $stmt->bindParam(1,$breedId,$id); // Syntax richtig???
+        $stmt->bindParam(1,$breedId); // Syntax richtig???
+        $stmt->bindParam(2,$id);
         return $stmt->execute();
     }
 

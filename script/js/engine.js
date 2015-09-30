@@ -279,7 +279,7 @@ var engine = {
     /*@param id the id of the selected cage to get the number of mice*/
     countMice : function(id){
         var cnt = 0;
-        for(i in loadedBreed["cages"][id]){
+        for(i in loadedBreed["cages"][id]["mice"]){
             cnt = cnt + 1;
         };
         return cnt
