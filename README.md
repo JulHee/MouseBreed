@@ -39,8 +39,7 @@ Das Projekt simuliert eine Mauszucht.
 
 ### Christian
 - Spielende testen 
-- Käfig löschen testen
-
+- Käfiggröße prüfen
 ### Jörn
 
 

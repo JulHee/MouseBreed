@@ -310,7 +310,8 @@ var engine = {
                 data: {id: id},
                 async: false
             })
-            delete loadedBreed.cages[id]
+            delete loadedBreed.cages[id];
+            addBen("Käfig gelöscht","Der Käfig wurde erfolgreich gelöscht","info");
         }else{
              addBen("Halt","Der Käfig "+id+" ist nicht leer und kann folglich nicht gelöscht werden","warn");
         }
@@ -368,8 +369,8 @@ var engine = {
                         }
                     }
                 }
-                tooMuchMice = count > 6;                                                          // check number of mice
-                globalBool = globalBool && ((menProblem  && tooMuchMice) == false) ;
+                tooMuchMice = count > loadedBreed["cages"][i]["max_number_of_mice"];                                                          // check number of mice
+                globalBool = globalBool && menProblem == false && tooMuchMice== false ;
             }
         }
         return globalBool ;
