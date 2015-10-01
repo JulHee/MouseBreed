@@ -307,18 +307,20 @@ var engine = {
 
     /*save the breed to database*/
     save: function () {
-        var response = $.ajax({
-            type: "POST",
-            url: "/script/php/ajax/saveBreed.php",
-            data: {breed: JSON.stringify(loadedBreed)},
-            dataType: "json",
-            async: false
-        }).responseText;
-        response = JSON.parse(response);
-        if (response.success == true) {
-            addBen("Gesichert","Deine Zucht wurde in der Datenbank gesichert","info")
-        } else {
-            addBen("Nict gesichert","Beim Speichern ist ein Fehler aufgetreten","warn")
+        if (loadedBreed != null) {
+            var response = $.ajax({
+                type: "POST",
+                url: "/script/php/ajax/saveBreed.php",
+                data: {breed: JSON.stringify(loadedBreed)},
+                dataType: "json",
+                async: false
+            }).responseText;
+            response = JSON.parse(response);
+            if (response.success == true) {
+                addBen("Gesichert","Deine Zucht wurde in der Datenbank gesichert","info")
+            } else {
+                addBen("Nicht gesichert","Beim Speichern ist ein Fehler aufgetreten","warn")
+            }
         }
     },
 

@@ -7,6 +7,7 @@ var Logout = {
     },
 
     run: function () {
+        engine.save();
         $.ajax({
             url: "/script/php/ajax/logout.php"
         }).done(function () {
