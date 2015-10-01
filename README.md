@@ -20,29 +20,27 @@ Das Projekt simuliert eine Mauszucht.
 ## TODO
 
 ### Allgemein
-- Funktion zum errechnen und setzen der Generation <- benötigt?
-- Steckbrief, Gewicht ab 20 Tage sichtbar 
+
+- Steckbrief, Gewicht ab 20 Tage sichtbar
+- Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS
 - Ziel Anzeige / Ziel Info richtig machen
 - Bei der Käfigubersicht Geschlecht in Worten anzeigen 
 - Play scroll Button
 - Wechsel von Play , Zuchtkarte ordentlch machen
-- Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)
-- Käfig löschen testen
-- Mauszeiger über "Zucht Starten Button" zur Hand ändern
-- Gewicht auf 2 Stellen runden bitte beim Anzeigen realisieren
 - Knopf zum löschen eines Käfigs
+- refresh nach dem Klicken auf "Aussortieren",
+
+## Noch sinvolle Dinge, aber kein muss
+- Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)?
 
 
 ### Akute Probleme
-Spieländerung wird nicht gesichert. Habe eine neue Zucht angelegt, dann in Play alle Geschlechter bestimmt, dann einmal 
-zur Übersicht gewechselt um den Genotyp zu erfahren. Dann meine Mäuse in Käfigen angeordnet und Paaren-Werfen lassen. 
-Als ich dann auf die Übersicht gewechselt bin um den Genotyp der Kinder zu sehen, gab es die neu angelegten Käfige und Mäuse nicht.
-Auch nachdem ich wieder auf Play bin blieben sie weg.
+
 ### Christoph
 
 ### Christian
 - Spielende testen 
-
+- Käfig löschen testen
 ### Jörn
 
 

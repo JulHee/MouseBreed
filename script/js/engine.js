@@ -209,6 +209,16 @@ var engine = {
         return -1;
     },
 
+    /*@param mouseId*/
+    getGeneration : function(mouseId){
+        var cnt = 1;                  //init with 1 because the loop breaks at the first mouse and didn't count the first generation
+        var currId = mouseId;
+        while(currId != null){
+            cnt=cnt+1;
+            currId = engine.find_mouse(currId).mother_id;   // TODO Problem bei Inzest !!!
+        };
+    },
+
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<functions working with cages>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
