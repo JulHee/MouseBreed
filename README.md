@@ -21,12 +21,11 @@ Das Projekt simuliert eine Mauszucht.
 
 ### Allgemein
 
+- Ziel Anzeige / Ziel Info richtig machen
 - Steckbrief, Gewicht ab 20 Tage sichtbar
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS
-- Ziel Anzeige / Ziel Info richtig machen
-- Bei der Käfigubersicht Geschlecht in Worten anzeigen 
+- Bei der Käfigübersicht Geschlecht in Worten anzeigen 
 - Play scroll Button
-- Wechsel von Play , Zuchtkarte ordentlch machen
 - Knopf zum löschen eines Käfigs
 - refresh nach dem Klicken auf "Aussortieren",
 
@@ -41,6 +40,7 @@ Das Projekt simuliert eine Mauszucht.
 ### Christian
 - Spielende testen 
 - Käfig löschen testen
+
 ### Jörn
 
 

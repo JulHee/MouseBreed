@@ -219,6 +219,12 @@ var engine = {
         };
     },
 
+    getFirstMouseFromCage : function(cageId){
+       for(i in loadedBreed["cages"][cageId]["mice"]){
+           return loadedBreed["cages"][cageId]["mice"][i];
+       }
+    },
+
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<functions working with cages>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -395,7 +401,7 @@ var engine = {
 
     getTargetGender : function() {return parseInt(target[engine.convertScenario2Index(loadedBreed.scenario)].gender)},
 
-    getTargetGenotyp : function() {return parseInt(target[engine.convertScenario2Index(loadedBreed.scenario)].genotyp)},
+    getTargetGenotyp : function() {return target[engine.convertScenario2Index(loadedBreed.scenario)].genotyp},
 
     getTargetAge : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].age},
 
@@ -430,7 +436,7 @@ var engine = {
     /*@return selectedGEnder the gender of the ready mice */
     getGenderOfReadyMice: function () {
         var flag = true;
-        var selectedGender = loadedBreed["finished_cage"]["mice"][0]["gender"];
+        var selectedGender = engine.getFirstMouseFromCage(loadedBreed["finished_cage"])["gender"];
         for (i in loadedBreed["finished_cage"]["mice"]) {
             flag = loadedBreed["finished_cage"]["mice"][i]["gender"] == selectedGender;
         }
@@ -444,7 +450,7 @@ var engine = {
     /*@return selectedGenotyp the genotype of the ready mice*/
     getGenotypeOfReadyMice: function () {
         var flag = true;
-        var selectedGenotype = loadedBreed["finished_cage"]["mice"][0]["genotype"];
+        var selectedGenotype = engine.getFirstMouseFromCage(loadedBreed["finished_cage"])["genotyp"];
         for (i in loadedBreed["finished_cage"]["mice"]) {
             flag = loadedBreed["finished_cage"]["mice"][i]["genotyp"] == selectedGenotype;
         }
@@ -463,7 +469,7 @@ var engine = {
                 return false
             }
         }
-
+        return true;
     },
 
 };
@@ -569,9 +575,10 @@ var clock = {
         var rtn = true;
         rtn = rtn && engine.checkStrictTime(); // check strictTime
         rtn = rtn && engine.checkNumberOfReadyMice(); // check number of Mice
-        rtn = rtn && (engine.getTargetGender == engine.getGenderOfReadyMice);                         // check gender
+        rtn = rtn && (engine.getTargetGender() == engine.getGenderOfReadyMice());                         // check gender
         rtn = rtn && (engine.getTargetGenotyp() == engine.getGenotypeOfReadyMice());                  // check genotyp
         rtn = rtn && engine.checkAge();                                                               // check age
+        alert("hollololo");
         return rtn;
     },
 
