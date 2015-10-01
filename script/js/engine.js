@@ -304,6 +304,7 @@ var engine = {
                 data: {id: id},
                 async: false
             })
+            delete loadedBreed.cages[id]
         }else{
              addBen("Halt","Der Käfig "+id+" ist nicht leer und kann folglich nicht gelöscht werden","warn");
         }
