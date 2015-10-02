@@ -23,8 +23,7 @@ Das Projekt simuliert eine Mauszucht.
 
 - Ziel Anzeige / Ziel Info richtig machen
 - Steckbrief, Gewicht ab 20 Tage sichtbar
-- Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS
-- Bei der Käfigübersicht Geschlecht in Worten anzeigen 
+- Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS 
 - Play scroll Button
 - Knopf zum löschen eines Käfigs
 - refresh nach dem Klicken auf "Aussortieren",
@@ -39,7 +38,7 @@ Das Projekt simuliert eine Mauszucht.
 
 ### Christian
 - Spielende testen 
-- Käfiggröße prüfen
+- Käfiggröße prüfen testen
 ### Jörn
 - Beim zweiten Mal löschen der Benachrichtigungen funktioniert der Button nicht
 

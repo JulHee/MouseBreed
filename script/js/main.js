@@ -153,6 +153,18 @@ function setMaxheight(){
     });
 }
 
+function number2Gender(number){
+    if(number == 0){
+        return "männlich"
+    }else{
+        if(number == 1){
+            return "weiblich"
+        }else{
+            return "Kein richtiges Geschlecht eingegeben"
+        }
+    }
+}
+
 
 $(document).ready(function () {
     Logout.onReady();
