@@ -65,19 +65,19 @@ function addBen(titel, nachricht, art) {
     // TODO: Die Nachricht muss unterhalb der Oberen leiste angezeigt werden
     switch (art) {
         case "success":
-            $.notify(titel, {className: 'success', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'success', globalPosition: 'bottom left'});
             break;
         case "warn":
-            $.notify(titel, {className: 'warn', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'warn', globalPosition: 'bottom left'});
             break;
         case "info":
-            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom left'});
             break;
         case "error":
-            $.notify(titel, {className: 'error', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'error', globalPosition: 'bottom left'});
             break;
         default:
-            $.notify(titel, {className: 'info', globalPosition: 'bottom right'});
+            $.notify(titel, {className: 'info', globalPosition: 'bottom left'});
             break;
     }
 
@@ -98,8 +98,7 @@ function addBen(titel, nachricht, art) {
     var dateOutput = dateHours + ":" + dateMinutes + ":" + dateSeconds;
 
     // Anfügen der neuen Benachrichtigung
-    $("#benliste_top").prepend('<li class="divider"></li>');
-    $("#benliste_top").prepend('<li class="benMessagetoDelete"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><span class="label label-info">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>');
+    $("#benliste_top").prepend('<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><span class="label label-info">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>');
 
     // Setzten des Zählers
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
@@ -140,11 +139,27 @@ function refreshProgressbar(){
 
 }
 
+function setMaxheight(){
+    var winHeight = $(window).height();
+    $(".panel-max-height").each(function( index ) {
+        console.log($(this));
+
+        // Abziehen des oberhalb belegten Platzes
+        winHeight -= 370;
+
+        $(this).css({
+            'max-height' : winHeight + "px"
+        });
+    });
+}
+
 
 $(document).ready(function () {
     Logout.onReady();
     refereshNumberOfDays();
     engine.setTarget();                // Create the Target-Array, wich contains the information about the endconditions
+    setMaxheight();
+    getLocalNotes();
     //NextDay.onReady();
 
     $("#targetInfo").popover({
@@ -162,36 +177,28 @@ $(document).ready(function () {
     $('#deleteall').click(
         function () {
             $("#benliste_top").empty();
-            // $("#benliste_top").prepend('<li class="divider"></li>');
-            $("#benliste_top").prepend('<li id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
             $("#NumBen").html(0);
+
+            // Wird nicht mehr gebraucht
+            //$("#benliste_top").prepend('<li class="list-group-item" id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
         }
     );
-    $('#benachrichtigung').click(
+   /* $('#benachrichtigung').click(
         function () {
             $('#deleteall').click(
                 function () {
-                    // TODO Sehr unsabuer :)
-
                     $("#benliste_top").empty();
                     // $("#benliste_top").prepend('<li class="divider"></li>');
-                    $("#benliste_top").prepend('<li id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
+                    $("#benliste_top").prepend('<li class="list-group-item" id="benLast"><button id="deleteall" class="btn btn-danger center-block">Alles Löschen</button></li>');
                     $("#NumBen").html(0);
                 }
             );
         }
-    );
+    );*/
 
     $("#navSidebarZuchten a").on("click", function () {
         $(".nav").find(".active").removeClass("active");
         $(this).parent().addClass("active");
-    });
-
-    $('#noticeid').on('click', function (event) {
-        $(this).parent().toggleClass('open');
-        if (noticearr.length < 1) {
-            getLocalNotes();
-        }
     });
 
     $('body').on('click', function (e) {
@@ -202,6 +209,14 @@ $(document).ready(function () {
             $('#noticeid').removeClass('open');
         }
     });
+
+    $('#liSidebarNavsBen').on("click",function(){
+       setMaxheight()
+    });
+    $('#liSidebarNavsNotizen').on("click",function(){
+        setMaxheight()
+    });
+
     //array for local notes
     var noticearr = [];
     $('#addbtn').click(
@@ -210,7 +225,6 @@ $(document).ready(function () {
             $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
             //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
             $('#noticetext').val("");
-
         });
     //func to get "old" notes from local storage
     function getLocalNotes() {
@@ -232,5 +246,8 @@ $(document).ready(function () {
         });
         localStorage.setItem("Notes", JSON.stringify(noticearr));
     }
+    $(window).resize(function(){
+        setMaxheight();
+    });
 
 });

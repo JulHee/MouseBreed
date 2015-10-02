@@ -1,7 +1,4 @@
-
-
-<div class="col-md-10">
-    <h1 class="page-header">Einstellungen</h1>
+ <h1 class="page-header">Einstellungen</h1>
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#settings_allgemein" role="tab" data-toggle="tab">Allgemein</a></li>
         <li role="presentation"><a href="#settings_benachrichtigung" role="tab" data-toggle="tab">Benachrichtigung</a></li>
@@ -32,4 +29,3 @@
         </div>
 
     </div>
-</div>
