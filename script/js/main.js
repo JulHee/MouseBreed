@@ -165,6 +165,14 @@ function number2Gender(number){
     }
 }
 
+function childWeight(age,weight){
+    if(age<20){
+        return "Mäusekinder zählen nicht"
+    }else{
+        return weight
+    }
+}
+
 
 $(document).ready(function () {
     Logout.onReady();

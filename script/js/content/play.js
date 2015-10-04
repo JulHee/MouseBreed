@@ -347,7 +347,7 @@ function clickedMouse(id) {
         }
     }
     $("#mouseinfoAge").text(info.age);
-    $("#mouseinfoWeight").text(Math.round(info.weight*100)/100);
+    $("#mouseinfoWeight").text(childWeight(info.age,Math.round(info.weight*100)/100));
 }
 
 function getCages() {
