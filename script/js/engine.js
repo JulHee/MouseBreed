@@ -209,14 +209,24 @@ var engine = {
         return -1;
     },
 
-    /*@param mouseId*/
-    getGeneration : function(mouseId){
-        var cnt = 1;                  //init with 1 because the loop breaks at the first mouse and didn't count the first generation
-        var currId = mouseId;
-        while(currId != null){
-            cnt=cnt+1;
-            currId = engine.find_mouse(currId).mother_id;   // TODO Problem bei Inzest !!!
-        };
+    /*@param mouseId
+    * @param thisMouse should be initilised with null*/
+    getGeneration : function(mouseId,thisMouse){
+        thisMouse = engine.find_mouse(mouseId);
+        if(thisMouse == -1){
+            addBen("Maus existiert nicht","Die Mouse mit der ID"+ mouseId +
+            " kann nicht gefunden werden, da sie nicht in den Käfigen existier","err");
+            return "!! Fehler !!";
+        }
+        if(thisMouse.mother_id == null && thisMouse.father_id == null){
+            return 1;
+        }else{
+            if(thisMouse.mother_id < thisMouse.father_id){
+                return 1+engine.getGeneration(thisMouse.father_id,null);
+            }else{
+                return 1+engine.getGeneration(thisMouse.mother_id,null);
+            }
+        }
     },
 
     getFirstMouseFromCage : function(cageId){
