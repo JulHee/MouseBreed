@@ -118,7 +118,7 @@ var engine = {
                 img_name: img_name
             };
         } else {
-            addBen("Käfig nicht erstellt", "Die Maus wurde nicht erstellt, Fehler beim Datenbankzugriff", "Warn");  // not created
+            addBen("Maus nicht erstellt", "Die Maus wurde nicht erstellt, Fehler beim Datenbankzugriff", "Warn");  // not created
         }
     },
 
@@ -589,7 +589,6 @@ var clock = {
         rtn = rtn && (engine.getTargetGender() == engine.getGenderOfReadyMice());                         // check gender
         rtn = rtn && (engine.getTargetGenotyp() == engine.getGenotypeOfReadyMice());                  // check genotyp
         rtn = rtn && engine.checkAge();                                                               // check age
-        alert("hollololo");
         return rtn;
     },
 

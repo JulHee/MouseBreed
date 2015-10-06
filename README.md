@@ -26,9 +26,11 @@ Das Projekt simuliert eine Mauszucht.
 - Mauszeiger über "Logout" zur Hand ändern - CSS 
 - Play scroll Button
 - Knopf zum löschen eines Käfigs
-- refresh nach dem Klicken auf "Aussortieren",
+- Käfig löschen via php wirft noch Fehler
+- refresh nach dem Klicken auf "Aussortieren"
 
-## Noch sinvolle Dinge, aber kein muss
+
+## Noch sinvolle Dinge, aber kein Muss
 - Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)?
 
 
