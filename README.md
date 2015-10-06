@@ -22,8 +22,8 @@ Das Projekt simuliert eine Mauszucht.
 ### Allgemein
 
 - Ziel Anzeige / Ziel Info richtig machen
-- Steckbrief, Gewicht ab 20 Tage sichtbar
-- Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS 
+- Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS
+- Mauszeiger über "Logout" zur Hand ändern - CSS 
 - Play scroll Button
 - Knopf zum löschen eines Käfigs
 - refresh nach dem Klicken auf "Aussortieren",
