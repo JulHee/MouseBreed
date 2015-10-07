@@ -578,6 +578,10 @@ $(document).ready(function() {
 
     });
 
+    $('#deleteCage').click(function(){
+        engine.deleteCage(selectedCage);
+    });
+
 
     //TODO USERGENDER SETZEN
     $("#malesetbtn").click(function () {

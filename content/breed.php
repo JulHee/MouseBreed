@@ -91,7 +91,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-default">Option 1</button>
+                        <button id="deleteCage" type="button" class="btn btn-danger">Käfig</button>
                         <button type="button" class="btn btn-default">Option 2</button>
                         <button type="button" class="btn btn-default">Option 3</button>
                         <button type="button" class="btn btn-default">Option 4</button>

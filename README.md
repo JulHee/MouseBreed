@@ -25,7 +25,6 @@ Das Projekt simuliert eine Mauszucht.
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS
 - Mauszeiger über "Logout" zur Hand ändern - CSS 
 - Play scroll Button
-- Knopf zum löschen eines Käfigs
 - Käfig löschen via php wirft noch Fehler
 - refresh nach dem Klicken auf "Aussortieren"
 
