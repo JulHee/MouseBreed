@@ -22,7 +22,6 @@ Das Projekt simuliert eine Mauszucht.
 ### Allgemein
 
 - Ziel Anzeige / Ziel Info richtig machen
-- Play scroll Button
 - Käfig löschen via php wirft noch Fehler
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS     - Win Problem
 - Mauszeiger über "Logout" zur Hand ändern - CSS                   - Win Problem
