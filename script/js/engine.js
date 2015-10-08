@@ -403,7 +403,7 @@ var engine = {
     setTarget: function () {
         target = [
             {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "BB", age: 42},
-            {strictTime: 0, numberOfMice: 10,  gender: 1, genotype: "BB", age: 28}];
+            {strictTime: 0, numberOfMice: 10,  gender: 1, genotyp: "BB", age: 28}];
     },
 
     getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
@@ -458,15 +458,15 @@ var engine = {
         }
     },
 
-    /*@return selectedGenotyp the genotype of the ready mice*/
-    getGenotypeOfReadyMice: function () {
+    /*@return selectedGenotyp the genotyp of the ready mice*/
+    getGenotypOfReadyMice: function () {
         var flag = true;
-        var selectedGenotype = engine.getFirstMouseFromCage(loadedBreed["finished_cage"])["genotyp"];
+        var selectedGenotyp = engine.getFirstMouseFromCage(loadedBreed["finished_cage"])["genotyp"];
         for (i in loadedBreed["finished_cage"]["mice"]) {
-            flag = loadedBreed["finished_cage"]["mice"][i]["genotyp"] == selectedGenotype;
+            flag = loadedBreed["finished_cage"]["mice"][i]["genotyp"] == selectedGenotyp;
         }
         if (flag) {
-            return selectedGenotype;
+            return selectedGenotyp;
         } else {
             addBen("Verschiedene Genotypen im Zielkäfig", "Es befinden sich Mäuse mit unterschiedlichen Genotypen im Zielkäfig", "warn");
         }
@@ -493,15 +493,16 @@ var clock = {
     /*each day change runs this function
     **/
     nextDay: function () {
-
+        setDayProgress(parseInt(engine.countMice(parseInt(loadedBreed["finished_cage"]))),target[engine.convertScenario2Index(loadedBreed["scenario"])].age);  setDayProgress(parseInt(engine.countMice(parseInt(loadedBreed["finished_cage"]))),target[engine.convertScenario2Index(loadedBreed["scenario"])].age);
         if (engine.ready2GoOn()) {
             clock.increaseAge();
             clock.gainWeight();
             clock.pairing();
             engine.birth();
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
+            setDayProgress(parseInt(engine.countMice(parseInt(loadedBreed["finished_cage"]))),target[engine.convertScenario2Index(loadedBreed["scenario"])].age);
             refereshNumberOfDays();
-            refreshProgressbar();
+            //refreshProgressbar();
             if (selectedMouse) {                                // refresh the information of the choosen mouse
                 clickedMouse(selectedMouse.id);
             }
@@ -587,7 +588,7 @@ var clock = {
         rtn = rtn && engine.checkStrictTime(); // check strictTime
         rtn = rtn && engine.checkNumberOfReadyMice(); // check number of Mice
         rtn = rtn && (engine.getTargetGender() == engine.getGenderOfReadyMice());                         // check gender
-        rtn = rtn && (engine.getTargetGenotyp() == engine.getGenotypeOfReadyMice());                  // check genotyp
+        rtn = rtn && (engine.getTargetGenotyp() == engine.getGenotypOfReadyMice());                  // check genotyp
         rtn = rtn && engine.checkAge();                                                               // check age
         return rtn;
     },
@@ -634,3 +635,29 @@ Ideen für weitere Funktionen
  }
  }
  */
+
+/*function refreshProgressbar(){
+ var indexOfFinischedCage =  loadedBreed.finished_cage;
+ var currNumberOfMice = loadedBreed.cages[indexOfFinischedCage].mice.length;
+ if (!currNumberOfMice){
+ // Der Zielkäfig ist leer
+ currNumberOfMice = 1;
+ }
+ var tmp = 20; // engine.getTargetNumberOfMice();
+
+ // Berechnen der Prozentzahlen für den Fortschrittsbalken
+ var perc = Math.ceil((currNumberOfMice/tmp)*100);
+ console.log("Mäuse:"+perc);
+ $("targetFinishProgress").width(perc+"%");
+ $("targetFinishProgress").text(perc+"%");
+
+ var currTimePrgogress = 1;
+ tmp = 200; // engine.getTargetStrictTime();
+ if(tmp > 0){
+ currTimePrgogress = Math.ceil((loadedBreed.age/tmp)*100);
+ console.log("Zeit:"+currTimePrgogress);
+ }
+ $("#targetDayProgress").width(currTimePrgogress+"%");
+ $("#targetDayProgress").text(currTimePrgogress+"%");
+
+ }*/

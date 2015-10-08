@@ -116,31 +116,6 @@ function refereshNumberOfDays() {
     $("#numberOfDays").text(day);
     $("#topDays").text(day);
 }
-function refreshProgressbar(){
-    var indexOfFinischedCage =  loadedBreed.finished_cage;
-    var currNumberOfMice = loadedBreed.cages[indexOfFinischedCage].mice.length;
-    if (!currNumberOfMice){
-        // Der Zielkäfig ist leer
-        currNumberOfMice = 1;
-    }
-    var tmp = 20; // engine.getTargetNumberOfMice();
-
-    // Berechnen der Prozentzahlen für den Fortschrittsbalken
-    var perc = Math.ceil((currNumberOfMice/tmp)*100);
-    console.log("Mäuse:"+perc);
-    $("targetFinishProgress").width(perc+"%");
-    $("targetFinishProgress").text(perc+"%");
-
-    var currTimePrgogress = 1;
-    tmp = 200; // engine.getTargetStrictTime();
-    if(tmp > 0){
-        currTimePrgogress = Math.ceil((loadedBreed.age/tmp)*100);
-        console.log("Zeit:"+currTimePrgogress);
-    }
-    $("#targetDayProgress").width(currTimePrgogress+"%");
-    $("#targetDayProgress").text(currTimePrgogress+"%");
-
-}
 
 function setMaxheight(){
     var winHeight = $(window).height();
@@ -217,14 +192,12 @@ $(document).ready(function () {
     Logout.onReady();
     refereshNumberOfDays();
     engine.setTarget();                // Create the Target-Array, wich contains the information about the endconditions
+    var thisTarget = target[engine.convertScenario2Index(loadedBreed["scenario"])];
+    setTagetInfo(thisTarget.age,thisTarget.gender,thisTarget.genotyp);
     setMaxheight();
     getLocalNotes();
     getLocalBen();
-    //NextDay.onReady();
 
-
-    setDayProgress(50,100);
-    setTagetInfo("50","Weiblich","BB");
 
     $("#targetInfo").popover({
         html: true,
