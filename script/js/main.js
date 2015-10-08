@@ -1,3 +1,6 @@
+var noticearr = [];
+var benarr = [];
+
 var URL_ROOT = "http://local.mousebreed/";
 
 var Logout = {
@@ -198,6 +201,17 @@ function getLocalBen() {
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 };
 
+function setDayProgress(ist,max){
+    var percent = ist/max *100;
+    $('#targetFinishProgress').css("width",percent+ "%");
+    $('#targetFinishProgress').text(percent + "%");
+}
+function setTagetInfo(age,gender,genotyp){
+    $('#targetInfoGender').text(gender);
+    $('#targetInfoGenotyp').text(genotyp);
+    $('#targetInfoage').text(age);
+}
+
 
 $(document).ready(function () {
     Logout.onReady();
@@ -207,6 +221,10 @@ $(document).ready(function () {
     getLocalNotes();
     getLocalBen();
     //NextDay.onReady();
+
+
+    setDayProgress(50,100);
+    setTagetInfo("50","Weiblich","BB");
 
     $("#targetInfo").popover({
         html: true,
@@ -264,8 +282,6 @@ $(document).ready(function () {
     });
 
     //array for local notes
-    var noticearr = [];
-    var benarr = [];
     $('#addbtn').click(
         function () {
             var inText = $('#noticetext').val();
