@@ -190,12 +190,12 @@ function getLocalBen() {
         benarr = JSON.parse(localStorage.getItem("Ben")).reverse();
         for (var i = 0; i < benarr.length; i++) {
             var inText = benarr[i];
-            console.log(inText);
-            $("#benliste_top").prepend('<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + inText.titel + '</strong></div><div class="bentimestamp"><span class="label label-info bentimestamptext">' + inText.dateOutput + '</span></div><div class="benMessage">' + inText.nachricht + '</div></a></li>');
+            $("#benliste_top").prepend('<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + inText.titel + '</strong></div><div class="bentimestamp"><span class="label label-info bentimestamptext">' + inText.time + '</span></div><div class="benMessage">' + inText.text + '</div></a></li>');
         }
     } else {
         localStorage.setItem("Ben", JSON.stringify(benarr));
     }
+    $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
 };
 
 
@@ -208,7 +208,6 @@ $(document).ready(function () {
     getLocalBen();
     //NextDay.onReady();
 
-    console.log(localStorage.getItem("Ben"));
     $("#targetInfo").popover({
         html: true,
         content: function () {
