@@ -123,9 +123,9 @@ Funktionen um auf die Datenbank zu zugreifen stellen die Dateien \textit{userMod
 
 \begin{lstlisting}[float = htpb,caption={Aufbau der Funktion getMouse}, label=lst:Canvas,captionpos=b,keywordstyle=\bfseries\color{black}]
   public function getMouse($mouseId) {
-        $stmt =     "SELECT * ".
-                    "FROM `mouse` ".
-                    "WHERE id = ?";
+        $stmt =  "SELECT * ".
+                 "FROM `mouse` ".
+                 "WHERE id = ?";
         $stmt = $this->db->prepare($stmt);
         $stmt->bindParam(1, $mouseId);
 
