@@ -580,8 +580,9 @@ $(document).ready(function() {
     });
 
     $('#deleteCage').click(function(){
-        engine.deleteCage(selectedCage);
+        alert("hululu")
     });
+
 
 
     //TODO USERGENDER SETZEN

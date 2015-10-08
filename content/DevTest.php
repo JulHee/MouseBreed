@@ -37,14 +37,8 @@
         </div>
     </div>
 </form>
-
-<div id="ChristianDiv">
-    <button id="ChristianButton">Click</button>
-    <p id="ChristianP">.......</p>
-</div>
-
 <button id="save">Speichern</button>
 
-<script type="text/javascript" src="/script/js/chbTest.js"></script>
+
 
 
