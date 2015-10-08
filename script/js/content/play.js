@@ -574,6 +574,7 @@ $(document).ready(function() {
             addBen("Halt","Die Maus kann nicht aussortiert werden, es ist noch nicht bekannt welches Geschlecht sie hat","warn");
         }else{
             engine.move2Trash(selectedMouse.id,selectedCage);
+            draw();
         }
 
     });
