@@ -507,7 +507,8 @@ var clock = {
                 clickedMouse(selectedMouse.id);
             }
             if (clock.checkTarget()) {
-                alert("Ende")
+                alert("Gewonnen, der Professor ist zufrieden");
+                addBen("Gewonnen!!!","Herzllichen Glückwunsch, Sie haben erfolgreich die gewünschten Mäuse gezüchtet","info");
             }
             ;
         }
