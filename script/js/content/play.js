@@ -579,11 +579,6 @@ $(document).ready(function() {
 
     });
 
-    $('#deleteCage').click(function(){
-        alert("hululu")
-    });
-
-
 
     //TODO USERGENDER SETZEN
     $("#malesetbtn").click(function () {

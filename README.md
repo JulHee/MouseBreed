@@ -36,7 +36,7 @@ Das Projekt simuliert eine Mauszucht.
 
 ### Christian
 - Spielende testen 
-- Käfiggröße prüfen testen
+- Käfiggröße prüfen testen -> aktuellen Käfig aus breed.php bekommen und in engine.deleteCage übergeben
 
 ### Jörn
 

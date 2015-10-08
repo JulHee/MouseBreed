@@ -502,7 +502,6 @@ var clock = {
             loadedBreed.age = parseInt(loadedBreed.age) + 1;
             setDayProgress(parseInt(engine.countMice(parseInt(loadedBreed["finished_cage"]))),target[engine.convertScenario2Index(loadedBreed["scenario"])].age);
             refereshNumberOfDays();
-            //refreshProgressbar();
             if (selectedMouse) {                                // refresh the information of the choosen mouse
                 clickedMouse(selectedMouse.id);
             }

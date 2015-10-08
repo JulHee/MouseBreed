@@ -296,4 +296,8 @@ $(document).ready(function () {
         setMaxheight();
     });
 
+    $('#deleteCage').click(function(){
+        engine.deleteCage(selectedCage);
+    });
+
 });
