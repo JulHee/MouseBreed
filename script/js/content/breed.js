@@ -75,12 +75,11 @@ var LoadInformations = {
         }
     }
 };
+
+function getSelectedCage(){return }
 $(document).ready(function() {
     BasicFunctions.onReady;
     LoadInformations.onReady();
     console.log(loadedBreed);
-    /*  $("#ListCage a").on("click", function(){
-          $("#ListCage").find(".active").removeClass("active");
-          $(this).addClass("active");
-      });*/
+
 });
