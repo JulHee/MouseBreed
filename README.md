@@ -39,8 +39,7 @@ Das Projekt simuliert eine Mauszucht.
 ### Christian
 - Spielende testen 
 - Käfiggröße prüfen testen
+
 ### Jörn
-- Benachrichtigungen werden nicht gespeichert
 
 ### Julian
-- Benachrichtigungen werden nicht gespeichert

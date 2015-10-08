@@ -140,18 +140,6 @@
                             </li>
                             <br>
                             <li>
-                                <h4 class="list-group-item-heading">Verbleibende Tage</h4>
-
-                                <div class="progress">
-                                    <div id="targetDayProgress"
-                                         class="progress-bar progress-bar-danger progress-bar-striped active"
-                                         role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                         aria-valuemax="100" style="width: 0%;min-width: 2em;">
-                                        0%
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
                                 <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
 
                                 <div class="progress">
@@ -162,6 +150,18 @@
                                         0%
                                     </div>
                                 </div>
+                            </li>
+                            <li class="list-group-item">
+                                Geschlecht
+                                <span id="targetInfoGender" class="label label-default pull-right">New</span>
+                            </li>
+                            <li class="list-group-item">
+                                Genotyp
+                                <span id="targetInfoGenotyp" class="label label-default pull-right">New</span>
+                            </li>
+                            <li class="list-group-item">
+                                Alter (Tage)
+                                <span id="targetInfoage" class="label label-default pull-right ">New</span>
                             </li>
                         </ul>
                     </div>
