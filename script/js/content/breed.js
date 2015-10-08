@@ -70,7 +70,7 @@ var LoadInformations = {
         if (mouses) {
             for (var i in mouses) {
                 var mouse = mouses[i];
-                $("#tableMouse").append('<tr><td>' + mouse.name + '</td><td>' + number2Gender(mouse.gender)  + '</td><td>' + mouse.genotyp + '</td><td>0 (Fehlt)</td><td>' + mouse.age + '</td><td>' + Math.round(mouse.weight*100)/100  + '</td></tr>');
+                $("#tableMouse").append('<tr><td>' + mouse.name + '</td><td>' + number2Gender(mouse.gender)  + '</td><td>' + mouse.genotyp + '</td><td>'+ engine.getGeneration(mouse.id,null) +'</td><td>' + mouse.age + '</td><td>' + Math.round(mouse.weight*100)/100  + '</td></tr>');
             }
         }
     }

@@ -22,13 +22,13 @@ Das Projekt simuliert eine Mauszucht.
 ### Allgemein
 
 - Ziel Anzeige / Ziel Info richtig machen
-- Steckbrief, Gewicht ab 20 Tage sichtbar
-- Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS 
 - Play scroll Button
-- Knopf zum löschen eines Käfigs
-- refresh nach dem Klicken auf "Aussortieren",
+- Käfig löschen via php wirft noch Fehler
+- Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS     - Win Problem
+- Mauszeiger über "Logout" zur Hand ändern - CSS                   - Win Problem
 
-## Noch sinvolle Dinge, aber kein muss
+
+## Noch sinvolle Dinge, aber kein Muss
 - Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)?
 
 
@@ -40,7 +40,7 @@ Das Projekt simuliert eine Mauszucht.
 - Spielende testen 
 - Käfiggröße prüfen testen
 ### Jörn
-- Beim zweiten Mal löschen der Benachrichtigungen funktioniert der Button nicht
+- Benachrichtigungen werden nicht gespeichert
 
 ### Julian
-- Beim zweiten Mal löschen der Benachrichtigungen funktioniert der Button nicht
+- Benachrichtigungen werden nicht gespeichert
