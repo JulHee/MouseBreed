@@ -91,8 +91,7 @@
 
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']) {
-                     if (!empty($_SESSION['loadedBreed']['name'])) { ?>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']) { ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown" style="margin-right: 10px">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -117,7 +116,7 @@
                             </ul>
                         </li>
                     </ul>
-                <?php } }?>
+                <?php }?>
             </div>
     </div>
 </div>

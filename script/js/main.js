@@ -209,6 +209,7 @@ $(document).ready(function () {
     });
     //array for local notes
     var noticearr = [];
+    var benarr = [];
     $('#addbtn').click(
         function () {
             var inText = $('#noticetext').val();
@@ -228,6 +229,7 @@ $(document).ready(function () {
             localStorage.setItem("Notes", JSON.stringify(noticearr));
         }
     };
+
     //on reload set localStorage
     window.onbeforeunload = function () {
         noticearr = [];
