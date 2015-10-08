@@ -86,6 +86,76 @@ Die Benachrichtigungen bauen auf dem JQuery-Plugin ``Notify.js'' auf. Die Benach
     \item{Fehler}
 \end{itemize}
 Gleichzeitig werden die Benachrichtigungen auch in der Benachrichtgungsleiste angezeigt. Zusaetzlich wird dort auch die Uhrzeit des Auftretens gespeichert.
+
+\newpage
+
+\subsection{PHP}
+Um die Webanwendung dynamisch gestalten zu können, haben wir uns der serverseitig interpretierten Skriptsprache PHP bedient. PHP-Code wird auf dem Server ausgeführt. Anschließend wird das Ergebnis an den Client (Browser) gesendet, der das angeforderte und zusammengestellte Dokument anzeigt.
+Die Folgenden Funktionen wurden mit PHP umgesetzt:
+\begin{itemize}
+    \item{Datenbankanbindung}
+    \item{Benutzerverwaltung}
+    \item{Verarbeitung von Eingabeformularen}
+    \item{Informationen in Templates einfügen}
+\end{itemize}
+
+\subsubsection{Datenbankanbindung}
+Der Zugriff auf die Datenbank erfolgt mit PHP Data Objects (PDO). PDO bietet einen einheitlichen Zugang von PHP auf verschiedene SQL-Datenbanken. Der Portierungsaufwand beim Wechseln auf eine neues Datenbanksystem ist somit sehr gering.
+
+\begin{lstlisting}[float = htpb,caption={Inhalt der Datei dbConnection.php}, label=lst:Canvas,captionpos=b,keywordstyle=\bfseries\color{black}]
+<?php
+
+$db = new PDO('mysql:host=localhost;dbname=mousebreed;charset=UTF8', 'mousebreed', 'genotyp');
+
+?>
+\end{lstlisting}
+
+\begin{figure}[ht]
+	\centering
+  \includegraphics[width=1.0\textwidth]{db.png}
+	\caption{Struktur der Datenbank}
+	\label{fig2}
+\end{figure}
+
+\newpage
+
+Funktionen um auf die Datenbank zu zugreifen stellen die Dateien \textit{userModel.php} und \textit{breedModel.php} zur Verfügung. \textit{userModel.php} beinhaltet Funktionen die den Benutzer betreffen, analog beinhaltet \textit{userModel.php} Funktionen die die Zucht betreffen. Zum Beispiel liefert die Funktion \textit{getMouse(\$mouseId)} aus der Datei \textit{breedModel.php} alle Daten von der abgefragten Maus.
+
+\begin{lstlisting}[float = htpb,caption={Aufbau der Funktion getMouse}, label=lst:Canvas,captionpos=b,keywordstyle=\bfseries\color{black}]
+  public function getMouse($mouseId) {
+        $stmt =     "SELECT * ".
+                    "FROM `mouse` ".
+                    "WHERE id = ?";
+        $stmt = $this->db->prepare($stmt);
+        $stmt->bindParam(1, $mouseId);
+
+        if($stmt->execute() && $mouse = $stmt->fetchAll(\PDO::FETCH_ASSOC)) {
+            return $mouse;
+        } else {
+            return Array();
+        }
+    }
+\end{lstlisting}
+
+
+\subsubsection{Informationen in Templates einfügen}
+Je nachdem welche Seite der Anwendung aufgerufen wird, werden unterschiedliche Informationen von der Datenbank abgefragt und mit PHP-Code in das HTML-Template eingefügt. Ruft der Benutzer sein Profil auf, werden zum Beispiel alle Daten von seinen Zuchten abgefragt und angezeigt.
+
+\begin{lstlisting}[float = htpb,caption={Auflistung der Zuchtdaten}, label=lst:Canvas,captionpos=b,keywordstyle=\bfseries\color{black}]
+<?php foreach ($_SESSION['breeds'] as $breed) { ?>
+	<tr>
+	<td><?php echo $breed['name']; ?></td>
+	<td><?php echo $breed['time_of_creation']; ?></td>
+	<td><?php echo $breed['scenario']; ?></td>
+	<td><?php echo $breed['numberOfMice']; ?></td>
+	<td><?php echo $breed['numberOfCages']; ?></td>
+	</tr>
+<?php } ?>
+\end{lstlisting}
+
+\newpage
+
+
 \section{Arbeitsweise}
 Die \textit{Play}-Seite ist dafür zuständig, den eigentlichen Spielvorgang ermöglichen. In ihr sollen die Käfige mit ihren Mäusen visualisiert werden und dem Nutzer die Möglichkeit zur Spielbeeinflussung eingeräumt werden. Dazu wurden in der Seite ein Steckbrief mit Informationen über ausgewählte Mäuse und ein Canvas als Käfigfläche eingebunden. Zusätzlich sind Buttons vorhanden, um einen Tag im Spielgeschehen verstreichen zu lassen oder männliche Mäuse aussortieren zu können. Dieses wird mit der Engine ermöglicht.
 %TODO ref CHRISTIAN
