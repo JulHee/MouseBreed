@@ -98,7 +98,7 @@ function addBen(titel, nachricht, art) {
     var dateOutput = dateHours + ":" + dateMinutes + ":" + dateSeconds;
 
     // Anfügen der neuen Benachrichtigung
-    $("#benliste_top").prepend('<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><span class="label label-info">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>');
+    $("#benliste_top").prepend('<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + titel + '</strong></div><div class="bentimestamp"><span class="label label-info bentimestamptext">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>');
 
     // Setzten des Zählers
     $("#NumBen").html($("#benliste_top > li.benMessagetoDelete").length);
@@ -173,6 +173,31 @@ function childWeight(age,weight){
     }
 }
 
+//func to get "old" notes from local storage
+function getLocalNotes() {
+    if (JSON.parse(localStorage.getItem("Notes")) !== null) {
+        noticearr = JSON.parse(localStorage.getItem("Notes")).reverse();
+        for (var i = 0; i < noticearr.length; i++) {
+            var inText = noticearr[i];
+            $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
+        }
+    } else {
+        localStorage.setItem("Notes", JSON.stringify(noticearr));
+    }
+};
+function getLocalBen() {
+    if (JSON.parse(localStorage.getItem("Ben")) !== null) {
+        benarr = JSON.parse(localStorage.getItem("Ben")).reverse();
+        for (var i = 0; i < benarr.length; i++) {
+            var inText = benarr[i];
+            console.log(inText);
+            $("#benliste_top").prepend('<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + inText.titel + '</strong></div><div class="bentimestamp"><span class="label label-info bentimestamptext">' + inText.dateOutput + '</span></div><div class="benMessage">' + inText.nachricht + '</div></a></li>');
+        }
+    } else {
+        localStorage.setItem("Ben", JSON.stringify(benarr));
+    }
+};
+
 
 $(document).ready(function () {
     Logout.onReady();
@@ -180,8 +205,10 @@ $(document).ready(function () {
     engine.setTarget();                // Create the Target-Array, wich contains the information about the endconditions
     setMaxheight();
     getLocalNotes();
+    getLocalBen();
     //NextDay.onReady();
 
+    console.log(localStorage.getItem("Ben"));
     $("#targetInfo").popover({
         html: true,
         content: function () {
@@ -239,6 +266,7 @@ $(document).ready(function () {
 
     //array for local notes
     var noticearr = [];
+    var benarr = [];
     $('#addbtn').click(
         function () {
             var inText = $('#noticetext').val();
@@ -246,26 +274,36 @@ $(document).ready(function () {
             //$('#notizenT').prepend('<li class="notMessage list-group-item"> ' + inText + '<button onClick="$(this).parent().remove()" type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button> </li>');
             $('#noticetext').val("");
         });
-    //func to get "old" notes from local storage
-    function getLocalNotes() {
-        if (JSON.parse(localStorage.getItem("Notes")) !== null) {
-            noticearr = JSON.parse(localStorage.getItem("Notes")).reverse();
-            for (var i = 0; i < noticearr.length; i++) {
-                var inText = noticearr[i];
-                $('#notizenT').prepend('<li class="notMessage list-group-item"><div class="row"><div class="col-md-10 notmsg">' + inText + '</div><div class="col-md-2"><button onClick="$(this).parent().parent().parent().remove()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> </div></li>');
-            }
-        } else {
-            localStorage.setItem("Notes", JSON.stringify(noticearr));
-        }
-    };
     //on reload set localStorage
     window.onbeforeunload = function () {
         noticearr = [];
+        benarr = [];
         $.each($('.notmsg'), function () {
             noticearr.push($(this).text());
         });
+
+        tmparrtitel = [];
+        tmparrdate = [];
+        tmparrnachricht = [];
+
+
+        $.each($('.benTitle'),function(){
+            tmparrtitel.push($(this).text());
+        });
+        $.each($('.bentimestamptext'),function(){
+
+            tmparrdate.push($(this).text());
+        });
+        $.each($('.benMessage'),function(){
+            tmparrnachricht.push($(this).text());
+        });
+        for (i = 0; i < tmparrtitel.length; i++) {
+            benarr.push({'titel':tmparrtitel[i],'time':tmparrdate[i],'text':tmparrnachricht[i]});
+        }
+
+        localStorage.setItem("Ben",JSON.stringify(benarr));
         localStorage.setItem("Notes", JSON.stringify(noticearr));
-    }
+    };
     $(window).resize(function(){
         setMaxheight();
     });
