@@ -233,9 +233,25 @@ $(document).ready(function () {
     //on reload set localStorage
     window.onbeforeunload = function () {
         noticearr = [];
+        benarr = [];
         $.each($('.notmsg'), function () {
             noticearr.push($(this).text());
         });
+
+        tmparrtitel = [];
+        tmparrdate = [];
+        tmparrnachricht = [];
+
+
+
+
+        $.each($('.benTitle'),function(){
+          //  '<li class="benMessagetoDelete list-group-item"><a href="#"><div class="benTitle"><strong>' + titel +
+          //  '</strong></div><div class="bentimestamp"><span class="label label-info">' + dateOutput + '</span></div><div class="benMessage">' + nachricht + '</div></a></li>
+            tmparrtitel.push($(this).text());
+            console.log(tmparrdate);
+        });
+
         localStorage.setItem("Notes", JSON.stringify(noticearr));
     }
     $(window).resize(function(){
