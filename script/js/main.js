@@ -297,7 +297,7 @@ $(document).ready(function () {
     });
 
     $('#deleteCage').click(function(){
-        engine.deleteCage(selectedCage);
+        engine.deleteCage(BasicFunctions.getCurrentCage());
     });
 
 });

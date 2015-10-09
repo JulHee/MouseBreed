@@ -1,3 +1,4 @@
+var currentCage;
 var BasicFunctions = {
     onReady: function() {
         $("#save").click(function() {
@@ -17,7 +18,8 @@ var BasicFunctions = {
             $('#mouseinfoGender').innerHTML = mouse.gender;
             $('#mouseinfoAge').innerHTML = mouse.age;
             $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
-        }
+            currentCage = mouse.cage_id;
+        },
         /* SyntaxError
         updateListMouse : function (){
             var allMice = $_SESSION['loadedListMouse']['mice'];
@@ -32,6 +34,7 @@ var BasicFunctions = {
             });
 
         }*/
+    getCurrentCage : function(){return currentCage;}
 };
 var LoadInformations = {
     onReady: function() {
