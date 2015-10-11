@@ -191,9 +191,7 @@ function setTagetInfo(age,gender,genotyp){
 $(document).ready(function () {
     Logout.onReady();
     refereshNumberOfDays();
-    engine.setTarget();                // Create the Target-Array, wich contains the information about the endconditions
-    var thisTarget = target[engine.convertScenario2Index(loadedBreed["scenario"])];
-    setTagetInfo(thisTarget.age,thisTarget.gender,thisTarget.genotyp);
+    if(loadedBreed != null){engine.setTarget();}// Create the Target-Array, wich contains the information about the endconditions
     setMaxheight();
     getLocalNotes();
     getLocalBen();

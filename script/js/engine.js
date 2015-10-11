@@ -404,6 +404,8 @@ var engine = {
         target = [
             {strictTime: 0, numberOfMice: 20, gender: 1, genotyp: "BB", age: 42},
             {strictTime: 0, numberOfMice: 10,  gender: 1, genotyp: "BB", age: 28}];
+        var thisTarget = target[engine.convertScenario2Index(loadedBreed["scenario"])];
+        setTagetInfo(thisTarget.age,thisTarget.gender,thisTarget.genotyp);   // function setTargetInfo implemented in main.js
     },
 
     getTargetStrictTime : function(){return target[engine.convertScenario2Index(loadedBreed.scenario)].strictTime},
