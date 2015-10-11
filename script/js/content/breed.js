@@ -18,7 +18,6 @@ var BasicFunctions = {
             $('#mouseinfoGender').innerHTML = mouse.gender;
             $('#mouseinfoAge').innerHTML = mouse.age;
             $('#mouseinfoProfileImg').src = mouse.gender == "m" ? "/data/img/Malemouse.png" : "/data/img/Femalemouse.png";
-            currentCage = mouse.cage_id;
         },
         /* SyntaxError
         updateListMouse : function (){
@@ -65,6 +64,7 @@ var LoadInformations = {
         }
         $("#numberofMice").html(NumberofMice);
         LoadInformations.printMouses(cage.id);
+        currentCage = cage.id;
     },
     printMouses: function(cage_id) {
         // Leeren der Tabelle
