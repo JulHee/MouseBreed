@@ -319,8 +319,8 @@ var engine = {
                 url: "/script/php/ajax/deleteCage.php",
                 data: {id: id},
                 async: false
-            })
-            delete loadedBreed.cages[id];
+            });
+            delete loadedBreed["cages"][id];
             addBen("Käfig gelöscht","Der Käfig wurde erfolgreich gelöscht","info");
         }else{
              addBen("Halt","Der Käfig "+id+" ist nicht leer und kann folglich nicht gelöscht werden","warn");

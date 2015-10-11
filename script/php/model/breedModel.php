@@ -407,8 +407,8 @@ class breedModel {
 
     public function deleteCage($id,$breedId) {
         $stmt = "DELETE ".
-                "FROM 'cages'".
-                "WHERE breed_id = ? AND cage_id = ?";
+                "FROM 'cage'".
+                "WHERE breed_id = ? AND id = ?";
         $stmt = $this->db->prepare($stmt);
         $stmt->bindParam(1,$breedId);
         $stmt->bindParam(2,$id);
