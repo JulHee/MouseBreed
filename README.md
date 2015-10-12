@@ -21,13 +21,15 @@ Das Projekt simuliert eine Mauszucht.
 
 ### Allgemein
 
-- Käfig löschen via php wirft noch Fehler
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS     - Win Problem
 - Mauszeiger über "Logout" zur Hand ändern - CSS                   - Win Problem
 
 
 ## Noch sinvolle Dinge, aber kein Muss
 - Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)?
+- Käfig löschen Button auf play
+- einfacher Wechsel zwischen breed, play und history
+- max-height für die Notizen
 
 
 ### Akute Probleme
