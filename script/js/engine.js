@@ -314,19 +314,23 @@ var engine = {
     /*@param id the id of the choosen cage*/
     deleteCage : function(id){
         if(engine.countMice(id) == 0 && id != loadedBreed["finished_cage"] && id != loadedBreed["trash_cage"]){
-            $.ajax({                                // request to database
+            var response = $.ajax({                                // request to database
                 type: "POST",
                 url: "/script/php/ajax/deleteCage.php",
                 data: {id: id},
                 async: false
-            });
-            delete loadedBreed["cages"][id];
-            addBen("Käfig gelöscht","Der Käfig wurde erfolgreich gelöscht","info");
+            }).responseText;
+            response = JSON.parse(response);
+            if (response.success == true) {
+                delete loadedBreed["cages"][id];
+                localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
+                addBen("Käfig "+ id +" gelöscht","Der Käfig wurde erfolgreich gelöscht","info");
+            } else {
+                addBen("Beim Löschen ist ein Fehler aufgetreten.","warn");
+            }
         }else{
              addBen("Halt","Der Käfig "+id+" ist nicht leer und kann folglich nicht gelöscht werden","warn");
         }
-
-
     },
 
 

@@ -294,8 +294,10 @@ $(document).ready(function () {
         setMaxheight();
     });
 
+    // Warum in main.js ?
     $('#deleteCage').click(function(){
         engine.deleteCage(BasicFunctions.getCurrentCage());
+        location.reload();
     });
 
 });

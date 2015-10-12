@@ -9,8 +9,10 @@ if(isset($_SESSION['login']) && $_SESSION['login'] && isset($_SESSION['loadedBre
 
     $res = $breedModel->deleteCage($_POST['id'],$_SESSION['loadedBreed']['id']);
 
-    if($res > 0) {
-        echo json_encode(array('success' => true, 'id' => $res));
+    if($res) {
+        $_SESSION['breeds'] = $breedModel->getGeneralData($_SESSION['userdata']['id']);
+        //$_SESSION['loadedBreed'] = $breedModel->getData($_SESSION['loadedBreed']['id']);
+        echo json_encode(array('success' => true));
     } else {
         echo json_encode(array('success' => false, 'msg' => 'Fehler'));
     }
