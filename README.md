@@ -23,7 +23,7 @@ Das Projekt simuliert eine Mauszucht.
 
 - Mauszeiger über "Zucht Starten Button" zur Hand ändern - CSS     - Win Problem
 - Mauszeiger über "Logout" zur Hand ändern - CSS                   - Win Problem
-
+- Steckbrieflayout , Text geht über den rechten Rand
 
 ## Noch sinvolle Dinge, aber kein Muss
 - Zucht löschen Button (zB auf der Zucht laden Seite rechts daneben)?
@@ -32,13 +32,13 @@ Das Projekt simuliert eine Mauszucht.
 - max-height für die Notizen
 
 
-### Akute Probleme
+### Akute Probleme#
+- zwischendurch beim spielen ist der Spielstand auf einen älteren zurück gesprungen,... dann waren alle neuen Käfige und Kinder weg.
 
 ### Christoph
 
 ### Christian
-- Spielende testen 
-- Käfiggröße prüfen testen -> aktuellen Käfig aus breed.php bekommen und in engine.deleteCage übergeben
+- Spielende testen
 
 ### Jörn
 

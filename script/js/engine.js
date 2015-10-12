@@ -145,6 +145,7 @@ var engine = {
                     engine.newMouse(tmp_cage_id, tmp_gender, genotypArray[k % 4], initial_weight, response["ready_matings"][curr_mating]["id"], mother_id, father_id, 0, initial_img_name)
                 }
                 engine.changeCage(mother_id, engine.find_cage(mother_id), tmp_cage_id); // move the mother into the new cage
+                engine.find_mouse(mother_id)["pregnant"] = 0;
                 addBen("Der Wurf ist da", "Der Wurf von der Mutter " + mother_id + " ist nun auf der Welt und in Käfig " + tmp_cage_id + " machen die Kleinen ihre ersten Schritte", "info");
                 draw();
             }

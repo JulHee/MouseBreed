@@ -182,7 +182,7 @@ function setDayProgress(ist,max){
     $('#targetFinishProgress').text(percent + "%");
 }
 function setTagetInfo(age,gender,genotyp){
-    $('#targetInfoGender').text(gender);
+    $('#targetInfoGender').text(number2Gender(gender));
     $('#targetInfoGenotyp').text(genotyp);
     $('#targetInfoage').text(age);
 }
