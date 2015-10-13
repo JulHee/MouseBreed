@@ -30,10 +30,11 @@ Das Projekt simuliert eine Mauszucht.
 - Käfig löschen Button auf play
 - einfacher Wechsel zwischen breed, play und history
 - max-height für die Notizen
-
+- Neue Zucht Seite: Nach Eingabe des Namens auf Enter gedrückt, dann ging es nicht weiter sondern wieder zu, Autofokus?
 
 ### Akute Probleme#
 - zwischendurch beim spielen ist der Spielstand auf einen älteren zurück gesprungen,... dann waren alle neuen Käfige und Kinder weg.
+  Beim Wechsel von Play auf Mousehatten, nicht immer
 
 ### Christoph
 
