@@ -282,4 +282,4 @@ function saveChanges() {
     localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
 }
 
-$( window ).on('beforeunload', saveChanges);
+window.addEventListener("beforeunload", saveChanges);
