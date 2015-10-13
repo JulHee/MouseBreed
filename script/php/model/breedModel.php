@@ -77,11 +77,12 @@ class breedModel {
             $stmt = $this->db->prepare($stmt);
             if (!$stmt->execute(Array($newTrashCageId, $newBreedId))) return Array('id' => -1, 'msg' => "Trash-Käfig konnten nicht gesetzt werden.");
             $initWeight = 8;
+            $initCageSize = 6;
             if ($scenario == "easy_1") {
 
                 // Käfige erzeugen
-                $newCageId_1 = $this->newCage(20, $newBreedId);
-                $newCageId_2 = $this->newCage(20, $newBreedId);
+                $newCageId_1 = $this->newCage($initCageSize, $newBreedId);
+                $newCageId_2 = $this->newCage($initCageSize, $newBreedId);
                 if ($newCageId_1 < 0 || $newCageId_2 < 0) {
                     $this->deleteBreed($newBreedId);
                     return Array('id' => -1, 'msg' => "Käfige konnten nicht erstellt werden.");
@@ -109,8 +110,8 @@ class breedModel {
             } elseif ($scenario == "easy_2") {
 
                 // Käfige erzeugen
-                $newCageId_1 = $this->newCage(20, $newBreedId);
-                $newCageId_2 = $this->newCage(20, $newBreedId);
+                $newCageId_1 = $this->newCage($initCageSize, $newBreedId);
+                $newCageId_2 = $this->newCage($initCageSize, $newBreedId);
                 if ($newCageId_1 < 0 || $newCageId_2 < 0) {
                     $this->deleteBreed($newBreedId);
                     return Array('id' => -1, 'msg' => "K?fige konnten nicht erstellt werden.");
