@@ -282,4 +282,9 @@ function saveChanges() {
     localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
 }
 
-window.addEventListener("beforeunload", saveChanges);
+window.addEventListener("beforeunload", function (e) {
+    var confirmationMessage = "Gespeichert";
+    saveChanges();
+    (e || window.event).returnValue = confirmationMessage;     //Gecko + IE
+    return confirmationMessage;                                //Webkit, Safari, Chrome etc.
+});
