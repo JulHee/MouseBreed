@@ -84,5 +84,6 @@ $(document).ready(function() {
     BasicFunctions.onReady;
     LoadInformations.onReady();
     console.log(loadedBreed);
+    engine.updateLoadedBreed();
 
 });

@@ -203,6 +203,7 @@ function tick(event) {
 $(document).ready(function() {
     // Aufrufen der Startfunktion
     init();
+    engine.updateLoadedBreed();
     $("#sidebarNextDay").click(function(){
         // Aufruf der Nextday Funktion aus eingine.js - clock
         clock.nextDay();

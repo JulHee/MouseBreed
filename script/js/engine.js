@@ -4,11 +4,6 @@ var target;
 var engine = {
     //                           benötigt ???
 
-    updateLoadedBreed: function () {
-        var data = localStorage.getItem("loadedBreed");
-        loadedBreed = JSON.parse(data);
-    },
-
     /*compute with php
      *@return all pairings with an age 21
      **/
@@ -132,11 +127,12 @@ var engine = {
         response = JSON.parse(response);
         if (response.success == true) {
             var initial_img_name = "data\img\defaultMausChB.png";
+            var initCageSize = 6;
             for (i in response["ready_matings"]) {
                 var curr_mating = i;
                 var father_id = response["ready_matings"][i]["father_id"]
                 var mother_id = response["ready_matings"][i]["mother_id"]
-                engine.newCage(6);
+                engine.newCage(initCageSize);
                 var tmp_cage_id = engine.find_newest_cage();
                 var genotypArray = engine.mixGenotyp(engine.find_mouse(mother_id), engine.find_mouse(father_id))
                 for (k = 0; k <= 5; k++) {
@@ -149,8 +145,9 @@ var engine = {
                 addBen("Der Wurf ist da", "Der Wurf von der Mutter " + mother_id + " ist nun auf der Welt und in Käfig " + tmp_cage_id + " machen die Kleinen ihre ersten Schritte", "info");
                 draw();
             }
+            localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
             return response;
-
+            
         } else {
 
             // request not successful and new mice are not created
@@ -389,6 +386,11 @@ var engine = {
             }
         }
         return globalBool ;
+    },
+
+    updateLoadedBreed: function () {
+        var data = localStorage.getItem("loadedBreed");
+        loadedBreed = JSON.parse(data);
     },
 
 
