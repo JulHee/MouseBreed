@@ -242,6 +242,7 @@ var engine = {
         choosenMouse["cage_id"] = new_cage_ID;                             /*set new cage ID*/
         loadedBreed["cages"][new_cage_ID]["mice"][mouse_ID] = choosenMouse;/*add choosenMouse to new cage*/
         delete loadedBreed["cages"][old_cage_ID]["mice"][mouse_ID];        /*delete choosenMouse from old cage*/
+        localStorage.setItem("loadedBreed", JSON.stringify(loadedBreed));
     },
 
     /*Delete mouse, move to trash_cage, for the mice aspecially the male mouse wich does not fit the target and are not useful anymore
