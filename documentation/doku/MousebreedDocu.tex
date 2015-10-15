@@ -43,12 +43,12 @@
 \subsubsection{Bootstrap}
 Die Oberflaeche der Website wird durch das freie CSS-Framework Bootstrap dargestellt.
 Viele der sichtbaren Komponenten bestehen as diesem Framework. Zum Darstellen der Website nutzen wir das ``Grid System'' um unseren Inhalt
-aufzuteilen. Dabei erhaelt die Seitenleiste ``col-md-1'' und der jeweilige Inhalt der Seite ``col-md-11''.
+aufzuteilen. Dabei erhaelt die Seitenleiste ``col-md-2'' und der jeweilige Inhalt der Seite ``col-md-10''.
 \begin{lstlisting}[float = htpb,caption={Grundstruktur der Website}, label=lst:Canvas,captionpos=b,keywordstyle=\bfseries\color{black}]
-    <div class="col-sm-2 col-md-1 sidebar">
-    </div>
-    <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
+    <div class="col-sm-11 col-md-10">
         <?php include_once "$page.php"; ?>
+    </div>
+    <div class="col-sm-1 col-md-2">
     </div>
 \end{lstlisting}
 \subsubsection{Canvas}
@@ -78,7 +78,7 @@ CreateJS ist ein Kollektiv von Bibliotheken um interaktiven Inhalt in HTML5 zu e
 \caption{CreateJS Bibliotheken}
 \end{table} \\
 \subsubsection{Benachrichtigungen}
-Die Benachrichtigungen bauen auf dem JQuery-Plugin ``Notify.js'' auf. Die Benachrichtigungen sind in vier Klassenunterteilt:
+Die Benachrichtigungen bauen auf dem JQuery-Plugin ``Notify.js'' auf und sind in vier Klassenunterteilt:
 \begin{itemize}
     \item{Erfolg}
     \item{Information}
@@ -210,7 +210,7 @@ Engine liefert grundlegende Funktionen für den Spielablauf.
     \item{Zum erstellen von  neuen Mäusen\\
         Dabei ist zu unterscheiden zwischen dem einfachen erschaffen(newMouse()) und dem geboren werden(birth()), wobei birth() unter den richtigen Umständen newMouse() aufruft. Außerdem gibt es newMating() zum Erzeugen eine neuen Paarung}
     \item{Zum arbeiten mit existierenden Mäusen\\
-        Hier wird das Alter erhöht und zwei Funktionen zum Finden bestimmter Mäuse. Die Generation kann ermittelt werden und die erste Maus eines Käfigs wird ermittelt} 
+        Hier wird das Alter erhöht und zwei Funktionen zum Finden bestimmter Mäuse. Die Generation kann ermittelt werden und die erste Maus eines Käfigs wird ermittelt}
     \item{Zum arbeiten mit Käfigen\\
         Es kann ein neuer Käfig erzeugt werden. Mäuse können zwischen den Käfigen verschoben werden/ aussortiert werden. Es können bestimmte Käfige gefunden werden. Käfige können gelöscht werden}
     \item{Speichern und Fortfahren prüfen\\
