@@ -199,7 +199,7 @@ Der Nutzer kann nun diese animierten Objekte mit dem Cursor auswählen, um versch
 Im wesentlichen wird eine durch den Nutzer vollführte Änderung innerhalb der \textit{Play}-Seite auf die Datenstruktur abgebildet und anschließend mit Hilfe der Engine%TODO ref EG
 für die Spiellogik umgesetzt.
 \section{loadedBreed}
-Die Variable loadedBreed dient dazu die Informationen, der geladenen Zucht, aus der Datenbank bereitzustellen und gemäß dem Spielverlauf zu modifizieren. Die Initialisierung und Aktualisierung erfolgt über den local storage. Die Aufgabe war es die Daten persistent zu speichern, jedoch gleichzeitig zu hohen traffic zwischen Nutzer und Server zu vermeiden. Hierfür benutzen wir loadedBreed, welche zunächst alle Änderungen durchführt und auf dessen Grundlage das Spiel abläuft. Einige Funktionen und letztlich das Beenden des Spiels führen zu einer Angleichung der Datenbank mit der loadedBreed und sichern den Spielfortschritt dauerhaft.
+Die Variable loadedBreed dient dazu die Informationen, der geladenen Zucht, aus der Datenbank bereitzustellen und gemäß dem Spielverlauf zu modifizieren. Die Initialisierung und Aktualisierung erfolgt über den local storage. Die Aufgabe war es die Daten persistent zu speichern, jedoch gleichzeitig zu hohe Netzwerkauslastung zwischen Nutzer und Server zu vermeiden. Hierfür benutzen wir loadedBreed, welche zunächst alle Änderungen durchführt und auf dessen Grundlage das Spiel abläuft. Einige Funktionen und letztlich das Beenden des Spiels führen zu einer Angleichung der Datenbank mit der loadedBreed und sichern den Spielfortschritt dauerhaft.
 
 \section{target}
 Die Variable target beinhaltet die verschiedenen Szenarien in Form der jeweiligen Spielziele. Über sie wird geprüft ob der Spieler das Ende erreicht hat oder noch weiter züchten muss. Über die Funktion engine.setTarget() wird diese Variable initialisiert.
@@ -208,13 +208,13 @@ Die Variable target beinhaltet die verschiedenen Szenarien in Form der jeweilige
 Engine liefert grundlegende Funktionen für den Spielablauf.
 \begin{itemize}
     \item{Zum erstellen von  neuen Mäusen\\
-        Dabei ist zu unterscheiden zwischen dem einfachen erschaffen(newMouse()) und dem geboren werden(birth()), wobei birth() unter den richtigen Umständen newMouse() aufruft}
+        Dabei ist zu unterscheiden zwischen dem einfachen erschaffen(newMouse()) und dem geboren werden(birth()), wobei birth() unter den richtigen Umständen newMouse() aufruft. Außerdem gibt es newMating() zum Erzeugen eine neuen Paarung}
     \item{Zum arbeiten mit existierenden Mäusen\\
-        Hier wird das Alter erhöht und zwei Funktionen zum Finden bestimmter Mäuse}
+        Hier wird das Alter erhöht und zwei Funktionen zum Finden bestimmter Mäuse. Die Generation kann ermittelt werden und die erste Maus eines Käfigs wird ermittelt} 
     \item{Zum arbeiten mit Käfigen\\
-        Es kann ein neuer Käfig erzeugt werden. Mäuse können zwischen den Käfigen verschoben werden/ aussortiert werden. Es können bestimmte Käfige gefunden werden.}
+        Es kann ein neuer Käfig erzeugt werden. Mäuse können zwischen den Käfigen verschoben werden/ aussortiert werden. Es können bestimmte Käfige gefunden werden. Käfige können gelöscht werden}
     \item{Speichern und Fortfahren prüfen\\
-        Der Spielfortschritt wird gespeichert und es wird geprüft ob alle Bedingungen erfüllt sind um zum nächsten Tag zu wechseln}
+        Der Spielfortschritt wird gespeichert und es wird geprüft ob alle Bedingungen erfüllt sind um zum nächsten Tag zu wechseln. Update loadedBreed aus dem localStorage }
     \item{Game Over \\
         Prüfen ob das Spiel zu ende ist. Hierfür werden die benötigten Hilfsfunktion zur Verfügung gestellt  }
 \end{itemize}
@@ -226,6 +226,6 @@ Clock liefert Funktionen, welche für jeden Tag und im speziellen für die nextDay
     \item{Nächster Tag\\
         Die Hauptfunktion nextDay() und dazugehörige Hilfsfunktionen führen alle Aktionen aus welche ein Tageswechsel benötigt und prüft Bedingungen.}
     \item{Täglich Ende prüfen\\
-        Die Hauptfunktion checkTarget() prüft, mit Hilfe der Funktionen aus dem GameOver-Beriech der engine, ob das Spiel zu ende ist. }
+        Die Hauptfunktion checkTarget() prüft, mit Hilfe der Funktionen aus dem GameOver-Bereich der engine, ob das Spiel zu Ende ist. }
 \end{itemize}
 \end{document}
