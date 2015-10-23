@@ -137,7 +137,7 @@
                                         <div class="panel-body">
                                             <ul class="list-unstyled">
                                                 <li>
-                                                    <h4 class="list-group-item-heading">Gewünsche Mäuse</h4>
+                                                    <h4 class="list-group-item-heading">Gewünschte Mäuse</h4>
                                                     <div class="progress">
                                                         <div id="targetFinishProgress"
                                                             class="progress-bar progress-bar-success progress-bar-striped active"
